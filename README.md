@@ -1,2 +1,2 @@
 # silver-lamp
-# silver-lamp
+# ChangeLog
