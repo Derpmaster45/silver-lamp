@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "YNPrvBAdus+wYL3PEZSaqlNqIXBEjMOHPLzVhABChrzD/coZWK9zTsiU72VllLbm1POph15H60WRPnFnr170+Q==",
+  "success": true,
+  "projectFilePath": "/home/jay/Documents/dh4/dh4.csproj",
+  "expectedPackageFiles": [
+    "/home/jay/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.4/microsoft.aspnetcore.app.ref.8.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
