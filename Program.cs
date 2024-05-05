@@ -1,10 +1,13 @@
 ﻿using System;
 using DH4.Classes;
-
-class Program
+namespace DH4
 {
-    public static void Main(string[] args)
+    class Game
     {
-
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, dotnet build test!");
+            
+        }
     }
 }
