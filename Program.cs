@@ -49,7 +49,8 @@ namespace DH4
                 PromptedClearScreen();
                 Console.WriteLine("Angel: You leave me no choice.\n The angel raises his hand with a fire burning on his palm.\n Town Elder: WAIT! We will take you to them! Please don't harm the village.\n");
                 Console.WriteLine("The villagers take the angel, to a house on lake askela, on the outskrits of the village.\n");
-                Console.WriteLine("Angel: Dark swordsman, you, and the mage have been given up by the villagers.\n");           
+                Console.WriteLine("Angel: Dark swordsman, you, and the mage have been given up by the villagers.\n");    
+                       
                 break;
                 // quit game case
                 case"2":
