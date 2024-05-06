@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using DH4.Classes;
 namespace DH4
 {
@@ -29,7 +30,8 @@ namespace DH4
             }
             void BattleSystem(Character[] PlayerParty, Enemy[] enemy)
             {
-
+                //onsole.BackgroundColor = Color.White;
+                //ResetAndClear();
             }
            string MainMenuOption="";
            while(MainMenuOption=="")
@@ -66,6 +68,8 @@ namespace DH4
                 MageAndSwordsman[1].PlayerDefensePoints=2;
                 MageAndSwordsman[0].PlayerManaPoints=0;
                 MageAndSwordsman[1].PlayerManaPoints=500;
+                MageAndSwordsman[0].PlayerHeath=1000;
+                MageAndSwordsman[1].PlayerHeath=950;
                 // party setup complete
                 Console.WriteLine("The door swings open, out steps a man who is average in build, and not very intimidating.\n");
                 Console.WriteLine("Angel: Ha ha ha, you're the dark swordsman? \nFrom the stories I have heard, I expected you to be scarier.\n");
@@ -81,7 +85,11 @@ namespace DH4
                  Console.WriteLine("With that last statement, the dark swordsman looks at the mage, she nods, as if they are planning something \n Angel:Enough of this It is time for you to meet you maker");
                  Console.WriteLine("The mage snaps her fingers and the villagers disapear\n");
                  Console.WriteLine("The angel looks around in shock, and anger.\n Angel: WHAT HAPPENED!\n Mage: The villagers safety was in jeopardy, we could not allow you to harm innocent bystanders\n Dark swordsman: Now it is time for you to send a message to your master!\n Dark swordsman: As you know, DEAD MEN TELL NO TALES\n");
-                 //BattleSystem();
+                 // angel enemy object creation
+                 Enemy[] AngelEnemy= new Enemy[1];
+                 AngelEnemy[0].EnemyName="Angel";
+                 AngelEnemy[0].EnemyHeath=900;
+                 //BattleSystem(MageAndSwordsman[0],AngelEnemy[0]);
                 break;
                 // quit game case
                 case"2":
@@ -97,6 +105,11 @@ namespace DH4
            
            
             
+        }
+
+        private static void BattleSystem(Character character, Enemy enemy)
+        {
+            throw new NotImplementedException();
         }
     }
 }
