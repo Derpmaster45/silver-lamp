@@ -8,6 +8,8 @@ namespace DH4.Classes
         public double PlayerDefensePoints{get; set;}
         public float PlayerHeath{get;set;}
         public int PlayerLevel{get;set;}
+        public double PlayerManaPoints{get;set;}
+        
 
     }
 }
