@@ -89,7 +89,7 @@ namespace DH4
                  Enemy[] AngelEnemy= new Enemy[1];
                  AngelEnemy[0].EnemyName="Angel";
                  AngelEnemy[0].EnemyHeath=900;
-                 //BattleSystem(MageAndSwordsman[0],AngelEnemy[0]);
+                 BattleSystem(MageAndSwordsman,AngelEnemy);
                 break;
                 // quit game case
                 case"2":
