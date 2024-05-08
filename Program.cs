@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Security.Cryptography.X509Certificates;
 using DH4.Classes;
 namespace DH4
 {
@@ -8,6 +9,10 @@ namespace DH4
         public static void Main(string[] args)
         {
             string MainMenuOption="";
+            Character character= new Character();
+            character.PlayerName="Dark Swordsman";
+            character.PlayerHeath=600;
+            Enemy enemy= new Enemy();
            /* double DoDamageToPlayer(Character[] characters, Enemy[] enemies)
             {
                 for(int i=0; i<characters.Length;)
@@ -109,20 +114,6 @@ namespace DH4
                 Console.WriteLine("Angel: You leave me no choice.\n The angel raises his hand with a fire burning on his palm.\n Town Elder: WAIT! We will take you to them! Please don't harm the village.\n");
                 Console.WriteLine("The villagers take the angel, to a house on lake askela, on the outskrits of the village.\n");
                 Console.WriteLine("Angel: Dark swordsman, you, and the mage have been given up by the villagers.\n");
-                // party setup for prologue     
-                Character[] MageAndSwordsman=new Character[2];
-                MageAndSwordsman[0].PlayerName="Mage";
-                MageAndSwordsman[1].PlayerName="Swordsman";
-                MageAndSwordsman[0].PlayerLevel=10; 
-                MageAndSwordsman[1].PlayerLevel=10;
-                MageAndSwordsman[0].AttackPoints=40;
-                MageAndSwordsman[1].AttackPoints=40;
-                MageAndSwordsman[0].PlayerDefensePoints=2;
-                MageAndSwordsman[1].PlayerDefensePoints=2;
-                MageAndSwordsman[0].PlayerManaPoints=0;
-                MageAndSwordsman[1].PlayerManaPoints=500;
-                MageAndSwordsman[0].PlayerHeath=1000;
-                MageAndSwordsman[1].PlayerHeath=950;
                 // party setup complete
                 Console.WriteLine("The door swings open, out steps a man who is average in build, and not very intimidating.\n");
                 Console.WriteLine("Angel: Ha ha ha, you're the dark swordsman? \nFrom the stories I have heard, I expected you to be scarier.\n");
@@ -139,11 +130,9 @@ namespace DH4
                  Console.WriteLine("The mage snaps her fingers and the villagers disapear\n");
                  Console.WriteLine("The angel looks around in shock, and anger.\n Angel: WHAT HAPPENED!\n Mage: The villagers safety was in jeopardy, we could not allow you to harm innocent bystanders\n Dark swordsman: Now it is time for you to send a message to your master!\n Dark swordsman: As you know, DEAD MEN TELL NO TALES\n");
                  // angel enemy object creation
-                 Enemy[] AngelEnemy= new Enemy[1];
-                 AngelEnemy[0].EnemyName="Angel";
-                 AngelEnemy[0].EnemyHeath=900;
+                
                  
-                 BattleSystem(MageAndSwordsman,AngelEnemy,CheckpointName);
+                 //BattleSystem(MageAndSwordsman,AngelEnemy,CheckpointName);
                 break;
                 // quit game case
                 case"2":
@@ -161,9 +150,6 @@ namespace DH4
             
         }
 
-        private static void BattleSystem(Character character, Enemy enemy)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
