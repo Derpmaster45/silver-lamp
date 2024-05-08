@@ -7,6 +7,21 @@ namespace DH4
     {
         public static void Main(string[] args)
         {
+            string MainMenuOption="";
+           /* double DoDamageToPlayer(Character[] characters, Enemy[] enemies)
+            {
+                for(int i=0; i<characters.Length;)
+                {
+                    for (int j=0; j<enemies.Length j++)
+                    {
+                        double DamageDealt=characters[i].PlayerHeath -enemies[j].EnemyAttackPoints/characters[i].PlayerDefensePoints;
+                        if(characters[i])    
+                        
+                    }
+                    
+                }
+                return Dama
+            } */
             void QuitGame()
             {
                 Console.WriteLine("Quitting the game in 5 seconds\n");
@@ -28,12 +43,49 @@ namespace DH4
                 switchinput="";
                 
             }
-            void BattleSystem(Character[] PlayerParty, Enemy[] enemy)
+            void BattleSystem(Character[] PlayerParty, Enemy[] enemy,  string CheckpointName)
             {
-                //onsole.BackgroundColor = Color.White;
-                //ResetAndClear();
+               System.Console.WriteLine("Batte intro message goes here.");
+              for(int i=0;i<enemy.Length; i++)
+              {
+                for(int j=0; j<PlayerParty.Length; j++)
+                {
+                    
+                    while(enemy[i].EnemyHeath<=0|| PlayerParty[j].PlayerHeath<=0)
+                    {
+                        System.Console.WriteLine("What would "+PlayerParty[j].PlayerName+" like to do \n 1) Attack \n 2) Magic Attack\n 3)Defend\n");
+                        string BattleOption=Console.ReadLine();
+                        Random AIInput  = new Random();
+                        int randInput=AIInput.Next(1,3);
+                        switch(BattleOption)
+                        {
+                            case"1":
+                            System.Console.WriteLine(PlayerParty[i].PlayerName+" goes for a physical attack\n");
+                            // do damage to ai function call (not programmed in yet)
+                            break;
+                            case"2":
+                            System.Console.WriteLine(PlayerParty[i].PlayerName+"What magic attack would you like to use?\n");
+                            break;
+                            case"3":
+                            System.Console.WriteLine(PlayerParty[i]+"Who would you like to defend?\n");
+                            break;
+                            default:
+                            System.Console.WriteLine("ERR: Unrecognized Command!\n");
+                            break;
+                        }
+                        if(PlayerParty[i].CurrentHealthPoints==0)
+                        {
+                            string ERRMessage="Game over\n";
+                            ResetAndClear(ERRMessage,MainMenuOption,5000);
+                        }
+
+                    }
+                    
+                    
+                }
+              }
             }
-           string MainMenuOption="";
+           //string MainMenuOption="";
            while(MainMenuOption=="")
            {
             Console.WriteLine("DH4 New Generation\n 1) New Game\n 2) Quit\n");
@@ -44,6 +96,7 @@ namespace DH4
                 case"1":
                 case"New Game":
                 case "new game":
+                string CheckpointName="AngelBattle";
                 // start the game
                 Console.WriteLine("Chapter 1 Prologue\n");
                 Console.WriteLine("The year is 1015, The people of askela are celebrating the anniversary of the villages founding, when suddenly an angel appears. \n");
@@ -89,7 +142,8 @@ namespace DH4
                  Enemy[] AngelEnemy= new Enemy[1];
                  AngelEnemy[0].EnemyName="Angel";
                  AngelEnemy[0].EnemyHeath=900;
-                 BattleSystem(MageAndSwordsman,AngelEnemy);
+                 
+                 BattleSystem(MageAndSwordsman,AngelEnemy,CheckpointName);
                 break;
                 // quit game case
                 case"2":
