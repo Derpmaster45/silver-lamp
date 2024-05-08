@@ -12,6 +12,14 @@ namespace DH4
             Character character= new Character();
             character.PlayerName="Dark Swordsman";
             character.PlayerHeath=600;
+            character.CurrentHealthPoints=character.PlayerHeath;
+            character.AttackPoints=50;
+            character.PlayerLevel=5;
+            character.PlayerManaPoints=200;
+            character.PlayerDefensePoints=50;
+            
+
+
             Enemy enemy= new Enemy();
            /* double DoDamageToPlayer(Character[] characters, Enemy[] enemies)
             {
