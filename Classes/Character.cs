@@ -1,5 +1,6 @@
 using System;
 using System.Dynamic;
+using DH4.Enums;
 namespace DH4.Classes
 {
     public class Character
@@ -11,7 +12,7 @@ namespace DH4.Classes
         public int PlayerLevel{get;set;}
         public double PlayerManaPoints{get;set;}
         public double CurrentHealthPoints{get;set;}
-        
+        public PlayerClassTypes PlayerClass{get;set;}
 
     }
 }
