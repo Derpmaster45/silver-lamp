@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
 using DH4.Classes;
@@ -29,7 +30,7 @@ namespace DH4
                 int action =aiInput.Next(1,3);
                 if(action == 1)
                 {
-                    double DamageDealtToPlayer=enemy.EnemyAttackPoints/character.PlayerDefensePoints;
+                    double DamageDealtToPlayer=enemy.EnemyAttackPoints-character.PlayerDefensePoints;
                     System.Console.WriteLine(enemy.EnemyName.ToString()+"has taken a swing at "+character.PlayerName+" and dealt "+DamageDealtToPlayer.ToString()+"points of damage");
                     
                 }
@@ -63,16 +64,17 @@ namespace DH4
                
                Console.WriteLine("Batte intro message goes here.");
                string battlesystemchoice="" ;
-               while(PlayerParty.CurrentHealthPoints>=0 || enemy.CurrentHealthPoints>0 || battlesystemchoice=="")
+               while(PlayerParty.CurrentHealthPoints>0 && enemy.CurrentHealthPoints>0)
                {
-                Console.WriteLine("Would you like to 1) Attack \n 2) Magic  \n 3) Block\n");
+                Console.WriteLine("Would you like to \n1) Attack \n 2) Magic  \n 3) Block\n");
                 battlesystemchoice=Console.ReadLine();
                 switch(battlesystemchoice)
                 {
                     case"1":
-                    double DamageDealt=PlayerParty.AttackPoints/enemy.EnemyDefensePoints;
-                    System.Console.WriteLine("You take a swing at the enemy\n dealing");
+                    double DamageDealt=PlayerParty.AttackPoints-enemy.EnemyDefensePoints;
                     enemy.CurrentHealthPoints-=DamageDealt;
+                    System.Console.WriteLine($"DEBUG: ENEMY HAS  {enemy.CurrentHealthPoints.ToString()} of {enemy.EnemyHeath.ToString()}");
+                    System.Console.WriteLine($"You take a swing at the enemy\n dealing {DamageDealt.ToString()}");
                     break;
                     case"2":
                     // WIP Add in magic attack function and spells for player to learn.
@@ -137,22 +139,28 @@ namespace DH4
                 Enemy AngelEnemy= new Enemy();
                 AngelEnemy.enemyType=EnemyNames.ANGEL;
                 AngelEnemy.EnemyName="Angel";
-                AngelEnemy.EnemyHeath=500;
+                AngelEnemy.EnemyHeath=25;
+                AngelEnemy.CurrentHealthPoints=AngelEnemy.EnemyHeath;
                 
                  
-                // BattleSystem(DSCharacter,AngelEnemy,CheckpointName);
+                 BattleSystem(DSCharacter,AngelEnemy,CheckpointName);
                 System.Console.WriteLine("After a tense fight you beat the angel, however he is keen to let you know its not over.\n Angel: You haven’t won yet it is you who have underestimated the church and our leader. \nThe church is going to have your heads.");
                 System.Console.WriteLine("Mage: We will deal with that when the time comes\n");
                 PromptedClearScreen();
-                System.Console.WriteLine("400 Years Later\n");
-                System.Console.WriteLine("Hey, wake up!");
-                System.Console.WriteLine("What is your name?\n");
+                System.Console.WriteLine("\n CHapter 1:The beginning\n400 Years Later\n");
+                System.Console.WriteLine("Capt.Smith: Hey, wake up!\n you took quite a bump to the head.\n");
+                System.Console.WriteLine("Capt. Smith:Can you tell me what your name is?\n");
                 string PlayerName=Console.ReadLine();
                 Character playerCharacter=new Character();
                 playerCharacter.PlayerName=PlayerName;
                 playerCharacter.PlayerLevel=1;
                 playerCharacter.PlayerHeath=100;
-
+                System.Console.WriteLine($"So your name is {playerCharacter.PlayerName} Correct?");
+                string choice=Console.ReadLine().ToLower();
+                if(choice=="yes".ToLower())
+                {
+                    Console.WriteLine("Noted");
+                }
                 break;
                 // quit game case
                 case"2":
