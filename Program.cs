@@ -56,47 +56,10 @@ namespace DH4
                 switchinput="";
                 
             }
-            void BattleSystem(Character[] PlayerParty, Enemy[] enemy,  string CheckpointName)
+            void BattleSystem(Character PlayerParty, Enemy enemy,  string CheckpointName)
             {
                System.Console.WriteLine("Batte intro message goes here.");
-              for(int i=0;i<enemy.Length; i++)
-              {
-                for(int j=0; j<PlayerParty.Length; j++)
-                {
-                    
-                    while(enemy[i].EnemyHeath<=0|| PlayerParty[j].PlayerHeath<=0)
-                    {
-                        System.Console.WriteLine("What would "+PlayerParty[j].PlayerName+" like to do \n 1) Attack \n 2) Magic Attack\n 3)Defend\n");
-                        string BattleOption=Console.ReadLine();
-                        Random AIInput  = new Random();
-                        int randInput=AIInput.Next(1,3);
-                        switch(BattleOption)
-                        {
-                            case"1":
-                            System.Console.WriteLine(PlayerParty[i].PlayerName+" goes for a physical attack\n");
-                            // do damage to ai function call (not programmed in yet)
-                            break;
-                            case"2":
-                            System.Console.WriteLine(PlayerParty[i].PlayerName+"What magic attack would you like to use?\n");
-                            break;
-                            case"3":
-                            System.Console.WriteLine(PlayerParty[i]+"Who would you like to defend?\n");
-                            break;
-                            default:
-                            System.Console.WriteLine("ERR: Unrecognized Command!\n");
-                            break;
-                        }
-                        if(PlayerParty[i].CurrentHealthPoints==0)
-                        {
-                            string ERRMessage="Game over\n";
-                            ResetAndClear(ERRMessage,MainMenuOption,5000);
-                        }
-
-                    }
-                    
-                    
-                }
-              }
+              
             }
            //string MainMenuOption="";
            while(MainMenuOption=="")
