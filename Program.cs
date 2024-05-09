@@ -140,6 +140,7 @@ namespace DH4
                 AngelEnemy.enemyType=EnemyNames.ANGEL;
                 AngelEnemy.EnemyName="Angel";
                 AngelEnemy.EnemyHeath=25;
+                AngelEnemy.CurrentHealthPoints=AngelEnemy.EnemyHeath;
                 
                  
                  BattleSystem(DSCharacter,AngelEnemy,CheckpointName);
