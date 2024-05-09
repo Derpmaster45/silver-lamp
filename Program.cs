@@ -9,6 +9,7 @@ namespace DH4
     {
         public static void Main(string[] args)
         {
+            EnemyNames enemyNames = new EnemyNames();
             string MainMenuOption="";
             Character DSCharacter= new Character();
             DSCharacter.PlayerName="Dark Swordsman";
@@ -59,6 +60,7 @@ namespace DH4
             }
             void BattleSystem(Character PlayerParty, Enemy enemy,  string CheckpointName)
             {
+               
                Console.WriteLine("Batte intro message goes here.");
                string battlesystemchoice="" ;
                while(PlayerParty.CurrentHealthPoints>=0 || enemy.CurrentHealthPoints>0 || battlesystemchoice=="")
@@ -86,6 +88,7 @@ namespace DH4
                 
                 // add fuctionality for ai to attack player}
                }
+               DoDamageToPlayer(PlayerParty,enemyNames,enemy);
               
             }
             }
@@ -128,11 +131,28 @@ namespace DH4
                  Console.WriteLine("With that last statement, the dark swordsman looks at the mage, she nods, as if they are planning something \n Angel:Enough of this It is time for you to meet you maker");
                  Console.WriteLine("The mage snaps her fingers and the villagers disapear\n");
                  Console.WriteLine("The angel looks around in shock, and anger.\n Angel: WHAT HAPPENED!\n Mage: The villagers safety was in jeopardy, we could not allow you to harm innocent bystanders\n Dark swordsman: Now it is time for you to send a message to your master!\n Dark swordsman: As you know, DEAD MEN TELL NO TALES\n");
+
                  // angel enemy object creation
                  
+                Enemy AngelEnemy= new Enemy();
+                AngelEnemy.enemyType=EnemyNames.ANGEL;
+                AngelEnemy.EnemyName="Angel";
+                AngelEnemy.EnemyHeath=500;
                 
                  
-                 //BattleSystem(MageAndSwordsman,AngelEnemy,CheckpointName);
+                // BattleSystem(DSCharacter,AngelEnemy,CheckpointName);
+                System.Console.WriteLine("After a tense fight you beat the angel, however he is keen to let you know its not over.\n Angel: You haven’t won yet it is you who have underestimated the church and our leader. \nThe church is going to have your heads.");
+                System.Console.WriteLine("Mage: We will deal with that when the time comes\n");
+                PromptedClearScreen();
+                System.Console.WriteLine("400 Years Later\n");
+                System.Console.WriteLine("Hey, wake up!");
+                System.Console.WriteLine("What is your name?\n");
+                string PlayerName=Console.ReadLine();
+                Character playerCharacter=new Character();
+                playerCharacter.PlayerName=PlayerName;
+                playerCharacter.PlayerLevel=1;
+                playerCharacter.PlayerHeath=100;
+
                 break;
                 // quit game case
                 case"2":
