@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
 using DH4.Classes;
+using DH4.Enums;
 namespace DH4
 {
     class Game
@@ -9,32 +10,31 @@ namespace DH4
         public static void Main(string[] args)
         {
             string MainMenuOption="";
-            Character character= new Character();
-            character.PlayerName="Dark Swordsman";
-            character.PlayerHeath=600;
-            character.CurrentHealthPoints=character.PlayerHeath;
-            character.AttackPoints=50;
-            character.PlayerLevel=5;
-            character.PlayerManaPoints=200;
-            character.PlayerDefensePoints=50;
+            Character DSCharacter= new Character();
+            DSCharacter.PlayerName="Dark Swordsman";
+            DSCharacter.PlayerHeath=600;
+            DSCharacter.CurrentHealthPoints=DSCharacter.PlayerHeath;
+            DSCharacter.AttackPoints=50;
+            DSCharacter.PlayerLevel=5;
+            DSCharacter.PlayerManaPoints=200;
+            DSCharacter.PlayerDefensePoints=50;
             
 
 
             Enemy enemy= new Enemy();
-           /* double DoDamageToPlayer(Character[] characters, Enemy[] enemies)
-            {
-                for(int i=0; i<characters.Length;)
+           double DoDamageToPlayer(Character character, EnemyNames namelist, Enemy enemy)
+           {
+                Random aiInput = new Random();
+                int action =aiInput.Next(1,3);
+                if(action == 1)
                 {
-                    for (int j=0; j<enemies.Length j++)
-                    {
-                        double DamageDealt=characters[i].PlayerHeath -enemies[j].EnemyAttackPoints/characters[i].PlayerDefensePoints;
-                        if(characters[i])    
-                        
-                    }
+                    double DamageDealtToPlayer=enemy.EnemyAttackPoints/character.PlayerDefensePoints;
+                    System.Console.WriteLine(enemy.EnemyName.ToString()+"has taken a swing at "+character.PlayerName+" and dealt "+DamageDealtToPlayer.ToString()+"points of damage");
                     
                 }
-                return Dama
-            } */
+
+                return 0; 
+           }
             void QuitGame()
             {
                 Console.WriteLine("Quitting the game in 5 seconds\n");
@@ -47,19 +47,47 @@ namespace DH4
                 Console.ReadKey();
                 Console.Clear();
             }
-            void ResetAndClear(string errormessage,string switchinput,int threadsleepparam )
+            void ResetAndClear(string errormessage,string switchinput,int threadsleepparam, Character character)
             {
                 Console.WriteLine(errormessage);
                 Console.WriteLine("Resetting to the previous checkpoint in "+threadsleepparam+" milliseconds.");
                 Thread.Sleep(threadsleepparam);
                 Console.Clear();
                 switchinput="";
+                character.CurrentHealthPoints=character.PlayerHeath;
                 
             }
             void BattleSystem(Character PlayerParty, Enemy enemy,  string CheckpointName)
             {
-               System.Console.WriteLine("Batte intro message goes here.");
+               Console.WriteLine("Batte intro message goes here.");
+               string battlesystemchoice="" ;
+               while(PlayerParty.CurrentHealthPoints>=0 || enemy.CurrentHealthPoints>0 || battlesystemchoice=="")
+               {
+                Console.WriteLine("Would you like to 1) Attack \n 2) Magic  \n 3) Block\n");
+                battlesystemchoice=Console.ReadLine();
+                switch(battlesystemchoice)
+                {
+                    case"1":
+                    double DamageDealt=PlayerParty.AttackPoints/enemy.EnemyDefensePoints;
+                    System.Console.WriteLine("You take a swing at the enemy\n dealing");
+                    enemy.CurrentHealthPoints-=DamageDealt;
+                    break;
+                    case"2":
+                    // WIP Add in magic attack function and spells for player to learn.
+                    break;
+                    case"3":
+                    // add in ai attack pattern
+                    System.Console.WriteLine("You decided to Defend against the next attack.\n");
+                    break;
+                    default:
+                    string errormessage="Please choose from the above options";
+                    ResetAndClear(errormessage,CheckpointName,5000,PlayerParty);
+                    break;
+                
+                // add fuctionality for ai to attack player}
+               }
               
+            }
             }
            //string MainMenuOption="";
            while(MainMenuOption=="")
@@ -101,6 +129,7 @@ namespace DH4
                  Console.WriteLine("The mage snaps her fingers and the villagers disapear\n");
                  Console.WriteLine("The angel looks around in shock, and anger.\n Angel: WHAT HAPPENED!\n Mage: The villagers safety was in jeopardy, we could not allow you to harm innocent bystanders\n Dark swordsman: Now it is time for you to send a message to your master!\n Dark swordsman: As you know, DEAD MEN TELL NO TALES\n");
                  // angel enemy object creation
+                 
                 
                  
                  //BattleSystem(MageAndSwordsman,AngelEnemy,CheckpointName);
