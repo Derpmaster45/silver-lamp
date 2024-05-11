@@ -28,14 +28,15 @@ namespace DH4
            {
                 Random aiInput = new Random();
                 int action =aiInput.Next(1,3);
+                double DamageDealtToPlayer=0;
                 if(action == 1)
                 {
-                    double DamageDealtToPlayer=character.PlayerDefensePoints-enemy.EnemyAttackPoints;
+                     DamageDealtToPlayer=character.PlayerDefensePoints-enemy.EnemyAttackPoints;
                     System.Console.WriteLine(enemy.EnemyName.ToString()+"has taken a swing at "+character.PlayerName+" and dealt "+DamageDealtToPlayer.ToString()+"points of damage");
                     
                 }
 
-                return 0; 
+                return DamageDealtToPlayer; 
            }
            Enemy CreateEnemy(EnemyNames namelist)
            {
@@ -60,7 +61,7 @@ namespace DH4
                 enemyToCreate.EnemyManaPoint=200;
             }
             // testing purposes DELETE LATER
-            System.Console.WriteLine($"Enemy {enemyToCreate.EnemyName} created!");
+           // System.Console.WriteLine($"Enemy {enemyToCreate.EnemyName} created!");
             return enemyToCreate;
            }
             void QuitGame()
@@ -99,7 +100,7 @@ namespace DH4
                     case"1":
                     double DamageDealt=enemy.EnemyDefensePoints-PlayerParty.AttackPoints;
                     enemy.CurrentHealthPoints-=DamageDealt;
-                    System.Console.WriteLine($"DEBUG: ENEMY HAS  {enemy.CurrentHealthPoints.ToString()} of {enemy.EnemyHeath.ToString()}");
+                    //System.Console.WriteLine($"DEBUG: ENEMY HAS  {enemy.CurrentHealthPoints.ToString()} of {enemy.EnemyHeath.ToString()}");
                     System.Console.WriteLine($"You take a swing at the enemy\n dealing {DamageDealt.ToString()}");
                     break;
                     case"2":
@@ -181,8 +182,12 @@ namespace DH4
                 string choice=Console.ReadLine().ToLower();
                 if(choice=="yes".ToLower())
                 {
-                    Console.WriteLine("Noted");
+                    Console.WriteLine("Noted\n");
                 }
+                System.Console.WriteLine("Capt.Smith: We will give you a few days to recover.\n");
+                PromptedClearScreen();
+                System.Console.WriteLine("A few days pass, and Capt smith returns to your quarters\n Captain Smith:We have a new order from her majesty\n ");
+                System.Console.WriteLine($"{playerCharacter.PlayerName}");
                 break;
                 // quit game case
                 case"2":
