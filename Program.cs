@@ -30,12 +30,38 @@ namespace DH4
                 int action =aiInput.Next(1,3);
                 if(action == 1)
                 {
-                    double DamageDealtToPlayer=enemy.EnemyAttackPoints-character.PlayerDefensePoints;
+                    double DamageDealtToPlayer=character.PlayerDefensePoints-enemy.EnemyAttackPoints;
                     System.Console.WriteLine(enemy.EnemyName.ToString()+"has taken a swing at "+character.PlayerName+" and dealt "+DamageDealtToPlayer.ToString()+"points of damage");
                     
                 }
 
                 return 0; 
+           }
+           Enemy CreateEnemy(EnemyNames namelist)
+           {
+            Enemy enemyToCreate= new Enemy();
+            enemyToCreate.enemyType=namelist;
+            if(enemyToCreate.enemyType==EnemyNames.BAT)
+            {
+                enemyToCreate.EnemyName="Bat";
+                enemyToCreate.EnemyHeath=100;
+                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHeath;
+                enemyToCreate.EnemyDefensePoints=10;
+                enemy.EnemyAttackPoints=20;
+                enemy.EnemyManaPoint=0;
+            }
+            else if(enemyToCreate.enemyType==EnemyNames.ANGEL)
+            {
+                enemyToCreate.EnemyName="Angel";
+                enemyToCreate.EnemyHeath=400;
+                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHeath;
+                enemyToCreate.EnemyDefensePoints=300;
+                enemy.EnemyAttackPoints=40;
+                enemyToCreate.EnemyManaPoint=200;
+            }
+            // testing purposes DELETE LATER
+            System.Console.WriteLine($"Enemy {enemyToCreate.EnemyName} created!");
+            return enemyToCreate;
            }
             void QuitGame()
             {
@@ -71,7 +97,7 @@ namespace DH4
                 switch(battlesystemchoice)
                 {
                     case"1":
-                    double DamageDealt=PlayerParty.AttackPoints-enemy.EnemyDefensePoints;
+                    double DamageDealt=enemy.EnemyDefensePoints-PlayerParty.AttackPoints;
                     enemy.CurrentHealthPoints-=DamageDealt;
                     System.Console.WriteLine($"DEBUG: ENEMY HAS  {enemy.CurrentHealthPoints.ToString()} of {enemy.EnemyHeath.ToString()}");
                     System.Console.WriteLine($"You take a swing at the enemy\n dealing {DamageDealt.ToString()}");
@@ -135,12 +161,8 @@ namespace DH4
                  Console.WriteLine("The angel looks around in shock, and anger.\n Angel: WHAT HAPPENED!\n Mage: The villagers safety was in jeopardy, we could not allow you to harm innocent bystanders\n Dark swordsman: Now it is time for you to send a message to your master!\n Dark swordsman: As you know, DEAD MEN TELL NO TALES\n");
 
                  // angel enemy object creation
-                 
-                Enemy AngelEnemy= new Enemy();
-                AngelEnemy.enemyType=EnemyNames.ANGEL;
-                AngelEnemy.EnemyName="Angel";
-                AngelEnemy.EnemyHeath=25;
-                AngelEnemy.CurrentHealthPoints=AngelEnemy.EnemyHeath;
+                 enemyNames= EnemyNames.ANGEL;
+                   Enemy AngelEnemy= CreateEnemy(enemyNames);
                 
                  
                  BattleSystem(DSCharacter,AngelEnemy,CheckpointName);
