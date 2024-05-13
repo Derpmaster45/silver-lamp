@@ -99,31 +99,41 @@ namespace DH4
             characterToCreate.PlayerDefensePoints=20;
             characterToCreate.AttackPoints=20;
             characterToCreate.PlayerHeath=300;
+            characterToCreate.PlayerExpPoints=0;
             System.Console.WriteLine("What class would you like to be (Subject to change) 1) Knight\n 2)Dark Mage \n3) Mage\n  4) Dark Swordsman");
             string playerclass="";
             playerclass=Console.ReadLine();
             while(playerclass=="")
             {
-                switch(playerclass)
+                switch(playerclass.ToLower())
                 {
                     case"1":
+                    case"knight":
                     characterToCreate.PlayerClass=PlayerClassTypes.KNIGHT;
                     characterToCreate.PlayerManaPoints=0;
                     break;
                     case"2":
+                    case"dark mage":
                     characterToCreate.PlayerClass=PlayerClassTypes.DARKMAGE;
+                    characterToCreate.PlayerManaPoints=100;
                     break;
                     case"3":
+                    case"mage":
                     characterToCreate.PlayerClass=PlayerClassTypes.MAGE;
+                    characterToCreate.PlayerManaPoints=100;
                     break;
                     case"4":
+                    case"dark swordsman":
                     characterToCreate.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
+                    characterToCreate.PlayerManaPoints=100;
                     break;
                     default:
-                    
+                    string errormessage="Please choose from one of the 4 options";
+                    ResetAndClear(errormessage,playerclass,5000,characterToCreate);
                     break;
                 }
             }
+       
         
             return characterToCreate;
         }
@@ -151,6 +161,7 @@ namespace DH4
                     case"3":
                     // add in ai attack pattern
                     System.Console.WriteLine("You decided to Defend against the next attack.\n");
+                    DoDamageToPlayer(PlayerParty,enemyNames, enemy);
                     break;
                     default:
                     string errormessage="Please choose from the above options";
@@ -216,6 +227,8 @@ namespace DH4
                 System.Console.WriteLine("Capt.Smith: Hey, wake up!\n you took quite a bump to the head.\n");
                 System.Console.WriteLine("Capt. Smith:Can you tell me what your name is?\n");
                 // character creation function goes here
+                Character playercharacter=CreateCharacter();
+                System.Console.WriteLine($"Player Name: {playercharacter.PlayerName}\n Class: {playercharacter.PlayerClass}\n Level: {playercharacter.PlayerLevel}");
                 System.Console.WriteLine("Capt.Smith: We will give you a few days to recover.\n");
                 PromptedClearScreen();
                 System.Console.WriteLine("A few days pass, and Capt smith returns to your quarters\n Captain Smith:We have a new order from her majesty\n ");
