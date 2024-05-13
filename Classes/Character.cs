@@ -13,6 +13,7 @@ namespace DH4.Classes
         public double PlayerManaPoints{get;set;}
         public double CurrentHealthPoints{get;set;}
         public PlayerClassTypes PlayerClass{get;set;}
+        public int PlayerExpPoints{get;set;}
 
     }
 }
