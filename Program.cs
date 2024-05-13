@@ -86,6 +86,58 @@ namespace DH4
                 character.CurrentHealthPoints=character.PlayerHeath;
                 
             }
+         Character CreateCharacter()
+        {
+
+            Character characterToCreate=new Character();
+            while(characterToCreate.PlayerName=="")
+            {
+                System.Console.WriteLine("What is your name?\n");
+                characterToCreate.PlayerName=Console.ReadLine();
+            }
+            characterToCreate.PlayerLevel=1;
+            characterToCreate.PlayerDefensePoints=20;
+            characterToCreate.AttackPoints=20;
+            characterToCreate.PlayerHeath=300;
+            characterToCreate.PlayerExpPoints=0;
+            System.Console.WriteLine("What class would you like to be (Subject to change) 1) Knight\n 2)Dark Mage \n3) Mage\n  4) Dark Swordsman");
+            string playerclass="";
+            playerclass=Console.ReadLine();
+            while(playerclass=="")
+            {
+                switch(playerclass.ToLower())
+                {
+                    case"1":
+                    case"knight":
+                    characterToCreate.PlayerClass=PlayerClassTypes.KNIGHT;
+                    characterToCreate.PlayerManaPoints=0;
+                    break;
+                    case"2":
+                    case"dark mage":
+                    characterToCreate.PlayerClass=PlayerClassTypes.DARKMAGE;
+                    characterToCreate.PlayerManaPoints=100;
+                    break;
+                    case"3":
+                    case"mage":
+                    characterToCreate.PlayerClass=PlayerClassTypes.MAGE;
+                    characterToCreate.PlayerManaPoints=100;
+                    break;
+                    case"4":
+                    case"dark swordsman":
+                    characterToCreate.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
+                    characterToCreate.PlayerManaPoints=100;
+                    break;
+                    default:
+                    string errormessage="Please choose from one of the 4 options";
+                    ResetAndClear(errormessage,playerclass,5000,characterToCreate);
+                    break;
+                }
+            }
+       
+        
+            return characterToCreate;
+        }
+
             void BattleSystem(Character PlayerParty, Enemy enemy,  string CheckpointName)
             {
                
@@ -109,6 +161,7 @@ namespace DH4
                     case"3":
                     // add in ai attack pattern
                     System.Console.WriteLine("You decided to Defend against the next attack.\n");
+                    DoDamageToPlayer(PlayerParty,enemyNames, enemy);
                     break;
                     default:
                     string errormessage="Please choose from the above options";
@@ -120,7 +173,7 @@ namespace DH4
                DoDamageToPlayer(PlayerParty,enemyNames,enemy);
               
             }
-            }
+         }
            //string MainMenuOption="";
            while(MainMenuOption=="")
            {
@@ -173,21 +226,13 @@ namespace DH4
                 System.Console.WriteLine("\n CHapter 1:The beginning\n400 Years Later\n");
                 System.Console.WriteLine("Capt.Smith: Hey, wake up!\n you took quite a bump to the head.\n");
                 System.Console.WriteLine("Capt. Smith:Can you tell me what your name is?\n");
-                string PlayerName=Console.ReadLine();
-                Character playerCharacter=new Character();
-                playerCharacter.PlayerName=PlayerName;
-                playerCharacter.PlayerLevel=1;
-                playerCharacter.PlayerHeath=100;
-                System.Console.WriteLine($"So your name is {playerCharacter.PlayerName} Correct?");
-                string choice=Console.ReadLine().ToLower();
-                if(choice=="yes".ToLower())
-                {
-                    Console.WriteLine("Noted\n");
-                }
+                // character creation function goes here
+                Character playercharacter=CreateCharacter();
+                System.Console.WriteLine($"Player Name: {playercharacter.PlayerName}\n Class: {playercharacter.PlayerClass}\n Level: {playercharacter.PlayerLevel}");
                 System.Console.WriteLine("Capt.Smith: We will give you a few days to recover.\n");
                 PromptedClearScreen();
                 System.Console.WriteLine("A few days pass, and Capt smith returns to your quarters\n Captain Smith:We have a new order from her majesty\n ");
-                System.Console.WriteLine($"{playerCharacter.PlayerName}: What caused this uprising? \n Capt. Smith: Not really sure, but the church has been trying to occupy Askela village for as long as i can remember. \n Capt. Smith: They have been trying to rebuild it since the darkswordsman burned down the village unprovoked\n. ");
+               // System.Console.WriteLine($"{playerCharacter.PlayerName}: What caused this uprising? \n Capt. Smith: Not really sure, but the church has been trying to occupy Askela village for as long as i can remember. \n Capt. Smith: They have been trying to rebuild it since the darkswordsman burned down the village unprovoked\n. ");
                 System.Console.WriteLine("Tutorial: This is a branching path, your actions affect the story. Do you want to \n1) Lie \n2) Tell the truth");
                 break;
                 // quit game case
