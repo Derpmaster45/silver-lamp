@@ -10,6 +10,7 @@ namespace DH4
     {
         public static void Main(string[] args)
         {
+            
             EnemyNames enemyNames = new EnemyNames();
             string MainMenuOption="";
             Character DSCharacter= new Character();
@@ -223,6 +224,8 @@ namespace DH4
                 System.Console.WriteLine("After a tense fight you beat the angel, however he is keen to let you know its not over.\n Angel: You haven’t won yet it is you who have underestimated the church and our leader. \nThe church is going to have your heads.");
                 System.Console.WriteLine("Mage: We will deal with that when the time comes\n");
                 PromptedClearScreen();
+                GarbCollection garbCollection=new GarbCollection();
+                garbCollection.Dispose();
                 System.Console.WriteLine("\n CHapter 1:The beginning\n400 Years Later\n");
                 System.Console.WriteLine("Capt.Smith: Hey, wake up!\n you took quite a bump to the head.\n");
                 System.Console.WriteLine("Capt. Smith:Can you tell me what your name is?\n");
