@@ -235,8 +235,31 @@ namespace DH4
                 System.Console.WriteLine("Capt.Smith: We will give you a few days to recover.\n");
                 PromptedClearScreen();
                 System.Console.WriteLine("A few days pass, and Capt smith returns to your quarters\n Captain Smith:We have a new order from her majesty\n ");
-               // System.Console.WriteLine($"{playerCharacter.PlayerName}: What caused this uprising? \n Capt. Smith: Not really sure, but the church has been trying to occupy Askela village for as long as i can remember. \n Capt. Smith: They have been trying to rebuild it since the darkswordsman burned down the village unprovoked\n. ");
+                System.Console.WriteLine($"{playercharacter.PlayerName}: What caused this uprising? \n Capt. Smith: Not really sure, but the church has been trying to occupy Askela village for as long as i can remember. \n Capt. Smith: They have been trying to rebuild it since the darkswordsman burned down the village unprovoked\n. ");
                 System.Console.WriteLine("Tutorial: This is a branching path, your actions affect the story. Do you want to \n1) Lie \n2) Tell the truth");
+                bool bInitBranchPath;
+                int LiesTold=0;
+                string InitBranchPathChoice="";
+                while(InitBranchPathChoice=="")
+                {
+                    System.Console.WriteLine("Tutorial: This is a branching path, your actions affect the story. Do you want to \n1) Lie \n2) Tell the truth");
+                    InitBranchPathChoice=Console.ReadLine();
+                    switch(InitBranchPathChoice)
+                    {
+                        case "1":
+                        System.Console.WriteLine("You decided to lie\n");
+                        LiesTold++;
+                        bInitBranchPath=true;
+                        break;
+                        case "2":
+                        System.Console.WriteLine("You decided to tell the truth");
+                        bInitBranchPath=false; 
+                        
+                        break;
+                        default:
+                        break;
+                    }
+                }
                 break;
                 // quit game case
                 case"2":
