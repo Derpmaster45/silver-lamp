@@ -228,12 +228,39 @@ namespace DH4
                 System.Console.WriteLine("Capt. Smith:Can you tell me what your name is?\n");
                 // character creation function goes here
                 Character playercharacter=CreateCharacter();
-                System.Console.WriteLine($"Player Name: {playercharacter.PlayerName}\n Class: {playercharacter.PlayerClass}\n Level: {playercharacter.PlayerLevel}");
+                //System.Console.WriteLine($"Player Name: {playercharacter.PlayerName}\n Class: {playercharacter.PlayerClass}\n Level: {playercharacter.PlayerLevel}");
                 System.Console.WriteLine("Capt.Smith: We will give you a few days to recover.\n");
                 PromptedClearScreen();
                 System.Console.WriteLine("A few days pass, and Capt smith returns to your quarters\n Captain Smith:We have a new order from her majesty\n ");
-               // System.Console.WriteLine($"{playerCharacter.PlayerName}: What caused this uprising? \n Capt. Smith: Not really sure, but the church has been trying to occupy Askela village for as long as i can remember. \n Capt. Smith: They have been trying to rebuild it since the darkswordsman burned down the village unprovoked\n. ");
-                System.Console.WriteLine("Tutorial: This is a branching path, your actions affect the story. Do you want to \n1) Lie \n2) Tell the truth");
+                System.Console.WriteLine($"{playercharacter.PlayerName}: What caused this uprising? \n Capt. Smith: Not really sure, but the church has been trying to occupy Askela village for as long as i can remember. \n Capt. Smith: They have been trying to rebuild it since the darkswordsman burned down the village unprovoked\n. ");
+                string initBranchingPath="";
+                int LiesTold=0;
+                int TruthsTold=0;
+                while(initBranchingPath=="")
+                {
+                    System.Console.WriteLine("Tutorial: This is a branching path, your actions affect the story. Do you want to \n1) Lie \n2) Tell the truth");
+                    initBranchingPath=Console.ReadLine();
+                    switch(initBranchingPath.ToLower())
+                    {
+                        case"1":
+                        case"lie":
+                        LiesTold++;
+                        Console.WriteLine($"{playercharacter.PlayerName}: That's not exactly what happened.\n Captain Smith: Enlighten me, what happened?\n{playercharater.PlayerName}?");
+                        Console.WriteLine("Do you want to\n 1) Blame the angel\n 2) agree with the captain?\n");
+                        string questionEventsPrologue="";
+                        while(questionEventsPrologue=="")
+                        break;
+                        case"2":
+                        case"truth":
+                        TruthsTold++;
+                        break;
+                        default:
+                        string errormessage="Please Choose from the above 2 options\n Resetting in 5 seconds";
+                        ResetAndClear(errormessage,initBranchingPath,5000,playercharacter);
+                        break;
+                    }
+
+                }
                 break;
                 // quit game case
                 case"2":

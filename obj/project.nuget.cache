@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "LX6t3bpLOkU=",
+  "dgSpecHash": "cvks4GuBfgpCYry738g7VFlctUiuHYX7DATyaxu2QvmmvuV42OLDCC73E4ioI0bCa22wAVGEc8ZXJiQ6w866tg==",
   "success": true,
   "projectFilePath": "/home/jay/Documents/silver-lamp/dh4.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/jay/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.4/microsoft.aspnetcore.app.ref.8.0.4.nupkg.sha512"
+  ],
   "logs": []
 }
