@@ -223,7 +223,7 @@ namespace DH4
                 System.Console.WriteLine("After a tense fight you beat the angel, however he is keen to let you know its not over.\n Angel: You haven’t won yet it is you who have underestimated the church and our leader. \nThe church is going to have your heads.");
                 System.Console.WriteLine("Mage: We will deal with that when the time comes\n");
                 PromptedClearScreen();
-                System.Console.WriteLine("\n CHapter 1:The beginning\n400 Years Later\n");
+                System.Console.WriteLine("\n Chapter 1:The beginning\n400 Years Later\n");
                 System.Console.WriteLine("Capt.Smith: Hey, wake up!\n you took quite a bump to the head.\n");
                 System.Console.WriteLine("Capt. Smith:Can you tell me what your name is?\n");
                 // character creation function goes here
@@ -246,10 +246,37 @@ namespace DH4
                         case"lie":
                         LiesTold++;
                         Console.WriteLine($"{playercharacter.PlayerName}: That's not exactly what happened.\n Captain Smith: Enlighten me, what happened?\n{playercharacter.PlayerName}?");
-                        Console.WriteLine("Do you want to\n 1) Blame the angel\n 2) agree with the captain?\n");
                         string questionEventsPrologue="";
                         while(questionEventsPrologue=="")
                         {
+                            Console.WriteLine("Do you want to\n 1) Blame the angel\n 2) agree with the captain?\n");
+                            questionEventsPrologue=Console.ReadLine();
+                            switch (questionEventsPrologue.ToLower())
+                            {
+                                case"1":
+                                System.Console.WriteLine($"{playercharacter.PlayerName}: the angel is the one to blame for the events that happened.According to historians, who lived in the area around the time of events in question, the people who lived were celebrating the villages founding anniversary.\n Captain Smith: Why is the angel to blame?\n");
+                                string AngelBattleRecollection="";
+                                while(AngelBattleRecollection=="")
+                                {
+                                    System.Console.WriteLine("1) Talk about the oddities \n 2) Say nothing\n");
+                                    switch(AngelBattleRecollection.ToLower())
+                                    {
+                                        case"`1":
+                                        break;
+                                        case"2":
+                                        break;
+                                        default:
+                                        break;
+
+                                    }
+                                }
+                                break;
+                                case"2":
+                                LiesTold++;
+                                break;
+                                default:
+                                break;
+                            }
 
                         }
                         break;
