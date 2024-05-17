@@ -245,10 +245,13 @@ namespace DH4
                         case"1":
                         case"lie":
                         LiesTold++;
-                        Console.WriteLine($"{playercharacter.PlayerName}: That's not exactly what happened.\n Captain Smith: Enlighten me, what happened?\n{playercharater.PlayerName}?");
+                        Console.WriteLine($"{playercharacter.PlayerName}: That's not exactly what happened.\n Captain Smith: Enlighten me, what happened?\n{playercharacter.PlayerName}?");
                         Console.WriteLine("Do you want to\n 1) Blame the angel\n 2) agree with the captain?\n");
                         string questionEventsPrologue="";
                         while(questionEventsPrologue=="")
+                        {
+
+                        }
                         break;
                         case"2":
                         case"truth":
