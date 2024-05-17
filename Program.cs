@@ -227,8 +227,10 @@ namespace DH4
                 System.Console.WriteLine("Capt.Smith: Hey, wake up!\n you took quite a bump to the head.\n");
                 System.Console.WriteLine("Capt. Smith:Can you tell me what your name is?\n");
                 // character creation function goes here
+                string playerName=Console.ReadLine();
                 Character playercharacter=CreateCharacter();
-                //System.Console.WriteLine($"Player Name: {playercharacter.PlayerName}\n Class: {playercharacter.PlayerClass}\n Level: {playercharacter.PlayerLevel}");
+                playercharacter.PlayerName=playerName;
+                System.Console.WriteLine($"Player Name: {playercharacter.PlayerName}\n Class: {playercharacter.PlayerClass}\n Level: {playercharacter.PlayerLevel}");
                 System.Console.WriteLine("Capt.Smith: We will give you a few days to recover.\n");
                 PromptedClearScreen();
                 System.Console.WriteLine("A few days pass, and Capt smith returns to your quarters\n Captain Smith:We have a new order from her majesty\n ");
@@ -259,9 +261,12 @@ namespace DH4
                                 while(AngelBattleRecollection=="")
                                 {
                                     System.Console.WriteLine("1) Talk about the oddities \n 2) Say nothing\n");
+                                    AngelBattleRecollection=Console.ReadLine();
                                     switch(AngelBattleRecollection.ToLower())
                                     {
                                         case"`1":
+                                       System.Console.WriteLine($"{playercharacter.PlayerName}: Don't you think that it is a bitt strange that there are no recorded survivors, but you know what happened. The Dark swordsman and mage's account end after the battle.\n Did they make it out of the battle alive?\n");
+                                       System.Console.WriteLine("Captain Smith: We have records of thier questioning after the events in question"); 
                                         break;
                                         case"2":
                                         break;
