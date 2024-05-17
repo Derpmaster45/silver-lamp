@@ -72,8 +72,8 @@ namespace DH4
             }
             void PromptedClearScreen()
             {
-                Console.WriteLine("Press any enter to continue\n");
-                Console.ReadKey();
+                Console.WriteLine("Press any key to continue\n");
+                Console.Read();
                 Console.Clear();
             }
             void ResetAndClear(string errormessage,string switchinput,int threadsleepparam, Character character)
