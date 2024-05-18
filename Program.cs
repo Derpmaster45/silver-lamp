@@ -264,10 +264,33 @@ namespace DH4
                                     AngelBattleRecollection=Console.ReadLine();
                                     switch(AngelBattleRecollection.ToLower())
                                     {
-                                        case"`1":
+                                        case"1":
                                        System.Console.WriteLine($"{playercharacter.PlayerName}: Don't you think that it is a bitt strange that there are no recorded survivors, but you know what happened. The Dark swordsman and mage's account end after the battle.\n Did they make it out of the battle alive?\nAccording to the mages account none of the villagers were present, so how did the fire start?\n");
                                        System.Console.WriteLine("Captain Smith: We have records of thier questioning after the events in question\n They refused to answer so, we had them burned at the stake. As that was the leaders wishes at the time.\n How do you know of this anyway?\n"); 
-                                       System.Console.WriteLine($"");
+                                       bool didBlameHighPriest;
+                                      
+                                       string DisscussionChoice="";
+                                       while (DisscussionChoice=="")
+                                       {
+                                         System.Console.WriteLine($"Do you: \n 1)Hide information\n 2) tell the truth\n");
+                                         DisscussionChoice=Console.ReadLine();
+                                        switch (DisscussionChoice.ToLower())
+                                        {
+                                            case"Hide Information":
+                                            case"1":
+                                            System.Console.WriteLine($"{playercharacter.PlayerName} I heard it from a priest. When they told me I thought something seemed off about what they said.");
+                                            didBlameHighPriest=true;
+                                            LiesTold++;
+                                            //System.Console.WriteLine($"lies told: {LiesTold.ToString()} ");
+                                        
+                                            System.Console.WriteLine($"Captain Smith: Like What?\n {playercharacter.PlayerName}: Oh... you know...\n Captain Smith: No I do not! Get back to your quarters.\n That was close you think to yourself.\n ");
+                                            if (LiesTold==2)
+                                            {
+                                                System.Console.WriteLine("");
+                                            }
+                                            break;
+                                        }
+                                       }
                                        System.Console.WriteLine("");
 
                                         break;
