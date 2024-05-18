@@ -284,9 +284,11 @@ namespace DH4
                                             //System.Console.WriteLine($"lies told: {LiesTold.ToString()} ");
                                         
                                             System.Console.WriteLine($"Captain Smith: Like What?\n {playercharacter.PlayerName}: Oh... you know...\n Captain Smith: No I do not! Get back to your quarters.\n That was close you think to yourself.\n ");
+                                            PromptedClearScreen();
                                             if (LiesTold==2)
                                             {
-                                                System.Console.WriteLine("");
+                                                System.Console.WriteLine($"Later that night, you arrive at askela You are about to recieve your marching orders.\nCaptain Smith:We need to quell this uprising in the name of the king and queen!");
+                                                
                                             }
                                             break;
                                         }
