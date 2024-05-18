@@ -265,8 +265,11 @@ namespace DH4
                                     switch(AngelBattleRecollection.ToLower())
                                     {
                                         case"`1":
-                                       System.Console.WriteLine($"{playercharacter.PlayerName}: Don't you think that it is a bitt strange that there are no recorded survivors, but you know what happened. The Dark swordsman and mage's account end after the battle.\n Did they make it out of the battle alive?\n");
-                                       System.Console.WriteLine("Captain Smith: We have records of thier questioning after the events in question"); 
+                                       System.Console.WriteLine($"{playercharacter.PlayerName}: Don't you think that it is a bitt strange that there are no recorded survivors, but you know what happened. The Dark swordsman and mage's account end after the battle.\n Did they make it out of the battle alive?\nAccording to the mages account none of the villagers were present, so how did the fire start?\n");
+                                       System.Console.WriteLine("Captain Smith: We have records of thier questioning after the events in question\n They refused to answer so, we had them burned at the stake. As that was the leaders wishes at the time.\n How do you know of this anyway?\n"); 
+                                       System.Console.WriteLine($"");
+                                       System.Console.WriteLine("");
+
                                         break;
                                         case"2":
                                         break;
