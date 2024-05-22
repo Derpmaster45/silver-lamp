@@ -288,7 +288,7 @@ namespace DH4
                                             if (LiesTold==2)
                                             {
                                                 System.Console.WriteLine($"Later that night, you arrive at askela You are about to recieve your marching orders.\nCaptain Smith:We need to quell this uprising in the name of the king and queen!");
-                                                
+                                                System.Console.WriteLine("You take a step off the boat, and you hear a voice saying 'This is not your path.'");
                                             }
                                             break;
                                         }
