@@ -141,7 +141,7 @@ namespace DH4
             void BattleSystem(Character PlayerParty, Enemy enemy,  string CheckpointName)
             {
                
-               Console.WriteLine("Batte intro message goes here.");
+               Console.WriteLine($"{enemy.EnemyName} has appeared!");
                string battlesystemchoice="" ;
                while(PlayerParty.CurrentHealthPoints>0 && enemy.CurrentHealthPoints>0)
                {
@@ -289,11 +289,38 @@ namespace DH4
                                             {
                                                 System.Console.WriteLine($"Later that night, you arrive at askela You are about to recieve your marching orders.\nCaptain Smith:We need to quell this uprising in the name of the king and queen!");
                                                 System.Console.WriteLine("You take a step off the boat, and you hear a voice saying 'This is not your path.'");
+                                                Console.WriteLine("You look around confused\n Captain Smith: Are you alright.");
+                                                Console.WriteLine($"{playercharacter.PlayerName}: Yes, I am fine.");
+                                                Console.WriteLine("Captain Smith: Well then, get moving!");
+                                                                            Console.WriteLine("You step off the boat onto the dock, observing your surroundings you learn that the port is over run by zombies, what do you want to do?\n 1) Sneak past the zombies \n 2) Fight your way through the horde ");
+                                                                            string TownPathLie;
+                                                                            while (TownPathLie == "") 
+                                                                            {
+                                                                                Console.WriteLine("What do you want to do?\n 1) Sneak past the zombies \n 2) Fight your way through the horde");
+                                                                                TownPathLie= Console.ReadLine();
+                                                                                switch (TownPathLie) 
+                                                                                {
+                                                                                    case "1":
+                                                                                        Console.WriteLine("You decide to sneak past the zombies, Lucky for you the zombies are slow moving. ");
+                                                                                        Console.WriteLine("Placeholder: you successfully evaded the zombies.");
+                                                                                        break;
+                                                                                    case "2":
+                                                                                        // battlesystem and zombie enemy creation goes here.
+                                                                                        break;
+                                                                                    default:
+                                                                                        ResetAndClear("Please choose from the 2 above options", TownPathLie, 5000, playercharacter); 
+                                                                                        break;
+                                                                                }
+
+
+                                                                            }
+
+
+
                                             }
                                             break;
                                         }
                                        }
-                                       System.Console.WriteLine("");
 
                                         break;
                                         case"2":
