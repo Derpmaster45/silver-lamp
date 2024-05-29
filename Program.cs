@@ -293,7 +293,7 @@ namespace DH4
                                                 Console.WriteLine($"{playercharacter.PlayerName}: Yes, I am fine.");
                                                 Console.WriteLine("Captain Smith: Well then, get moving!");
                                                                             Console.WriteLine("You step off the boat onto the dock, observing your surroundings you learn that the port is over run by zombies, what do you want to do?\n 1) Sneak past the zombies \n 2) Fight your way through the horde ");
-                                                                            string TownPathLie;
+                                                                            string TownPathLie="";
                                                                             while (TownPathLie == "") 
                                                                             {
                                                                                 Console.WriteLine("What do you want to do?\n 1) Sneak past the zombies \n 2) Fight your way through the horde");
@@ -306,6 +306,8 @@ namespace DH4
                                                                                         break;
                                                                                     case "2":
                                                                                         // battlesystem and zombie enemy creation goes here.
+                                                                                        enemyNames = EnemyNames.ZOMBIE;
+                                                                                        Enemy zombieEnemy = CreateEnemy(enemyNames);
                                                                                         break;
                                                                                     default:
                                                                                         ResetAndClear("Please choose from the 2 above options", TownPathLie, 5000, playercharacter); 
