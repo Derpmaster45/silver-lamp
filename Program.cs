@@ -12,6 +12,7 @@ namespace DH4
         {
             EnemyNames enemyNames = new EnemyNames();
             string MainMenuOption="";
+            MagicSpellTypes spells = new MagicSpellTypes();
             Character DSCharacter= new Character();
             DSCharacter.PlayerName="Dark Swordsman";
             DSCharacter.PlayerHeath=600;
@@ -34,6 +35,15 @@ namespace DH4
                      DamageDealtToPlayer=character.PlayerDefensePoints-enemy.EnemyAttackPoints;
                     System.Console.WriteLine(enemy.EnemyName.ToString()+"has taken a swing at "+character.PlayerName+" and dealt "+DamageDealtToPlayer.ToString()+"points of damage");
                     
+                } 
+                else if(action==2)
+                {
+                    Console.WriteLine("This is being worked on at the moment. ");
+                } 
+                else if(action==3)
+                {
+                    Console.WriteLine($"{enemy.EnemyName} has chosen to defend against your next attack.");
+                    DamageDealtToPlayer=0;
                 }
 
                 return DamageDealtToPlayer; 
@@ -138,13 +148,16 @@ namespace DH4
             return characterToCreate;
         }
 
-            void BattleSystem(Character PlayerParty, Enemy enemy,  string CheckpointName)
+            void BattleSystem(Character PlayerParty, Enemy enemy, MagicSpellTypes SpellList, string CheckpointName)
             {
                
                Console.WriteLine($"{enemy.EnemyName} has appeared!");
                string battlesystemchoice="" ;
                while(PlayerParty.CurrentHealthPoints>0 && enemy.CurrentHealthPoints>0)
                {
+                battlesystemchoice="";
+                while(battlesystemchoice=="")
+                {
                 Console.WriteLine("Would you like to \n1) Attack \n 2) Magic  \n 3) Block\n");
                 battlesystemchoice=Console.ReadLine();
                 switch(battlesystemchoice)
@@ -157,6 +170,21 @@ namespace DH4
                     break;
                     case"2":
                     // WIP Add in magic attack function and spells for player to learn.
+                    // todo: see if player has mana points
+                    if(PlayerParty.PlayerManaPoints<=0)
+                    {
+                        Console.WriteLine("You dont have mana points please choose another option.\n");
+                        battlesystemchoice="";
+                    }
+                    else
+                    {
+                        string magicattackchoice="";
+                        while(magicattackchoice=="")
+                        {
+                            Console.WriteLine("What magic attack would you like to use");
+                        }
+                    }
+                    Console.WriteLine("PLACEHOLDER: No Magic attacks\n");
                     break;
                     case"3":
                     // add in ai attack pattern
@@ -170,6 +198,7 @@ namespace DH4
                 
                 // add fuctionality for ai to attack player}
                }
+                }
                DoDamageToPlayer(PlayerParty,enemyNames,enemy);
               
             }
@@ -219,7 +248,7 @@ namespace DH4
                    Enemy AngelEnemy= CreateEnemy(enemyNames);
                 
                  
-                 BattleSystem(DSCharacter,AngelEnemy,CheckpointName);
+                 BattleSystem(DSCharacter,AngelEnemy, spells, CheckpointName);
                 System.Console.WriteLine("After a tense fight you beat the angel, however he is keen to let you know its not over.\n Angel: You haven’t won yet it is you who have underestimated the church and our leader. \nThe church is going to have your heads.");
                 System.Console.WriteLine("Mage: We will deal with that when the time comes\n");
                 PromptedClearScreen();
@@ -308,6 +337,7 @@ namespace DH4
                                                                                         // battlesystem and zombie enemy creation goes here.
                                                                                         enemyNames = EnemyNames.ZOMBIE;
                                                                                         Enemy zombieEnemy = CreateEnemy(enemyNames);
+                                                                                        BattleSystem(playercharacter, zombieEnemy, spells, TownPathLie);
                                                                                         break;
                                                                                     default:
                                                                                         ResetAndClear("Please choose from the 2 above options", TownPathLie, 5000, playercharacter); 
