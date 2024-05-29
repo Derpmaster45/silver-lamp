@@ -181,7 +181,7 @@ namespace DH4
                         string magicattackchoice="";
                         while(magicattackchoice=="")
                         {
-                            Console.WriteLine("What magic attack would you like to use");
+                            //Console.WriteLine($"What magic attack would you like to use {SpellList.GetValues(typeof (MagicSpellTypes).Cast<MagicSpellTypes>().ToList).ToString()}");
                         }
                     }
                     Console.WriteLine("PLACEHOLDER: No Magic attacks\n");
