@@ -294,7 +294,7 @@ namespace DH4
                                     switch(AngelBattleRecollection.ToLower())
                                     {
                                         case"1":
-                                       System.Console.WriteLine($"{playercharacter.PlayerName}: Don't you think that it is a bitt strange that there are no recorded survivors, but you know what happened. The Dark swordsman and mage's account end after the battle.\n Did they make it out of the battle alive?\nAccording to the mages account none of the villagers were present, so how did the fire start?\n");
+                                       System.Console.WriteLine($"{playercharacter.PlayerName}: Don't you think that it is a bit strange that there are no recorded survivors, but you know what happened. The Dark swordsman and mage's account end after the battle.\n Did they make it out of the battle alive?\nAccording to the mages account none of the villagers were present, so how did the fire start?\n");
                                        System.Console.WriteLine("Captain Smith: We have records of thier questioning after the events in question\n They refused to answer so, we had them burned at the stake. As that was the leaders wishes at the time.\n How do you know of this anyway?\n"); 
                                        bool didBlameHighPriest;
                                       
@@ -343,9 +343,41 @@ namespace DH4
                                                                                         ResetAndClear("Please choose from the 2 above options", TownPathLie, 5000, playercharacter); 
                                                                                         break;
                                                                                 }
-
+                                                                                
 
                                                                             }
+                                                                            playercharacter.CurrentHealthPoints=playercharacter.PlayerHeath;
+                                                                                PromptedClearScreen();
+                                                                                string forkingpathchoice=""; 
+                                                                                while(forkingpathchoice=="")
+                                                                                {
+                                                                                    Console.WriteLine("You head past the zombies, you come to a fork in the path. \n Do you head to town, or see where the other path takes you.\n");
+                                                                                    forkingpathchoice=Console.ReadLine();
+                                                                                    switch(forkingpathchoice.ToLower())
+                                                                                    {
+                                                                                        case"1":
+                                                                                        case"go to town":
+                                                                                        break;
+                                                                                        case "2":
+                                                                                        case "take other path":
+                                                                                        Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Explore the surrounding area \n 2) go back to the start of the path\n ");
+                                                                                        string dogoback="";
+                                                                                        while(dogoback=="")
+                                                                                        {
+                                                                                            dogoback=Console.ReadLine();
+                                                                                            Console.WriteLine("")
+                                                                                            switch(dogoback)
+                                                                                            {
+
+                                                                                            }
+                                                                                        }
+                                                                                        break;
+                                                                                        default:
+                                                                                        break;
+
+                                                                                    }
+                                                                                }
+
 
 
 
