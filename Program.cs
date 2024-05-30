@@ -360,19 +360,29 @@ namespace DH4
                                                                                         break;
                                                                                         case "2":
                                                                                         case "take other path":
-                                                                                        Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Explore the surrounding area \n 2) go back to the start of the path\n ");
+                                                                                        //Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Explore the surrounding area \n 2) go back to the start of the path\n ");
                                                                                         string dogoback="";
                                                                                         while(dogoback=="")
                                                                                         {
                                                                                             dogoback=Console.ReadLine();
-                                                                                            Console.WriteLine("")
-                                                                                            switch(dogoback)
+                                                                                            Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Explore the surrounding area \n 2) go back to the start of the path\n");
+                                                                                            switch(dogoback.ToLower())
                                                                                             {
+                                                                                                case"go back to town":
+
+                                                                                                Console.WriteLine("Decide to head back to the start of the path. ");
+                                                                                                forkingpathchoice="1";
+                                                                                                break;
+                                                                                                case"keep exploring":
+                                                                                                Console.WriteLine("You keep exploring, you find a river, however you dont have anythign to fish with.\n");
+                                                                                                dogoback="";
+                                                                                                break;
 
                                                                                             }
                                                                                         }
                                                                                         break;
                                                                                         default:
+                                                                                        ResetAndClear("Pick from the above 2 options",forkingpathchoice,5000,playercharacter);
                                                                                         break;
 
                                                                                     }
