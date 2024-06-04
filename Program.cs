@@ -185,7 +185,10 @@ namespace DH4
                         while(magicattackchoice=="")
                         {
                             Console.WriteLine($"What magic attack would you like to use\n");
-                           // if(PlayerParty.PlayerClass==)
+                           switch(PlayerParty.PlayerClass)
+                           {
+                            
+                           }
                         }
                     }
                     Console.WriteLine("PLACEHOLDER: No Magic attacks\n");
