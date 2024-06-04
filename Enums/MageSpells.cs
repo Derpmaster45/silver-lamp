@@ -1,6 +1,6 @@
 namespace DH4.Enums
 {
-    public enum MagicSpellTypes
+    public enum MageSpells
     {
         MagicSPELL1,
     }
