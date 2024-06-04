@@ -12,7 +12,10 @@ namespace DH4
         {
             EnemyNames enemyNames = new EnemyNames();
             string MainMenuOption="";
-            MagicSpellTypes spells = new MagicSpellTypes();
+            MageSpells spells = new MageSpells();
+            DarkMageMagic dmMagicSpells=new DarkMageMagic();
+            DarkSwordsmanMagic DSMagicSpells =new DarkSwordsmanMagic();
+            //DS Character creation
             Character DSCharacter= new Character();
             DSCharacter.PlayerName="Dark Swordsman";
             DSCharacter.PlayerHeath=600;
@@ -21,7 +24,7 @@ namespace DH4
             DSCharacter.PlayerLevel=5;
             DSCharacter.PlayerManaPoints=200;
             DSCharacter.PlayerDefensePoints=50;
-            
+            // ds Character Creation end
 
 
             Enemy enemy= new Enemy();
@@ -148,7 +151,7 @@ namespace DH4
             return characterToCreate;
         }
 
-            void BattleSystem(Character PlayerParty, Enemy enemy, MagicSpellTypes SpellList, string CheckpointName)
+            void BattleSystem(Character PlayerParty, Enemy enemy, MageSpells SpellList, DarkMageMagic DMSpellList, DarkSwordsmanMagic DSMagicList, string CheckpointName)
             {
                
                Console.WriteLine($"{enemy.EnemyName} has appeared!");
@@ -181,7 +184,8 @@ namespace DH4
                         string magicattackchoice="";
                         while(magicattackchoice=="")
                         {
-                            Console.WriteLine($"What magic attack would you like to use {SpellList.GetValues(typeof (MagicSpellTypes).Cast<MagicSpellTypes>().ToList).ToString()}");
+                            Console.WriteLine($"What magic attack would you like to use\n");
+                           // if(PlayerParty.PlayerClass==)
                         }
                     }
                     Console.WriteLine("PLACEHOLDER: No Magic attacks\n");
@@ -248,7 +252,7 @@ namespace DH4
                    Enemy AngelEnemy= CreateEnemy(enemyNames);
                 
                  
-                 BattleSystem(DSCharacter,AngelEnemy, spells, CheckpointName);
+                 BattleSystem(DSCharacter,AngelEnemy, spells, dmMagicSpells, DSMagicSpells, CheckpointName);
                 System.Console.WriteLine("After a tense fight you beat the angel, however he is keen to let you know its not over.\n Angel: You haven’t won yet it is you who have underestimated the church and our leader. \nThe church is going to have your heads.");
                 System.Console.WriteLine("Mage: We will deal with that when the time comes\n");
                 PromptedClearScreen();
@@ -337,7 +341,7 @@ namespace DH4
                                                                                         // battlesystem and zombie enemy creation goes here.
                                                                                         enemyNames = EnemyNames.ZOMBIE;
                                                                                         Enemy zombieEnemy = CreateEnemy(enemyNames);
-                                                                                        BattleSystem(playercharacter, zombieEnemy, spells, TownPathLie);
+                                                                                        BattleSystem(playercharacter, zombieEnemy, spells, dmMagicSpells, DSMagicSpells, TownPathLie);
                                                                                         break;
                                                                                     default:
                                                                                         ResetAndClear("Please choose from the 2 above options", TownPathLie, 5000, playercharacter); 
