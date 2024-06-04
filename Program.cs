@@ -327,7 +327,7 @@ namespace DH4
                                                                             {
                                                                                 Console.WriteLine("What do you want to do?\n 1) Sneak past the zombies \n 2) Fight your way through the horde");
                                                                                 TownPathLie= Console.ReadLine();
-                                                                                switch (TownPathLie) 
+                                                                                switch (TownPathLie.ToLower()) 
                                                                                 {
                                                                                     case "1":
                                                                                         Console.WriteLine("You decide to sneak past the zombies, Lucky for you the zombies are slow moving. ");
@@ -353,17 +353,24 @@ namespace DH4
                                                                                 {
                                                                                     Console.WriteLine("You head past the zombies, you come to a fork in the path. \n Do you head to town, or see where the other path takes you.\n");
                                                                                     forkingpathchoice=Console.ReadLine();
+                                                                                    bool TookAltPath=false;
                                                                                     switch(forkingpathchoice.ToLower())
                                                                                     {
                                                                                         case"1":
                                                                                         case"go to town":
+                                                                                        if(TookAltPath==true)
+                                                                                        {
+
+                                                                                        }
                                                                                         break;
                                                                                         case "2":
                                                                                         case "take other path":
+                                                                                        TookAltPath=true;
                                                                                         //Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Explore the surrounding area \n 2) go back to the start of the path\n ");
                                                                                         string dogoback="";
                                                                                         while(dogoback=="")
                                                                                         {
+                                                                                            
                                                                                             dogoback=Console.ReadLine();
                                                                                             Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Explore the surrounding area \n 2) go back to the start of the path\n");
                                                                                             switch(dogoback.ToLower())
