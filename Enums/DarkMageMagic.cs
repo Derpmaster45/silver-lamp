@@ -6,5 +6,6 @@ namespace DH4.Enums
     {
         LIGHTNING,
         LIFEDRAIN,
+        Petrifaction, 
     }
 }
