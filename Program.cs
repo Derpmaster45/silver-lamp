@@ -190,7 +190,32 @@ namespace DH4
                           switch(PlayerParty.PlayerClass)
                           {
                             case PlayerClassTypes.MAGE:
-                            Console.WriteLine("TESTING!");
+                            string MageMagicChoice="";
+                            while(MageMagicChoice=="")
+                            {
+                                Console.WriteLine("Which magic attack would you like to use \n1) Heal \n2) Fire\n");
+                                switch(MageMagicChoice.ToLower())
+                                {
+                                    case"1":
+                                    case"heal":
+                                    break;
+                                    case "2":
+                                    case"fire":
+                                    break;
+                                    default:
+                                    //ResetAndClear() 
+                                    break;
+                                }
+                            }
+                            break;
+                            case PlayerClassTypes.DARKMAGE:
+                            // list magic attacks then prompt for input
+                            break;
+                            case PlayerClassTypes.DARKSWORDSMAN:
+                            break;
+                            case PlayerClassTypes.KNIGHT:
+                            Console.WriteLine("No magic Attacks");
+                            battlesystemchoice="";
                             break;
                             default:
                             break;
