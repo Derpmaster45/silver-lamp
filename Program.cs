@@ -184,10 +184,36 @@ namespace DH4
                         string magicattackchoice="";
                         while(magicattackchoice=="")
                         {
+
                             Console.WriteLine($"What magic attack would you like to use\n");
                            switch(PlayerParty.PlayerClass)
                            {
-                            
+                            case"KNIGHT":
+                            Console.WriteLine("You have no magic attacks."); 
+                            battlesystemchoice="";
+                            break;
+                            case "MAGE":
+                            Console.WriteLine("1) Heal \n 2) Fire\n");
+                            string mageMagicChoice="";
+                            while(mageMagicChoice=="")
+                            {
+                                switch(mageMagicChoice.ToLower())
+                                {
+                                    case"1":
+                                    case"heal":
+                                    // heal code goes here
+                                    
+                                    break;
+                                }
+                            }
+                            break;
+                            case "DARKMAGE":
+                            break;
+                            case "DARKSWORDSMAN":
+                            break;
+                            default:
+                            break;
+
                            }
                         }
                     }
