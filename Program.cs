@@ -96,7 +96,10 @@ namespace DH4
                 Thread.Sleep(threadsleepparam);
                 Console.Clear();
                 switchinput="";
-                character.CurrentHealthPoints=character.PlayerHealth;
+                if(character.CurrentHealthPoints<=0)
+                {
+                    character.CurrentHealthPoints=character.PlayerHealth;
+                }
                 
             }
          Character CreateCharacter()
@@ -246,6 +249,25 @@ namespace DH4
                             // list magic attacks then prompt for input
                             break;
                             case PlayerClassTypes.DARKSWORDSMAN:
+                            string DarkswordsmanMagicChoice="";
+                            while(DarkswordsmanMagicChoice=="")
+                            {
+                                Console.WriteLine("What magic attack would you like to use\n 1) Acid Rain\n 2) Void ");
+                                DarkswordsmanMagicChoice=Console.WriteLine();
+                                switch(DarkswordsmanMagicChoice.toLower())
+                                {
+                                    case "1":
+                                    case"acid rain":
+                                    break;
+                                    case "2":
+                                    case"void":
+                                    break;
+                                    default:
+                                    ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkswordsmanMagicChoice,5000,PlayerParty);
+                                    break;
+
+                                }
+                            }
                             break;
                             case PlayerClassTypes.KNIGHT:
                             Console.WriteLine("No magic Attacks");
