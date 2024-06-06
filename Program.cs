@@ -186,37 +186,19 @@ namespace DH4
                         {
 
                             Console.WriteLine($"What magic attack would you like to use\n");
-                           switch(PlayerParty.PlayerClass)
-                           {
-                            case"KNIGHT":
-                            Console.WriteLine("You have no magic attacks."); 
-                            battlesystemchoice="";
-                            break;
-                            case "MAGE":
-                            Console.WriteLine("1) Heal \n 2) Fire\n");
-                            string mageMagicChoice="";
-                            while(mageMagicChoice=="")
-                            {
-                                switch(mageMagicChoice.ToLower())
-                                {
-                                    case"1":
-                                    case"heal":
-                                    // heal code goes here
-                                    
-                                    break;
-                                }
-                            }
-                            break;
-                            case "DARKMAGE":
-                            break;
-                            case "DARKSWORDSMAN":
+                          // switch using player class
+                          switch(PlayerParty.PlayerClass)
+                          {
+                            case PlayerClassTypes.MAGE:
+                            Console.WriteLine("TESTING!");
                             break;
                             default:
                             break;
-
+                          }
+                          
                            }
                         }
-                    }
+                    
                     Console.WriteLine("PLACEHOLDER: No Magic attacks\n");
                     break;
                     case"3":
@@ -228,7 +210,7 @@ namespace DH4
                     string errormessage="Please choose from the above options";
                     ResetAndClear(errormessage,CheckpointName,5000,PlayerParty);
                     break;
-                
+                 
                 // add fuctionality for ai to attack player}
                }
                 }
