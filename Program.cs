@@ -18,8 +18,8 @@ namespace DH4
             //DS Character creation
             Character DSCharacter= new Character();
             DSCharacter.PlayerName="Dark Swordsman";
-            DSCharacter.PlayerHeath=600;
-            DSCharacter.CurrentHealthPoints=DSCharacter.PlayerHeath;
+            DSCharacter.PlayerHealth=600;
+            DSCharacter.CurrentHealthPoints=DSCharacter.PlayerHealth;
             DSCharacter.AttackPoints=50;
             DSCharacter.PlayerLevel=5;
             DSCharacter.PlayerManaPoints=200;
@@ -96,7 +96,7 @@ namespace DH4
                 Thread.Sleep(threadsleepparam);
                 Console.Clear();
                 switchinput="";
-                character.CurrentHealthPoints=character.PlayerHeath;
+                character.CurrentHealthPoints=character.PlayerHealth;
                 
             }
          Character CreateCharacter()
@@ -111,7 +111,7 @@ namespace DH4
             characterToCreate.PlayerLevel=1;
             characterToCreate.PlayerDefensePoints=20;
             characterToCreate.AttackPoints=20;
-            characterToCreate.PlayerHeath=300;
+            characterToCreate.PlayerHealth=300;
             characterToCreate.PlayerExpPoints=0;
             System.Console.WriteLine("What class would you like to be (Subject to change) 1) Knight\n 2)Dark Mage \n3) Mage\n  4) Dark Swordsman");
             string playerclass="";
@@ -198,33 +198,71 @@ namespace DH4
                                 {
                                     case"1":
                                     case"heal":
+                                    Console.WriteLine($"{PlayerParty.PlayerName} casts heal!");
+                                    // todo: Get the players current health and multiply it by 0.020 and see if the value exceeds the max health value
+                                    double updatedHealth=PlayerParty.CurrentHealthPoints*=.020;
+                                    PlayerParty.CurrentHealthPoints=updatedHealth;
+                                    double maxHealth=PlayerParty.PlayerHealth;
+                                    if(updatedHealth>maxHealth)
+                                    {
+                                        PlayerParty.CurrentHealthPoints=maxHealth;
+                                    }
                                     break;
                                     case "2":
                                     case"fire":
+                                    Console.WriteLine($"{PlayerParty.PlayerName} casts fire");
+                                    // call damage dealt function
                                     break;
                                     default:
-                                    //ResetAndClear() 
+                                    ResetAndClear("Unexpected Input, resetting in 5 seconds",magicattackchoice,5000, PlayerParty); 
                                     break;
+                                    
                                 }
                             }
                             break;
                             case PlayerClassTypes.DARKMAGE:
+                            string DarkMageMagicAttackChoice="";
+                            while(DarkMageMagicAttackChoice=="")
+                            {
+                             Console.WriteLine("What magic attack would you like to use? \n 1)Lightning \n 2)Life Drain\n 3)Petrifaction\n");
+                              DarkMageMagicAttackChoice=Console.ReadLine();
+                              switch(DarkMageMagicAttackChoice.ToLower())
+                              {
+                                case"1":
+                                case "lighting":
+                                break;
+                                case"2":
+                                case"life drain":
+                                break;
+                                case"3":
+                                case"petrification":
+                                break;
+                                default:
+                                break;
+
+                              }
+                            }
+                          
                             // list magic attacks then prompt for input
                             break;
                             case PlayerClassTypes.DARKSWORDSMAN:
                             break;
                             case PlayerClassTypes.KNIGHT:
                             Console.WriteLine("No magic Attacks");
+                            PromptedClearScreen();
                             battlesystemchoice="";
+
                             break;
                             default:
+                            string errmessage="ERR: Unrecognized class please try something else";
+                            ResetAndClear(errmessage,battlesystemchoice,5000,PlayerParty);
                             break;
                           }
                           
                            }
                         }
                     
-                    Console.WriteLine("PLACEHOLDER: No Magic attacks\n");
+                    //Console.WriteLine("PLACEHOLDER: No Magic attacks\n");
                     break;
                     case"3":
                     // add in ai attack pattern
@@ -386,7 +424,7 @@ namespace DH4
                                                                                 
 
                                                                             }
-                                                                            playercharacter.CurrentHealthPoints=playercharacter.PlayerHeath;
+                                                                            playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
                                                                                 PromptedClearScreen();
                                                                                 string forkingpathchoice=""; 
                                                                                 while(forkingpathchoice=="")
