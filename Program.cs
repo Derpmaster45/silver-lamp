@@ -12,16 +12,19 @@ namespace DH4
         {
             EnemyNames enemyNames = new EnemyNames();
             string MainMenuOption="";
-            MagicSpellTypes spells = new MagicSpellTypes();
+            MageSpells spells = new MageSpells();
+            DarkMageMagic dmMagicSpells=new DarkMageMagic();
+            DarkSwordsmanMagic DSMagicSpells =new DarkSwordsmanMagic();
+            //DS Character creation
             Character DSCharacter= new Character();
             DSCharacter.PlayerName="Dark Swordsman";
-            DSCharacter.PlayerHeath=600;
-            DSCharacter.CurrentHealthPoints=DSCharacter.PlayerHeath;
+            DSCharacter.PlayerHealth=600;
+            DSCharacter.CurrentHealthPoints=DSCharacter.PlayerHealth;
             DSCharacter.AttackPoints=50;
             DSCharacter.PlayerLevel=5;
             DSCharacter.PlayerManaPoints=200;
             DSCharacter.PlayerDefensePoints=50;
-            
+            // ds Character Creation end
 
 
             Enemy enemy= new Enemy();
@@ -93,7 +96,10 @@ namespace DH4
                 Thread.Sleep(threadsleepparam);
                 Console.Clear();
                 switchinput="";
-                character.CurrentHealthPoints=character.PlayerHeath;
+                if(character.CurrentHealthPoints<=0)
+                {
+                    character.CurrentHealthPoints=character.PlayerHealth;
+                }
                 
             }
          Character CreateCharacter()
@@ -108,7 +114,7 @@ namespace DH4
             characterToCreate.PlayerLevel=1;
             characterToCreate.PlayerDefensePoints=20;
             characterToCreate.AttackPoints=20;
-            characterToCreate.PlayerHeath=300;
+            characterToCreate.PlayerHealth=300;
             characterToCreate.PlayerExpPoints=0;
             System.Console.WriteLine("What class would you like to be (Subject to change) 1) Knight\n 2)Dark Mage \n3) Mage\n  4) Dark Swordsman");
             string playerclass="";
@@ -148,7 +154,7 @@ namespace DH4
             return characterToCreate;
         }
 
-            void BattleSystem(Character PlayerParty, Enemy enemy, MagicSpellTypes SpellList, string CheckpointName)
+            void BattleSystem(Character PlayerParty, Enemy enemy, MageSpells SpellList, DarkMageMagic DMSpellList, DarkSwordsmanMagic DSMagicList, string CheckpointName)
             {
                
                Console.WriteLine($"{enemy.EnemyName} has appeared!");
@@ -181,10 +187,104 @@ namespace DH4
                         string magicattackchoice="";
                         while(magicattackchoice=="")
                         {
-                            //Console.WriteLine($"What magic attack would you like to use {SpellList.GetValues(typeof (MagicSpellTypes).Cast<MagicSpellTypes>().ToList).ToString()}");
+
+                            Console.WriteLine($"What magic attack would you like to use\n");
+                          // switch using player class
+                          switch(PlayerParty.PlayerClass)
+                          {
+                            case PlayerClassTypes.MAGE:
+                            string MageMagicChoice="";
+                            while(MageMagicChoice=="")
+                            {
+                                Console.WriteLine("Which magic attack would you like to use \n1) Heal \n2) Fire\n");
+                                switch(MageMagicChoice.ToLower())
+                                {
+                                    case"1":
+                                    case"heal":
+                                    Console.WriteLine($"{PlayerParty.PlayerName} casts heal!");
+                                    // todo: Get the players current health and multiply it by 0.020 and see if the value exceeds the max health value
+                                    double updatedHealth=PlayerParty.CurrentHealthPoints*=.020;
+                                    PlayerParty.CurrentHealthPoints=updatedHealth;
+                                    double maxHealth=PlayerParty.PlayerHealth;
+                                    if(updatedHealth>maxHealth)
+                                    {
+                                        PlayerParty.CurrentHealthPoints=maxHealth;
+                                    }
+                                    break;
+                                    case "2":
+                                    case"fire":
+                                    Console.WriteLine($"{PlayerParty.PlayerName} casts fire");
+                                    // call damage dealt function
+                                    break;
+                                    default:
+                                    ResetAndClear("Unexpected Input, resetting in 5 seconds",magicattackchoice,5000, PlayerParty); 
+                                    break;
+                                    
+                                }
+                            }
+                            break;
+                            case PlayerClassTypes.DARKMAGE:
+                            string DarkMageMagicAttackChoice="";
+                            while(DarkMageMagicAttackChoice=="")
+                            {
+                             Console.WriteLine("What magic attack would you like to use? \n 1)Lightning \n 2)Life Drain\n 3)Petrifaction\n");
+                              DarkMageMagicAttackChoice=Console.ReadLine();
+                              switch(DarkMageMagicAttackChoice.ToLower())
+                              {
+                                case"1":
+                                case "lighting":
+                                break;
+                                case"2":
+                                case"life drain":
+                                break;
+                                case"3":
+                                case"petrification":
+                                break;
+                                default:
+                                break;
+
+                              }
+                            }
+                          
+                            // list magic attacks then prompt for input
+                            break;
+                            case PlayerClassTypes.DARKSWORDSMAN:
+                            string DarkswordsmanMagicChoice="";
+                            while(DarkswordsmanMagicChoice=="")
+                            {
+                                Console.WriteLine("What magic attack would you like to use\n 1) Acid Rain\n 2) Void ");
+                                DarkswordsmanMagicChoice=Console.WriteLine();
+                                switch(DarkswordsmanMagicChoice.toLower())
+                                {
+                                    case "1":
+                                    case"acid rain":
+                                    break;
+                                    case "2":
+                                    case"void":
+                                    break;
+                                    default:
+                                    ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkswordsmanMagicChoice,5000,PlayerParty);
+                                    break;
+
+                                }
+                            }
+                            break;
+                            case PlayerClassTypes.KNIGHT:
+                            Console.WriteLine("No magic Attacks");
+                            PromptedClearScreen();
+                            battlesystemchoice="";
+
+                            break;
+                            default:
+                            string errmessage="ERR: Unrecognized class please try something else";
+                            ResetAndClear(errmessage,battlesystemchoice,5000,PlayerParty);
+                            break;
+                          }
+                          
+                           }
                         }
-                    }
-                    Console.WriteLine("PLACEHOLDER: No Magic attacks\n");
+                    
+                    //Console.WriteLine("PLACEHOLDER: No Magic attacks\n");
                     break;
                     case"3":
                     // add in ai attack pattern
@@ -195,7 +295,7 @@ namespace DH4
                     string errormessage="Please choose from the above options";
                     ResetAndClear(errormessage,CheckpointName,5000,PlayerParty);
                     break;
-                
+                 
                 // add fuctionality for ai to attack player}
                }
                 }
@@ -248,7 +348,7 @@ namespace DH4
                    Enemy AngelEnemy= CreateEnemy(enemyNames);
                 
                  
-                 BattleSystem(DSCharacter,AngelEnemy, spells, CheckpointName);
+                 BattleSystem(DSCharacter,AngelEnemy, spells, dmMagicSpells, DSMagicSpells, CheckpointName);
                 System.Console.WriteLine("After a tense fight you beat the angel, however he is keen to let you know its not over.\n Angel: You haven’t won yet it is you who have underestimated the church and our leader. \nThe church is going to have your heads.");
                 System.Console.WriteLine("Mage: We will deal with that when the time comes\n");
                 PromptedClearScreen();
@@ -327,7 +427,7 @@ namespace DH4
                                                                             {
                                                                                 Console.WriteLine("What do you want to do?\n 1) Sneak past the zombies \n 2) Fight your way through the horde");
                                                                                 TownPathLie= Console.ReadLine();
-                                                                                switch (TownPathLie) 
+                                                                                switch (TownPathLie.ToLower()) 
                                                                                 {
                                                                                     case "1":
                                                                                         Console.WriteLine("You decide to sneak past the zombies, Lucky for you the zombies are slow moving. ");
@@ -337,7 +437,7 @@ namespace DH4
                                                                                         // battlesystem and zombie enemy creation goes here.
                                                                                         enemyNames = EnemyNames.ZOMBIE;
                                                                                         Enemy zombieEnemy = CreateEnemy(enemyNames);
-                                                                                        BattleSystem(playercharacter, zombieEnemy, spells, TownPathLie);
+                                                                                        BattleSystem(playercharacter, zombieEnemy, spells, dmMagicSpells, DSMagicSpells, TownPathLie);
                                                                                         break;
                                                                                     default:
                                                                                         ResetAndClear("Please choose from the 2 above options", TownPathLie, 5000, playercharacter); 
@@ -346,24 +446,31 @@ namespace DH4
                                                                                 
 
                                                                             }
-                                                                            playercharacter.CurrentHealthPoints=playercharacter.PlayerHeath;
+                                                                            playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
                                                                                 PromptedClearScreen();
                                                                                 string forkingpathchoice=""; 
                                                                                 while(forkingpathchoice=="")
                                                                                 {
                                                                                     Console.WriteLine("You head past the zombies, you come to a fork in the path. \n Do you head to town, or see where the other path takes you.\n");
                                                                                     forkingpathchoice=Console.ReadLine();
+                                                                                    bool TookAltPath=false;
                                                                                     switch(forkingpathchoice.ToLower())
                                                                                     {
                                                                                         case"1":
                                                                                         case"go to town":
+                                                                                        if(TookAltPath==true)
+                                                                                        {
+
+                                                                                        }
                                                                                         break;
                                                                                         case "2":
                                                                                         case "take other path":
+                                                                                        TookAltPath=true;
                                                                                         //Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Explore the surrounding area \n 2) go back to the start of the path\n ");
                                                                                         string dogoback="";
                                                                                         while(dogoback=="")
                                                                                         {
+                                                                                            
                                                                                             dogoback=Console.ReadLine();
                                                                                             Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Explore the surrounding area \n 2) go back to the start of the path\n");
                                                                                             switch(dogoback.ToLower())
