@@ -460,6 +460,15 @@ namespace DH4
                                                                                         case"go to town":
                                                                                         if(TookAltPath==true)
                                                                                         {
+                                                                                            Console.WriteLine("You enter the town and you see Captain Smith, and a citizen of the village, and you decide to approach then to get your marching orders.");
+                                                                                            Console.WriteLine($"Captain Smith: Where have you been? \n ");
+                                                                                            Console.WriteLine("Do you: \n 1) Say you got lost. \n 2) Talk about the zombies on the beach.\n");
+                                                                                            string dolieaboutbeach="";
+                                                                                            while(dolieaboutbeach=="")
+                                                                                            {
+                                                                                                dolieaboutbeach=Console.ReadLine();
+                                                                                                switch(dolieaboutbeach)
+                                                                                            }
 
                                                                                         }
                                                                                         break;
