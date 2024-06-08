@@ -24,6 +24,7 @@ namespace DH4
             DSCharacter.PlayerLevel=5;
             DSCharacter.PlayerManaPoints=200;
             DSCharacter.PlayerDefensePoints=50;
+            DSCharacter.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
             // ds Character Creation end
 
 
@@ -72,6 +73,14 @@ namespace DH4
                 enemyToCreate.EnemyDefensePoints=300;
                 enemy.EnemyAttackPoints=40;
                 enemyToCreate.EnemyManaPoint=200;
+            }
+            else if(enemyToCreate.enemyType==EnemyNames.DARKSWORDSMAN)
+            {
+                enemyToCreate.EnemyName="Dark Swordsman";
+                enemyToCreate.EnemyHealth=600;
+                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                enemyToCreate.EnemyAttackPoints=50;
+                enemyToCreate.EnemyManaPoint=100;
             }
             // testing purposes DELETE LATER
            // System.Console.WriteLine($"Enemy {enemyToCreate.EnemyName} created!");
@@ -464,11 +473,26 @@ namespace DH4
                                                                                             Console.WriteLine($"Captain Smith: Where have you been? \n ");
                                                                                             Console.WriteLine("Do you: \n 1) Say you got lost. \n 2) Talk about the zombies on the beach.\n");
                                                                                             string dolieaboutbeach="";
+                                                                                            bool bLiedAboutBeach=false;
                                                                                             while(dolieaboutbeach=="")
                                                                                             {
                                                                                                 dolieaboutbeach=Console.ReadLine();
-                                                                                                switch(dolieaboutbeach)
+                                                                                                switch(dolieaboutbeach.ToLower())
+                                                                                                {
+                                                                                                    case"1":
+                                                                                                    case"say you got lost":
+                                                                                                    Console.WriteLine($"{playercharacter.PlayerName}:I got lost on my way to town.Sorry I have taken so long.");
+                                                                                                    break;
+                                                                                                    case"inform about zombies on the beach":
+                                                                                                    Console.WriteLine("")
+                                                                                                    break;
+                                                                                                }
                                                                                             }
+
+
+                                                                                        }
+                                                                                        else if(TookAltPath==false)
+                                                                                        {
 
                                                                                         }
                                                                                         break;
