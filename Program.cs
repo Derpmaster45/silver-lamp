@@ -81,6 +81,7 @@ namespace DH4
                 enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                 enemyToCreate.EnemyAttackPoints=50;
                 enemyToCreate.EnemyManaPoint=100;
+                enemyToCreate.EnemyDefensePoints=50; 
             }
             // testing purposes DELETE LATER
            // System.Console.WriteLine($"Enemy {enemyToCreate.EnemyName} created!");
