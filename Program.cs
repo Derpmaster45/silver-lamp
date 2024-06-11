@@ -43,6 +43,33 @@ namespace DH4
                 else if(action==2)
                 {
                     Console.WriteLine("This is being worked on at the moment. ");
+                    Random magicinput= new Random();
+                    switch(enemy.enemyType)
+                    {
+                        case EnemyNames.BAT:
+                        // choose from the list of spells using random values
+                        break;
+                        case EnemyNames.ANGEL:
+                        break;
+                        case EnemyNames.DARKSWORDSMAN:
+                        break;
+                        case EnemyNames.VAMPIRE:
+                        break;
+                        case EnemyNames.ZOMBIE:
+                        break;
+                        default:
+                        Console.WriteLine("ERR: Unknown Enemy Type");
+                        DamageDealtToPlayer=0;
+                        break;
+                    }
+                    /* 
+                    ZOMBIE,
+                    BAT,
+                    ANGEL,
+                    VAMPIRE,
+                    DARKSWORDSMAN,
+                    NONE
+                    */
                 } 
                 else if(action==3)
                 {
