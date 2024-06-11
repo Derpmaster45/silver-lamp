@@ -59,8 +59,8 @@ namespace DH4
             if(enemyToCreate.enemyType==EnemyNames.BAT)
             {
                 enemyToCreate.EnemyName="Bat";
-                enemyToCreate.EnemyHeath=100;
-                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHeath;
+                enemyToCreate.EnemyHealth=100;
+                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                 enemyToCreate.EnemyDefensePoints=10;
                 enemy.EnemyAttackPoints=20;
                 enemy.EnemyManaPoint=0;
@@ -68,8 +68,8 @@ namespace DH4
             else if(enemyToCreate.enemyType==EnemyNames.ANGEL)
             {
                 enemyToCreate.EnemyName="Angel";
-                enemyToCreate.EnemyHeath=400;
-                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHeath;
+                enemyToCreate.EnemyHealth=400;
+                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                 enemyToCreate.EnemyDefensePoints=300;
                 enemy.EnemyAttackPoints=40;
                 enemyToCreate.EnemyManaPoint=200;
@@ -251,7 +251,7 @@ namespace DH4
                                 case"petrification":
                                 break;
                                 default:
-                                ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkswordsmanMagicChoice,5000,PlayerParty);
+                                ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkMageMagicAttackChoice,5000,PlayerParty);
                                 break;
 
                               }
@@ -264,8 +264,8 @@ namespace DH4
                             while(DarkswordsmanMagicChoice=="")
                             {
                                 Console.WriteLine("What magic attack would you like to use\n 1) Acid Rain\n 2) Void ");
-                                DarkswordsmanMagicChoice=Console.WriteLine();
-                                switch(DarkswordsmanMagicChoice.toLower())
+                                DarkswordsmanMagicChoice=Console.ReadLine();
+                                switch(DarkswordsmanMagicChoice.ToLower())
                                 {
                                     case "1":
                                     case"acid rain":
