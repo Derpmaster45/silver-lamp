@@ -51,15 +51,23 @@ namespace DH4
                     {
                         case EnemyNames.BAT:
                         // choose from the list of spells using random values
+                        int magicAction=magicinput.Next(1,3);
                         break;
                         case EnemyNames.ANGEL:
-                        
+                        // choose from the list of spells using random values
+                        int magicAction=magicinput.Next(1,3);
                         break;
                         case EnemyNames.DARKSWORDSMAN:
+                        // choose from the list of spells using random values
+                        int magicAction=magicinput.Next(1,3);
                         break;
                         case EnemyNames.VAMPIRE:
+                        // choose from the list of spells using random values
+                        int magicAction=magicinput.Next(1,3);
                         break;
                         case EnemyNames.ZOMBIE:
+                        // choose from the list of spells using random values
+                        int magicAction=magicinput.Next(1,3);
                         break;
                         default:
                         Console.WriteLine("ERR: Unknown Enemy Type");
