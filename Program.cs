@@ -24,6 +24,7 @@ namespace DH4
             DSCharacter.PlayerLevel=5;
             DSCharacter.PlayerManaPoints=200;
             DSCharacter.PlayerDefensePoints=50;
+            DSCharacter.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
             // ds Character Creation end
 
 
@@ -58,8 +59,8 @@ namespace DH4
             if(enemyToCreate.enemyType==EnemyNames.BAT)
             {
                 enemyToCreate.EnemyName="Bat";
-                enemyToCreate.EnemyHeath=100;
-                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHeath;
+                enemyToCreate.EnemyHealth=100;
+                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                 enemyToCreate.EnemyDefensePoints=10;
                 enemy.EnemyAttackPoints=20;
                 enemy.EnemyManaPoint=0;
@@ -67,11 +68,20 @@ namespace DH4
             else if(enemyToCreate.enemyType==EnemyNames.ANGEL)
             {
                 enemyToCreate.EnemyName="Angel";
-                enemyToCreate.EnemyHeath=400;
-                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHeath;
+                enemyToCreate.EnemyHealth=400;
+                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                 enemyToCreate.EnemyDefensePoints=300;
                 enemy.EnemyAttackPoints=40;
                 enemyToCreate.EnemyManaPoint=200;
+            }
+            else if(enemyToCreate.enemyType==EnemyNames.DARKSWORDSMAN)
+            {
+                enemyToCreate.EnemyName="Dark Swordsman";
+                enemyToCreate.EnemyHealth=600;
+                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                enemyToCreate.EnemyAttackPoints=50;
+                enemyToCreate.EnemyManaPoint=100;
+                enemyToCreate.EnemyDefensePoints=50; 
             }
             // testing purposes DELETE LATER
            // System.Console.WriteLine($"Enemy {enemyToCreate.EnemyName} created!");
@@ -241,6 +251,7 @@ namespace DH4
                                 case"petrification":
                                 break;
                                 default:
+                                ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkMageMagicAttackChoice,5000,PlayerParty);
                                 break;
 
                               }
@@ -253,14 +264,18 @@ namespace DH4
                             while(DarkswordsmanMagicChoice=="")
                             {
                                 Console.WriteLine("What magic attack would you like to use\n 1) Acid Rain\n 2) Void ");
-                                DarkswordsmanMagicChoice=Console.WriteLine();
-                                switch(DarkswordsmanMagicChoice.toLower())
+                                DarkswordsmanMagicChoice=Console.ReadLine();
+                                switch(DarkswordsmanMagicChoice.ToLower())
                                 {
                                     case "1":
                                     case"acid rain":
+                                    double DamageDeal= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints;
+                                    enemy.CurrentHealthPoints-=DamageDeal;
+                                    Console.WriteLine($"You deal {DamageDeal} points of damage from acid rain");
                                     break;
                                     case "2":
                                     case"void":
+                                    // write void to take a quarter of health but take a high amount of mana points
                                     break;
                                     default:
                                     ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkswordsmanMagicChoice,5000,PlayerParty);
@@ -460,6 +475,31 @@ namespace DH4
                                                                                         case"go to town":
                                                                                         if(TookAltPath==true)
                                                                                         {
+                                                                                            Console.WriteLine("You enter the town and you see Captain Smith, and a citizen of the village, and you decide to approach then to get your marching orders.");
+                                                                                            Console.WriteLine($"Captain Smith: Where have you been? \n ");
+                                                                                            Console.WriteLine("Do you: \n 1) Say you got lost. \n 2) Talk about the zombies on the beach.\n");
+                                                                                            string dolieaboutbeach="";
+                                                                                            bool bLiedAboutBeach=false;
+                                                                                            while(dolieaboutbeach=="")
+                                                                                            {
+                                                                                                dolieaboutbeach=Console.ReadLine();
+                                                                                                switch(dolieaboutbeach.ToLower())
+                                                                                                {
+                                                                                                    case"1":
+                                                                                                    case"say you got lost":
+                                                                                                    Console.WriteLine($"{playercharacter.PlayerName}:I got lost on my way to town.Sorry I have taken so long.");
+                                                                                                    break;
+                                                                                                    case"inform about zombies on the beach":
+                                                                                                    Console.WriteLine("");
+                                                                                                    break;
+                                                                                                }
+                                                                                            }
+
+
+                                                                                        }
+                                                                                        else if(TookAltPath==false)
+                                                                                        {
+                                                                                            Console.WriteLine($"You meet Captain smith in the village.\n {playercharacter.PlayerName}:woah, this town is over run with zombies and bats\n Captain smith: You're objective is to go to the house of the darkswordsman and see what is causing this infestation.\n");
 
                                                                                         }
                                                                                         break;
