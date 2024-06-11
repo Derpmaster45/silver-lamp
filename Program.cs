@@ -52,22 +52,52 @@ namespace DH4
                         case EnemyNames.BAT:
                         // choose from the list of spells using random values
                         int magicAction=magicinput.Next(1,3);
+                        if(enemy.EnemyManaPoint<=0)
+                        {
+                            Console.WriteLine($"The {enemy.EnemyName} has no special attack points, so it does not attack.\n");
+                        }
+                        else
+                        {
+                            switch(magicAction)
+                            {
+                                case 1:
+                                break;
+                                case 2:
+                                break;
+                                case 3:
+                                break;
+                                default:
+                                break;
+                            }
+                        }
                         break;
                         case EnemyNames.ANGEL:
-                        // choose from the list of spells using random values
-                        int magicAction=magicinput.Next(1,3);
+                            // choose from the list of spells using random values
+                            int angelMagicAction=magicinput.Next(1,3);
+                            if(enemy.EnemyManaPoint<=0)
+                            {
+                                Console.WriteLine($"The {enemy.EnemyName} has no mana points, so the {enemy.EnemyName} plans its next attack.");
+
+                            }
+                            else
+                            {
+                                switch(angelMagicAction)
+                                {
+
+                                }
+                            }
                         break;
                         case EnemyNames.DARKSWORDSMAN:
                         // choose from the list of spells using random values
-                        int magicAction=magicinput.Next(1,3);
+                        int dsMagicAction=magicinput.Next(1,3);
                         break;
                         case EnemyNames.VAMPIRE:
                         // choose from the list of spells using random values
-                        int magicAction=magicinput.Next(1,3);
+                        int vampireMagicAction=magicinput.Next(1,3);
                         break;
                         case EnemyNames.ZOMBIE:
                         // choose from the list of spells using random values
-                        int magicAction=magicinput.Next(1,3);
+                        int zombieMagicAction=magicinput.Next(1,3);
                         break;
                         default:
                         Console.WriteLine("ERR: Unknown Enemy Type");
@@ -124,7 +154,7 @@ namespace DH4
                 case EnemyNames.ZOMBIE:
                     enemyToCreate.EnemyName="Zombie";
                     enemyToCreate.EnemyHealth=150;
-                    enemyToCreate.CurrentHealthPoints=enemytoCreate.EnemyHealth;
+                    enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                     enemyToCreate.EnemyManaPoint=50;
                     enemyToCreate.EnemyDefensePoints=70;
                 break;
