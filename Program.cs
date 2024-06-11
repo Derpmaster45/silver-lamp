@@ -251,6 +251,7 @@ namespace DH4
                                 case"petrification":
                                 break;
                                 default:
+                                ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkswordsmanMagicChoice,5000,PlayerParty);
                                 break;
 
                               }
@@ -268,9 +269,13 @@ namespace DH4
                                 {
                                     case "1":
                                     case"acid rain":
+                                    double DamageDeal= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints;
+                                    enemy.CurrentHealthPoints-=DamageDeal;
+                                    Console.WriteLine($"You deal {DamageDeal} points of damage from acid rain");
                                     break;
                                     case "2":
                                     case"void":
+                                    // write void to take a quarter of health but take a high amount of mana points
                                     break;
                                     default:
                                     ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkswordsmanMagicChoice,5000,PlayerParty);
@@ -494,7 +499,8 @@ namespace DH4
                                                                                         }
                                                                                         else if(TookAltPath==false)
                                                                                         {
-
+                                                                                            Console.WriteLine($"You meet Captain smith in the village.\n {playercharacter.PlayerName}:woah, this town is over run with zombies and bats\n Captain smith: You're objective is to go to the house of the darkswordsman and see what is causing this infestation.\n");
+                                                                                            
                                                                                         }
                                                                                         break;
                                                                                         case "2":
