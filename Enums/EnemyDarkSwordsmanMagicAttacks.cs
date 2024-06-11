@@ -1,5 +1,5 @@
 using System;
-namespace namespace DH4.Enums
+namespace  DH4.Enums
 {
     public enum EnemyDarkSwordsmanMagicAttacks
     {

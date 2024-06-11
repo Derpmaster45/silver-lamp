@@ -490,7 +490,7 @@ namespace DH4
                                                                                                     Console.WriteLine($"{playercharacter.PlayerName}:I got lost on my way to town.Sorry I have taken so long.");
                                                                                                     break;
                                                                                                     case"inform about zombies on the beach":
-                                                                                                    Console.WriteLine("")
+                                                                                                    Console.WriteLine("");
                                                                                                     break;
                                                                                                 }
                                                                                             }
@@ -500,7 +500,7 @@ namespace DH4
                                                                                         else if(TookAltPath==false)
                                                                                         {
                                                                                             Console.WriteLine($"You meet Captain smith in the village.\n {playercharacter.PlayerName}:woah, this town is over run with zombies and bats\n Captain smith: You're objective is to go to the house of the darkswordsman and see what is causing this infestation.\n");
-                                                                                            
+
                                                                                         }
                                                                                         break;
                                                                                         case "2":
