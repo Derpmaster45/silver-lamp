@@ -31,6 +31,9 @@ namespace DH4
             Enemy enemy= new Enemy();
            double DoDamageToPlayer(Character character, EnemyNames namelist, Enemy enemy)
            {
+             AngelMagicAttacks angelMagic=new AngelMagicAttacks();
+             BatSpecialAttack batSpecial=new BatSpecialAttack();
+             ZombieSpecialAttacks zombieSpecial=new ZombieSpecialAttacks();
                 Random aiInput = new Random();
                 int action =aiInput.Next(1,3);
                 double DamageDealtToPlayer=0;
@@ -50,6 +53,7 @@ namespace DH4
                         // choose from the list of spells using random values
                         break;
                         case EnemyNames.ANGEL:
+                        
                         break;
                         case EnemyNames.DARKSWORDSMAN:
                         break;
@@ -83,32 +87,36 @@ namespace DH4
            {
             Enemy enemyToCreate= new Enemy();
             enemyToCreate.enemyType=namelist;
-            if(enemyToCreate.enemyType==EnemyNames.BAT)
+            switch(enemyToCreate.enemyType)
             {
-                enemyToCreate.EnemyName="Bat";
-                enemyToCreate.EnemyHealth=100;
-                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
-                enemyToCreate.EnemyDefensePoints=10;
-                enemy.EnemyAttackPoints=20;
-                enemy.EnemyManaPoint=0;
-            }
-            else if(enemyToCreate.enemyType==EnemyNames.ANGEL)
-            {
-                enemyToCreate.EnemyName="Angel";
-                enemyToCreate.EnemyHealth=400;
-                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
-                enemyToCreate.EnemyDefensePoints=300;
-                enemy.EnemyAttackPoints=40;
-                enemyToCreate.EnemyManaPoint=200;
-            }
-            else if(enemyToCreate.enemyType==EnemyNames.DARKSWORDSMAN)
-            {
-                enemyToCreate.EnemyName="Dark Swordsman";
-                enemyToCreate.EnemyHealth=600;
-                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
-                enemyToCreate.EnemyAttackPoints=50;
-                enemyToCreate.EnemyManaPoint=100;
-                enemyToCreate.EnemyDefensePoints=50; 
+                case EnemyNames.BAT:
+                    enemyToCreate.EnemyName="Bat";
+                    enemyToCreate.EnemyHealth=100;
+                    enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                    enemyToCreate.EnemyDefensePoints=10;
+                    enemy.EnemyAttackPoints=20;
+                    enemy.EnemyManaPoint=0;
+                break;
+                case EnemyNames.ANGEL:
+                    enemyToCreate.EnemyName="Angel";
+                    enemyToCreate.EnemyHealth=400;
+                    enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                    enemyToCreate.EnemyDefensePoints=300;
+                    enemy.EnemyAttackPoints=40;
+                    enemyToCreate.EnemyManaPoint=200;
+                break;
+                case EnemyNames.DARKSWORDSMAN:
+                    enemyToCreate.EnemyName="Dark Swordsman";
+                    enemyToCreate.EnemyHealth=600;
+                    enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                    enemyToCreate.EnemyAttackPoints=50;
+                    enemyToCreate.EnemyManaPoint=100;
+                    enemyToCreate.EnemyDefensePoints=50;
+                break;
+                case EnemyNames.ZOMBIE:
+                break;
+                case EnemyNames.VAMPIRE:
+                break;
             }
             // testing purposes DELETE LATER
            // System.Console.WriteLine($"Enemy {enemyToCreate.EnemyName} created!");
