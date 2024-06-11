@@ -114,8 +114,17 @@ namespace DH4
                     enemyToCreate.EnemyDefensePoints=50;
                 break;
                 case EnemyNames.ZOMBIE:
+                    enemyToCreate.EnemyName="Zombie";
+                    enemyToCreate.EnemyHealth=150;
+                    enemyToCreate.CurrentHealthPoints=enemytoCreate.EnemyHealth;
+                    enemyToCreate.EnemyManaPoint=50;
+                    enemyToCreate.EnemyDefensePoints=70;
                 break;
                 case EnemyNames.VAMPIRE:
+                enemyToCreate.EnemyName="Vampire";
+                break;
+                default:
+                Console.WriteLine("Err: Unrecognized Enemy Type\n Probably not created yet in the creation method");
                 break;
             }
             // testing purposes DELETE LATER
