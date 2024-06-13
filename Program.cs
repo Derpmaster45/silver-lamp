@@ -69,7 +69,7 @@ namespace DH4
                                 Console.WriteLine("Zombie used PLACEHOLDER");
                                 break;
                                 case 3:
-                                Consoel.WriteLine("Zombie used a different PLACEHOLDER")
+                                Console.WriteLine("Zombie used a different PLACEHOLDER");
                                 break;
                                 default:
                                 break;
@@ -88,7 +88,17 @@ namespace DH4
                             {
                                 switch(angelMagicAction)
                                 {
-                                        
+                                    case 1:
+                                    Console.WriteLine("");
+                                    break;
+                                    case 2: 
+                                    break;
+                                    case 3:
+                                    break;
+                                    default:
+                                    break;
+
+
                                 }
                             }
                         break;
