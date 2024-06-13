@@ -349,6 +349,7 @@ namespace DH4
                                 break;
 
                               }
+                              Console.WriteLine($"You have {PlayerParty.PlayerManaPoints} mana points remaining. ");
                             }
                           
                             // list magic attacks then prompt for input
@@ -642,11 +643,13 @@ namespace DH4
                                                                                             Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Explore the surrounding area \n 2) go back to the start of the path\n");
                                                                                             switch(dogoback.ToLower())
                                                                                             {
+                                                                                                case"1":
                                                                                                 case"go back to town":
 
                                                                                                 Console.WriteLine("Decide to head back to the start of the path. ");
                                                                                                 forkingpathchoice="1";
                                                                                                 break;
+                                                                                                case"2":
                                                                                                 case"keep exploring":
                                                                                                 Console.WriteLine("You keep exploring, you find a river, however you dont have anythign to fish with.\n");
                                                                                                 dogoback="";
@@ -672,6 +675,7 @@ namespace DH4
 
                                         break;
                                         case"2":
+                                        // start of game recollection.
                                         break;
                                         default:
                                         break;
@@ -680,6 +684,7 @@ namespace DH4
                                 }
                                 break;
                                 case"2":
+                                // question events lie path
                                 LiesTold++;
                                 break;
                                 default:
