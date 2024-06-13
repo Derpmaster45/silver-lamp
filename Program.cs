@@ -63,15 +63,16 @@ namespace DH4
                             switch(magicAction)
                             {
                                 case 1:
-                                Console.WriteLine($"Zombie used bite.");
+                                Console.WriteLine($"Zombie used bite.\n");
                                 break;
                                 case 2:
-                                Console.WriteLine("Zombie used PLACEHOLDER");
+                                Console.WriteLine("Zombie used PLACEHOLDER\n");
                                 break;
                                 case 3:
-                                Console.WriteLine("Zombie used a different PLACEHOLDER");
+                                Console.WriteLine("Zombie used a different PLACEHOLDER\n");
                                 break;
                                 default:
+                                Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
                                 break;
                             }
                         }
@@ -82,6 +83,7 @@ namespace DH4
                             if(enemy.EnemyManaPoint<=0)
                             {
                                 Console.WriteLine($"The {enemy.EnemyName} has no mana points, so the {enemy.EnemyName} plans its next attack.");
+                                DamageDealtToPlayer=0;
 
                             }
                             else
@@ -89,13 +91,17 @@ namespace DH4
                                 switch(angelMagicAction)
                                 {
                                     case 1:
-                                    Console.WriteLine("");
+                                    Console.WriteLine("Angel used PLACEHOLDER 1\n");
                                     break;
-                                    case 2: 
+                                    case 2:
+                                    Console.WriteLine("Angel used PLACEHOLDER 2\n"); 
                                     break;
                                     case 3:
+                                    Console.WriteLine("Angel used PLACEHOLDER 3\n");
                                     break;
                                     default:
+                                    Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
+                                    DamageDealtToPlayer=0;
                                     break;
 
 
@@ -105,14 +111,69 @@ namespace DH4
                         case EnemyNames.DARKSWORDSMAN:
                         // choose from the list of spells using random values
                         int dsMagicAction=magicinput.Next(1,3);
+                        switch(dsMagicAction)
+                        {
+                            case 1:
+                            Console.WriteLine("Dark Swordsman used Acid Rain");
+                            break;
+                            case 2:
+                            Console.WriteLine("Dark Swordsman used Void");
+                            break;
+                            case 3:
+                            Console.WriteLine("Dark Swordsman used PLACEHOLDER");
+                            break;
+                            default:
+                            Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
+                            break;
+                        }
                         break;
                         case EnemyNames.VAMPIRE:
+                        if(enemy.EnemyManaPoint<=0)
+                            {
+                                Console.WriteLine($"The {enemy.EnemyName} has no mana points, so the {enemy.EnemyName} plans its next attack.");
+                                DamageDealtToPlayer=0;
+
+                            }
                         // choose from the list of spells using random values
                         int vampireMagicAction=magicinput.Next(1,3);
+                        switch(vampireMagicAction)
+                        {
+                            case 1:
+                            Console.WriteLine("Vampire used Bite\n");
+                            break; 
+                            case 2:
+                            Console.WriteLine("Vampire used Life Drain\n");
+                            break;
+                            case 3:
+                            Console.WriteLine("Vampire used PLACEHOLDER\n");
+                            break;
+                            default:
+                            Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
+                            DamageDealtToPlayer=0;
+                            break;
+                        }
                         break;
                         case EnemyNames.ZOMBIE:
                         // choose from the list of spells using random values
                         int zombieMagicAction=magicinput.Next(1,3);
+                        switch(zombieMagicAction)
+                        {
+                            case 1:
+                            Console.WriteLine("Zombie used Bite");
+                                // add in damage equation here
+                                
+                            break;
+                            case 2:
+                            Console.WriteLine("Zombie used PLACEHOLDER 1"); 
+                            break;
+                            case 3:
+                            Console.WriteLine("Zombie used PLACEHOLDER 2");
+                            break;
+                            default:
+                            Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
+                            DamageDealtToPlayer=0;
+                            break;
+                        }
                         break;
                         default:
                         Console.WriteLine("ERR: Unknown Enemy Type");
@@ -180,8 +241,6 @@ namespace DH4
                 Console.WriteLine("Err: Unrecognized Enemy Type\n Probably not created yet in the creation method");
                 break;
             }
-            // testing purposes DELETE LATER
-           // System.Console.WriteLine($"Enemy {enemyToCreate.EnemyName} created!");
             return enemyToCreate;
            }
             void QuitGame()
@@ -237,6 +296,7 @@ namespace DH4
                     break;
                     case"2":
                     case"dark mage":
+                    case "darkmage":
                     characterToCreate.PlayerClass=PlayerClassTypes.DARKMAGE;
                     characterToCreate.PlayerManaPoints=100;
                     break;
@@ -247,6 +307,7 @@ namespace DH4
                     break;
                     case"4":
                     case"dark swordsman":
+                    case"darkswordsman":
                     characterToCreate.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
                     characterToCreate.PlayerManaPoints=100;
                     break;
@@ -405,12 +466,9 @@ namespace DH4
                                 case"double attack":
                                 Console.WriteLine($"{PlayerParty.PlayerName} used double attack ");
                                 // set damage dealt variable.
-
                                 break;
                             }
                             
-                           // PromptedClearScreen();
-                           // battlesystemchoice="";
 
                             break;
                             default:
@@ -429,8 +487,9 @@ namespace DH4
                     System.Console.WriteLine("You decided to Defend against the next attack.\n");
                     if(bIsPetrified==false)
                     {
-                          
+                          // defend player is used for when the player decides to defend against an attack
                          double defendPlayer =DoDamageToPlayer(PlayerParty,enemyNames, enemy)*.2;
+                         Console.WriteLine($"You have taken {defendPlayer} points of damage");
                     }
                     else
                     {
