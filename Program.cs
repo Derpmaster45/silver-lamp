@@ -55,16 +55,21 @@ namespace DH4
                         if(enemy.EnemyManaPoint<=0)
                         {
                             Console.WriteLine($"The {enemy.EnemyName} has no special attack points, so it does not attack.\n");
+                            DamageDealtToPlayer=0;
+                            return DamageDealtToPlayer;
                         }
                         else
                         {
                             switch(magicAction)
                             {
                                 case 1:
+                                Console.WriteLine($"Zombie used bite.");
                                 break;
                                 case 2:
+                                Console.WriteLine("Zombie used PLACEHOLDER");
                                 break;
                                 case 3:
+                                Consoel.WriteLine("Zombie used a different PLACEHOLDER")
                                 break;
                                 default:
                                 break;
@@ -83,7 +88,7 @@ namespace DH4
                             {
                                 switch(angelMagicAction)
                                 {
-
+                                        
                                 }
                             }
                         break;
