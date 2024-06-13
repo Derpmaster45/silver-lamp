@@ -313,6 +313,7 @@ namespace DH4
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts fire");
                                     SpellCost=25; 
                                     PlayerParty.PlayerManaPoints-=SpellCost;
+                                    Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()}");
                                     // call damage dealt function
                                     break;
                                     default:
@@ -366,7 +367,7 @@ namespace DH4
                                     case"acid rain":
                                     double DamageDeal= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints;
                                     enemy.CurrentHealthPoints-=DamageDeal;
-                                    Console.WriteLine($"You deal {DamageDeal} points of damage from acid rain");
+                                    Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
                                     break;
                                     case "2":
                                     case"void":
@@ -383,6 +384,15 @@ namespace DH4
                             string knightSpcialOption="";
                             while(knightSpcialOption=="")
                             Console.WriteLine("What special attacks would you like to use?\n 1) Double attack\n");
+                            switch(knightSpcialOption.ToLower())
+                            {
+                                case"1":
+                                case"double attack":
+                                Console.WriteLine($"{PlayerParty.PlayerName} used double attack ");
+                                // set damage dealt variable.
+
+                                break;
+                            }
                             
                            // PromptedClearScreen();
                            // battlesystemchoice="";
@@ -404,7 +414,8 @@ namespace DH4
                     System.Console.WriteLine("You decided to Defend against the next attack.\n");
                     if(bIsPetrified==false)
                     {
-                          DoDamageToPlayer(PlayerParty,enemyNames, enemy);
+                          
+                         double defendPlayer =DoDamageToPlayer(PlayerParty,enemyNames, enemy)*.2;
                     }
                     else
                     {
