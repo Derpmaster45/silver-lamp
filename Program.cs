@@ -218,7 +218,7 @@ namespace DH4
                     case"1":
                     case"knight":
                     characterToCreate.PlayerClass=PlayerClassTypes.KNIGHT;
-                    characterToCreate.PlayerManaPoints=0;
+                    characterToCreate.PlayerManaPoints=50;
                     break;
                     case"2":
                     case"dark mage":
@@ -251,6 +251,7 @@ namespace DH4
                 // if enemy is petrified increment the turnsSincePetrify at the end of each turn
                bool bIsPetrified=false;
                int turnsSincePetrify=0;
+               double SpellCost=0;
                Console.WriteLine($"{enemy.EnemyName} has appeared!");
                string battlesystemchoice="" ;
                while(PlayerParty.CurrentHealthPoints>0 && enemy.CurrentHealthPoints>0)
@@ -258,7 +259,7 @@ namespace DH4
                 battlesystemchoice="";
                 while(battlesystemchoice=="")
                 {
-                Console.WriteLine("Would you like to \n1) Attack \n 2) Magic  \n 3) Block\n");
+                Console.WriteLine("Would you like to \n1) Attack \n 2) Magic/Special  \n 3) Block\n");
                 battlesystemchoice=Console.ReadLine();
                 switch(battlesystemchoice)
                 {
@@ -295,6 +296,8 @@ namespace DH4
                                 {
                                     case"1":
                                     case"heal":
+                                    SpellCost=25;
+                                    PlayerParty.PlayerManaPoints-=SpellCost;
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts heal!");
                                     // todo: Get the players current health and multiply it by 0.020 and see if the value exceeds the max health value
                                     double updatedHealth=PlayerParty.CurrentHealthPoints*=.020;
@@ -308,6 +311,8 @@ namespace DH4
                                     case "2":
                                     case"fire":
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts fire");
+                                    SpellCost=25; 
+                                    PlayerParty.PlayerManaPoints-=SpellCost;
                                     // call damage dealt function
                                     break;
                                     default:
@@ -337,7 +342,7 @@ namespace DH4
                                 break;
                                 case"3":
                                 case"petrification":
-
+                                    // Come up with a way to have a damage dealt function that will have the player class, and the magic value
                                 break;
                                 default:
                                 ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkMageMagicAttackChoice,5000,PlayerParty);
@@ -374,9 +379,12 @@ namespace DH4
                             }
                             break;
                             case PlayerClassTypes.KNIGHT:
-                            Console.WriteLine("No magic Attacks");
-                            PromptedClearScreen();
-                            battlesystemchoice="";
+                            string knightSpcialOption="";
+                            while(knightSpcialOption=="")
+                            Console.WriteLine("What special attacks would you like to use?\n 1) Double attack\n");
+                            
+                           // PromptedClearScreen();
+                           // battlesystemchoice="";
 
                             break;
                             default:
@@ -407,10 +415,15 @@ namespace DH4
                     if(turnsSincePetrify==4)
                     {
                         bIsPetrified=false;
+                        if(enemy.CurrentHealthPoints<=0)
+                        {
+                            Console.WriteLine($"{enemy.EnemyName} was defeated before they could break the spell.");
+
+                        } else
+                        {
+                            Console.WriteLine("The spell was broken, the enemy can now move again.");
+                        }
                     }
-
-
-                  
                     break;
                     default:
                     string errormessage="Please choose from the above options";
