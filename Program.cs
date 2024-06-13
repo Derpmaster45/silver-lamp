@@ -248,7 +248,9 @@ namespace DH4
 
             void BattleSystem(Character PlayerParty, Enemy enemy, MageSpells SpellList, DarkMageMagic DMSpellList, DarkSwordsmanMagic DSMagicList, string CheckpointName)
             {
-               
+                // if enemy is petrified increment the turnsSincePetrify at the end of each turn
+               bool bIsPetrified=false;
+               int turnsSincePetrify=0;
                Console.WriteLine($"{enemy.EnemyName} has appeared!");
                string battlesystemchoice="" ;
                while(PlayerParty.CurrentHealthPoints>0 && enemy.CurrentHealthPoints>0)
@@ -328,9 +330,14 @@ namespace DH4
                                 break;
                                 case"2":
                                 case"life drain":
+                                Console.WriteLine($"{PlayerParty.PlayerName} has used life drain\n");
+                                double lifeTaken=enemy.CurrentHealthPoints-50;
+                                PlayerParty.CurrentHealthPoints+=lifeTaken;
+                                Console.WriteLine($"it dealt {lifeTaken} points and healed the player. Your new health is{PlayerParty.CurrentHealthPoints}");
                                 break;
                                 case"3":
                                 case"petrification":
+
                                 break;
                                 default:
                                 ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkMageMagicAttackChoice,5000,PlayerParty);
@@ -386,7 +393,24 @@ namespace DH4
                     case"3":
                     // add in ai attack pattern
                     System.Console.WriteLine("You decided to Defend against the next attack.\n");
-                    DoDamageToPlayer(PlayerParty,enemyNames, enemy);
+                    if(bIsPetrified==false)
+                    {
+                          DoDamageToPlayer(PlayerParty,enemyNames, enemy);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"The {enemy.EnemyName} is petrified so it cannot move ");
+                        turnsSincePetrify++;
+                        // line for testing, delete later
+                        Console.WriteLine($"Turns since petrify {turnsSincePetrify}");
+                    }
+                    if(turnsSincePetrify==4)
+                    {
+                        bIsPetrified=false;
+                    }
+
+
+                  
                     break;
                     default:
                     string errormessage="Please choose from the above options";
@@ -396,7 +420,15 @@ namespace DH4
                 // add fuctionality for ai to attack player}
                }
                 }
-               DoDamageToPlayer(PlayerParty,enemyNames,enemy);
+                if(bIsPetrified==false)
+                {
+                      DoDamageToPlayer(PlayerParty,enemyNames, enemy);
+                }
+                else
+                {
+                    Console.WriteLine($"the {enemy.EnemyName} is petrified and cannot move");
+                }
+               
               
             }
          }
