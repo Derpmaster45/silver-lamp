@@ -717,17 +717,17 @@ namespace DH4
                                                                                                     case"1":
                                                                                                     case"say you got lost":
                                                                                                     Console.WriteLine($"{playercharacter.PlayerName}:I got lost on my way to town.Sorry I have taken so long.");
-													CheckpointName="ZombieBattlePostBeach";
+													                                                CheckpointName="ZombieBattlePostBeach";
                                                                                                     break;
                                                                                                     case"inform about zombies on the beach":
-													CheckpointName="ZombieBattlePostBeach";
+													                                                CheckpointName="ZombieBattlePostBeach";
                                                                                                     Console.WriteLine($"{playercharacter.PlayerName}:Sorry, I had to sneak past a horde of zombies on the beach");
-												    Console.WriteLine("Captain Smith: Well, I am glad you made it out in one piece. \nYou're objective to go to what we believe is the house of the dark swordsman, and find out what he is planning ");
-												    Console.WriteLine("You start making your way through the  overrun village when suddenly...");
-													enemyNames=EnemyNames.BAT;
-													Enemy BatEnemy=CreateEnemy(enemyNames);
-													BattleSystem(playercharacter,spells,dmMagicSpells,dsMagicSpells,CheckpointName); 
-													PromptedClearScreen();
+												                                                    Console.WriteLine("Captain Smith: Well, I am glad you made it out in one piece. \nYou're objective to go to what we believe is the house of the dark swordsman, and find out what he is planning ");
+												                                                    Console.WriteLine("You start making your way through the  overrun village when suddenly...");
+													                                                enemyNames=EnemyNames.BAT;
+													                                                Enemy BatEnemy=CreateEnemy(enemyNames);
+													                                                BattleSystem(playercharacter,spells,dmMagicSpells,DSMagicSpells,CheckpointName); 
+													                                                PromptedClearScreen();
                                                                                                     break;
                                                                                                 }
                                                                                             }
@@ -740,7 +740,7 @@ namespace DH4
 												Console.WriteLine("You start making your way through the  overrun village when suddenly...\n");
 													enemyNames=EnemyNames.BAT;
 													Enemy BatEnemy=CreateEnemy(enemyNames);
-													BattleSystem(playercharacter,spells,dmMagicSpells,dsMagicSpells,CheckpointName); 
+													BattleSystem(playercharacter,spells,dmMagicSpells,DSMagicListMagicSpells,CheckpointName); 
 												
 
                                                                                         }
