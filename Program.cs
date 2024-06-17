@@ -448,10 +448,9 @@ namespace DH4
                                     double DamageDeal= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints+baseDamage;
                                     enemy.CurrentHealthPoints-=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
-					double acidRainPointsRequired=15;
-					PlayerParty.PlayerManaPoints-=acidRainPointsRequired;g
-						
-				
+			                        double acidRainPointsRequired=15;
+		            			    PlayerParty.PlayerManaPoints-=acidRainPointsRequired;
+					                PlayerParty.PlayerManaPoints-=acidRainPointsRequired;
                                     break;
                                     case "2":
                                     case"void":
@@ -719,9 +718,17 @@ namespace DH4
                                                                                                     case"1":
                                                                                                     case"say you got lost":
                                                                                                     Console.WriteLine($"{playercharacter.PlayerName}:I got lost on my way to town.Sorry I have taken so long.");
+													CheckpointName="ZombieBattlePostBeach";
                                                                                                     break;
                                                                                                     case"inform about zombies on the beach":
-                                                                                                    Console.WriteLine("");
+													CheckpointName="ZombieBattlePostBeach";
+                                                                                                    Console.WriteLine($"{playercharacter.PlayerName}:Sorry, I had to sneak past a horde of zombies on the beach");
+												    Console.WriteLine("Captain Smith: Well, I am glad you made it out in one piece. \nYou're objective to go to what we believe is the house of the dark swordsman, and find out what he is planning ");
+												    Console.WriteLine("You start making your way through the  overrun village when suddenly...");
+													enemyNames=EnemyNames.BAT;
+													Enemy BatEnemy=CreateEnemy(enemyNames);
+													BattleSystem(playerCharacter,spells,dmMagicSpells,dsMagicSpells,CheckpointName); 
+													PromptedClearScreen();
                                                                                                     break;
                                                                                                 }
                                                                                             }
@@ -731,8 +738,14 @@ namespace DH4
                                                                                         else if(TookAltPath==false)
                                                                                         {
                                                                                             Console.WriteLine($"You meet Captain smith in the village.\n {playercharacter.PlayerName}:woah, this town is over run with zombies and bats\n Captain smith: You're objective is to go to the house of the darkswordsman and see what is causing this infestation.\n");
+												Console.WriteLine("You start making your way through the  overrun village when suddenly...\n");
+													enemyNames=EnemyNames.BAT;
+													Enemy BatEnemy=CreateEnemy(enemyNames);
+													BattleSystem(playerCharacter,spells,dmMagicSpells,dsMagicSpells,CheckpointName); 
+												
 
                                                                                         }
+											PromptedClearScreen();
                                                                                         break;
                                                                                         case "2":
                                                                                         case "take other path":
