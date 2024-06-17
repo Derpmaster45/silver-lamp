@@ -720,13 +720,13 @@ namespace DH4
 													                                                CheckpointName="ZombieBattlePostBeach";
                                                                                                     break;
                                                                                                     case"inform about zombies on the beach":
-													                                                CheckpointName="ZombieBattlePostBeach";
+													                                                //string CheckpointName="ZombieBattlePostBeach";
                                                                                                     Console.WriteLine($"{playercharacter.PlayerName}:Sorry, I had to sneak past a horde of zombies on the beach");
 												                                                    Console.WriteLine("Captain Smith: Well, I am glad you made it out in one piece. \nYou're objective to go to what we believe is the house of the dark swordsman, and find out what he is planning ");
 												                                                    Console.WriteLine("You start making your way through the  overrun village when suddenly...");
 													                                                enemyNames=EnemyNames.BAT;
 													                                                Enemy BatEnemy=CreateEnemy(enemyNames);
-													                                                BattleSystem(playercharacter,spells,dmMagicSpells,DSMagicSpells,CheckpointName); 
+													                                                BattleSystem(playercharacter,BatEnemy, spells,dmMagicSpells,DSMagicSpells,dolieaboutbeach); 
 													                                                PromptedClearScreen();
                                                                                                     break;
                                                                                                 }
@@ -737,14 +737,14 @@ namespace DH4
                                                                                         else if(TookAltPath==false)
                                                                                         {
                                                                                             Console.WriteLine($"You meet Captain smith in the village.\n {playercharacter.PlayerName}:woah, this town is over run with zombies and bats\n Captain smith: You're objective is to go to the house of the darkswordsman and see what is causing this infestation.\n");
-												Console.WriteLine("You start making your way through the  overrun village when suddenly...\n");
-													enemyNames=EnemyNames.BAT;
-													Enemy BatEnemy=CreateEnemy(enemyNames);
-													BattleSystem(playercharacter,spells,dmMagicSpells,DSMagicListMagicSpells,CheckpointName); 
+												                                            Console.WriteLine("You start making your way through the  overrun village when suddenly...\n");
+													                                        enemyNames=EnemyNames.BAT;
+													                                        Enemy BatEnemy=CreateEnemy(enemyNames);
+													                                        BattleSystem(playercharacter,BatEnemy,spells,dmMagicSpells,DSMagicSpells,forkingpathchoice); 
 												
 
                                                                                         }
-											PromptedClearScreen();
+											                                            PromptedClearScreen();
 											
                                                                                         break;
                                                                                         case "2":
