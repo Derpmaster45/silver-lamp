@@ -448,8 +448,7 @@ namespace DH4
                                     double DamageDeal= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints+baseDamage;
                                     enemy.CurrentHealthPoints-=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
-			                        double acidRainPointsRequired=15;
-		            			    PlayerParty.PlayerManaPoints-=acidRainPointsRequired;
+					                double acidRainPointsRequired=15;
 					                PlayerParty.PlayerManaPoints-=acidRainPointsRequired;
                                     break;
                                     case "2":
@@ -727,7 +726,7 @@ namespace DH4
 												    Console.WriteLine("You start making your way through the  overrun village when suddenly...");
 													enemyNames=EnemyNames.BAT;
 													Enemy BatEnemy=CreateEnemy(enemyNames);
-													BattleSystem(playerCharacter,spells,dmMagicSpells,dsMagicSpells,CheckpointName); 
+													BattleSystem(playercharacter,spells,dmMagicSpells,dsMagicSpells,CheckpointName); 
 													PromptedClearScreen();
                                                                                                     break;
                                                                                                 }
@@ -741,11 +740,12 @@ namespace DH4
 												Console.WriteLine("You start making your way through the  overrun village when suddenly...\n");
 													enemyNames=EnemyNames.BAT;
 													Enemy BatEnemy=CreateEnemy(enemyNames);
-													BattleSystem(playerCharacter,spells,dmMagicSpells,dsMagicSpells,CheckpointName); 
+													BattleSystem(playercharacter,spells,dmMagicSpells,dsMagicSpells,CheckpointName); 
 												
 
                                                                                         }
 											PromptedClearScreen();
+											
                                                                                         break;
                                                                                         case "2":
                                                                                         case "take other path":
