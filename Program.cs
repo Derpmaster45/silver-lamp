@@ -160,6 +160,9 @@ namespace DH4
                         {
                             case 1:
                             Console.WriteLine("Zombie used Bite");
+				double biteManaCost=10;
+				enemy.EnemyManaPoint-=biteManaCost;
+				
                                 // add in damage equation here
                                 
                             break;
@@ -441,9 +444,14 @@ namespace DH4
                                 {
                                     case "1":
                                     case"acid rain":
-                                    double DamageDeal= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints;
+				    double baseDamage=78;
+                                    double DamageDeal= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints+baseDamage;
                                     enemy.CurrentHealthPoints-=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
+					double acidRainPointsRequired=15;
+					PlayerParty.PlayerManaPoints-=acidRainPointsRequired;g
+						
+				
                                     break;
                                     case "2":
                                     case"void":
