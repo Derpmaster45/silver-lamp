@@ -448,6 +448,10 @@ namespace DH4
                                     case "2":
                                     case"void":
                                     // write void to take a quarter of health but take a high amount of mana points
+                                    double voidDamageDealt= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints*.25;
+                                    enemy.CurrentHealthPoints-=voidDamageDealt;
+                                    double voidManaCost=95;
+                                    PlayerParty.PlayerManaPoints-=voidManaCost;
                                     break;
                                     default:
                                     ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkswordsmanMagicChoice,5000,PlayerParty);
@@ -465,6 +469,12 @@ namespace DH4
                                 case"1":
                                 case"double attack":
                                 Console.WriteLine($"{PlayerParty.PlayerName} used double attack ");
+                                double attackDoubleDamageDealt=PlayerParty.AttackPoints/enemy.EnemyDefensePoints;
+                                for(int doubleAttackNum=0; doubleAttackNum<1; doubleAttackNum++)
+                                {
+                                    Console.WriteLine($"{PlayerParty.PlayerName} attacks dealing {attackDoubleDamageDealt.ToString()}points of damage");
+                                    enemy.CurrentHealthPoints-=attackDoubleDamageDealt*2;
+                                }
                                 // set damage dealt variable.
                                 break;
                             }
