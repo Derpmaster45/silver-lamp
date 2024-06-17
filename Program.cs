@@ -717,7 +717,8 @@ namespace DH4
                                                                                                     case"1":
                                                                                                     case"say you got lost":
                                                                                                     Console.WriteLine($"{playercharacter.PlayerName}:I got lost on my way to town.Sorry I have taken so long.");
-													                                                CheckpointName="ZombieBattlePostBeach";
+													                                                //CheckpointName="ZombieBattlePostBeach";
+                                                                                                    bLiedAboutBeach=true;
                                                                                                     break;
                                                                                                     case"inform about zombies on the beach":
 													                                                //string CheckpointName="ZombieBattlePostBeach";
@@ -728,6 +729,32 @@ namespace DH4
 													                                                Enemy BatEnemy=CreateEnemy(enemyNames);
 													                                                BattleSystem(playercharacter,BatEnemy, spells,dmMagicSpells,DSMagicSpells,dolieaboutbeach); 
 													                                                PromptedClearScreen();
+                                                                                                    //Console.WriteLine("You defeated the bat, when you hear a cry for help do you \n 1) Investigate \n 2)Ignore it\n");
+                                                                                                    string help="";
+                                                                                                    while(help=="")
+                                                                                                    {
+                                                                                                     Console.WriteLine("You defeated the bat, when you hear a cry for help do you \n 1) Investigate \n 2)Ignore it\n");   
+                                                                                                     switch(help.ToLower())
+                                                                                                     {
+                                                                                                        case"investigate":
+                                                                                                        case"1":
+                                                                                                        Console.WriteLine("You decide to disregard orders for the time being, and investigate where the scream came from.\n You head in the direction the scream came from.\n You find two zombies ");
+                                                                                                        for(int numOfZombies=0; numOfZombies<1; numOfZombies++)
+                                                                                                        {
+                                                                                                            enemyNames=EnemyNames.ZOMBIE;
+                                                                                                            Enemy zombieEnemyPostBeach=CreateEnemy(enemyNames);
+                                                                                                            BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help);
+                                                                                                        }
+                                                                                                        break;
+                                                                                                        case "ignore":
+                                                                                                        case "2":
+                                                                                                        Console.WriteLine("You decide to ignore the scream and head to the house.");
+                                                                                                        break;
+                                                                                                        default:
+                                                                                                        Console.WriteLine("");
+                                                                                                        break;
+                                                                                                     }
+                                                                                                    }
                                                                                                     break;
                                                                                                 }
                                                                                             }
