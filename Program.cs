@@ -734,6 +734,7 @@ namespace DH4
                                                                                                     while(help=="")
                                                                                                     {
                                                                                                      Console.WriteLine("You defeated the bat, when you hear a cry for help do you \n 1) Investigate \n 2)Ignore it\n");   
+                                                                                                     help=Console.ReadLine();
                                                                                                      switch(help.ToLower())
                                                                                                      {
                                                                                                         case"investigate":
@@ -744,11 +745,24 @@ namespace DH4
                                                                                                             enemyNames=EnemyNames.ZOMBIE;
                                                                                                             Enemy zombieEnemyPostBeach=CreateEnemy(enemyNames);
                                                                                                             BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help);
+                                                                                                            //Console.WriteLine($"Zombies Defi")
                                                                                                         }
                                                                                                         break;
                                                                                                         case "ignore":
                                                                                                         case "2":
                                                                                                         Console.WriteLine("You decide to ignore the scream and head to the house.");
+                                                                                                        string dsHouseDecision="";
+                                                                                                        while(dsHouseDecision=="")
+                                                                                                        {
+                                                                                                            Console.WriteLine("You walk up to the house, it looks like it has been in disarray for quite some time.");
+                                                                                                            Console.WriteLine("1) Walk around house \n2) Go inside \n");
+                                                                                                            dsHouseDecision=Console.ReadLine();
+                                                                                                            switch(dsHouseDecision.ToLower())
+                                                                                                            {
+                                                                                                                
+                                                                                                            }
+
+                                                                                                        }
                                                                                                         break;
                                                                                                         default:
                                                                                                         Console.WriteLine("");
