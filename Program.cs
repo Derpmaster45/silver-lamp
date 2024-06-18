@@ -162,8 +162,8 @@ namespace DH4
                         {
                             case 1:
                             Console.WriteLine("Zombie used Bite");
-				double biteManaCost=10;
-				enemy.EnemyManaPoint-=biteManaCost;
+				                double biteManaCost=10;
+				                enemy.EnemyManaPoint-=biteManaCost;
 				
                                 // add in damage equation here
                                 
@@ -398,7 +398,7 @@ namespace DH4
                                     // call damage dealt function
                                     break;
                                     default:
-                                    ResetAndClear("Unexpected Input, resetting in 5 seconds",magicattackchoice,5000, PlayerParty); 
+                                    ResetAndClear("Unexpected Input, resetting in 5 seconds",battlesystemchoice,5000, PlayerParty); 
                                     break;
                                     
                                 }
@@ -427,7 +427,7 @@ namespace DH4
                                     // Come up with a way to have a damage dealt function that will have the player class, and the magic value
                                 break;
                                 default:
-                                ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkMageMagicAttackChoice,5000,PlayerParty);
+                                ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
                                 break;
 
                               }
@@ -446,7 +446,7 @@ namespace DH4
                                 {
                                     case "1":
                                     case"acid rain":
-				    double baseDamage=78;
+				                    double baseDamage=78;
                                     double DamageDeal= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints+baseDamage;
                                     enemy.CurrentHealthPoints-=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
@@ -462,7 +462,7 @@ namespace DH4
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
                                     break;
                                     default:
-                                    ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkswordsmanMagicChoice,5000,PlayerParty);
+                                    ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
                                     break;
 
                                 }
