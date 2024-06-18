@@ -64,6 +64,8 @@ namespace DH4
                             {
                                 case 1:
                                 Console.WriteLine($"Zombie used bite.\n");
+                                DamageDealtToPlayer= character.CurrentHealthPoints-=enemy.EnemyAttackPoints/character.PlayerDefensePoints;
+                                enemy.EnemyManaPoint-=15;
                                 break;
                                 case 2:
                                 Console.WriteLine("Zombie used PLACEHOLDER\n");
@@ -91,7 +93,7 @@ namespace DH4
                                 switch(angelMagicAction)
                                 {
                                     case 1:
-                                    Console.WriteLine("Angel used PLACEHOLDER 1\n");
+                                    Console.WriteLine("Angel used Ball of Light\n");
                                     break;
                                     case 2:
                                     Console.WriteLine("Angel used PLACEHOLDER 2\n"); 
@@ -100,7 +102,7 @@ namespace DH4
                                     Console.WriteLine("Angel used PLACEHOLDER 3\n");
                                     break;
                                     default:
-                                    Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
+                                    Console.WriteLine("ERR: Selected Attack is not real. (Number Generator error)");
                                     DamageDealtToPlayer=0;
                                     break;
 
