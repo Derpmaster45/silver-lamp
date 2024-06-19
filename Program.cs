@@ -335,6 +335,7 @@ namespace DH4
                double SpellCost=0;
                Console.WriteLine($"{enemy.EnemyName} has appeared!");
                string battlesystemchoice="" ;
+               double DamageDealt=0;
                while(PlayerParty.CurrentHealthPoints>0 && enemy.CurrentHealthPoints>0)
                {
                 battlesystemchoice="";
@@ -345,7 +346,7 @@ namespace DH4
                 switch(battlesystemchoice)
                 {
                     case"1":
-                    double DamageDealt=enemy.EnemyDefensePoints-PlayerParty.AttackPoints;
+                    DamageDealt=enemy.EnemyDefensePoints-PlayerParty.AttackPoints;
                     enemy.CurrentHealthPoints-=DamageDealt;
                     //System.Console.WriteLine($"DEBUG: ENEMY HAS  {enemy.CurrentHealthPoints.ToString()} of {enemy.EnemyHeath.ToString()}");
                     System.Console.WriteLine($"You take a swing at the enemy\n dealing {DamageDealt.ToString()}");
@@ -473,6 +474,8 @@ namespace DH4
                                     enemy.CurrentHealthPoints-=voidDamageDealt;
                                     double voidManaCost=95;
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
+                                    DamageDealt=voidDamageDealt;
+                                    //return DamageDealt;
                                     break;
                                     default:
                                     ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
