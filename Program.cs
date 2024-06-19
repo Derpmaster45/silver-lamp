@@ -405,6 +405,12 @@ namespace DH4
                             }
                             break;
                             case PlayerClassTypes.DARKMAGE:
+                            if(PlayerParty.PlayerManaPoints<=0)
+                            {
+                                Console.WriteLine("You dont have mana points please choose another option.\n");
+                                battlesystemchoice="";
+                            }
+                            else {
                             string DarkMageMagicAttackChoice="";
                             while(DarkMageMagicAttackChoice=="")
                             {
@@ -414,6 +420,7 @@ namespace DH4
                               {
                                 case"1":
                                 case "lighting":
+                                Console.WriteLine($"You used lightning\n")
                                 break;
                                 case"2":
                                 case"life drain":
@@ -432,6 +439,8 @@ namespace DH4
 
                               }
                               Console.WriteLine($"You have {PlayerParty.PlayerManaPoints} mana points remaining. ");
+
+                            }
                             }
                           
                             // list magic attacks then prompt for input
@@ -469,7 +478,7 @@ namespace DH4
                             }
                             break;
                             case PlayerClassTypes.KNIGHT:
-                            string knightSpcialOption="";
+                            stsring knightSpcialOption="";
                             while(knightSpcialOption=="")
                             Console.WriteLine("What special attacks would you like to use?\n 1) Double attack\n");
                             switch(knightSpcialOption.ToLower())
@@ -478,6 +487,7 @@ namespace DH4
                                 case"double attack":
                                 Console.WriteLine($"{PlayerParty.PlayerName} used double attack ");
                                 double attackDoubleDamageDealt=PlayerParty.AttackPoints/enemy.EnemyDefensePoints;
+                                // if it iterates once change the comparison to 2
                                 for(int doubleAttackNum=0; doubleAttackNum<1; doubleAttackNum++)
                                 {
                                     Console.WriteLine($"{PlayerParty.PlayerName} attacks dealing {attackDoubleDamageDealt.ToString()}points of damage");
