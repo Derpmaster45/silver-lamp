@@ -420,7 +420,7 @@ namespace DH4
                               {
                                 case"1":
                                 case "lighting":
-                                Console.WriteLine($"You used lightning\n")
+                                Console.WriteLine($"You used lightning\n");
                                 break;
                                 case"2":
                                 case"life drain":
@@ -432,6 +432,7 @@ namespace DH4
                                 case"3":
                                 case"petrification":
                                     // Come up with a way to have a damage dealt function that will have the player class, and the magic value
+
                                 break;
                                 default:
                                 ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
@@ -478,9 +479,10 @@ namespace DH4
                             }
                             break;
                             case PlayerClassTypes.KNIGHT:
-                            stsring knightSpcialOption="";
+                            string knightSpcialOption="";
                             while(knightSpcialOption=="")
                             Console.WriteLine("What special attacks would you like to use?\n 1) Double attack\n");
+                            knightSpcialOption=Console.ReadLine();
                             switch(knightSpcialOption.ToLower())
                             {
                                 case"1":
@@ -513,7 +515,7 @@ namespace DH4
                     case"3":
                     // add in ai attack pattern
                     System.Console.WriteLine("You decided to Defend against the next attack.\n");
-                    if(bIsPetrified==false)
+                    if(enemy.bIsPetrified==false)
                     {
                           // defend player is used for when the player decides to defend against an attack
                          double defendPlayer =DoDamageToPlayer(PlayerParty,enemyNames, enemy)*.2;
@@ -528,7 +530,7 @@ namespace DH4
                     }
                     if(turnsSincePetrify==4)
                     {
-                        bIsPetrified=false;
+                        enemy.bIsPetrified=false;
                         if(enemy.CurrentHealthPoints<=0)
                         {
                             Console.WriteLine($"{enemy.EnemyName} was defeated before they could break the spell.");
@@ -766,19 +768,26 @@ namespace DH4
                                                                                                         string dsHouseDecision="";
                                                                                                         while(dsHouseDecision=="")
                                                                                                         {
-                                                                                                            Console.WriteLine("You walk up to the house, it looks like it has been in disarray for quite some time.");
+                                                                                                            Console.WriteLine("You walk up to the house, it looks like it has been in disarray for quite some time.\n");
                                                                                                             Console.WriteLine("1) Walk around house \n2) Go inside \n");
                                                                                                             dsHouseDecision=Console.ReadLine();
                                                                                                             switch(dsHouseDecision.ToLower())
                                                                                                             {
-                                                                                                                
+                                                                                                                case"walk around house":
+
+                                                                                                                break;
+                                                                                                                case "go inside house":
+                                                                                                                break;
+                                                                                                                default:
+                                                                                                                ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", dsHouseDecision,5000,playercharacter);
+                                                                                                                break;
                                                                                                             }
 
                                                                                                         }
                                                                                                         break;
                                                                                                         default:
-                                                                                                        Console.WriteLine("");
-                                                                                                        break;
+                                                                                                         ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", help,5000,playercharacter);
+                                                                                                        //reset and clear screen prompting the user to select one onf the 2 options listed
                                                                                                      }
                                                                                                     }
                                                                                                     break;
