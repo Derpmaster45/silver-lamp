@@ -421,6 +421,8 @@ namespace DH4
                                 case"1":
                                 case "lighting":
                                 Console.WriteLine($"You used lightning\n");
+                                int lightingBaseDamage=50;
+                                enemy.EnemyHealth-=(lightingBaseDamage+PlayerParty.AttackPoints)/enemy.EnemyDefensePoints;
                                 break;
                                 case"2":
                                 case"life drain":
@@ -432,7 +434,8 @@ namespace DH4
                                 case"3":
                                 case"petrification":
                                     // Come up with a way to have a damage dealt function that will have the player class, and the magic value
-
+                                    enemy.bIsPetrified=true;
+                                    // if bIsPetrified =true; enemy cannot attack for 4 turns per spell cast;
                                 break;
                                 default:
                                 ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
@@ -466,7 +469,7 @@ namespace DH4
                                     case "2":
                                     case"void":
                                     // write void to take a quarter of health but take a high amount of mana points
-                                    double voidDamageDealt= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints*.25;
+                                    double voidDamageDealt= enemy.EnemyDefensePoints/(PlayerParty.PlayerManaAttackPoints*.25);
                                     enemy.CurrentHealthPoints-=voidDamageDealt;
                                     double voidManaCost=95;
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
@@ -788,6 +791,7 @@ namespace DH4
                                                                                                         default:
                                                                                                          ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", help,5000,playercharacter);
                                                                                                         //reset and clear screen prompting the user to select one onf the 2 options listed
+                                                                                                        break;
                                                                                                      }
                                                                                                     }
                                                                                                     break;
