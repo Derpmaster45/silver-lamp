@@ -23,6 +23,8 @@ namespace DH4
             DSCharacter.PlayerLevel=5;
             DSCharacter.PlayerManaPoints=200;
             DSCharacter.PlayerDefensePoints=50;
+            DSCharacter.PlayerManaDefensePoints=50;
+            DSCharacter.PlayerManaAttackPoints=30;
             DSCharacter.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
             // ds Character Creation end
 
@@ -118,7 +120,7 @@ namespace DH4
                             Console.WriteLine("Dark Swordsman used Acid Rain");
                             double baseDamage=78;
                                     double DamageDeal=character.PlayerManaDefensePoints /(enemy.EnemyManaAttackPoints+baseDamage);
-                                    character.CurrentHealthPoints-=DamageDeal;
+                                   DamageDealtToPlayer= character.CurrentHealthPoints-=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
 					                double acidRainPointsRequired=15;
 					                character.PlayerManaPoints-=acidRainPointsRequired;
@@ -152,6 +154,8 @@ namespace DH4
                         {
                             case 1:
                             Console.WriteLine("Vampire used Bite\n");
+                            DamageDealtToPlayer= character.CurrentHealthPoints-=enemy.EnemyAttackPoints/character.PlayerDefensePoints;
+                             enemy.EnemyManaPoint-=15;
                             break; 
                             case 2:
                             Console.WriteLine("Vampire used Life Drain\n");
@@ -177,7 +181,7 @@ namespace DH4
 				
                                 // add in damage equation here
                                 double biteDamageDealt=enemy.EnemyManaAttackPoints/character.PlayerManaDefensePoints;
-                                
+                                DamageDealtToPlayer=biteDamageDealt;
                             break;
                             case 2:
                             Console.WriteLine("Zombie used PLACEHOLDER 1"); 
@@ -319,6 +323,7 @@ namespace DH4
                     characterToCreate.PlayerClass=PlayerClassTypes.KNIGHT;
                     characterToCreate.PlayerManaPoints=50;
                     characterToCreate.PlayerManaDefensePoints=25;
+                    characterToCreate.PlayerManaAttackPoints=15;
                     break;
                     case"2":
                     case"dark mage":
@@ -326,12 +331,14 @@ namespace DH4
                     characterToCreate.PlayerClass=PlayerClassTypes.DARKMAGE;
                     characterToCreate.PlayerManaPoints=100;
                     characterToCreate.PlayerManaDefensePoints=50;
+                    characterToCreate.PlayerManaAttackPoints=40;
                     break;
                     case"3":
                     case"mage":
                     characterToCreate.PlayerClass=PlayerClassTypes.MAGE;
                     characterToCreate.PlayerManaPoints=100;
                     characterToCreate.PlayerManaDefensePoints=50;
+                    characterToCreate.PlayerManaAttackPoints=35;
                     break;
                     case"4":
                     case"dark swordsman":
@@ -339,6 +346,7 @@ namespace DH4
                     characterToCreate.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
                     characterToCreate.PlayerManaPoints=100;
                     characterToCreate.PlayerManaDefensePoints=50;
+                    characterToCreate.PlayerManaAttackPoints=30;
                     break;
                     default:
                     string errormessage="Please choose from one of the 4 options";
