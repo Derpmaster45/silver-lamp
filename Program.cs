@@ -213,14 +213,16 @@ namespace DH4
                     enemyToCreate.EnemyHealth=100;
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                     enemyToCreate.EnemyDefensePoints=10;
+                    enemyToCreate.EnemyManaDefensePoints=5;
                     enemy.EnemyAttackPoints=20;
-                    enemy.EnemyManaPoint=0;
+                    enemy.EnemyManaPoint=50;
                 break;
                 case EnemyNames.ANGEL:
                     enemyToCreate.EnemyName="Angel";
                     enemyToCreate.EnemyHealth=400;
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                     enemyToCreate.EnemyDefensePoints=300;
+                    enemyToCreate.EnemyManaDefensePoints=150;
                     enemy.EnemyAttackPoints=40;
                     enemyToCreate.EnemyManaPoint=200;
                 break;
@@ -236,6 +238,7 @@ namespace DH4
                     enemyToCreate.EnemyName="Zombie";
                     enemyToCreate.EnemyHealth=150;
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                    enemyToCreate.EnemyManaDefensePoints=35;
                     enemyToCreate.EnemyManaPoint=50;
                     enemyToCreate.EnemyDefensePoints=70;
                 break;
@@ -298,23 +301,27 @@ namespace DH4
                     case"knight":
                     characterToCreate.PlayerClass=PlayerClassTypes.KNIGHT;
                     characterToCreate.PlayerManaPoints=50;
+                    characterToCreate.PlayerManaDefensePoints=25;
                     break;
                     case"2":
                     case"dark mage":
                     case "darkmage":
                     characterToCreate.PlayerClass=PlayerClassTypes.DARKMAGE;
                     characterToCreate.PlayerManaPoints=100;
+                    characterToCreate.PlayerManaDefensePoints=50;
                     break;
                     case"3":
                     case"mage":
                     characterToCreate.PlayerClass=PlayerClassTypes.MAGE;
                     characterToCreate.PlayerManaPoints=100;
+                    characterToCreate.PlayerManaDefensePoints=50;
                     break;
                     case"4":
                     case"dark swordsman":
                     case"darkswordsman":
                     characterToCreate.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
                     characterToCreate.PlayerManaPoints=100;
+                    characterToCreate.PlayerManaDefensePoints=50;
                     break;
                     default:
                     string errormessage="Please choose from one of the 4 options";
@@ -395,7 +402,7 @@ namespace DH4
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts fire");
                                     SpellCost=25; 
                                     double fireBaseDamage=25;
-                                    enemy.EnemyHealth-=(fireBaseDamage+PlayerParty.PlayerManaAttackPoints)/enemy.EnemyDefensePoints;
+                                    enemy.EnemyHealth-=(fireBaseDamage+PlayerParty.PlayerManaAttackPoints)/enemy.EnemyManaDefensePoints;
                                     PlayerParty.PlayerManaPoints-=SpellCost;
                                     Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()}");
                                     // call damage dealt function
@@ -425,7 +432,7 @@ namespace DH4
                                 case "lighting":
                                 Console.WriteLine($"You used lightning\n");
                                 int lightingBaseDamage=50;
-                                enemy.EnemyHealth-=(lightingBaseDamage+PlayerParty.AttackPoints)/enemy.EnemyDefensePoints;
+                                enemy.EnemyHealth-=(lightingBaseDamage+PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
                                 break;
                                 case"2":
                                 case"life drain":
@@ -463,7 +470,7 @@ namespace DH4
                                     case "1":
                                     case"acid rain":
 				                    double baseDamage=78;
-                                    double DamageDeal= enemy.EnemyDefensePoints/(PlayerParty.PlayerManaAttackPoints+baseDamage);
+                                    double DamageDeal= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints+baseDamage);
                                     enemy.CurrentHealthPoints-=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
 					                double acidRainPointsRequired=15;
@@ -472,7 +479,7 @@ namespace DH4
                                     case "2":
                                     case"void":
                                     // write void to take a quarter of health but take a high amount of mana points
-                                    double voidDamageDealt= enemy.EnemyDefensePoints/(PlayerParty.PlayerManaAttackPoints*.25);
+                                    double voidDamageDealt= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints*.25);
                                     enemy.CurrentHealthPoints-=voidDamageDealt;
                                     double voidManaCost=95;
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
