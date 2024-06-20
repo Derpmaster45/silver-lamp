@@ -13,10 +13,6 @@ namespace DH4.Classes
         public double CurrentHealthPoints{get;set;}
         public EnemyNames enemyType {get;set;}
         public int ExpValue {get;set;}
-<<<<<<< HEAD
         public bool bIsPetrified{get;set;}
-=======
-        public bool bIsPetrified {get;set;}
->>>>>>> 478dc2f (bacon)
     }
 }
