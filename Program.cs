@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Drawing;
-using System.Security.Cryptography.X509Certificates;
 using DH4.Classes;
 using DH4.Enums;
 namespace DH4
@@ -117,9 +116,20 @@ namespace DH4
                         {
                             case 1:
                             Console.WriteLine("Dark Swordsman used Acid Rain");
+                            double baseDamage=78;
+                                    double DamageDeal=character.PlayerManaDefensePoints /(enemy.EnemyManaAttackPoints+baseDamage);
+                                    character.CurrentHealthPoints-=DamageDeal;
+                                    Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
+					                double acidRainPointsRequired=15;
+					                character.PlayerManaPoints-=acidRainPointsRequired;
                             break;
                             case 2:
                             Console.WriteLine("Dark Swordsman used Void");
+                                    double voidDamageDealt= character.PlayerManaDefensePoints/(enemy.EnemyManaAttackPoints*.25);
+                                    character.CurrentHealthPoints-=voidDamageDealt;
+                                    double voidManaCost=95;
+                                    enemy.EnemyManaPoint-=voidManaCost;
+                                    DamageDealtToPlayer=voidDamageDealt;
                             break;
                             case 3:
                             Console.WriteLine("Dark Swordsman used PLACEHOLDER");
@@ -216,6 +226,7 @@ namespace DH4
                     enemyToCreate.EnemyManaDefensePoints=5;
                     enemy.EnemyAttackPoints=20;
                     enemy.EnemyManaPoint=50;
+                    enemy.EnemyManaAttackPoints=25;
                 break;
                 case EnemyNames.ANGEL:
                     enemyToCreate.EnemyName="Angel";
