@@ -159,6 +159,10 @@ namespace DH4
                             break; 
                             case 2:
                             Console.WriteLine("Vampire used Life Drain\n");
+                             Console.WriteLine($"{PlayerParty.PlayerName} has used life drain\n");
+                                double lifeTaken=character.CurrentHealthPoints-50;
+                                enemy.CurrentHealthPoints+=lifeTaken;
+                                Console.WriteLine($"it dealt {lifeTaken} points and healed the {enemy.EnemyName}. {enemy.EnemyHealth}'s new health is{enemy.CurrentHealthPoints}");
                             break;
                             case 3:
                             Console.WriteLine("Vampire used PLACEHOLDER\n");
