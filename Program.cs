@@ -176,6 +176,7 @@ namespace DH4
 				                enemy.EnemyManaPoint-=biteManaCost;
 				
                                 // add in damage equation here
+                                double biteDamageDealt=enemy.EnemyManaAttackPoints/character.PlayerManaDefensePoints;
                                 
                             break;
                             case 2:
@@ -255,6 +256,11 @@ namespace DH4
                 break;
                 case EnemyNames.VAMPIRE:
                 enemyToCreate.EnemyName="Vampire";
+                enemyToCreate.EnemyHealth=650;
+                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                enemyToCreate.EnemyManaDefensePoints=70;
+                enemyToCreate.EnemyManaPoint=100;
+                enemyToCreate.EnemyDefensePoints=80;
                 break;
                 default:
                 Console.WriteLine("Err: Unrecognized Enemy Type\n Probably not created yet in the creation method");
