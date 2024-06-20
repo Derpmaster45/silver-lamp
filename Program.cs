@@ -63,15 +63,15 @@ namespace DH4
                             switch(magicAction)
                             {
                                 case 1:
-                                Console.WriteLine($"Zombie used bite.\n");
+                                Console.WriteLine($"{enemy.EnemyName} used bite.\n");
                                 DamageDealtToPlayer= character.CurrentHealthPoints-=enemy.EnemyAttackPoints/character.PlayerDefensePoints;
                                 enemy.EnemyManaPoint-=15;
                                 break;
                                 case 2:
-                                Console.WriteLine("Zombie used PLACEHOLDER\n");
+                                Console.WriteLine($"{enemy.EnemyName} used PLACEHOLDER\n");
                                 break;
                                 case 3:
-                                Console.WriteLine("Zombie used a different PLACEHOLDER\n");
+                                Console.WriteLine($"{enemy.EnemyName} used a different PLACEHOLDER\n");
                                 break;
                                 default:
                                 Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
@@ -394,6 +394,8 @@ namespace DH4
                                     case"fire":
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts fire");
                                     SpellCost=25; 
+                                    double fireBaseDamage=25;
+                                    enemy.EnemyHealth-=(fireBaseDamage+PlayerParty.PlayerManaAttackPoints)/enemy.EnemyDefensePoints;
                                     PlayerParty.PlayerManaPoints-=SpellCost;
                                     Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()}");
                                     // call damage dealt function
@@ -461,7 +463,7 @@ namespace DH4
                                     case "1":
                                     case"acid rain":
 				                    double baseDamage=78;
-                                    double DamageDeal= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints+baseDamage;
+                                    double DamageDeal= enemy.EnemyDefensePoints/(PlayerParty.PlayerManaAttackPoints+baseDamage);
                                     enemy.CurrentHealthPoints-=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
 					                double acidRainPointsRequired=15;
@@ -555,7 +557,7 @@ namespace DH4
                 // add fuctionality for ai to attack player}
                }
                 }
-                if(bIsPetrified==false)
+                if(enemy.bIsPetrified==false)
                 {
                       DoDamageToPlayer(PlayerParty,enemyNames, enemy);
                 }

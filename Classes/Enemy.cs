@@ -14,5 +14,6 @@ namespace DH4.Classes
         public EnemyNames enemyType {get;set;}
         public int ExpValue {get;set;}
         public bool bIsPetrified{get;set;}
+        public double EnemyManaDefensePoints{get;set;}
     }
 }
