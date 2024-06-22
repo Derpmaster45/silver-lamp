@@ -12,6 +12,10 @@ namespace DH4
             EnemyNames enemyNames = new EnemyNames();
             string MainMenuOption="";
             PlayerClassTypes playerclasslist=new PlayerClassTypes();
+            DarkMageMagic dmMagicSpells= new DarkMageMagic();
+            DarkSwordsmanMagic DSMagicSpells=new DarkSwordsmanMagic();
+            MageSpells spells =new MageSpells();
+            KnightSpecialAttacks knightAttacks=new KnightSpecialAttacks();
 
             //DS Character creation
             Character DSCharacter= new Character();
@@ -323,49 +327,12 @@ namespace DH4
             characterToCreate.AttackPoints=20;
             characterToCreate.PlayerHealth=300;
             characterToCreate.PlayerExpPoints=0;
-            // System.Console.WriteLine("What class would you like to be (Subject to change) 1) Knight\n 2)Dark Mage \n3) Mage\n  4) Dark Swordsman");
-            // string playerclass="";
-            // playerclass=Console.ReadLine();
-            // while(playerclass=="")
-            // {
-            //     switch(playerclass.ToLower())
-            //     {
-            //         case"1":
-            //         case"knight":
-            //         characterToCreate.PlayerClass=PlayerClassTypes.KNIGHT;
-            //         characterToCreate.PlayerManaPoints=50;
-            //         characterToCreate.PlayerManaDefensePoints=25;
-            //         characterToCreate.PlayerManaAttackPoints=15;
-            //         break;
-            //         case"2":
-            //         case"dark mage":
-            //         case "darkmage":
-            //         characterToCreate.PlayerClass=PlayerClassTypes.DARKMAGE;
-            //         characterToCreate.PlayerManaPoints=100;
-            //         characterToCreate.PlayerManaDefensePoints=50;
-            //         characterToCreate.PlayerManaAttackPoints=40;
-            //         break;
-            //         case"3":
-            //         case"mage":
-            //         characterToCreate.PlayerClass=PlayerClassTypes.MAGE;
-            //         characterToCreate.PlayerManaPoints=100;
-            //         characterToCreate.PlayerManaDefensePoints=50;
-            //         characterToCreate.PlayerManaAttackPoints=35;
-            //         break;
-            //         case"4":
-            //         case"dark swordsman":
-            //         case"darkswordsman":
-            //         characterToCreate.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
-            //         characterToCreate.PlayerManaPoints=100;
-            //         characterToCreate.PlayerManaDefensePoints=50;
-            //         characterToCreate.PlayerManaAttackPoints=30;
-            //         break;
-            //         default:
-            //         string errormessage="Please choose from one of the 4 options";
-            //         ResetAndClear(errormessage,playerclass,5000,characterToCreate);
-            //         break;
-            //     }
-            // }
+            characterToCreate.PlayerClass=playerclass;
+            switch(character.PlayerClass)
+            {
+                case PlayerClassTypes.KNIGHT:
+                break;
+            }
        
         
             return characterToCreate;
@@ -675,58 +642,48 @@ namespace DH4
                 System.Console.WriteLine("Capt. Smith:Can you tell me what your name is?\n");
                 // character creation function goes here
                 string playerName=Console.ReadLine();
-                Character playercharacter=CreateCharacter();
-                // playercharacter.PlayerName=playerName;
+                
+              
                 // set player class here
-                   System.Console.WriteLine("What class would you like to be (Subject to change) 1) Knight\n 2)Dark Mage \n3) Mage\n  4) Dark Swordsman");
-            string playerclass="";
-            playerclass=Console.ReadLine();
-            while(playerclass=="")
-            {
-                switch(playerclass.ToLower())
-                {
-                    case"1":
-                    case"knight":
-                    playercharacter.PlayerClass=PlayerClassTypes.KNIGHT;
-                    playercharacter.PlayerManaPoints=50;
-                    playercharacter.PlayerManaDefensePoints=25;
-                    playercharacter.PlayerManaAttackPoints=15;
-                    Character playercharacter=CreateCharacter(playerclasslist);
-                    break;
-                    case"2":
-                    case"dark mage":
-                    case "darkmage":
-                    playercharacter.PlayerClass=PlayerClassTypes.DARKMAGE;
-                    playercharacter.PlayerManaPoints=100;
-                    playercharacter.PlayerManaDefensePoints=50;
-                    playercharacter.PlayerManaAttackPoints=40;
-                    Character playercharacter=CreateCharacter(playerclasslist);
-                    break;
-                    case"3":
-                    case"mage":
-                    playercharacter.PlayerClass=PlayerClassTypes.MAGE;
-                    playercharacter.PlayerManaPoints=100;
-                    playercharacter.PlayerManaDefensePoints=50;
-                    playercharacter.PlayerManaAttackPoints=35;
-                    Character playercharacter=CreateCharacter(playerclasslist);
-                     break;
-                     case"4":
-                     case"dark swordsman":
-                     case"darkswordsman":
-                     playercharacter.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
-                     playerclasslist=PlayerClassTypes.DARKSWORDSMAN;
-                     playercharacter.PlayerManaPoints=100;
-                     playercharacter.PlayerManaDefensePoints=50;
-                     playercharacter.PlayerManaAttackPoints=30;
-                     Character playercharacter=CreateCharacter(playerclasslist);
-                     break;
-                     default:
-                     string errormessage="Please choose from one of the 4 options";
-                     ResetAndClear(errormessage,playerclass,5000,playercharacter);
-                 break;
-                 }
-                // playercharacter.PlayerClass
-             }
+            //  System.Console.WriteLine("What class would you like to be (Subject to change) 1) Knight\n 2)Dark Mage \n3) Mage\n  4) Dark Swordsman");
+            // string playerclass="";
+            // playerclass=Console.ReadLine();
+            // while(playerclass=="")
+            // {
+            //     switch(playerclass.ToLower())
+            //     {
+            //         case"1":
+            //         case"knight":
+            //         playerclasslist= PlayerClassTypes.KNIGHT;
+            //          Character playercharacter=CreateCharacter(playerclasslist);
+            //         break;
+            //         case"2":
+            //         case"dark mage":
+            //         case "darkmage":
+            //         playerclasslist= PlayerClassTypes.DARKMAGE;
+            //          Character playercharacter=CreateCharacter(playerclasslist);
+            //         break;
+            //         case"3":
+            //         case"mage":
+            //         playerclasslist=PlayerClassTypes.MAGE;
+            //          Character playercharacter=CreateCharacter(playerclasslist);
+            //          break;
+            //          case"4":
+            //          case"dark swordsman":
+            //          case"darkswordsman":
+            //          playerclasslist=PlayerClassTypes.DARKSWORDSMAN;
+            //           Character playercharacter=CreateCharacter(playerclasslist);
+            //          break;
+            //          default:
+            //          string errormessage="Please choose from one of the 4 options";
+            //          playerclass="";
+            //          //ResetAndClear(errormessage,playerclass,5000,playercharacter);
+            //      break;
+            //      }
+            //  }
+                playerclasslist=PlayerClassTypes.KNIGHT;
+               Character playercharacter=CreateCharacter(playerclasslist);
+              playercharacter.PlayerName=playerName;
                 
                 System.Console.WriteLine($"Player Name: {playercharacter.PlayerName}\n Class: {playercharacter.PlayerClass}\n Level: {playercharacter.PlayerLevel}");
                 System.Console.WriteLine("Capt.Smith: We will give you a few days to recover.\n");
