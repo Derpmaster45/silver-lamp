@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Drawing;
-using System.Security.Cryptography.X509Certificates;
 using DH4.Classes;
 using DH4.Enums;
 namespace DH4
@@ -12,9 +11,12 @@ namespace DH4
         {
             EnemyNames enemyNames = new EnemyNames();
             string MainMenuOption="";
-            MageSpells spells = new MageSpells();
-            DarkMageMagic dmMagicSpells=new DarkMageMagic();
-            DarkSwordsmanMagic DSMagicSpells =new DarkSwordsmanMagic();
+            PlayerClassTypes playerclasslist=new PlayerClassTypes();
+            DarkMageMagic dmMagicSpells= new DarkMageMagic();
+            DarkSwordsmanMagic DSMagicSpells=new DarkSwordsmanMagic();
+            MageSpells spells =new MageSpells();
+            KnightSpecialAttacks knightAttacks=new KnightSpecialAttacks();
+
             //DS Character creation
             Character DSCharacter= new Character();
             DSCharacter.PlayerName="Dark Swordsman";
@@ -24,6 +26,8 @@ namespace DH4
             DSCharacter.PlayerLevel=5;
             DSCharacter.PlayerManaPoints=200;
             DSCharacter.PlayerDefensePoints=50;
+            DSCharacter.PlayerManaDefensePoints=50;
+            DSCharacter.PlayerManaAttackPoints=30;
             DSCharacter.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
             // ds Character Creation end
 
@@ -63,13 +67,15 @@ namespace DH4
                             switch(magicAction)
                             {
                                 case 1:
-                                Console.WriteLine($"Zombie used bite.\n");
+                                Console.WriteLine($"{enemy.EnemyName} used bite.\n");
+                                DamageDealtToPlayer= character.CurrentHealthPoints-=enemy.EnemyAttackPoints/character.PlayerDefensePoints;
+                                enemy.EnemyManaPoint-=15;
                                 break;
                                 case 2:
-                                Console.WriteLine("Zombie used PLACEHOLDER\n");
+                                Console.WriteLine($"{enemy.EnemyName} used PLACEHOLDER\n");
                                 break;
                                 case 3:
-                                Console.WriteLine("Zombie used a different PLACEHOLDER\n");
+                                Console.WriteLine($"{enemy.EnemyName} used a different PLACEHOLDER\n");
                                 break;
                                 default:
                                 Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
@@ -91,16 +97,19 @@ namespace DH4
                                 switch(angelMagicAction)
                                 {
                                     case 1:
-                                    Console.WriteLine("Angel used PLACEHOLDER 1\n");
+                                    Console.WriteLine("Angel used Ball of Light\n");
+                                     DamageDealtToPlayer=0;
                                     break;
                                     case 2:
-                                    Console.WriteLine("Angel used PLACEHOLDER 2\n"); 
+                                    Console.WriteLine("Angel used PLACEHOLDER 2\n");
+                                      DamageDealtToPlayer=0;
                                     break;
                                     case 3:
                                     Console.WriteLine("Angel used PLACEHOLDER 3\n");
+                                      DamageDealtToPlayer=0;
                                     break;
                                     default:
-                                    Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
+                                    Console.WriteLine("ERR: Selected Attack is not real. (Number Generator error)");
                                     DamageDealtToPlayer=0;
                                     break;
 
@@ -115,12 +124,24 @@ namespace DH4
                         {
                             case 1:
                             Console.WriteLine("Dark Swordsman used Acid Rain");
+                            double baseDamage=78;
+                                    double DamageDeal=character.PlayerManaDefensePoints /(enemy.EnemyManaAttackPoints+baseDamage);
+                                   DamageDealtToPlayer= character.CurrentHealthPoints-=DamageDeal;
+                                    Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
+					                double acidRainPointsRequired=15;
+					                character.PlayerManaPoints-=acidRainPointsRequired;
                             break;
                             case 2:
                             Console.WriteLine("Dark Swordsman used Void");
+                                    double voidDamageDealt= character.PlayerManaDefensePoints/(enemy.EnemyManaAttackPoints*.25);
+                                    DamageDealtToPlayer=character.CurrentHealthPoints-=voidDamageDealt;
+                                    double voidManaCost=95;
+                                    enemy.EnemyManaPoint-=voidManaCost;
+                                    DamageDealtToPlayer=voidDamageDealt;
                             break;
                             case 3:
                             Console.WriteLine("Dark Swordsman used PLACEHOLDER");
+                            DamageDealtToPlayer=0;
                             break;
                             default:
                             Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
@@ -140,12 +161,20 @@ namespace DH4
                         {
                             case 1:
                             Console.WriteLine("Vampire used Bite\n");
+                            DamageDealtToPlayer= character.CurrentHealthPoints-=enemy.EnemyAttackPoints/character.PlayerDefensePoints;
+                             enemy.EnemyManaPoint-=15;
                             break; 
                             case 2:
                             Console.WriteLine("Vampire used Life Drain\n");
+                             Console.WriteLine($"{enemy.EnemyName} has used life drain\n");
+                                double lifeTaken=character.CurrentHealthPoints-50;
+                                enemy.CurrentHealthPoints+=lifeTaken;
+                                Console.WriteLine($"it dealt {lifeTaken} points and healed the {enemy.EnemyName}. {enemy.EnemyHealth}'s new health is{enemy.CurrentHealthPoints}");
                             break;
                             case 3:
-                            Console.WriteLine("Vampire used PLACEHOLDER\n");
+                            Console.WriteLine("Vampire transforms into mist\n");
+                            enemy.CurrentHealthPoints=0;
+                            DamageDealtToPlayer=0;
                             break;
                             default:
                             Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
@@ -160,17 +189,21 @@ namespace DH4
                         {
                             case 1:
                             Console.WriteLine("Zombie used Bite");
-				double biteManaCost=10;
-				enemy.EnemyManaPoint-=biteManaCost;
+				                double biteManaCost=10;
+				                enemy.EnemyManaPoint-=biteManaCost;
 				
                                 // add in damage equation here
-                                
+                                double biteDamageDealt=enemy.EnemyManaAttackPoints/character.PlayerManaDefensePoints;
+                                DamageDealtToPlayer=biteDamageDealt;
                             break;
                             case 2:
                             Console.WriteLine("Zombie used PLACEHOLDER 1"); 
+                            DamageDealtToPlayer=0;
+
                             break;
                             case 3:
                             Console.WriteLine("Zombie used PLACEHOLDER 2");
+                            DamageDealtToPlayer=0;
                             break;
                             default:
                             Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
@@ -211,14 +244,17 @@ namespace DH4
                     enemyToCreate.EnemyHealth=100;
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                     enemyToCreate.EnemyDefensePoints=10;
+                    enemyToCreate.EnemyManaDefensePoints=5;
                     enemy.EnemyAttackPoints=20;
-                    enemy.EnemyManaPoint=0;
+                    enemy.EnemyManaPoint=50;
+                    enemy.EnemyManaAttackPoints=25;
                 break;
                 case EnemyNames.ANGEL:
                     enemyToCreate.EnemyName="Angel";
                     enemyToCreate.EnemyHealth=400;
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                     enemyToCreate.EnemyDefensePoints=300;
+                    enemyToCreate.EnemyManaDefensePoints=150;
                     enemy.EnemyAttackPoints=40;
                     enemyToCreate.EnemyManaPoint=200;
                 break;
@@ -234,11 +270,17 @@ namespace DH4
                     enemyToCreate.EnemyName="Zombie";
                     enemyToCreate.EnemyHealth=150;
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                    enemyToCreate.EnemyManaDefensePoints=35;
                     enemyToCreate.EnemyManaPoint=50;
                     enemyToCreate.EnemyDefensePoints=70;
                 break;
                 case EnemyNames.VAMPIRE:
                 enemyToCreate.EnemyName="Vampire";
+                enemyToCreate.EnemyHealth=650;
+                enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                enemyToCreate.EnemyManaDefensePoints=70;
+                enemyToCreate.EnemyManaPoint=100;
+                enemyToCreate.EnemyDefensePoints=80;
                 break;
                 default:
                 Console.WriteLine("Err: Unrecognized Enemy Type\n Probably not created yet in the creation method");
@@ -271,7 +313,7 @@ namespace DH4
                 }
                 
             }
-         Character CreateCharacter()
+         Character CreateCharacter(PlayerClassTypes playerclass)
         {
 
             Character characterToCreate=new Character();
@@ -282,43 +324,29 @@ namespace DH4
             }
             characterToCreate.PlayerLevel=1;
             characterToCreate.PlayerDefensePoints=20;
-            characterToCreate.AttackPoints=20;
-            characterToCreate.PlayerHealth=300;
-            characterToCreate.PlayerExpPoints=0;
-            System.Console.WriteLine("What class would you like to be (Subject to change) 1) Knight\n 2)Dark Mage \n3) Mage\n  4) Dark Swordsman");
-            string playerclass="";
-            playerclass=Console.ReadLine();
-            while(playerclass=="")
+            characterToCreate.PlayerClass=playerclass;
+            switch(characterToCreate.PlayerClass)
             {
-                switch(playerclass.ToLower())
-                {
-                    case"1":
-                    case"knight":
-                    characterToCreate.PlayerClass=PlayerClassTypes.KNIGHT;
-                    characterToCreate.PlayerManaPoints=50;
-                    break;
-                    case"2":
-                    case"dark mage":
-                    case "darkmage":
-                    characterToCreate.PlayerClass=PlayerClassTypes.DARKMAGE;
-                    characterToCreate.PlayerManaPoints=100;
-                    break;
-                    case"3":
-                    case"mage":
-                    characterToCreate.PlayerClass=PlayerClassTypes.MAGE;
-                    characterToCreate.PlayerManaPoints=100;
-                    break;
-                    case"4":
-                    case"dark swordsman":
-                    case"darkswordsman":
-                    characterToCreate.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
-                    characterToCreate.PlayerManaPoints=100;
-                    break;
-                    default:
-                    string errormessage="Please choose from one of the 4 options";
-                    ResetAndClear(errormessage,playerclass,5000,characterToCreate);
-                    break;
-                }
+                case PlayerClassTypes.KNIGHT:
+                    characterToCreate.AttackPoints=20;
+                    characterToCreate.PlayerHealth=300;
+                    characterToCreate.PlayerExpPoints=0;
+                break;
+                case PlayerClassTypes.DARKMAGE:
+                    characterToCreate.AttackPoints=20;
+                    characterToCreate.PlayerHealth=300;
+                    characterToCreate.PlayerExpPoints=0;
+                break;
+                case PlayerClassTypes.DARKSWORDSMAN:
+                    characterToCreate.AttackPoints=20;
+                    characterToCreate.PlayerHealth=300;
+                    characterToCreate.PlayerExpPoints=0;
+                break;
+                case PlayerClassTypes.MAGE:
+                    characterToCreate.AttackPoints=20;
+                    characterToCreate.PlayerHealth=300;
+                    characterToCreate.PlayerExpPoints=0;
+                break;
             }
        
         
@@ -333,6 +361,7 @@ namespace DH4
                double SpellCost=0;
                Console.WriteLine($"{enemy.EnemyName} has appeared!");
                string battlesystemchoice="" ;
+               double DamageDealt=0;
                while(PlayerParty.CurrentHealthPoints>0 && enemy.CurrentHealthPoints>0)
                {
                 battlesystemchoice="";
@@ -343,10 +372,11 @@ namespace DH4
                 switch(battlesystemchoice)
                 {
                     case"1":
-                    double DamageDealt=enemy.EnemyDefensePoints-PlayerParty.AttackPoints;
+                    DamageDealt=enemy.EnemyDefensePoints-PlayerParty.AttackPoints;
                     enemy.CurrentHealthPoints-=DamageDealt;
                     //System.Console.WriteLine($"DEBUG: ENEMY HAS  {enemy.CurrentHealthPoints.ToString()} of {enemy.EnemyHeath.ToString()}");
                     System.Console.WriteLine($"You take a swing at the enemy\n dealing {DamageDealt.ToString()}");
+                    
                     break;
                     case"2":
                     // WIP Add in magic attack function and spells for player to learn.
@@ -386,23 +416,36 @@ namespace DH4
                                     {
                                         PlayerParty.CurrentHealthPoints=maxHealth;
                                     }
+                                    MageMagicChoice="";
+                                    battlesystemchoice="";
                                     break;
                                     case "2":
                                     case"fire":
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts fire");
                                     SpellCost=25; 
+                                    double fireBaseDamage=25;
+                                    enemy.EnemyHealth-=(fireBaseDamage+PlayerParty.PlayerManaAttackPoints)/enemy.EnemyManaDefensePoints;
                                     PlayerParty.PlayerManaPoints-=SpellCost;
                                     Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()}");
                                     // call damage dealt function
+                                    MageMagicChoice="";
+                                     battlesystemchoice="";
                                     break;
                                     default:
-                                    ResetAndClear("Unexpected Input, resetting in 5 seconds",magicattackchoice,5000, PlayerParty); 
+                                    MageMagicChoice="";
+                                    ResetAndClear("Unexpected Input, resetting in 5 seconds",battlesystemchoice,5000, PlayerParty); 
                                     break;
                                     
                                 }
                             }
                             break;
                             case PlayerClassTypes.DARKMAGE:
+                            if(PlayerParty.PlayerManaPoints<=0)
+                            {
+                                Console.WriteLine("You dont have mana points please choose another option.\n");
+                                battlesystemchoice="";
+                            }
+                            else {
                             string DarkMageMagicAttackChoice="";
                             while(DarkMageMagicAttackChoice=="")
                             {
@@ -412,6 +455,11 @@ namespace DH4
                               {
                                 case"1":
                                 case "lighting":
+                                Console.WriteLine($"You used lightning\n");
+                                int lightingBaseDamage=50;
+                                enemy.EnemyHealth-=(lightingBaseDamage+PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
+                                DarkMageMagicAttackChoice="";
+                                battlesystemchoice="";
                                 break;
                                 case"2":
                                 case"life drain":
@@ -423,13 +471,17 @@ namespace DH4
                                 case"3":
                                 case"petrification":
                                     // Come up with a way to have a damage dealt function that will have the player class, and the magic value
+                                    enemy.bIsPetrified=true;
+                                    // if bIsPetrified =true; enemy cannot attack for 4 turns per spell cast;
                                 break;
                                 default:
-                                ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkMageMagicAttackChoice,5000,PlayerParty);
+                                ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
                                 break;
 
                               }
                               Console.WriteLine($"You have {PlayerParty.PlayerManaPoints} mana points remaining. ");
+
+                            }
                             }
                           
                             // list magic attacks then prompt for input
@@ -444,8 +496,8 @@ namespace DH4
                                 {
                                     case "1":
                                     case"acid rain":
-				    double baseDamage=78;
-                                    double DamageDeal= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints+baseDamage;
+				                    double baseDamage=78;
+                                    double DamageDeal= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints+baseDamage);
                                     enemy.CurrentHealthPoints-=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
 					                double acidRainPointsRequired=15;
@@ -454,13 +506,15 @@ namespace DH4
                                     case "2":
                                     case"void":
                                     // write void to take a quarter of health but take a high amount of mana points
-                                    double voidDamageDealt= enemy.EnemyDefensePoints/PlayerParty.PlayerManaAttackPoints*.25;
+                                    double voidDamageDealt= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints*.25);
                                     enemy.CurrentHealthPoints-=voidDamageDealt;
                                     double voidManaCost=95;
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
+                                    DamageDealt=voidDamageDealt;
+                                    //return DamageDealt;
                                     break;
                                     default:
-                                    ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",DarkswordsmanMagicChoice,5000,PlayerParty);
+                                    ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
                                     break;
 
                                 }
@@ -470,12 +524,14 @@ namespace DH4
                             string knightSpcialOption="";
                             while(knightSpcialOption=="")
                             Console.WriteLine("What special attacks would you like to use?\n 1) Double attack\n");
+                            knightSpcialOption=Console.ReadLine();
                             switch(knightSpcialOption.ToLower())
                             {
                                 case"1":
                                 case"double attack":
                                 Console.WriteLine($"{PlayerParty.PlayerName} used double attack ");
                                 double attackDoubleDamageDealt=PlayerParty.AttackPoints/enemy.EnemyDefensePoints;
+                                // if it iterates once change the comparison to 2
                                 for(int doubleAttackNum=0; doubleAttackNum<1; doubleAttackNum++)
                                 {
                                     Console.WriteLine($"{PlayerParty.PlayerName} attacks dealing {attackDoubleDamageDealt.ToString()}points of damage");
@@ -501,7 +557,7 @@ namespace DH4
                     case"3":
                     // add in ai attack pattern
                     System.Console.WriteLine("You decided to Defend against the next attack.\n");
-                    if(bIsPetrified==false)
+                    if(enemy.bIsPetrified==false)
                     {
                           // defend player is used for when the player decides to defend against an attack
                          double defendPlayer =DoDamageToPlayer(PlayerParty,enemyNames, enemy)*.2;
@@ -516,7 +572,7 @@ namespace DH4
                     }
                     if(turnsSincePetrify==4)
                     {
-                        bIsPetrified=false;
+                        enemy.bIsPetrified=false;
                         if(enemy.CurrentHealthPoints<=0)
                         {
                             Console.WriteLine($"{enemy.EnemyName} was defeated before they could break the spell.");
@@ -535,7 +591,7 @@ namespace DH4
                 // add fuctionality for ai to attack player}
                }
                 }
-                if(bIsPetrified==false)
+                if(enemy.bIsPetrified==false)
                 {
                       DoDamageToPlayer(PlayerParty,enemyNames, enemy);
                 }
@@ -601,8 +657,47 @@ namespace DH4
                 System.Console.WriteLine("Capt. Smith:Can you tell me what your name is?\n");
                 // character creation function goes here
                 string playerName=Console.ReadLine();
-                Character playercharacter=CreateCharacter();
-                playercharacter.PlayerName=playerName;
+                
+              
+                // set player class here
+             
+            string playerclass="";
+            
+            while(playerclass=="")
+            {
+                System.Console.WriteLine("What class would you like to be (Subject to change)\n1) Knight\n2)Dark Mage\n3) Mage\n4) Dark Swordsman");
+                playerclass=Console.ReadLine();
+                if(playerclass.ToLower()=="Knight" || playerclass.ToLower()=="1")
+                {
+                    playerclasslist=PlayerClassTypes.KNIGHT;
+                     Character knightplayercharacter=CreateCharacter(playerclasslist);
+                }
+                else if(playerclass.ToLower()=="Mage"|| playerclass.ToLower()=="3")
+                {
+                    playerclasslist=PlayerClassTypes.MAGE;
+                    Character mageplayercharacter=CreateCharacter(playerclasslist);              
+                }
+                else if (playerclass.ToLower()=="Dark Mage" || playerclass.ToLower()=="2")
+                {
+                    playerclasslist=PlayerClassTypes.DARKMAGE;
+                     Character dmplayercharacter=CreateCharacter(playerclasslist);
+                }
+                else if(playerclass.ToLower()=="Dark Swordsman"|| playerclass.ToLower()=="4")
+                {
+                    playerclasslist=PlayerClassTypes.DARKSWORDSMAN;
+                  
+                }
+                else 
+                {
+                    Console.WriteLine("Please Select from the 4 options");
+                }
+            }
+                
+              
+              //playercharacter.PlayerClass=playerclasslist;
+               Character playercharacter=CreateCharacter(playerclasslist);
+               playercharacter.PlayerName=playerName;
+                
                 System.Console.WriteLine($"Player Name: {playercharacter.PlayerName}\n Class: {playercharacter.PlayerClass}\n Level: {playercharacter.PlayerLevel}");
                 System.Console.WriteLine("Capt.Smith: We will give you a few days to recover.\n");
                 PromptedClearScreen();
@@ -717,7 +812,8 @@ namespace DH4
                                                                                                     case"1":
                                                                                                     case"say you got lost":
                                                                                                     Console.WriteLine($"{playercharacter.PlayerName}:I got lost on my way to town.Sorry I have taken so long.");
-													                                                CheckpointName="ZombieBattlePostBeach";
+													                                                //CheckpointName="ZombieBattlePostBeach";
+                                                                                                    bLiedAboutBeach=true;
                                                                                                     break;
                                                                                                     case"inform about zombies on the beach":
 													                                                //string CheckpointName="ZombieBattlePostBeach";
@@ -728,6 +824,54 @@ namespace DH4
 													                                                Enemy BatEnemy=CreateEnemy(enemyNames);
 													                                                BattleSystem(playercharacter,BatEnemy, spells,dmMagicSpells,DSMagicSpells,dolieaboutbeach); 
 													                                                PromptedClearScreen();
+                                                                                                    //Console.WriteLine("You defeated the bat, when you hear a cry for help do you \n 1) Investigate \n 2)Ignore it\n");
+                                                                                                    string help="";
+                                                                                                    while(help=="")
+                                                                                                    {
+                                                                                                     Console.WriteLine("You defeated the bat, when you hear a cry for help do you \n 1) Investigate \n 2)Ignore it\n");   
+                                                                                                     help=Console.ReadLine();
+                                                                                                     switch(help.ToLower())
+                                                                                                     {
+                                                                                                        case"investigate":
+                                                                                                        case"1":
+                                                                                                        Console.WriteLine("You decide to disregard orders for the time being, and investigate where the scream came from.\n You head in the direction the scream came from.\n You find two zombies ");
+                                                                                                        for(int numOfZombies=0; numOfZombies<1; numOfZombies++)
+                                                                                                        {
+                                                                                                            enemyNames=EnemyNames.ZOMBIE;
+                                                                                                            Enemy zombieEnemyPostBeach=CreateEnemy(enemyNames);
+                                                                                                            BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help);
+                                                                                                            //Console.WriteLine($"Zombies Defi")
+                                                                                                        }
+                                                                                                        break;
+                                                                                                        case "ignore":
+                                                                                                        case "2":
+                                                                                                        Console.WriteLine("You decide to ignore the scream and head to the house.");
+                                                                                                        string dsHouseDecision="";
+                                                                                                        while(dsHouseDecision=="")
+                                                                                                        {
+                                                                                                            Console.WriteLine("You walk up to the house, it looks like it has been in disarray for quite some time.\n");
+                                                                                                            Console.WriteLine("1) Walk around house \n2) Go inside \n");
+                                                                                                            dsHouseDecision=Console.ReadLine();
+                                                                                                            switch(dsHouseDecision.ToLower())
+                                                                                                            {
+                                                                                                                case"walk around house":
+
+                                                                                                                break;
+                                                                                                                case "go inside house":
+                                                                                                                break;
+                                                                                                                default:
+                                                                                                                ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", dsHouseDecision,5000,playercharacter);
+                                                                                                                break;
+                                                                                                            }
+
+                                                                                                        }
+                                                                                                        break;
+                                                                                                        default:
+                                                                                                         ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", help,5000,playercharacter);
+                                                                                                        //reset and clear screen prompting the user to select one onf the 2 options listed
+                                                                                                        break;
+                                                                                                     }
+                                                                                                    }
                                                                                                     break;
                                                                                                 }
                                                                                             }

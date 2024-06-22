@@ -4,5 +4,6 @@ namespace DH4.Enums
     public enum ZombieSpecialAttacks
     {
         BITE,
+        DOUBLEATTACK,
     }
 }
