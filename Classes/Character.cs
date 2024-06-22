@@ -16,6 +16,7 @@ namespace DH4.Classes
         public PlayerClassTypes PlayerClass{get;set;}
         public int PlayerExpPoints{get;set;}
         public double PlayerManaAttackPoints{get; set;}
+        public double PlayerManaDefensePoints{get;set;}
 
     }
 }
