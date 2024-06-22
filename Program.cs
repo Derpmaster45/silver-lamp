@@ -324,49 +324,49 @@ namespace DH4
             characterToCreate.AttackPoints=20;
             characterToCreate.PlayerHealth=300;
             characterToCreate.PlayerExpPoints=0;
-            System.Console.WriteLine("What class would you like to be (Subject to change) 1) Knight\n 2)Dark Mage \n3) Mage\n  4) Dark Swordsman");
-            string playerclass="";
-            playerclass=Console.ReadLine();
-            while(playerclass=="")
-            {
-                switch(playerclass.ToLower())
-                {
-                    case"1":
-                    case"knight":
-                    characterToCreate.PlayerClass=PlayerClassTypes.KNIGHT;
-                    characterToCreate.PlayerManaPoints=50;
-                    characterToCreate.PlayerManaDefensePoints=25;
-                    characterToCreate.PlayerManaAttackPoints=15;
-                    break;
-                    case"2":
-                    case"dark mage":
-                    case "darkmage":
-                    characterToCreate.PlayerClass=PlayerClassTypes.DARKMAGE;
-                    characterToCreate.PlayerManaPoints=100;
-                    characterToCreate.PlayerManaDefensePoints=50;
-                    characterToCreate.PlayerManaAttackPoints=40;
-                    break;
-                    case"3":
-                    case"mage":
-                    characterToCreate.PlayerClass=PlayerClassTypes.MAGE;
-                    characterToCreate.PlayerManaPoints=100;
-                    characterToCreate.PlayerManaDefensePoints=50;
-                    characterToCreate.PlayerManaAttackPoints=35;
-                    break;
-                    case"4":
-                    case"dark swordsman":
-                    case"darkswordsman":
-                    characterToCreate.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
-                    characterToCreate.PlayerManaPoints=100;
-                    characterToCreate.PlayerManaDefensePoints=50;
-                    characterToCreate.PlayerManaAttackPoints=30;
-                    break;
-                    default:
-                    string errormessage="Please choose from one of the 4 options";
-                    ResetAndClear(errormessage,playerclass,5000,characterToCreate);
-                    break;
-                }
-            }
+            // System.Console.WriteLine("What class would you like to be (Subject to change) 1) Knight\n 2)Dark Mage \n3) Mage\n  4) Dark Swordsman");
+            // string playerclass="";
+            // playerclass=Console.ReadLine();
+            // while(playerclass=="")
+            // {
+            //     switch(playerclass.ToLower())
+            //     {
+            //         case"1":
+            //         case"knight":
+            //         characterToCreate.PlayerClass=PlayerClassTypes.KNIGHT;
+            //         characterToCreate.PlayerManaPoints=50;
+            //         characterToCreate.PlayerManaDefensePoints=25;
+            //         characterToCreate.PlayerManaAttackPoints=15;
+            //         break;
+            //         case"2":
+            //         case"dark mage":
+            //         case "darkmage":
+            //         characterToCreate.PlayerClass=PlayerClassTypes.DARKMAGE;
+            //         characterToCreate.PlayerManaPoints=100;
+            //         characterToCreate.PlayerManaDefensePoints=50;
+            //         characterToCreate.PlayerManaAttackPoints=40;
+            //         break;
+            //         case"3":
+            //         case"mage":
+            //         characterToCreate.PlayerClass=PlayerClassTypes.MAGE;
+            //         characterToCreate.PlayerManaPoints=100;
+            //         characterToCreate.PlayerManaDefensePoints=50;
+            //         characterToCreate.PlayerManaAttackPoints=35;
+            //         break;
+            //         case"4":
+            //         case"dark swordsman":
+            //         case"darkswordsman":
+            //         characterToCreate.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
+            //         characterToCreate.PlayerManaPoints=100;
+            //         characterToCreate.PlayerManaDefensePoints=50;
+            //         characterToCreate.PlayerManaAttackPoints=30;
+            //         break;
+            //         default:
+            //         string errormessage="Please choose from one of the 4 options";
+            //         ResetAndClear(errormessage,playerclass,5000,characterToCreate);
+            //         break;
+            //     }
+            // }
        
         
             return characterToCreate;
@@ -395,6 +395,7 @@ namespace DH4
                     enemy.CurrentHealthPoints-=DamageDealt;
                     //System.Console.WriteLine($"DEBUG: ENEMY HAS  {enemy.CurrentHealthPoints.ToString()} of {enemy.EnemyHeath.ToString()}");
                     System.Console.WriteLine($"You take a swing at the enemy\n dealing {DamageDealt.ToString()}");
+                    
                     break;
                     case"2":
                     // WIP Add in magic attack function and spells for player to learn.
@@ -434,6 +435,8 @@ namespace DH4
                                     {
                                         PlayerParty.CurrentHealthPoints=maxHealth;
                                     }
+                                    MageMagicChoice="";
+                                    battlesystemchoice="";
                                     break;
                                     case "2":
                                     case"fire":
@@ -444,8 +447,11 @@ namespace DH4
                                     PlayerParty.PlayerManaPoints-=SpellCost;
                                     Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()}");
                                     // call damage dealt function
+                                    MageMagicChoice="";
+                                     battlesystemchoice="";
                                     break;
                                     default:
+                                    MageMagicChoice="";
                                     ResetAndClear("Unexpected Input, resetting in 5 seconds",battlesystemchoice,5000, PlayerParty); 
                                     break;
                                     
@@ -471,6 +477,8 @@ namespace DH4
                                 Console.WriteLine($"You used lightning\n");
                                 int lightingBaseDamage=50;
                                 enemy.EnemyHealth-=(lightingBaseDamage+PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
+                                DarkMageMagicAttackChoice="";
+                                battlesystemchoice="";
                                 break;
                                 case"2":
                                 case"life drain":
@@ -668,6 +676,8 @@ namespace DH4
                 System.Console.WriteLine("Capt. Smith:Can you tell me what your name is?\n");
                 // character creation function goes here
                 string playerName=Console.ReadLine();
+                // set player class here
+                
                 Character playercharacter=CreateCharacter();
                 playercharacter.PlayerName=playerName;
                 System.Console.WriteLine($"Player Name: {playercharacter.PlayerName}\n Class: {playercharacter.PlayerClass}\n Level: {playercharacter.PlayerLevel}");
