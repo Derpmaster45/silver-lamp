@@ -3,6 +3,8 @@ namespace DH4.Enums
 {
     public enum AngelMagicAttacks
     {
-        BALLOFLIGHT
+        BALLOFLIGHT,
+        HEAL,
+        
     }
 }

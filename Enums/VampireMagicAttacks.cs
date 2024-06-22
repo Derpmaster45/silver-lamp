@@ -5,5 +5,7 @@ namespace DH4.Enums
     {
         BITE,
         DRAINHALFLIFE,
+        TRANSFORMMIST,
+        TRANSFORMBAT,
     }
 }
