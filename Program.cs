@@ -324,16 +324,28 @@ namespace DH4
             }
             characterToCreate.PlayerLevel=1;
             characterToCreate.PlayerDefensePoints=20;
-            characterToCreate.AttackPoints=20;
-            characterToCreate.PlayerHealth=300;
-            characterToCreate.PlayerExpPoints=0;
             characterToCreate.PlayerClass=playerclass;
-            switch(character.PlayerClass)
+            switch(characterToCreate.PlayerClass)
             {
                 case PlayerClassTypes.KNIGHT:
-
+                    characterToCreate.AttackPoints=20;
+                    characterToCreate.PlayerHealth=300;
+                    characterToCreate.PlayerExpPoints=0;
+                break;
+                case PlayerClassTypes.DARKMAGE:
+                    characterToCreate.AttackPoints=20;
+                    characterToCreate.PlayerHealth=300;
+                    characterToCreate.PlayerExpPoints=0;
+                break;
+                case PlayerClassTypes.DARKSWORDSMAN:
+                    characterToCreate.AttackPoints=20;
+                    characterToCreate.PlayerHealth=300;
+                    characterToCreate.PlayerExpPoints=0;
                 break;
                 case PlayerClassTypes.MAGE:
+                    characterToCreate.AttackPoints=20;
+                    characterToCreate.PlayerHealth=300;
+                    characterToCreate.PlayerExpPoints=0;
                 break;
             }
        

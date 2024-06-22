@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/run/media/jay/Extra/Projects/silver-lamp/dh4.csproj",
+      "projectUniqueName": "/home/jay/Documents/Projects/silver-lamp/dh4.csproj",
       "projectName": "dh4",
-      "projectPath": "/run/media/jay/Extra/Projects/silver-lamp/dh4.csproj",
+      "projectPath": "/home/jay/Documents/Projects/silver-lamp/dh4.csproj",
       "packagesPath": "/home/jay/.nuget/packages/",
-      "outputPath": "/run/media/jay/Extra/Projects/silver-lamp/obj/",
+      "outputPath": "/home/jay/Documents/Projects/silver-lamp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/jay/.nuget/NuGet/NuGet.Config"
