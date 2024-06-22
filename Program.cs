@@ -11,9 +11,8 @@ namespace DH4
         {
             EnemyNames enemyNames = new EnemyNames();
             string MainMenuOption="";
-            MageSpells spells = new MageSpells();
-            DarkMageMagic dmMagicSpells=new DarkMageMagic();
-            DarkSwordsmanMagic DSMagicSpells =new DarkSwordsmanMagic();
+            PlayerClassTypes playerclasslist=new PlayerClassTypes();
+
             //DS Character creation
             Character DSCharacter= new Character();
             DSCharacter.PlayerName="Dark Swordsman";
@@ -310,7 +309,7 @@ namespace DH4
                 }
                 
             }
-         Character CreateCharacter()
+         Character CreateCharacter(PlayerClassTypes playerclass)
         {
 
             Character characterToCreate=new Character();
@@ -676,10 +675,59 @@ namespace DH4
                 System.Console.WriteLine("Capt. Smith:Can you tell me what your name is?\n");
                 // character creation function goes here
                 string playerName=Console.ReadLine();
-                // set player class here
-                
                 Character playercharacter=CreateCharacter();
-                playercharacter.PlayerName=playerName;
+                // playercharacter.PlayerName=playerName;
+                // set player class here
+                   System.Console.WriteLine("What class would you like to be (Subject to change) 1) Knight\n 2)Dark Mage \n3) Mage\n  4) Dark Swordsman");
+            string playerclass="";
+            playerclass=Console.ReadLine();
+            while(playerclass=="")
+            {
+                switch(playerclass.ToLower())
+                {
+                    case"1":
+                    case"knight":
+                    playercharacter.PlayerClass=PlayerClassTypes.KNIGHT;
+                    playercharacter.PlayerManaPoints=50;
+                    playercharacter.PlayerManaDefensePoints=25;
+                    playercharacter.PlayerManaAttackPoints=15;
+                    Character playercharacter=CreateCharacter(playerclasslist);
+                    break;
+                    case"2":
+                    case"dark mage":
+                    case "darkmage":
+                    playercharacter.PlayerClass=PlayerClassTypes.DARKMAGE;
+                    playercharacter.PlayerManaPoints=100;
+                    playercharacter.PlayerManaDefensePoints=50;
+                    playercharacter.PlayerManaAttackPoints=40;
+                    Character playercharacter=CreateCharacter(playerclasslist);
+                    break;
+                    case"3":
+                    case"mage":
+                    playercharacter.PlayerClass=PlayerClassTypes.MAGE;
+                    playercharacter.PlayerManaPoints=100;
+                    playercharacter.PlayerManaDefensePoints=50;
+                    playercharacter.PlayerManaAttackPoints=35;
+                    Character playercharacter=CreateCharacter(playerclasslist);
+                     break;
+                     case"4":
+                     case"dark swordsman":
+                     case"darkswordsman":
+                     playercharacter.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
+                     playerclasslist=PlayerClassTypes.DARKSWORDSMAN;
+                     playercharacter.PlayerManaPoints=100;
+                     playercharacter.PlayerManaDefensePoints=50;
+                     playercharacter.PlayerManaAttackPoints=30;
+                     Character playercharacter=CreateCharacter(playerclasslist);
+                     break;
+                     default:
+                     string errormessage="Please choose from one of the 4 options";
+                     ResetAndClear(errormessage,playerclass,5000,playercharacter);
+                 break;
+                 }
+                // playercharacter.PlayerClass
+             }
+                
                 System.Console.WriteLine($"Player Name: {playercharacter.PlayerName}\n Class: {playercharacter.PlayerClass}\n Level: {playercharacter.PlayerLevel}");
                 System.Console.WriteLine("Capt.Smith: We will give you a few days to recover.\n");
                 PromptedClearScreen();
