@@ -672,12 +672,12 @@ namespace DH4
                     playerclasslist=PlayerClassTypes.KNIGHT;
                      Character knightplayercharacter=CreateCharacter(playerclasslist);
                 }
-                else if(playerclass.ToLower()=="Mage")
+                else if(playerclass.ToLower()=="Mage"|| playerclass.ToLower()=="3")
                 {
                     playerclasslist=PlayerClassTypes.MAGE;
                     Character mageplayercharacter=CreateCharacter(playerclasslist);              
                 }
-                else if (playerclass.ToLower()=="Dark Mage" || playerclass.ToLower()=="c62")
+                else if (playerclass.ToLower()=="Dark Mage" || playerclass.ToLower()=="2")
                 {
                     playerclasslist=PlayerClassTypes.DARKMAGE;
                      Character dmplayercharacter=CreateCharacter(playerclasslist);
