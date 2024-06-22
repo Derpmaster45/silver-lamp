@@ -331,6 +331,9 @@ namespace DH4
             switch(character.PlayerClass)
             {
                 case PlayerClassTypes.KNIGHT:
+
+                break;
+                case PlayerClassTypes.MAGE:
                 break;
             }
        
