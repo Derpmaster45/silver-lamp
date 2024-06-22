@@ -660,45 +660,43 @@ namespace DH4
                 
               
                 // set player class here
-            //  System.Console.WriteLine("What class would you like to be (Subject to change) 1) Knight\n 2)Dark Mage \n3) Mage\n  4) Dark Swordsman");
-            // string playerclass="";
-            // playerclass=Console.ReadLine();
-            // while(playerclass=="")
-            // {
-            //     switch(playerclass.ToLower())
-            //     {
-            //         case"1":
-            //         case"knight":
-            //         playerclasslist= PlayerClassTypes.KNIGHT;
-            //          Character playercharacter=CreateCharacter(playerclasslist);
-            //         break;
-            //         case"2":
-            //         case"dark mage":
-            //         case "darkmage":
-            //         playerclasslist= PlayerClassTypes.DARKMAGE;
-            //          Character playercharacter=CreateCharacter(playerclasslist);
-            //         break;
-            //         case"3":
-            //         case"mage":
-            //         playerclasslist=PlayerClassTypes.MAGE;
-            //          Character playercharacter=CreateCharacter(playerclasslist);
-            //          break;
-            //          case"4":
-            //          case"dark swordsman":
-            //          case"darkswordsman":
-            //          playerclasslist=PlayerClassTypes.DARKSWORDSMAN;
-            //           Character playercharacter=CreateCharacter(playerclasslist);
-            //          break;
-            //          default:
-            //          string errormessage="Please choose from one of the 4 options";
-            //          playerclass="";
-            //          //ResetAndClear(errormessage,playerclass,5000,playercharacter);
-            //      break;
-            //      }
-            //  }
-                playerclasslist=PlayerClassTypes.KNIGHT;
+             
+            string playerclass="";
+            
+            while(playerclass=="")
+            {
+                System.Console.WriteLine("What class would you like to be (Subject to change)\n1) Knight\n2)Dark Mage\n3) Mage\n4) Dark Swordsman");
+                playerclass=Console.ReadLine();
+                if(playerclass.ToLower()=="Knight" || playerclass.ToLower()=="1")
+                {
+                    playerclasslist=PlayerClassTypes.KNIGHT;
+                     Character knightplayercharacter=CreateCharacter(playerclasslist);
+                }
+                else if(playerclass.ToLower()=="Mage")
+                {
+                    playerclasslist=PlayerClassTypes.MAGE;
+                    Character mageplayercharacter=CreateCharacter(playerclasslist);              
+                }
+                else if (playerclass.ToLower()=="Dark Mage" || playerclass.ToLower()=="c62")
+                {
+                    playerclasslist=PlayerClassTypes.DARKMAGE;
+                     Character dmplayercharacter=CreateCharacter(playerclasslist);
+                }
+                else if(playerclass.ToLower()=="Dark Swordsman"|| playerclass.ToLower()=="4")
+                {
+                    playerclasslist=PlayerClassTypes.DARKSWORDSMAN;
+                  
+                }
+                else 
+                {
+                    Console.WriteLine("Please Select from the 4 options");
+                }
+            }
+                
+              
+              //playercharacter.PlayerClass=playerclasslist;
                Character playercharacter=CreateCharacter(playerclasslist);
-              playercharacter.PlayerName=playerName;
+               playercharacter.PlayerName=playerName;
                 
                 System.Console.WriteLine($"Player Name: {playercharacter.PlayerName}\n Class: {playercharacter.PlayerClass}\n Level: {playercharacter.PlayerLevel}");
                 System.Console.WriteLine("Capt.Smith: We will give you a few days to recover.\n");
