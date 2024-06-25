@@ -332,6 +332,7 @@ namespace DH4
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=10;
+                    characterToCreate.PlayerMaxManaPoints=10;;
                 break;
                 case PlayerClassTypes.DARKMAGE:
                     characterToCreate.AttackPoints=10;
@@ -339,7 +340,8 @@ namespace DH4
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=60;
                     characterToCreate.PlayerManaDefensePoints=30;
-                    characterToCreate.PlayerManaPoints=350;
+                    characterToCreate.PlayerMaxManaPoints=350;
+                    characterToCreate.PlayerManaPoints=characterToCreate.PlayerMaxManaPoints;
 
                 break;
                 case PlayerClassTypes.DARKSWORDSMAN:
