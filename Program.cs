@@ -42,12 +42,18 @@ namespace DH4
                     player.CurrentHealthPoints=player.PlayerHealth;
                     player.AttackPoints+=50;
                     player.PlayerDefensePoints+=50;
+                    player.PlayerManaAttackPoints+=25;
+                    player.PlayerManaDefensePoints+=30;
+                    player.PlayerMaxManaPoints+=50;
                 }
             }
             // show player level is a debug stat
             void ShowPlayerStats(Character player)
             {
-
+                // display player Name followed by level
+                Console.WriteLine($"Name: {player.PlayerName}\n Player Level {player.PlayerLevel}\n");
+                // display Attack points mana points 
+                Console.WriteLine[$"Player Mana"]
             }
            double DoDamageToPlayer(Character character, EnemyNames namelist, Enemy enemy)
            {
