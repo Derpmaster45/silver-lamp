@@ -33,6 +33,10 @@ namespace DH4
 
 
             Enemy enemy= new Enemy();
+            void CheckPlayerLevel(Character player)
+            {
+                
+            }
            double DoDamageToPlayer(Character character, EnemyNames namelist, Enemy enemy)
            {
              AngelMagicAttacks angelMagic=new AngelMagicAttacks();
@@ -345,9 +349,10 @@ namespace DH4
 
                 break;
                 case PlayerClassTypes.DARKSWORDSMAN:
-                    characterToCreate.AttackPoints=20;
+                    characterToCreate.AttackPoints=40;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.PlayerExpPoints=0;
+
                 break;
                 case PlayerClassTypes.MAGE:
                     characterToCreate.AttackPoints=20;
