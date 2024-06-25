@@ -35,7 +35,19 @@ namespace DH4
             Enemy enemy= new Enemy();
             void CheckPlayerLevel(Character player)
             {
-                
+                if(player.PlayerExpPoints==100)
+                {
+                    player.PlayerLevel+=1;
+                    player.PlayerHealth+=100;
+                    player.CurrentHealthPoints=player.PlayerHealth;
+                    player.AttackPoints+=50;
+                    player.PlayerDefensePoints+=50;
+                }
+            }
+            // show player level is a debug stat
+            void ShowPlayerStats(Character player)
+            {
+
             }
            double DoDamageToPlayer(Character character, EnemyNames namelist, Enemy enemy)
            {
