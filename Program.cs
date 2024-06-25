@@ -323,19 +323,24 @@ namespace DH4
                 characterToCreate.PlayerName=Console.ReadLine();
             }
             characterToCreate.PlayerLevel=1;
-            characterToCreate.PlayerDefensePoints=20;
+            characterToCreate.PlayerDefensePoints=30;
             characterToCreate.PlayerClass=playerclass;
             switch(characterToCreate.PlayerClass)
             {
                 case PlayerClassTypes.KNIGHT:
-                    characterToCreate.AttackPoints=20;
+                    characterToCreate.AttackPoints=30;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.PlayerExpPoints=0;
+                    characterToCreate.PlayerManaAttackPoints=10;
                 break;
                 case PlayerClassTypes.DARKMAGE:
-                    characterToCreate.AttackPoints=20;
+                    characterToCreate.AttackPoints=10;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.PlayerExpPoints=0;
+                    characterToCreate.PlayerManaAttackPoints=60;
+                    characterToCreate.PlayerManaDefensePoints=30;
+                    characterToCreate.PlayerManaPoints=350;
+
                 break;
                 case PlayerClassTypes.DARKSWORDSMAN:
                     characterToCreate.AttackPoints=20;
@@ -416,6 +421,7 @@ namespace DH4
                                     {
                                         PlayerParty.CurrentHealthPoints=maxHealth;
                                     }
+                                    DamageDealt=0;
                                     MageMagicChoice="";
                                     battlesystemchoice="";
                                     break;
@@ -424,7 +430,7 @@ namespace DH4
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts fire");
                                     SpellCost=25; 
                                     double fireBaseDamage=25;
-                                    enemy.EnemyHealth-=(fireBaseDamage+PlayerParty.PlayerManaAttackPoints)/enemy.EnemyManaDefensePoints;
+                                    DamageDealt=enemy.EnemyHealth-=(fireBaseDamage+PlayerParty.PlayerManaAttackPoints)/enemy.EnemyManaDefensePoints;
                                     PlayerParty.PlayerManaPoints-=SpellCost;
                                     Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()}");
                                     // call damage dealt function
