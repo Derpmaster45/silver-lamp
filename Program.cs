@@ -457,7 +457,7 @@ namespace DH4
                                 case "lighting":
                                 Console.WriteLine($"You used lightning\n");
                                 int lightingBaseDamage=50;
-                                enemy.EnemyHealth-=(lightingBaseDamage+PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
+                                DamageDealt=enemy.EnemyHealth-=(lightingBaseDamage+PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
                                 DarkMageMagicAttackChoice="";
                                 battlesystemchoice="";
                                 break;
@@ -466,6 +466,7 @@ namespace DH4
                                 Console.WriteLine($"{PlayerParty.PlayerName} has used life drain\n");
                                 double lifeTaken=enemy.CurrentHealthPoints-50;
                                 PlayerParty.CurrentHealthPoints+=lifeTaken;
+                                DamageDealt=lifeTaken;
                                 Console.WriteLine($"it dealt {lifeTaken} points and healed the player. Your new health is{PlayerParty.CurrentHealthPoints}");
                                 break;
                                 case"3":
@@ -499,6 +500,7 @@ namespace DH4
 				                    double baseDamage=78;
                                     double DamageDeal= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints+baseDamage);
                                     enemy.CurrentHealthPoints-=DamageDeal;
+                                    DamageDealt=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
 					                double acidRainPointsRequired=15;
 					                PlayerParty.PlayerManaPoints-=acidRainPointsRequired;
