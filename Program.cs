@@ -35,7 +35,35 @@ namespace DH4
             Enemy enemy= new Enemy();
             void CheckPlayerLevel(Character player)
             {
-                
+                if(player.PlayerExpPoints==100)
+                {
+                    player.PlayerLevel+=1;
+                    player.PlayerHealth+=100;
+                    player.CurrentHealthPoints=player.PlayerHealth;
+                    player.AttackPoints+=50;
+                    player.PlayerDefensePoints+=50;
+                    player.PlayerManaAttackPoints+=25;
+                    player.PlayerManaDefensePoints+=30;
+                    player.PlayerMaxManaPoints+=50;
+                    player.PlayerManaPoints=player.PlayerMaxManaPoints;
+                }
+            }
+            // show player level is a debug function to display player stats.
+            void ShowPlayerStats(Character player)
+            {
+                // display player Name followed by level
+                Console.WriteLine($"Name: {player.PlayerName}\n Player Level: {player.PlayerLevel}\n");
+                Console.WriteLine($"Player Health: {player.CurrentHealthPoints}\n");
+                Console.WriteLine($"Maximum Player Health Points: {player.PlayerHealth}\n");
+                // display Attack points mana points 
+                Console.WriteLine($"Max Player Mana Points:{player.PlayerMaxManaPoints}\n");
+                Console.WriteLine($"Current Player Mana Points: {player.PlayerManaPoints}\n");
+                Console.WriteLine($"Player Attack Points: {player.AttackPoints}\n");
+                Console.WriteLine($"Player Magic Attack Points:{player.PlayerManaAttackPoints}\n");
+                Console.WriteLine($"Player Defense Points : {player.PlayerDefensePoints}\n");
+                Console.WriteLine($"Player Magic Defense points: {player.PlayerManaDefensePoints}\n");
+
+
             }
            double DoDamageToPlayer(Character character, EnemyNames namelist, Enemy enemy)
            {
