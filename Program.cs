@@ -9,6 +9,8 @@ namespace DH4
     {
         public static void Main(string[] args)
         {
+            // function to save game goes here.
+
             EnemyNames enemyNames = new EnemyNames();
             string MainMenuOption="";
             PlayerClassTypes playerclasslist=new PlayerClassTypes();
@@ -35,7 +37,7 @@ namespace DH4
             Enemy enemy= new Enemy();
             void CheckPlayerLevel(Character player)
             {
-                if(player.PlayerExpPoints==100)
+                if(player.PlayerExpPoints==50)
                 {
                     player.PlayerLevel+=1;
                     player.PlayerHealth+=100;
@@ -46,6 +48,49 @@ namespace DH4
                     player.PlayerManaDefensePoints+=30;
                     player.PlayerMaxManaPoints+=50;
                     player.PlayerManaPoints=player.PlayerMaxManaPoints;
+                }
+                else if(player.PlayerExpPoints==150)
+                {
+                    player.PlayerLevel+=1;
+                    Console.WriteLine($"{player.PlayerName} is now level{player.PlayerLevel} \n");
+                     //player.PlayerLevel+=1;
+                    player.PlayerHealth+=100;
+                    player.CurrentHealthPoints=player.PlayerHealth;
+                    player.AttackPoints+=50;
+                    player.PlayerDefensePoints+=50;
+                    player.PlayerManaAttackPoints+=25;
+                    player.PlayerManaDefensePoints+=30;
+                    player.PlayerMaxManaPoints+=50;
+                    player.PlayerManaPoints=player.PlayerMaxManaPoints;
+
+                }
+                else if(player.PlayerExpPoints==300)
+                {
+                    player.PlayerLevel+=1;
+                    Console.WriteLine($"{player.PlayerName} is now level {player.PlayerLevel}");
+                    // player.PlayerLevel+=1;
+                    player.PlayerHealth+=100;
+                    player.CurrentHealthPoints=player.PlayerHealth;
+                    player.AttackPoints+=50;
+                    player.PlayerDefensePoints+=50;
+                    player.PlayerManaAttackPoints+=25;
+                    player.PlayerManaDefensePoints+=30;
+                    player.PlayerMaxManaPoints+=50;
+                    player.PlayerManaPoints=player.PlayerMaxManaPoints;
+                }
+                else if(player.PlayerExpPoints==400)
+                {
+                    player.PlayerLevel+=1
+                    Console.WriteLine($"{player.PlayerName} is now level {player.PlayerLevel}");
+                    player.PlayerHealth+=100;
+                    player.CurrentHealthPoints=player.PlayerHealth;
+                    player.AttackPoints+=50;
+                    player.PlayerDefensePoints+=50;
+                    player.PlayerManaAttackPoints+=25;
+                    player.PlayerManaDefensePoints+=30;
+                    player.PlayerMaxManaPoints+=50;
+                    player.PlayerManaPoints=player.PlayerMaxManaPoints;
+
                 }
             }
             // show player level is a debug function to display player stats.
@@ -386,6 +431,9 @@ namespace DH4
                     characterToCreate.AttackPoints=20;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.PlayerExpPoints=0;
+                    characterToCreate.PlayerManaAttackPoints=60;
+                    characterToCreate.PlayerManaDefensePoints=30;
+                    characterToCreate.PlayerMaxManaPoints=350;
                 break;
             }
        
