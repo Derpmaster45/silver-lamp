@@ -3,14 +3,25 @@ using System.Collections.Concurrent;
 using System.Drawing;
 using DH4.Classes;
 using DH4.Enums;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace DH4
 {
     class Game
     {
+        public void Serialize(Character characterToSave)
+        {
+            Character characterToSerialize= new Character();
+            File saveFlie=new File("DH4.dat");
+            Stream FileStream=saveFlie.Open(FileMode.Create);
+            BinaryFormatter bf= new BinaryFormatter();
+            
+        }
         public static void Main(string[] args)
         {
             // function to save game goes here.
-
+           
             EnemyNames enemyNames = new EnemyNames();
             string MainMenuOption="";
             PlayerClassTypes playerclasslist=new PlayerClassTypes();
