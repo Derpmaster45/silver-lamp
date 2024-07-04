@@ -13,9 +13,19 @@ namespace DH4
         public void Serialize(Character characterToSave)
         {
             Character characterToSerialize= new Character();
-            File saveFlie=new File("DH4.dat");
-            Stream FileStream=saveFlie.Open(FileMode.Create);
-            BinaryFormatter bf= new BinaryFormatter();
+            characterToSerialize.PlayerName=characterToSave.PlayerName;
+            characterToSerialize.PlayerLevel=characterToSave.PlayerLevel;
+            characterToSerialize.AttackPoints=characterToSave.AttackPoints;
+            characterToSerialize.PlayerClass=characterToSave.PlayerClass;
+            characterToSerialize.PlayerDefensePoints=characterToSave.PlayerDefensePoints;
+            characterToSerialize.PlayerHealth=characterToSave.PlayerHealth;
+            characterToSerialize.PlayerManaAttackPoints=characterToSave.PlayerManaAttackPoints;
+            characterToSerialize.PlayerMaxManaPoints=characterToSave.PlayerMaxManaPoints;
+            characterToSerialize.PlayerManaDefensePoints=characterToSave.PlayerManaDefensePoints;
+            characterToSerialize.PlayerManaPoints=characterToSave.PlayerManaPoints;
+            //File saveFlie=new File("DH4.dat");
+            //Stream FileStream=saveFlie.Open(FileMode.Create);
+           // BinaryFormatter bf= new BinaryFormatter();
             
         }
         public static void Main(string[] args)
@@ -91,7 +101,7 @@ namespace DH4
                 }
                 else if(player.PlayerExpPoints==400)
                 {
-                    player.PlayerLevel+=1
+                    player.PlayerLevel+=1;
                     Console.WriteLine($"{player.PlayerName} is now level {player.PlayerLevel}");
                     player.PlayerHealth+=100;
                     player.CurrentHealthPoints=player.PlayerHealth;
