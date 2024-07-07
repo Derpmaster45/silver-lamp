@@ -10,8 +10,9 @@ namespace DH4
 {
     class Game
     {
-        public void Serialize(Character characterToSave)
+        public void Serialize(Character characterToSave string checkpoint)
         {
+            string checkpointToSave=checkpoint;
             Character characterToSerialize= new Character();
             characterToSerialize.PlayerName=characterToSave.PlayerName;
             characterToSerialize.PlayerLevel=characterToSave.PlayerLevel;
@@ -23,6 +24,10 @@ namespace DH4
             characterToSerialize.PlayerMaxManaPoints=characterToSave.PlayerMaxManaPoints;
             characterToSerialize.PlayerManaDefensePoints=characterToSave.PlayerManaDefensePoints;
             characterToSerialize.PlayerManaPoints=characterToSave.PlayerManaPoints;
+            try
+            { 
+                File saveFlie=new("DH4.dat"); 
+            }
             //File saveFlie=new File("DH4.dat");
             //Stream FileStream=saveFlie.Open(FileMode.Create);
            // BinaryFormatter bf= new BinaryFormatter();
