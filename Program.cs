@@ -254,7 +254,7 @@ namespace DH4
                             DamageDealtToPlayer=0;
                             break;
                             default:
-                            Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
+                            Console.WriteLine("ERR: Selected Attack is not in game. (Number Generator error)");
                             DamageDealtToPlayer=0;
                             break;
                         }
@@ -272,6 +272,7 @@ namespace DH4
                                 // add in damage equation here
                                 double biteDamageDealt=enemy.EnemyManaAttackPoints/character.PlayerManaDefensePoints;
                                 DamageDealtToPlayer=biteDamageDealt;
+                                DamageDealt=biteDamageDealt;
                             break;
                             case 2:
                             Console.WriteLine("Zombie used PLACEHOLDER 1"); 
@@ -940,15 +941,16 @@ namespace DH4
                                                                                                         string dsHouseDecision="";
                                                                                                         while(dsHouseDecision=="")
                                                                                                         {
-                                                                                                            Console.WriteLine("You walk up to the house, it looks like it has been in disarray for quite some time.\n");
+                                                                                                            Console.WriteLine("You walk up to the house, its a medium size house. What do you do?\n");
                                                                                                             Console.WriteLine("1) Walk around house \n2) Go inside \n");
                                                                                                             dsHouseDecision=Console.ReadLine();
                                                                                                             switch(dsHouseDecision.ToLower())
                                                                                                             {
                                                                                                                 case"walk around house":
-
+                                                                                                                    Console.Writeline("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.")
                                                                                                                 break;
                                                                                                                 case "go inside house":
+                                                                                                                Console.WriteLine("You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone ralking to a door.")
                                                                                                                 break;
                                                                                                                 default:
                                                                                                                 ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", dsHouseDecision,5000,playercharacter);
