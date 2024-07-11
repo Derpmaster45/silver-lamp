@@ -32,6 +32,15 @@ namespace DH4
            // output for testing purposes
            Console.WriteLine(File.ReadAllText(saveName));
         }
+        public static void LoadGame(string saveName)
+        {
+            saveName="DH4.Json";
+
+            string SaveName= saveName;
+            string jsonObjectString=File.ReadAllText(SaveName);
+            Character characterToLoad= JsonSerializer.Deserialize<Character>(jsonObjectString);
+
+        }
         public static void Main(string[] args)
         {
             // function to save game goes here.
@@ -726,7 +735,7 @@ namespace DH4
             Console.WriteLine("DH4 New Generation\n 1) New Game\n 2) Quit\n");
             MainMenuOption=Console.ReadLine();
             // menu switch
-            switch(MainMenuOption)
+            switch(MainMenuOption.ToLower())
             {
                 case"1":
                 case"New Game":
@@ -1097,6 +1106,11 @@ namespace DH4
                 case"quit game":
                 case "Quit Game":
                 QuitGame();
+                break;
+                case "load game":
+                case "3":
+                case "load":
+                LoadGame("DH4.Json");
                 break;
             }
 
