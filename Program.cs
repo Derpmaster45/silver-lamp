@@ -5,12 +5,12 @@ using DH4.Classes;
 using DH4.Enums;
 using System.IO;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.Json;
 namespace DH4
 {
     class Game
     {
-        public void Serialize(Character characterToSave string checkpoint)
+        public static void SerializeCharacter(Character characterToSave, string checkpoint)
         {
             string checkpointToSave=checkpoint;
             Character characterToSerialize= new Character();
@@ -24,18 +24,22 @@ namespace DH4
             characterToSerialize.PlayerMaxManaPoints=characterToSave.PlayerMaxManaPoints;
             characterToSerialize.PlayerManaDefensePoints=characterToSave.PlayerManaDefensePoints;
             characterToSerialize.PlayerManaPoints=characterToSave.PlayerManaPoints;
-            try
-            { 
-                //File saveFlie=new("DH4.dat"); 
-                 File saveFlie=new File("DH4.dat");
-                Stream FileStream=saveFlie.Open(FileMode.Create);
-                BinaryFormatter bf= new BinaryFormatter();
-            }
-           catch (Exception ex)
-           {
-            Console.WriteLine(ex.ToString);
-           }
-            
+            characterToSerialize.MostRecentCheckpoint=checkpointToSave;
+           // data for file
+           string saveName="DH4.Json";
+           string jsonObjectString=JsonSerializer.Serialize(characterToSerialize);
+           File.WriteAllText(saveName,jsonObjectString);
+           // output for testing purposes
+           Console.WriteLine(File.ReadAllText(saveName));
+        }
+        public static void LoadGame(string saveName)
+        {
+            saveName="DH4.Json";
+
+            string SaveName= saveName;
+            string jsonObjectString=File.ReadAllText(SaveName);
+            Character characterToLoad= JsonSerializer.Deserialize<Character>(jsonObjectString);
+
         }
         public static void Main(string[] args)
         {
@@ -302,7 +306,7 @@ namespace DH4
                                 // add in damage equation here
                                 double biteDamageDealt=enemy.EnemyManaAttackPoints/character.PlayerManaDefensePoints;
                                 DamageDealtToPlayer=biteDamageDealt;
-                                DamageDealt=biteDamageDealt;
+                                //DamageDealt=biteDamageDealt;
                             break;
                             case 2:
                             Console.WriteLine("Zombie used PLACEHOLDER 1"); 
@@ -731,7 +735,7 @@ namespace DH4
             Console.WriteLine("DH4 New Generation\n 1) New Game\n 2) Quit\n");
             MainMenuOption=Console.ReadLine();
             // menu switch
-            switch(MainMenuOption)
+            switch(MainMenuOption.ToLower())
             {
                 case"1":
                 case"New Game":
@@ -828,6 +832,7 @@ namespace DH4
                 string initBranchingPath="";
                 int LiesTold=0;
                 int TruthsTold=0;
+                SerializeCharacter(playercharacter,initBranchingPath);
                 while(initBranchingPath=="")
                 {
                     System.Console.WriteLine("Tutorial: This is a branching path, your actions affect the story. Do you want to \n1) Lie \n2) Tell the truth");
@@ -979,17 +984,13 @@ namespace DH4
 
                                                                                                                 case"walk around house": 
                                                                                                                 case"1":
-                                                                                                                Console.WriteLine("You walk around the house, and see a single grave. \n Press any key to go back.");
-
-
-                                                                                                                case"walk around house":
-                                                                                                                    Console.Writeline("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.\n");
+                                                                                                                    Console.WriteLine("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.\n");
 
                                                                                                                 break;
                                                                                                                 case "2":
                                                                                                                 case "go inside house":
 
-                                                                                                                    Console.WriteLine("You walk into the house.");
+                                                                                                                    //Console.WriteLine("You walk into the house.");
                                                                                                                 Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n  6");
                                                                                                                 break;
                                                                                                                 default:
@@ -1105,6 +1106,11 @@ namespace DH4
                 case"quit game":
                 case "Quit Game":
                 QuitGame();
+                break;
+                case "load game":
+                case "3":
+                case "load":
+                LoadGame("DH4.Json");
                 break;
             }
 

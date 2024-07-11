@@ -18,6 +18,7 @@ namespace DH4.Classes
         public int PlayerExpPoints{get;set;}
         public double PlayerManaAttackPoints{get; set;}
         public double PlayerManaDefensePoints{get;set;}
+        public string MostRecentCheckpoint{get;set;}
 
     }
 }
