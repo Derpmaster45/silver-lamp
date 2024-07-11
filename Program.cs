@@ -3,12 +3,49 @@ using System.Collections.Concurrent;
 using System.Drawing;
 using DH4.Classes;
 using DH4.Enums;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Text.Json;
 namespace DH4
 {
     class Game
     {
+        public static void SerializeCharacter(Character characterToSave, string checkpoint)
+        {
+            string checkpointToSave=checkpoint;
+            Character characterToSerialize= new Character();
+            characterToSerialize.PlayerName=characterToSave.PlayerName;
+            characterToSerialize.PlayerLevel=characterToSave.PlayerLevel;
+            characterToSerialize.AttackPoints=characterToSave.AttackPoints;
+            characterToSerialize.PlayerClass=characterToSave.PlayerClass;
+            characterToSerialize.PlayerDefensePoints=characterToSave.PlayerDefensePoints;
+            characterToSerialize.PlayerHealth=characterToSave.PlayerHealth;
+            characterToSerialize.PlayerManaAttackPoints=characterToSave.PlayerManaAttackPoints;
+            characterToSerialize.PlayerMaxManaPoints=characterToSave.PlayerMaxManaPoints;
+            characterToSerialize.PlayerManaDefensePoints=characterToSave.PlayerManaDefensePoints;
+            characterToSerialize.PlayerManaPoints=characterToSave.PlayerManaPoints;
+            characterToSerialize.MostRecentCheckpoint=checkpointToSave;
+           // data for file
+           string saveName="DH4.Json";
+           string jsonObjectString=JsonSerializer.Serialize(characterToSerialize);
+           File.WriteAllText(saveName,jsonObjectString);
+           // output for testing purposes
+           Console.WriteLine(File.ReadAllText(saveName));
+        }
+        public static void LoadGame(string saveName)
+        {
+        // read from most recent checkpoint
+            saveName="DH4.Json";
+
+            string SaveName= saveName;
+            string jsonObjectString=File.ReadAllText(SaveName);
+            Character characterToLoad= JsonSerializer.Deserialize<Character>(jsonObjectString);
+
+        }
         public static void Main(string[] args)
         {
+            // function to save game goes here.
+           
             EnemyNames enemyNames = new EnemyNames();
             string MainMenuOption="";
             PlayerClassTypes playerclasslist=new PlayerClassTypes();
@@ -33,6 +70,81 @@ namespace DH4
 
 
             Enemy enemy= new Enemy();
+            void CheckPlayerLevel(Character player)
+            {
+                if(player.PlayerExpPoints==50)
+                {
+                    player.PlayerLevel+=1;
+                    player.PlayerHealth+=100;
+                    player.CurrentHealthPoints=player.PlayerHealth;
+                    player.AttackPoints+=50;
+                    player.PlayerDefensePoints+=50;
+                    player.PlayerManaAttackPoints+=25;
+                    player.PlayerManaDefensePoints+=30;
+                    player.PlayerMaxManaPoints+=50;
+                    player.PlayerManaPoints=player.PlayerMaxManaPoints;
+                }
+                else if(player.PlayerExpPoints==150)
+                {
+                    player.PlayerLevel+=1;
+                    Console.WriteLine($"{player.PlayerName} is now level{player.PlayerLevel} \n");
+                     //player.PlayerLevel+=1;
+                    player.PlayerHealth+=100;
+                    player.CurrentHealthPoints=player.PlayerHealth;
+                    player.AttackPoints+=50;
+                    player.PlayerDefensePoints+=50;
+                    player.PlayerManaAttackPoints+=25;
+                    player.PlayerManaDefensePoints+=30;
+                    player.PlayerMaxManaPoints+=50;
+                    player.PlayerManaPoints=player.PlayerMaxManaPoints;
+
+                }
+                else if(player.PlayerExpPoints==300)
+                {
+                    player.PlayerLevel+=1;
+                    Console.WriteLine($"{player.PlayerName} is now level {player.PlayerLevel}");
+                    // player.PlayerLevel+=1;
+                    player.PlayerHealth+=100;
+                    player.CurrentHealthPoints=player.PlayerHealth;
+                    player.AttackPoints+=50;
+                    player.PlayerDefensePoints+=50;
+                    player.PlayerManaAttackPoints+=25;
+                    player.PlayerManaDefensePoints+=30;
+                    player.PlayerMaxManaPoints+=50;
+                    player.PlayerManaPoints=player.PlayerMaxManaPoints;
+                }
+                else if(player.PlayerExpPoints==400)
+                {
+                    player.PlayerLevel+=1;
+                    Console.WriteLine($"{player.PlayerName} is now level {player.PlayerLevel}");
+                    player.PlayerHealth+=100;
+                    player.CurrentHealthPoints=player.PlayerHealth;
+                    player.AttackPoints+=50;
+                    player.PlayerDefensePoints+=50;
+                    player.PlayerManaAttackPoints+=25;
+                    player.PlayerManaDefensePoints+=30;
+                    player.PlayerMaxManaPoints+=50;
+                    player.PlayerManaPoints=player.PlayerMaxManaPoints;
+
+                }
+            }
+            // show player level is a debug function to display player stats.
+            void ShowPlayerStats(Character player)
+            {
+                // display player Name followed by level
+                Console.WriteLine($"Name: {player.PlayerName}\n Player Level: {player.PlayerLevel}\n");
+                Console.WriteLine($"Player Health: {player.CurrentHealthPoints}\n");
+                Console.WriteLine($"Maximum Player Health Points: {player.PlayerHealth}\n");
+                // display Attack points mana points 
+                Console.WriteLine($"Max Player Mana Points:{player.PlayerMaxManaPoints}\n");
+                Console.WriteLine($"Current Player Mana Points: {player.PlayerManaPoints}\n");
+                Console.WriteLine($"Player Attack Points: {player.AttackPoints}\n");
+                Console.WriteLine($"Player Magic Attack Points:{player.PlayerManaAttackPoints}\n");
+                Console.WriteLine($"Player Defense Points : {player.PlayerDefensePoints}\n");
+                Console.WriteLine($"Player Magic Defense points: {player.PlayerManaDefensePoints}\n");
+
+
+            }
            double DoDamageToPlayer(Character character, EnemyNames namelist, Enemy enemy)
            {
              AngelMagicAttacks angelMagic=new AngelMagicAttacks();
@@ -177,7 +289,7 @@ namespace DH4
                             DamageDealtToPlayer=0;
                             break;
                             default:
-                            Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
+                            Console.WriteLine("ERR: Selected Attack is not in game. (Number Generator error)");
                             DamageDealtToPlayer=0;
                             break;
                         }
@@ -195,6 +307,7 @@ namespace DH4
                                 // add in damage equation here
                                 double biteDamageDealt=enemy.EnemyManaAttackPoints/character.PlayerManaDefensePoints;
                                 DamageDealtToPlayer=biteDamageDealt;
+                                //DamageDealt=biteDamageDealt;
                             break;
                             case 2:
                             Console.WriteLine("Zombie used PLACEHOLDER 1"); 
@@ -323,29 +436,40 @@ namespace DH4
                 characterToCreate.PlayerName=Console.ReadLine();
             }
             characterToCreate.PlayerLevel=1;
-            characterToCreate.PlayerDefensePoints=20;
+            characterToCreate.PlayerDefensePoints=30;
             characterToCreate.PlayerClass=playerclass;
             switch(characterToCreate.PlayerClass)
             {
                 case PlayerClassTypes.KNIGHT:
-                    characterToCreate.AttackPoints=20;
+                    characterToCreate.AttackPoints=30;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.PlayerExpPoints=0;
+                    characterToCreate.PlayerManaAttackPoints=10;
+                    characterToCreate.PlayerMaxManaPoints=10;;
                 break;
                 case PlayerClassTypes.DARKMAGE:
-                    characterToCreate.AttackPoints=20;
+                    characterToCreate.AttackPoints=10;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.PlayerExpPoints=0;
+                    characterToCreate.PlayerManaAttackPoints=60;
+                    characterToCreate.PlayerManaDefensePoints=30;
+                    characterToCreate.PlayerMaxManaPoints=350;
+                    characterToCreate.PlayerManaPoints=characterToCreate.PlayerMaxManaPoints;
+
                 break;
                 case PlayerClassTypes.DARKSWORDSMAN:
-                    characterToCreate.AttackPoints=20;
+                    characterToCreate.AttackPoints=40;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.PlayerExpPoints=0;
+
                 break;
                 case PlayerClassTypes.MAGE:
                     characterToCreate.AttackPoints=20;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.PlayerExpPoints=0;
+                    characterToCreate.PlayerManaAttackPoints=60;
+                    characterToCreate.PlayerManaDefensePoints=30;
+                    characterToCreate.PlayerMaxManaPoints=350;
                 break;
             }
        
@@ -416,6 +540,7 @@ namespace DH4
                                     {
                                         PlayerParty.CurrentHealthPoints=maxHealth;
                                     }
+                                    DamageDealt=0;
                                     MageMagicChoice="";
                                     battlesystemchoice="";
                                     break;
@@ -424,7 +549,7 @@ namespace DH4
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts fire");
                                     SpellCost=25; 
                                     double fireBaseDamage=25;
-                                    enemy.EnemyHealth-=(fireBaseDamage+PlayerParty.PlayerManaAttackPoints)/enemy.EnemyManaDefensePoints;
+                                    DamageDealt=enemy.EnemyHealth-=(fireBaseDamage+PlayerParty.PlayerManaAttackPoints)/enemy.EnemyManaDefensePoints;
                                     PlayerParty.PlayerManaPoints-=SpellCost;
                                     Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()}");
                                     // call damage dealt function
@@ -457,7 +582,7 @@ namespace DH4
                                 case "lighting":
                                 Console.WriteLine($"You used lightning\n");
                                 int lightingBaseDamage=50;
-                                enemy.EnemyHealth-=(lightingBaseDamage+PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
+                                DamageDealt=enemy.EnemyHealth-=(lightingBaseDamage+PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
                                 DarkMageMagicAttackChoice="";
                                 battlesystemchoice="";
                                 break;
@@ -466,6 +591,7 @@ namespace DH4
                                 Console.WriteLine($"{PlayerParty.PlayerName} has used life drain\n");
                                 double lifeTaken=enemy.CurrentHealthPoints-50;
                                 PlayerParty.CurrentHealthPoints+=lifeTaken;
+                                DamageDealt=lifeTaken;
                                 Console.WriteLine($"it dealt {lifeTaken} points and healed the player. Your new health is{PlayerParty.CurrentHealthPoints}");
                                 break;
                                 case"3":
@@ -499,6 +625,7 @@ namespace DH4
 				                    double baseDamage=78;
                                     double DamageDeal= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints+baseDamage);
                                     enemy.CurrentHealthPoints-=DamageDeal;
+                                    DamageDealt=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
 					                double acidRainPointsRequired=15;
 					                PlayerParty.PlayerManaPoints-=acidRainPointsRequired;
@@ -606,15 +733,16 @@ namespace DH4
            //string MainMenuOption="";
            while(MainMenuOption=="")
            {
-            Console.WriteLine("DH4 New Generation\n 1) New Game\n 2) Quit\n");
+            Console.WriteLine("DH4 New Generation\n 1) New Game\n 2) Quit\n 3) Load Game");
             MainMenuOption=Console.ReadLine();
             // menu switch
-            switch(MainMenuOption)
+            switch(MainMenuOption.ToLower())
             {
                 case"1":
                 case"New Game":
                 case "new game":
                 string CheckpointName="AngelBattle";
+                DSCharacter.MostRecentCheckpoint=CheckpointName;
                 // start the game
                 Console.WriteLine("Chapter 1 Prologue\n");
                 Console.WriteLine("The year is 1015, The people of askela are celebrating the anniversary of the villages founding, when suddenly an angel appears. \n");
@@ -704,8 +832,10 @@ namespace DH4
                 System.Console.WriteLine("A few days pass, and Capt smith returns to your quarters\n Captain Smith:We have a new order from her majesty\n ");
                 System.Console.WriteLine($"{playercharacter.PlayerName}: What caused this uprising? \n Capt. Smith: Not really sure, but the church has been trying to occupy Askela village for as long as i can remember. \n Capt. Smith: They have been trying to rebuild it since the darkswordsman burned down the village unprovoked\n. ");
                 string initBranchingPath="";
+                playercharacter.MostRecentCheckpoint=initBranchingPath;
                 int LiesTold=0;
                 int TruthsTold=0;
+                SerializeCharacter(playercharacter,initBranchingPath);
                 while(initBranchingPath=="")
                 {
                     System.Console.WriteLine("Tutorial: This is a branching path, your actions affect the story. Do you want to \n1) Lie \n2) Tell the truth");
@@ -849,15 +979,22 @@ namespace DH4
                                                                                                         string dsHouseDecision="";
                                                                                                         while(dsHouseDecision=="")
                                                                                                         {
-                                                                                                            Console.WriteLine("You walk up to the house, it looks like it has been in disarray for quite some time.\n");
+                                                                                                            Console.WriteLine("You walk up to the house, its a medium size house. What do you do?\n");
                                                                                                             Console.WriteLine("1) Walk around house \n2) Go inside \n");
                                                                                                             dsHouseDecision=Console.ReadLine();
                                                                                                             switch(dsHouseDecision.ToLower())
                                                                                                             {
-                                                                                                                case"walk around house":
+
+                                                                                                                case"walk around house": 
+                                                                                                                case"1":
+                                                                                                                    Console.WriteLine("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.\n");
 
                                                                                                                 break;
+                                                                                                                case "2":
                                                                                                                 case "go inside house":
+
+                                                                                                                    //Console.WriteLine("You walk into the house.");
+                                                                                                                Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n  6");
                                                                                                                 break;
                                                                                                                 default:
                                                                                                                 ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", dsHouseDecision,5000,playercharacter);
@@ -972,6 +1109,11 @@ namespace DH4
                 case"quit game":
                 case "Quit Game":
                 QuitGame();
+                break;
+                case "load game":
+                case "3":
+                case "load":
+                LoadGame("DH4.Json");
                 break;
             }
 

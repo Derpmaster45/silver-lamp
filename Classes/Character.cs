@@ -3,6 +3,7 @@ using System.Dynamic;
 using DH4.Enums;
 namespace DH4.Classes
 {
+    [Serializable]
     public class Character
     {
          public string PlayerName{get;set;}
@@ -17,6 +18,7 @@ namespace DH4.Classes
         public int PlayerExpPoints{get;set;}
         public double PlayerManaAttackPoints{get; set;}
         public double PlayerManaDefensePoints{get;set;}
+        public string MostRecentCheckpoint{get;set;}
 
     }
 }
