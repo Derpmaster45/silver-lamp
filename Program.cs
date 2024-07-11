@@ -34,6 +34,7 @@ namespace DH4
         }
         public static void LoadGame(string saveName)
         {
+        // read from most recent checkpoint
             saveName="DH4.Json";
 
             string SaveName= saveName;
