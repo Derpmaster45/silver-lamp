@@ -971,10 +971,14 @@ namespace DH4
                                                                                                             dsHouseDecision=Console.ReadLine();
                                                                                                             switch(dsHouseDecision.ToLower())
                                                                                                             {
-                                                                                                                case"walk around house":
+                                                                                                                case"walk around house": 
+                                                                                                                case"1":
+                                                                                                                Console.WriteLine("You walk around the house, and see a single grave. \n Press any key to go back.")
 
                                                                                                                 break;
+                                                                                                                case "2":
                                                                                                                 case "go inside house":
+                                                                                                                    Console.WriteLine("You walk into the house.")
                                                                                                                 break;
                                                                                                                 default:
                                                                                                                 ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", dsHouseDecision,5000,playercharacter);
