@@ -24,6 +24,7 @@ namespace DH4
             characterToSerialize.PlayerMaxManaPoints=characterToSave.PlayerMaxManaPoints;
             characterToSerialize.PlayerManaDefensePoints=characterToSave.PlayerManaDefensePoints;
             characterToSerialize.PlayerManaPoints=characterToSave.PlayerManaPoints;
+            characterToSerialize.MostRecentCheckpoint=checkpointToSave;
            // data for file
            string saveName="DH4.Json";
            string jsonObjectString=JsonSerializer.Serialize(characterToSerialize);
