@@ -3,14 +3,44 @@ using System.Collections.Concurrent;
 using System.Drawing;
 using DH4.Classes;
 using DH4.Enums;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace DH4
 {
     class Game
     {
+        public void Serialize(Character characterToSave string checkpoint)
+        {
+            string checkpointToSave=checkpoint;
+            Character characterToSerialize= new Character();
+            characterToSerialize.PlayerName=characterToSave.PlayerName;
+            characterToSerialize.PlayerLevel=characterToSave.PlayerLevel;
+            characterToSerialize.AttackPoints=characterToSave.AttackPoints;
+            characterToSerialize.PlayerClass=characterToSave.PlayerClass;
+            characterToSerialize.PlayerDefensePoints=characterToSave.PlayerDefensePoints;
+            characterToSerialize.PlayerHealth=characterToSave.PlayerHealth;
+            characterToSerialize.PlayerManaAttackPoints=characterToSave.PlayerManaAttackPoints;
+            characterToSerialize.PlayerMaxManaPoints=characterToSave.PlayerMaxManaPoints;
+            characterToSerialize.PlayerManaDefensePoints=characterToSave.PlayerManaDefensePoints;
+            characterToSerialize.PlayerManaPoints=characterToSave.PlayerManaPoints;
+            try
+            { 
+                //File saveFlie=new("DH4.dat"); 
+                 File saveFlie=new File("DH4.dat");
+                Stream FileStream=saveFlie.Open(FileMode.Create);
+                BinaryFormatter bf= new BinaryFormatter();
+            }
+           catch (Exception ex)
+           {
+            Console.WriteLine(ex.ToString);
+           }
+            
+        }
         public static void Main(string[] args)
         {
             // function to save game goes here.
-
+           
             EnemyNames enemyNames = new EnemyNames();
             string MainMenuOption="";
             PlayerClassTypes playerclasslist=new PlayerClassTypes();
@@ -80,7 +110,7 @@ namespace DH4
                 }
                 else if(player.PlayerExpPoints==400)
                 {
-                    player.PlayerLevel+=1
+                    player.PlayerLevel+=1;
                     Console.WriteLine($"{player.PlayerName} is now level {player.PlayerLevel}");
                     player.PlayerHealth+=100;
                     player.CurrentHealthPoints=player.PlayerHealth;
@@ -946,10 +976,20 @@ namespace DH4
                                                                                                             dsHouseDecision=Console.ReadLine();
                                                                                                             switch(dsHouseDecision.ToLower())
                                                                                                             {
+
+                                                                                                                case"walk around house": 
+                                                                                                                case"1":
+                                                                                                                Console.WriteLine("You walk around the house, and see a single grave. \n Press any key to go back.");
+
+
                                                                                                                 case"walk around house":
                                                                                                                     Console.Writeline("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.\n");
+
                                                                                                                 break;
+                                                                                                                case "2":
                                                                                                                 case "go inside house":
+
+                                                                                                                    Console.WriteLine("You walk into the house.");
                                                                                                                 Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n  6");
                                                                                                                 break;
                                                                                                                 default:

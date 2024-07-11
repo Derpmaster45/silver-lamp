@@ -3,6 +3,7 @@ using System.Dynamic;
 using DH4.Enums;
 namespace DH4.Classes
 {
+    [Serializable]
     public class Character
     {
          public string PlayerName{get;set;}
