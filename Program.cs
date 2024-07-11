@@ -732,7 +732,7 @@ namespace DH4
            //string MainMenuOption="";
            while(MainMenuOption=="")
            {
-            Console.WriteLine("DH4 New Generation\n 1) New Game\n 2) Quit\n");
+            Console.WriteLine("DH4 New Generation\n 1) New Game\n 2) Quit\n 3) Load Game");
             MainMenuOption=Console.ReadLine();
             // menu switch
             switch(MainMenuOption.ToLower())
@@ -741,6 +741,7 @@ namespace DH4
                 case"New Game":
                 case "new game":
                 string CheckpointName="AngelBattle";
+                DSCharacter.MostRecentCheckpoint=CheckpointName;
                 // start the game
                 Console.WriteLine("Chapter 1 Prologue\n");
                 Console.WriteLine("The year is 1015, The people of askela are celebrating the anniversary of the villages founding, when suddenly an angel appears. \n");
@@ -830,6 +831,7 @@ namespace DH4
                 System.Console.WriteLine("A few days pass, and Capt smith returns to your quarters\n Captain Smith:We have a new order from her majesty\n ");
                 System.Console.WriteLine($"{playercharacter.PlayerName}: What caused this uprising? \n Capt. Smith: Not really sure, but the church has been trying to occupy Askela village for as long as i can remember. \n Capt. Smith: They have been trying to rebuild it since the darkswordsman burned down the village unprovoked\n. ");
                 string initBranchingPath="";
+                playercharacter.MostRecentCheckpoint=initBranchingPath;
                 int LiesTold=0;
                 int TruthsTold=0;
                 SerializeCharacter(playercharacter,initBranchingPath);
