@@ -26,11 +26,15 @@ namespace DH4
             characterToSerialize.PlayerManaPoints=characterToSave.PlayerManaPoints;
             try
             { 
-                File saveFlie=new("DH4.dat"); 
+                //File saveFlie=new("DH4.dat"); 
+                 File saveFlie=new File("DH4.dat");
+                Stream FileStream=saveFlie.Open(FileMode.Create);
+                BinaryFormatter bf= new BinaryFormatter();
             }
-            //File saveFlie=new File("DH4.dat");
-            //Stream FileStream=saveFlie.Open(FileMode.Create);
-           // BinaryFormatter bf= new BinaryFormatter();
+           catch (Exception ex)
+           {
+            Console.WriteLine(ex.ToString);
+           }
             
         }
         public static void Main(string[] args)
@@ -973,12 +977,12 @@ namespace DH4
                                                                                                             {
                                                                                                                 case"walk around house": 
                                                                                                                 case"1":
-                                                                                                                Console.WriteLine("You walk around the house, and see a single grave. \n Press any key to go back.")
+                                                                                                                Console.WriteLine("You walk around the house, and see a single grave. \n Press any key to go back.");
 
                                                                                                                 break;
                                                                                                                 case "2":
                                                                                                                 case "go inside house":
-                                                                                                                    Console.WriteLine("You walk into the house.")
+                                                                                                                    Console.WriteLine("You walk into the house.");
                                                                                                                 break;
                                                                                                                 default:
                                                                                                                 ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", dsHouseDecision,5000,playercharacter);
