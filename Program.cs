@@ -623,7 +623,7 @@ namespace DH4
                                     case "1":
                                     case"acid rain":
 				                    double baseDamage=78;
-                                    double DamageDeal= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints+baseDamage);
+                                    double DamageDeal= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints*baseDamage);
                                     enemy.CurrentHealthPoints-=DamageDeal;
                                     DamageDealt=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
