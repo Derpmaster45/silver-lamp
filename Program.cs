@@ -544,7 +544,7 @@ namespace DH4
                             while(MageMagicChoice=="")
                             {
                                 Console.WriteLine("Which magic attack would you like to use \n1) Heal \n2) Fire\n");
-                                MageMagicChoice=Console.ReadLine()
+                                MageMagicChoice=Console.ReadLine();
                                 switch(MageMagicChoice.ToLower())
                                 {
                                     case"1":
@@ -561,9 +561,8 @@ namespace DH4
                                         PlayerParty.CurrentHealthPoints=maxHealth;
                                     }
                                     DamageDealt=0;
-                                    MageMagicChoice="";
-                                    battlesystemchoice="";
-                                    break;
+                                    //MageMagicChoice="";
+                                    //battlesystemchoice="";
                                     break;
                                     case "2":
                                     case"fire":
@@ -572,10 +571,10 @@ namespace DH4
                                     double fireBaseDamage=25;
                                     DamageDealt=enemy.EnemyHealth-=(fireBaseDamage+PlayerParty.PlayerManaAttackPoints)/enemy.EnemyManaDefensePoints;
                                     PlayerParty.PlayerManaPoints-=SpellCost;
-                                    Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()}");
+                                    Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()} mana points remaining");
                                     // call damage dealt function
                                     //MageMagicChoice="";
-                                     battlesystemchoice="";
+                                    // battlesystemchoice="";
                                     break;
                                     default:
                                     MageMagicChoice="";
@@ -583,6 +582,7 @@ namespace DH4
                                     break;
                                     
                                 }
+                                break;
                             }
                             break;
                             case PlayerClassTypes.DARKMAGE:
