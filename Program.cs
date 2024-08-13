@@ -617,12 +617,16 @@ namespace DH4
                                 {
                                     PlayerParty.CurrentHealthPoints=maxHealth;
                                 }
+                                battlesystemchoice="";
+                                DarkMageMagicAttackChoice="";
                                 break;
                                 case"3":
                                 case"petrification":
                                     // Come up with a way to have a damage dealt function that will have the player class, and the magic value
                                     enemy.bIsPetrified=true;
                                     // if bIsPetrified =true; enemy cannot attack for 4 turns per spell cast;
+                                    DarkMageMagicAttackChoice="";
+                                    battlesystemchoice="";
                                 break;
                                 default:
                                 ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
@@ -653,6 +657,8 @@ namespace DH4
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
 					                double acidRainPointsRequired=15;
 					                PlayerParty.PlayerManaPoints-=acidRainPointsRequired;
+                                    DarkswordsmanMagicChoice="";
+                                    battlesystemchoice="";
                                     break;
                                     case "2":
                                     case"void":
