@@ -446,6 +446,7 @@ namespace DH4
                 characterToCreate.PlayerName=Console.ReadLine();
             }
             characterToCreate.PlayerLevel=1;
+            // set the player defense points by class not like below
             characterToCreate.PlayerDefensePoints=30;
             characterToCreate.PlayerClass=playerclass;
             switch(characterToCreate.PlayerClass)
@@ -453,13 +454,15 @@ namespace DH4
                 case PlayerClassTypes.KNIGHT:
                     characterToCreate.AttackPoints=30;
                     characterToCreate.PlayerHealth=300;
+                    characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=10;
-                    characterToCreate.PlayerMaxManaPoints=10;;
+                    characterToCreate.PlayerMaxManaPoints=10;
                 break;
                 case PlayerClassTypes.DARKMAGE:
-                    characterToCreate.AttackPoints=10;
+                    characterToCreate.AttackPoints=20;
                     characterToCreate.PlayerHealth=300;
+                    characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=60;
                     characterToCreate.PlayerManaDefensePoints=30;
@@ -470,12 +473,16 @@ namespace DH4
                 case PlayerClassTypes.DARKSWORDSMAN:
                     characterToCreate.AttackPoints=40;
                     characterToCreate.PlayerHealth=300;
+                    characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
+                    characterToCreate.PlayerManaAttackPoints=250;
+                    characterToCreate.PlayerManaDefensePoints=30;
 
                 break;
                 case PlayerClassTypes.MAGE:
                     characterToCreate.AttackPoints=20;
                     characterToCreate.PlayerHealth=300;
+                    characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=60;
                     characterToCreate.PlayerManaDefensePoints=30;
@@ -546,7 +553,7 @@ namespace DH4
                                     double updatedHealth=PlayerParty.CurrentHealthPoints*=.020;
                                     PlayerParty.CurrentHealthPoints=updatedHealth;
                                     double maxHealth=PlayerParty.PlayerHealth;
-                                    if(updatedHealth>maxHealth)
+                                    if(updatedHealth=>maxHealth)
                                     {
                                         PlayerParty.CurrentHealthPoints=maxHealth;
                                     }
@@ -592,7 +599,8 @@ namespace DH4
                                 case "lighting":
                                 Console.WriteLine($"You used lightning\n");
                                 int lightingBaseDamage=50;
-                                DamageDealt=enemy.EnemyHealth-=(lightingBaseDamage+PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
+                                DamageDealt=enemy.EnemyHealth-=(lightingBaseDamage*PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
+                                Console.WriteLine($"You deal {DamageDealt} to the {enemy.EnemyName}");
                                 DarkMageMagicAttackChoice="";
                                 battlesystemchoice="";
                                 break;
@@ -602,7 +610,13 @@ namespace DH4
                                 double lifeTaken=enemy.CurrentHealthPoints-50;
                                 PlayerParty.CurrentHealthPoints+=lifeTaken;
                                 DamageDealt=lifeTaken;
-                                Console.WriteLine($"it dealt {lifeTaken} points and healed the player. Your new health is{PlayerParty.CurrentHealthPoints}");
+                                
+                                Console.WriteLine($"it dealt {DamageDealt} points and healed the player. Your new health is{PlayerParty.CurrentHealthPoints}");
+                                double maxHealth=PlayerParty.PlayerHealth;
+                                if(PlayerParty.CurrentHealthPoints>maxHealth)
+                                {
+                                    PlayerParty.CurrentHealthPoints=maxHealth;
+                                }
                                 break;
                                 case"3":
                                 case"petrification":
@@ -643,12 +657,15 @@ namespace DH4
                                     case "2":
                                     case"void":
                                     // write void to take a quarter of health but take a high amount of mana points
-                                    double voidDamageDealt= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints*.25);
+                                    double voidDamageDealt= (PlayerParty.PlayerManaAttackPoints*.25)/enemy.EnemyManaDefensePoints;
                                     enemy.CurrentHealthPoints-=voidDamageDealt;
                                     double voidManaCost=95;
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
                                     DamageDealt=voidDamageDealt;
+                                    Console.WriteLine($" The {enemy.EnemyName} has taken {DamageDealt}");
                                     //return DamageDealt;
+                                    battlesystemchoice="";
+                                    DarkswordsmanMagicChoice="";
                                     break;
                                     default:
                                     ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
@@ -672,7 +689,7 @@ namespace DH4
                                 for(int doubleAttackNum=0; doubleAttackNum<1; doubleAttackNum++)
                                 {
                                     Console.WriteLine($"{PlayerParty.PlayerName} attacks dealing {attackDoubleDamageDealt.ToString()}points of damage");
-                                    enemy.CurrentHealthPoints-=attackDoubleDamageDealt*2;
+                                    DamageDealt=enemy.CurrentHealthPoints-=attackDoubleDamageDealt*2;
                                 }
                                 // set damage dealt variable.
                                 break;
@@ -920,6 +937,7 @@ namespace DH4
                                                                                         Enemy zombieEnemy = CreateEnemy(enemyNames);
                                                                                         BattleSystem(playercharacter, zombieEnemy, spells, dmMagicSpells, DSMagicSpells, TownPathLie);
                                                                                         CheckPlayerLevel(playercharacter);
+                                                                                        SerializeCharacter(playercharacter,CheckpointName);
                                                                                         break;
                                                                                     default:
                                                                                         ResetAndClear("Please choose from the 2 above options", TownPathLie, 5000, playercharacter); 
@@ -968,6 +986,7 @@ namespace DH4
 													                                                Enemy BatEnemy=CreateEnemy(enemyNames);
 													                                                BattleSystem(playercharacter,BatEnemy, spells,dmMagicSpells,DSMagicSpells,dolieaboutbeach); 
                                                                                                     CheckPlayerLevel(playercharacter);
+                                                                                                    SerializeCharacter(playercharacter,CheckpointName);
 													                                                PromptedClearScreen();
                                                                                                     //Console.WriteLine("You defeated the bat, when you hear a cry for help do you \n 1) Investigate \n 2)Ignore it\n");
                                                                                                     string help="";
@@ -986,6 +1005,7 @@ namespace DH4
                                                                                                             Enemy zombieEnemyPostBeach=CreateEnemy(enemyNames);
                                                                                                             BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help);
                                                                                                             CheckPlayerLevel(playercharacter);
+                                                                                                            SerializeCharacter(playercharacter,CheckpointName);
                                                                                                         }
                                                                                                         break;
                                                                                                         case "ignore":
@@ -995,6 +1015,7 @@ namespace DH4
                                                                                                         while(dsHouseDecision=="")
                                                                                                         {
                                                                                                             CheckpointName="Mission 1 Halfway Point";
+                                                                                                            SerializeCharacter(playercharacter,CheckpointName);
                                                                                                             Console.WriteLine("You walk up to the house, its a medium size house. What do you do?\n");
                                                                                                             Console.WriteLine("1) Walk around house \n2) Go inside \n");
                                                                                                             dsHouseDecision=Console.ReadLine();
@@ -1040,6 +1061,7 @@ namespace DH4
 													                                        Enemy BatEnemy=CreateEnemy(enemyNames);
 													                                        BattleSystem(playercharacter,BatEnemy,spells,dmMagicSpells,DSMagicSpells,forkingpathchoice); 
                                                                                             CheckPlayerLevel(playercharacter);
+                                                                                            SerializeCharacter(playercharacter,CheckpointName);
 
                                                                                         }
 											                                            PromptedClearScreen();
@@ -1127,11 +1149,11 @@ namespace DH4
                 case "Quit Game":
                 QuitGame();
                 break;
-                case "load game":
+               /* case "load game":
                 case "3":
                 case "load":
                 LoadGame("DH4.Json");
-                break;
+                break; */
             }
 
            }
