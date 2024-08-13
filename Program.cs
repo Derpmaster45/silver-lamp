@@ -637,6 +637,7 @@ namespace DH4
                                 break;
 
                               }
+                              break;
                               Console.WriteLine($"You have {PlayerParty.PlayerManaPoints} mana points remaining. ");
 
                             }
@@ -664,6 +665,7 @@ namespace DH4
                                     //DarkswordsmanMagicChoice="";
                                     battlesystemchoice="";
                                     //DamageDealtToPlayer();
+
                                     break;
                                     case "2":
                                     case"void":
@@ -683,6 +685,7 @@ namespace DH4
                                     break;
 
                                 }
+                                DoDamageToPlayer(PlayerParty,enemyNames, enemy);
                             }
                             break;
                             case PlayerClassTypes.KNIGHT:
@@ -715,6 +718,7 @@ namespace DH4
                           }
                           
                            }
+                           DoDamageToPlayer(PlayerParty,enemyNames, enemy);
                         }
                     
                     //Console.WriteLine("PLACEHOLDER: No Magic attacks\n");
