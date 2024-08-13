@@ -13,11 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("dh4")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c2e14d3a630174317de2fc863f7764de2c270fc")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8dee4f8a141c9f5c56814c58d85a20c8af107eb4")]
->>>>>>> f17bf6f48120c229627785d8c3cecd2c98004a5b
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47fe7ee9c0457e38aea1ddd3006665ae16ff7e62")]
 [assembly: System.Reflection.AssemblyProductAttribute("dh4")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dh4")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

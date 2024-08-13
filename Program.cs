@@ -461,7 +461,7 @@ namespace DH4
                     characterToCreate.PlayerMaxManaPoints=10;
                 break;
                 case PlayerClassTypes.DARKMAGE:
-                    characterToCreate.AttackPoints=20;
+                    characterToCreate.AttackPoints=30;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
@@ -481,7 +481,7 @@ namespace DH4
 
                 break;
                 case PlayerClassTypes.MAGE:
-                    characterToCreate.AttackPoints=20;
+                    characterToCreate.AttackPoints=30;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
@@ -554,7 +554,7 @@ namespace DH4
                                     double updatedHealth=PlayerParty.CurrentHealthPoints*=.020;
                                     PlayerParty.CurrentHealthPoints=updatedHealth;
                                     double maxHealth=PlayerParty.PlayerHealth;
-                                    if(updatedHealth=>maxHealth)
+                                    if(updatedHealth>maxHealth)
                                     {
                                         PlayerParty.CurrentHealthPoints=maxHealth;
                                     }
@@ -571,7 +571,7 @@ namespace DH4
                                     PlayerParty.PlayerManaPoints-=SpellCost;
                                     Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()}");
                                     // call damage dealt function
-                                    MageMagicChoice="";
+                                    //MageMagicChoice="";
                                      battlesystemchoice="";
                                     break;
                                     default:
@@ -658,8 +658,9 @@ namespace DH4
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
 					                double acidRainPointsRequired=15;
 					                PlayerParty.PlayerManaPoints-=acidRainPointsRequired;
-                                    DarkswordsmanMagicChoice="";
+                                    //DarkswordsmanMagicChoice="";
                                     battlesystemchoice="";
+                                    //DamageDealtToPlayer();
                                     break;
                                     case "2":
                                     case"void":
@@ -672,7 +673,7 @@ namespace DH4
                                     Console.WriteLine($" The {enemy.EnemyName} has taken {DamageDealt}");
                                     //return DamageDealt;
                                     battlesystemchoice="";
-                                    DarkswordsmanMagicChoice="";
+                                    //DarkswordsmanMagicChoice="";
                                     break;
                                     default:
                                     ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
@@ -741,6 +742,7 @@ namespace DH4
                         } else
                         {
                             Console.WriteLine("The spell was broken, the enemy can now move again.");
+                        
                         }
                     }
                     break;

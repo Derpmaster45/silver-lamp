@@ -108,13 +108,13 @@ C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
 /home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfo.cs
 /home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.csproj.CoreCompileInputs.cache
 /home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.sourcelink.json
-/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.dll
-/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/refint/dh4.dll
-/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.pdb
 /home/jay/Documents/Project/silver-lamp/bin/Debug/net8.0/dh4
 /home/jay/Documents/Project/silver-lamp/bin/Debug/net8.0/dh4.deps.json
 /home/jay/Documents/Project/silver-lamp/bin/Debug/net8.0/dh4.runtimeconfig.json
 /home/jay/Documents/Project/silver-lamp/bin/Debug/net8.0/dh4.dll
 /home/jay/Documents/Project/silver-lamp/bin/Debug/net8.0/dh4.pdb
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.dll
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/refint/dh4.dll
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.pdb
 /home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.genruntimeconfig.cache
 /home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
