@@ -41,7 +41,7 @@ namespace DH4
             Character characterToLoad= JsonSerializer.Deserialize<Character>(jsonObjectString);
             // TODO: pull data from most recent checkpoint and load the section of story based off of the information from the player class.
             // ex goto AngelBattle.
-            goto AngelBattle
+            goto AngelBattle;
 
         }
         public static void Main(string[] args)
