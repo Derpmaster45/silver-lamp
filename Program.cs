@@ -39,6 +39,9 @@ namespace DH4
             string SaveName= saveName;
             string jsonObjectString=File.ReadAllText(SaveName);
             Character characterToLoad= JsonSerializer.Deserialize<Character>(jsonObjectString);
+            // TODO: pull data from most recent checkpoint and load the section of story based off of the information from the player class.
+            // ex goto AngelBattle.
+            goto AngelBattle
 
         }
         public static void Main(string[] args)
@@ -768,7 +771,9 @@ namespace DH4
                  Console.WriteLine("With that last statement, the dark swordsman looks at the mage, she nods, as if they are planning something \n Angel:Enough of this It is time for you to meet you maker");
                  Console.WriteLine("The mage snaps her fingers and the villagers disapear\n");
                  Console.WriteLine("The angel looks around in shock, and anger.\n Angel: WHAT HAPPENED!\n Mage: The villagers safety was in jeopardy, we could not allow you to harm innocent bystanders\n Dark swordsman: Now it is time for you to send a message to your master!\n Dark swordsman: As you know, DEAD MEN TELL NO TALES\n");
-
+                    
+                    // this is the angel battle label called in the example of load game
+                    AngelBattle:
                  // angel enemy object creation
                  enemyNames= EnemyNames.ANGEL;
                    Enemy AngelEnemy= CreateEnemy(enemyNames);
