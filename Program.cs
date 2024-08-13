@@ -30,7 +30,7 @@ namespace DH4
            string jsonObjectString=JsonSerializer.Serialize(characterToSerialize);
            File.WriteAllText(saveName,jsonObjectString);
            // output for testing purposes
-           Console.WriteLine(File.ReadAllText(saveName));
+           //Console.WriteLine(File.ReadAllText(saveName));
         }
         public static void LoadGame(string saveName)
         {
@@ -41,7 +41,15 @@ namespace DH4
             Character characterToLoad= JsonSerializer.Deserialize<Character>(jsonObjectString);
             // TODO: pull data from most recent checkpoint and load the section of story based off of the information from the player class.
             // ex goto AngelBattle.
-            goto AngelBattle;
+          //  goto AngelBattle;
+          /*
+          switch(characterToLoad.MostRecentCheckpoint.ToLower())
+          {
+            case Character Created:
+
+            break; 
+          }
+          */
 
         }
         public static void Main(string[] args)
@@ -773,7 +781,6 @@ namespace DH4
                  Console.WriteLine("The angel looks around in shock, and anger.\n Angel: WHAT HAPPENED!\n Mage: The villagers safety was in jeopardy, we could not allow you to harm innocent bystanders\n Dark swordsman: Now it is time for you to send a message to your master!\n Dark swordsman: As you know, DEAD MEN TELL NO TALES\n");
                     
                     // this is the angel battle label called in the example of load game
-                    AngelBattle:
                  // angel enemy object creation
                  enemyNames= EnemyNames.ANGEL;
                    Enemy AngelEnemy= CreateEnemy(enemyNames);
@@ -837,7 +844,8 @@ namespace DH4
                 string initBranchingPath="";
                 int LiesTold=0;
                 int TruthsTold=0;
-                SerializeCharacter(playercharacter,initBranchingPath);
+                CheckpointName="Character Created";
+                SerializeCharacter(playercharacter,CheckpointName);
                 while(initBranchingPath=="")
                 {
                     System.Console.WriteLine("Tutorial: This is a branching path, your actions affect the story. Do you want to \n1) Lie \n2) Tell the truth");
@@ -867,6 +875,7 @@ namespace DH4
                                         case"1":
                                        System.Console.WriteLine($"{playercharacter.PlayerName}: Don't you think that it is a bit strange that there are no recorded survivors, but you know what happened. The Dark swordsman and mage's account end after the battle.\n Did they make it out of the battle alive?\nAccording to the mages account none of the villagers were present, so how did the fire start?\n");
                                        System.Console.WriteLine("Captain Smith: We have records of thier questioning after the events in question\n They refused to answer so, we had them burned at the stake. As that was the leaders wishes at the time.\n How do you know of this anyway?\n"); 
+                                       CheckpointName="AngelBattleRecollection";
                                        bool didBlameHighPriest;
                                       
                                        string DisscussionChoice="";
@@ -903,6 +912,7 @@ namespace DH4
                                                                                     case "1":
                                                                                         Console.WriteLine("You decide to sneak past the zombies, Lucky for you the zombies are slow moving. ");
                                                                                         Console.WriteLine("Placeholder: you successfully evaded the zombies.");
+                                                                                        SerializeCharacter(playercharacter, CheckpointName);
                                                                                         break;
                                                                                     case "2":
                                                                                         // battlesystem and zombie enemy creation goes here.
@@ -931,6 +941,7 @@ namespace DH4
                                                                                         case"go to town":
                                                                                         if(TookAltPath==true)
                                                                                         {
+                                                                                            CheckpointName="Mission 1";
                                                                                             Console.WriteLine("You enter the town and you see Captain Smith, and a citizen of the village, and you decide to approach then to get your marching orders.");
                                                                                             Console.WriteLine($"Captain Smith: Where have you been? \n ");
                                                                                             Console.WriteLine("Do you: \n 1) Say you got lost. \n 2) Talk about the zombies on the beach.\n");
@@ -981,6 +992,7 @@ namespace DH4
                                                                                                         string dsHouseDecision="";
                                                                                                         while(dsHouseDecision=="")
                                                                                                         {
+                                                                                                            CheckpointName="Mission 1 Halfway Point";
                                                                                                             Console.WriteLine("You walk up to the house, its a medium size house. What do you do?\n");
                                                                                                             Console.WriteLine("1) Walk around house \n2) Go inside \n");
                                                                                                             dsHouseDecision=Console.ReadLine();
