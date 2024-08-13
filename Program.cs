@@ -488,6 +488,7 @@ namespace DH4
                     characterToCreate.PlayerManaAttackPoints=60;
                     characterToCreate.PlayerManaDefensePoints=30;
                     characterToCreate.PlayerMaxManaPoints=350;
+                    characterToCreate.PlayerManaPoints=characterToCreate.PlayerMaxManaPoints;
                 break;
             }
        
@@ -543,6 +544,7 @@ namespace DH4
                             while(MageMagicChoice=="")
                             {
                                 Console.WriteLine("Which magic attack would you like to use \n1) Heal \n2) Fire\n");
+                                MageMagicChoice=Console.ReadLine()
                                 switch(MageMagicChoice.ToLower())
                                 {
                                     case"1":
@@ -561,6 +563,7 @@ namespace DH4
                                     DamageDealt=0;
                                     MageMagicChoice="";
                                     battlesystemchoice="";
+                                    break;
                                     break;
                                     case "2":
                                     case"fire":

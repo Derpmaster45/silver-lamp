@@ -1,0 +1,3 @@
+ - bat is deaing negative damage
+ -magic portion of battle system is not exiting the loop of magic selection so the enemy can attack
+ -Mage magic system breaks and enters an infinite loop. (fixed)
