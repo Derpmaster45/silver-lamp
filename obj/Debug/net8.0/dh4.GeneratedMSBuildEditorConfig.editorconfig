@@ -8,10 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = dh4
-<<<<<<< HEAD
 build_property.ProjectDir = /home/jay/Documents/Project/silver-lamp/
-=======
-build_property.ProjectDir = /home/jay/Documents/Projects/silver-lamp/
->>>>>>> f17bf6f48120c229627785d8c3cecd2c98004a5b
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

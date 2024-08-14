@@ -461,7 +461,7 @@ namespace DH4
                     characterToCreate.PlayerMaxManaPoints=10;
                 break;
                 case PlayerClassTypes.DARKMAGE:
-                    characterToCreate.AttackPoints=20;
+                    characterToCreate.AttackPoints=30;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
@@ -481,13 +481,14 @@ namespace DH4
 
                 break;
                 case PlayerClassTypes.MAGE:
-                    characterToCreate.AttackPoints=20;
+                    characterToCreate.AttackPoints=30;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=60;
                     characterToCreate.PlayerManaDefensePoints=30;
                     characterToCreate.PlayerMaxManaPoints=350;
+                    characterToCreate.PlayerManaPoints=characterToCreate.PlayerMaxManaPoints;
                 break;
             }
        
@@ -543,10 +544,12 @@ namespace DH4
                             while(MageMagicChoice=="")
                             {
                                 Console.WriteLine("Which magic attack would you like to use \n1) Heal \n2) Fire\n");
+                                MageMagicChoice=Console.ReadLine();
                                 switch(MageMagicChoice.ToLower())
                                 {
                                     case"1":
                                     case"heal":
+                                    MageMagicChoice=magicattackchoice;
                                     SpellCost=25;
                                     PlayerParty.PlayerManaPoints-=SpellCost;
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts heal!");
@@ -554,34 +557,40 @@ namespace DH4
                                     double updatedHealth=PlayerParty.CurrentHealthPoints*=.020;
                                     PlayerParty.CurrentHealthPoints=updatedHealth;
                                     double maxHealth=PlayerParty.PlayerHealth;
-                                    if(updatedHealth=>maxHealth)
+                                    if(updatedHealth>maxHealth)
                                     {
                                         PlayerParty.CurrentHealthPoints=maxHealth;
                                     }
                                     DamageDealt=0;
-                                    MageMagicChoice="";
-                                    battlesystemchoice="";
+                                    //MageMagicChoice="";
+                                    System.Console.WriteLine($"DEBUG INFO MAGEMAGICATTACK={MageMagicChoice}");
+                                    //battlesystemchoice="";
                                     break;
                                     case "2":
                                     case"fire":
+                                    MageMagicChoice=magicattackchoice;
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts fire");
                                     SpellCost=25; 
                                     double fireBaseDamage=25;
                                     DamageDealt=enemy.EnemyHealth-=(fireBaseDamage+PlayerParty.PlayerManaAttackPoints)/enemy.EnemyManaDefensePoints;
                                     PlayerParty.PlayerManaPoints-=SpellCost;
-                                    Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()}");
+                                    Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()} mana points remaining");
                                     // call damage dealt function
-                                    MageMagicChoice="";
-                                     battlesystemchoice="";
+                                    //MageMagicChoice="";
+                                    // battlesystemchoice="";
+                                    System.Console.WriteLine($"DEBUG INFO MAGEMAGICATTACK={MageMagicChoice}");
                                     break;
                                     default:
-                                    MageMagicChoice="";
+                                    //MageMagicChoice="";
+                                    magicattackchoice="";
                                     ResetAndClear("Unexpected Input, resetting in 5 seconds",battlesystemchoice,5000, PlayerParty); 
                                     break;
                                     
                                 }
+                                break;
                             }
                             break;
+                            
                             case PlayerClassTypes.DARKMAGE:
                             if(PlayerParty.PlayerManaPoints<=0)
                             {
@@ -598,15 +607,19 @@ namespace DH4
                               {
                                 case"1":
                                 case "lighting":
+                                DarkMageMagicAttackChoice=magicattackchoice;
                                 Console.WriteLine($"You used lightning\n");
                                 int lightingBaseDamage=50;
                                 DamageDealt=enemy.EnemyHealth-=(lightingBaseDamage*PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
                                 Console.WriteLine($"You deal {DamageDealt} to the {enemy.EnemyName}");
-                                DarkMageMagicAttackChoice="";
+                                //DarkMageMagicAttackChoice="";
                                 battlesystemchoice="";
+                                System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
+
                                 break;
                                 case"2":
                                 case"life drain":
+                                DarkMageMagicAttackChoice=magicattackchoice;
                                 Console.WriteLine($"{PlayerParty.PlayerName} has used life drain\n");
                                 double lifeTaken=enemy.CurrentHealthPoints-50;
                                 PlayerParty.CurrentHealthPoints+=lifeTaken;
@@ -619,14 +632,17 @@ namespace DH4
                                     PlayerParty.CurrentHealthPoints=maxHealth;
                                 }
                                 battlesystemchoice="";
-                                DarkMageMagicAttackChoice="";
+                                //DarkMageMagicAttackChoice="";
+                                 System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
                                 break;
                                 case"3":
                                 case"petrification":
                                     // Come up with a way to have a damage dealt function that will have the player class, and the magic value
                                     enemy.bIsPetrified=true;
+                                    DarkMageMagicAttackChoice=magicattackchoice;
                                     // if bIsPetrified =true; enemy cannot attack for 4 turns per spell cast;
-                                    DarkMageMagicAttackChoice="";
+                                    //DarkMageMagicAttackChoice="";
+                                     System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
                                     battlesystemchoice="";
                                 break;
                                 default:
@@ -634,6 +650,7 @@ namespace DH4
                                 break;
 
                               }
+                              
                               Console.WriteLine($"You have {PlayerParty.PlayerManaPoints} mana points remaining. ");
 
                             }
@@ -651,6 +668,7 @@ namespace DH4
                                 {
                                     case "1":
                                     case"acid rain":
+                                    magicattackchoice =DarkswordsmanMagicChoice;
 				                    double baseDamage=78;
                                     double DamageDeal= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints*baseDamage);
                                     enemy.CurrentHealthPoints-=DamageDeal;
@@ -658,8 +676,11 @@ namespace DH4
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
 					                double acidRainPointsRequired=15;
 					                PlayerParty.PlayerManaPoints-=acidRainPointsRequired;
-                                    DarkswordsmanMagicChoice="";
+                                    //DarkswordsmanMagicChoice="";
                                     battlesystemchoice="";
+                                    //DamageDealtToPlayer();
+                                    Console.WriteLine($"DEBUG INFO: DarkSwordsmanMagicChoice={DarkswordsmanMagicChoice}");
+
                                     break;
                                     case "2":
                                     case"void":
@@ -669,16 +690,19 @@ namespace DH4
                                     double voidManaCost=95;
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
                                     DamageDealt=voidDamageDealt;
+                                    magicattackchoice =DarkswordsmanMagicChoice;
                                     Console.WriteLine($" The {enemy.EnemyName} has taken {DamageDealt}");
                                     //return DamageDealt;
                                     battlesystemchoice="";
-                                    DarkswordsmanMagicChoice="";
+                                    Console.WriteLine($"DEBUG INFO: DarkSwordsmanMagicChoice={DarkswordsmanMagicChoice}");
+                                    //DarkswordsmanMagicChoice="";
                                     break;
                                     default:
                                     ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
                                     break;
 
                                 }
+                                DoDamageToPlayer(PlayerParty,enemyNames, enemy);
                             }
                             break;
                             case PlayerClassTypes.KNIGHT:
@@ -690,6 +714,7 @@ namespace DH4
                             {
                                 case"1":
                                 case"double attack":
+                                knightSpcialOption=magicattackchoice;
                                 Console.WriteLine($"{PlayerParty.PlayerName} used double attack ");
                                 double attackDoubleDamageDealt=PlayerParty.AttackPoints/enemy.EnemyDefensePoints;
                                 // if it iterates once change the comparison to 2
@@ -699,6 +724,7 @@ namespace DH4
                                     DamageDealt=enemy.CurrentHealthPoints-=attackDoubleDamageDealt*2;
                                 }
                                 // set damage dealt variable.
+                                Console.WriteLine($"KnightspcialOption= {knightSpcialOption}");
                                 break;
                             }
                             
@@ -711,6 +737,7 @@ namespace DH4
                           }
                           
                            }
+                           DoDamageToPlayer(PlayerParty,enemyNames, enemy);
                         }
                     
                     //Console.WriteLine("PLACEHOLDER: No Magic attacks\n");
@@ -741,6 +768,7 @@ namespace DH4
                         } else
                         {
                             Console.WriteLine("The spell was broken, the enemy can now move again.");
+                        
                         }
                     }
                     break;
