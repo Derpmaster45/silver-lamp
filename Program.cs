@@ -515,9 +515,17 @@ namespace DH4
                 switch(battlesystemchoice)
                 {
                     case"1":
-                    DamageDealt=enemy.EnemyDefensePoints-PlayerParty.AttackPoints;
-                    enemy.CurrentHealthPoints-=DamageDealt;
-                    //System.Console.WriteLine($"DEBUG: ENEMY HAS  {enemy.CurrentHealthPoints.ToString()} of {enemy.EnemyHeath.ToString()}");
+                    DamageDealt=PlayerParty.AttackPoints-enemy.EnemyDefensePoints;
+                    
+                    if(DamageDealt<0)
+                    {
+                        DamageDealt*=-1;
+                        enemy.CurrentHealthPoints-=DamageDealt;
+                    } else
+                    {
+                        enemy.CurrentHealthPoints-=DamageDealt;
+                    }
+                    System.Console.WriteLine($"DEBUG: ENEMY HAS  {enemy.CurrentHealthPoints.ToString()} of {enemy.EnemyHealth.ToString()}");
                     System.Console.WriteLine($"You take a swing at the enemy\n dealing {DamageDealt.ToString()}");
                     
                     break;
@@ -633,7 +641,7 @@ namespace DH4
                                 }
                                 battlesystemchoice="";
                                 //DarkMageMagicAttackChoice="";
-                                 System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
+                                 //System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
                                 break;
                                 case"3":
                                 case"petrification":
@@ -642,7 +650,7 @@ namespace DH4
                                     DarkMageMagicAttackChoice=magicattackchoice;
                                     // if bIsPetrified =true; enemy cannot attack for 4 turns per spell cast;
                                     //DarkMageMagicAttackChoice="";
-                                     System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
+                                     //System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
                                     battlesystemchoice="";
                                 break;
                                 default:
@@ -694,7 +702,7 @@ namespace DH4
                                     Console.WriteLine($" The {enemy.EnemyName} has taken {DamageDealt}");
                                     //return DamageDealt;
                                     battlesystemchoice="";
-                                    Console.WriteLine($"DEBUG INFO: DarkSwordsmanMagicChoice={DarkswordsmanMagicChoice}");
+                                    //Console.WriteLine($"DEBUG INFO: DarkSwordsmanMagicChoice={DarkswordsmanMagicChoice}");
                                     //DarkswordsmanMagicChoice="";
                                     break;
                                     default:
@@ -702,7 +710,7 @@ namespace DH4
                                     break;
 
                                 }
-                                DoDamageToPlayer(PlayerParty,enemyNames, enemy);
+                                
                             }
                             break;
                             case PlayerClassTypes.KNIGHT:
@@ -724,7 +732,7 @@ namespace DH4
                                     DamageDealt=enemy.CurrentHealthPoints-=attackDoubleDamageDealt*2;
                                 }
                                 // set damage dealt variable.
-                                Console.WriteLine($"KnightspcialOption= {knightSpcialOption}");
+                                //Console.WriteLine($"KnightspcialOption= {knightSpcialOption}");
                                 break;
                             }
                             

@@ -1,1 +1,18 @@
-- 
+- Bat has appeared!
+Would you like to 
+1) Attack 
+ 2) Magic/Special  
+ 3) Block
+
+1
+DEBUG: ENEMY HAS  130 of 100
+You take a swing at the enemy
+ dealing -30
+This is being worked on at the moment. 
+The Bat has no special attack points, so it does not attack.
+
+Would you like to 
+1) Attack 
+ 2) Magic/Special  
+ 3) Block
+ for some reason (Bad math ) the bat is actually not taking damage when attacked.
