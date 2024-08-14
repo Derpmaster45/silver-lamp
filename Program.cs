@@ -549,6 +549,7 @@ namespace DH4
                                 {
                                     case"1":
                                     case"heal":
+                                    MageMagicChoice=magicattackchoice;
                                     SpellCost=25;
                                     PlayerParty.PlayerManaPoints-=SpellCost;
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts heal!");
@@ -562,10 +563,12 @@ namespace DH4
                                     }
                                     DamageDealt=0;
                                     //MageMagicChoice="";
+                                    System.Console.WriteLine($"DEBUG INFO MAGEMAGICATTACK={MageMagicChoice}");
                                     //battlesystemchoice="";
                                     break;
                                     case "2":
                                     case"fire":
+                                    MageMagicChoice=magicattackchoice;
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts fire");
                                     SpellCost=25; 
                                     double fireBaseDamage=25;
@@ -575,9 +578,11 @@ namespace DH4
                                     // call damage dealt function
                                     //MageMagicChoice="";
                                     // battlesystemchoice="";
+                                    System.Console.WriteLine($"DEBUG INFO MAGEMAGICATTACK={MageMagicChoice}");
                                     break;
                                     default:
-                                    MageMagicChoice="";
+                                    //MageMagicChoice="";
+                                    magicattackchoice="";
                                     ResetAndClear("Unexpected Input, resetting in 5 seconds",battlesystemchoice,5000, PlayerParty); 
                                     break;
                                     
@@ -602,15 +607,19 @@ namespace DH4
                               {
                                 case"1":
                                 case "lighting":
+                                DarkMageMagicAttackChoice=magicattackchoice;
                                 Console.WriteLine($"You used lightning\n");
                                 int lightingBaseDamage=50;
                                 DamageDealt=enemy.EnemyHealth-=(lightingBaseDamage*PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
                                 Console.WriteLine($"You deal {DamageDealt} to the {enemy.EnemyName}");
-                                DarkMageMagicAttackChoice="";
+                                //DarkMageMagicAttackChoice="";
                                 battlesystemchoice="";
+                                System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
+
                                 break;
                                 case"2":
                                 case"life drain":
+                                DarkMageMagicAttackChoice=magicattackchoice;
                                 Console.WriteLine($"{PlayerParty.PlayerName} has used life drain\n");
                                 double lifeTaken=enemy.CurrentHealthPoints-50;
                                 PlayerParty.CurrentHealthPoints+=lifeTaken;
@@ -623,14 +632,17 @@ namespace DH4
                                     PlayerParty.CurrentHealthPoints=maxHealth;
                                 }
                                 battlesystemchoice="";
-                                DarkMageMagicAttackChoice="";
+                                //DarkMageMagicAttackChoice="";
+                                 System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
                                 break;
                                 case"3":
                                 case"petrification":
                                     // Come up with a way to have a damage dealt function that will have the player class, and the magic value
                                     enemy.bIsPetrified=true;
+                                    DarkMageMagicAttackChoice=magicattackchoice;
                                     // if bIsPetrified =true; enemy cannot attack for 4 turns per spell cast;
-                                    DarkMageMagicAttackChoice="";
+                                    //DarkMageMagicAttackChoice="";
+                                     System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
                                     battlesystemchoice="";
                                 break;
                                 default:
@@ -656,6 +668,7 @@ namespace DH4
                                 {
                                     case "1":
                                     case"acid rain":
+                                    magicattackchoice =DarkswordsmanMagicChoice;
 				                    double baseDamage=78;
                                     double DamageDeal= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints*baseDamage);
                                     enemy.CurrentHealthPoints-=DamageDeal;
@@ -666,6 +679,7 @@ namespace DH4
                                     //DarkswordsmanMagicChoice="";
                                     battlesystemchoice="";
                                     //DamageDealtToPlayer();
+                                    Console.WriteLine($"DEBUG INFO: DarkSwordsmanMagicChoice={DarkswordsmanMagicChoice}");
 
                                     break;
                                     case "2":
@@ -676,9 +690,11 @@ namespace DH4
                                     double voidManaCost=95;
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
                                     DamageDealt=voidDamageDealt;
+                                    magicattackchoice =DarkswordsmanMagicChoice;
                                     Console.WriteLine($" The {enemy.EnemyName} has taken {DamageDealt}");
                                     //return DamageDealt;
                                     battlesystemchoice="";
+                                    Console.WriteLine($"DEBUG INFO: DarkSwordsmanMagicChoice={DarkswordsmanMagicChoice}");
                                     //DarkswordsmanMagicChoice="";
                                     break;
                                     default:
@@ -698,6 +714,7 @@ namespace DH4
                             {
                                 case"1":
                                 case"double attack":
+                                knightSpcialOption=magicattackchoice;
                                 Console.WriteLine($"{PlayerParty.PlayerName} used double attack ");
                                 double attackDoubleDamageDealt=PlayerParty.AttackPoints/enemy.EnemyDefensePoints;
                                 // if it iterates once change the comparison to 2
@@ -707,6 +724,7 @@ namespace DH4
                                     DamageDealt=enemy.CurrentHealthPoints-=attackDoubleDamageDealt*2;
                                 }
                                 // set damage dealt variable.
+                                Console.WriteLine($"KnightspcialOption= {knightSpcialOption}");
                                 break;
                             }
                             
