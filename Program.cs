@@ -585,6 +585,7 @@ namespace DH4
                                 break;
                             }
                             break;
+                            
                             case PlayerClassTypes.DARKMAGE:
                             if(PlayerParty.PlayerManaPoints<=0)
                             {
@@ -637,7 +638,7 @@ namespace DH4
                                 break;
 
                               }
-                              break;
+                              
                               Console.WriteLine($"You have {PlayerParty.PlayerManaPoints} mana points remaining. ");
 
                             }
