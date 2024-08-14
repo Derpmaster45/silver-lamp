@@ -30,7 +30,7 @@ namespace DH4
            string jsonObjectString=JsonSerializer.Serialize(characterToSerialize);
            File.WriteAllText(saveName,jsonObjectString);
            // output for testing purposes
-           Console.WriteLine(File.ReadAllText(saveName));
+           //Console.WriteLine(File.ReadAllText(saveName));
         }
         public static void LoadGame(string saveName)
         {
@@ -40,6 +40,17 @@ namespace DH4
             string SaveName= saveName;
             string jsonObjectString=File.ReadAllText(SaveName);
             Character characterToLoad= JsonSerializer.Deserialize<Character>(jsonObjectString);
+            // TODO: pull data from most recent checkpoint and load the section of story based off of the information from the player class.
+            // ex goto AngelBattle.
+          //  goto AngelBattle;
+          /*
+          switch(characterToLoad.MostRecentCheckpoint.ToLower())
+          {
+            case Character Created:
+
+            break; 
+          }
+          */
 
         }
         public static void Main(string[] args)
@@ -436,6 +447,7 @@ namespace DH4
                 characterToCreate.PlayerName=Console.ReadLine();
             }
             characterToCreate.PlayerLevel=1;
+            // set the player defense points by class not like below
             characterToCreate.PlayerDefensePoints=30;
             characterToCreate.PlayerClass=playerclass;
             switch(characterToCreate.PlayerClass)
@@ -443,13 +455,15 @@ namespace DH4
                 case PlayerClassTypes.KNIGHT:
                     characterToCreate.AttackPoints=30;
                     characterToCreate.PlayerHealth=300;
+                    characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=10;
-                    characterToCreate.PlayerMaxManaPoints=10;;
+                    characterToCreate.PlayerMaxManaPoints=10;
                 break;
                 case PlayerClassTypes.DARKMAGE:
-                    characterToCreate.AttackPoints=10;
+                    characterToCreate.AttackPoints=30;
                     characterToCreate.PlayerHealth=300;
+                    characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=60;
                     characterToCreate.PlayerManaDefensePoints=30;
@@ -460,16 +474,21 @@ namespace DH4
                 case PlayerClassTypes.DARKSWORDSMAN:
                     characterToCreate.AttackPoints=40;
                     characterToCreate.PlayerHealth=300;
+                    characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
+                    characterToCreate.PlayerManaAttackPoints=250;
+                    characterToCreate.PlayerManaDefensePoints=30;
 
                 break;
                 case PlayerClassTypes.MAGE:
-                    characterToCreate.AttackPoints=20;
+                    characterToCreate.AttackPoints=30;
                     characterToCreate.PlayerHealth=300;
+                    characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=60;
                     characterToCreate.PlayerManaDefensePoints=30;
                     characterToCreate.PlayerMaxManaPoints=350;
+                    characterToCreate.PlayerManaPoints=characterToCreate.PlayerMaxManaPoints;
                 break;
             }
        
@@ -525,10 +544,12 @@ namespace DH4
                             while(MageMagicChoice=="")
                             {
                                 Console.WriteLine("Which magic attack would you like to use \n1) Heal \n2) Fire\n");
+                                MageMagicChoice=Console.ReadLine();
                                 switch(MageMagicChoice.ToLower())
                                 {
                                     case"1":
                                     case"heal":
+                                    MageMagicChoice=magicattackchoice;
                                     SpellCost=25;
                                     PlayerParty.PlayerManaPoints-=SpellCost;
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts heal!");
@@ -541,29 +562,35 @@ namespace DH4
                                         PlayerParty.CurrentHealthPoints=maxHealth;
                                     }
                                     DamageDealt=0;
-                                    MageMagicChoice="";
-                                    battlesystemchoice="";
+                                    //MageMagicChoice="";
+                                    System.Console.WriteLine($"DEBUG INFO MAGEMAGICATTACK={MageMagicChoice}");
+                                    //battlesystemchoice="";
                                     break;
                                     case "2":
                                     case"fire":
+                                    MageMagicChoice=magicattackchoice;
                                     Console.WriteLine($"{PlayerParty.PlayerName} casts fire");
                                     SpellCost=25; 
                                     double fireBaseDamage=25;
                                     DamageDealt=enemy.EnemyHealth-=(fireBaseDamage+PlayerParty.PlayerManaAttackPoints)/enemy.EnemyManaDefensePoints;
                                     PlayerParty.PlayerManaPoints-=SpellCost;
-                                    Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()}");
+                                    Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()} mana points remaining");
                                     // call damage dealt function
-                                    MageMagicChoice="";
-                                     battlesystemchoice="";
+                                    //MageMagicChoice="";
+                                    // battlesystemchoice="";
+                                    System.Console.WriteLine($"DEBUG INFO MAGEMAGICATTACK={MageMagicChoice}");
                                     break;
                                     default:
-                                    MageMagicChoice="";
+                                    //MageMagicChoice="";
+                                    magicattackchoice="";
                                     ResetAndClear("Unexpected Input, resetting in 5 seconds",battlesystemchoice,5000, PlayerParty); 
                                     break;
                                     
                                 }
+                                break;
                             }
                             break;
+                            
                             case PlayerClassTypes.DARKMAGE:
                             if(PlayerParty.PlayerManaPoints<=0)
                             {
@@ -580,31 +607,50 @@ namespace DH4
                               {
                                 case"1":
                                 case "lighting":
+                                DarkMageMagicAttackChoice=magicattackchoice;
                                 Console.WriteLine($"You used lightning\n");
                                 int lightingBaseDamage=50;
-                                DamageDealt=enemy.EnemyHealth-=(lightingBaseDamage+PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
-                                DarkMageMagicAttackChoice="";
+                                DamageDealt=enemy.EnemyHealth-=(lightingBaseDamage*PlayerParty.AttackPoints)/enemy.EnemyManaDefensePoints;
+                                Console.WriteLine($"You deal {DamageDealt} to the {enemy.EnemyName}");
+                                //DarkMageMagicAttackChoice="";
                                 battlesystemchoice="";
+                                System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
+
                                 break;
                                 case"2":
                                 case"life drain":
+                                DarkMageMagicAttackChoice=magicattackchoice;
                                 Console.WriteLine($"{PlayerParty.PlayerName} has used life drain\n");
                                 double lifeTaken=enemy.CurrentHealthPoints-50;
                                 PlayerParty.CurrentHealthPoints+=lifeTaken;
                                 DamageDealt=lifeTaken;
-                                Console.WriteLine($"it dealt {lifeTaken} points and healed the player. Your new health is{PlayerParty.CurrentHealthPoints}");
+                                
+                                Console.WriteLine($"it dealt {DamageDealt} points and healed the player. Your new health is{PlayerParty.CurrentHealthPoints}");
+                                double maxHealth=PlayerParty.PlayerHealth;
+                                if(PlayerParty.CurrentHealthPoints>maxHealth)
+                                {
+                                    PlayerParty.CurrentHealthPoints=maxHealth;
+                                }
+                                battlesystemchoice="";
+                                //DarkMageMagicAttackChoice="";
+                                 System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
                                 break;
                                 case"3":
                                 case"petrification":
                                     // Come up with a way to have a damage dealt function that will have the player class, and the magic value
                                     enemy.bIsPetrified=true;
+                                    DarkMageMagicAttackChoice=magicattackchoice;
                                     // if bIsPetrified =true; enemy cannot attack for 4 turns per spell cast;
+                                    //DarkMageMagicAttackChoice="";
+                                     System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
+                                    battlesystemchoice="";
                                 break;
                                 default:
                                 ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
                                 break;
 
                               }
+                              
                               Console.WriteLine($"You have {PlayerParty.PlayerManaPoints} mana points remaining. ");
 
                             }
@@ -622,29 +668,41 @@ namespace DH4
                                 {
                                     case "1":
                                     case"acid rain":
+                                    magicattackchoice =DarkswordsmanMagicChoice;
 				                    double baseDamage=78;
-                                    double DamageDeal= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints+baseDamage);
+                                    double DamageDeal= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints*baseDamage);
                                     enemy.CurrentHealthPoints-=DamageDeal;
                                     DamageDealt=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
 					                double acidRainPointsRequired=15;
 					                PlayerParty.PlayerManaPoints-=acidRainPointsRequired;
+                                    //DarkswordsmanMagicChoice="";
+                                    battlesystemchoice="";
+                                    //DamageDealtToPlayer();
+                                    Console.WriteLine($"DEBUG INFO: DarkSwordsmanMagicChoice={DarkswordsmanMagicChoice}");
+
                                     break;
                                     case "2":
                                     case"void":
                                     // write void to take a quarter of health but take a high amount of mana points
-                                    double voidDamageDealt= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints*.25);
+                                    double voidDamageDealt= (PlayerParty.PlayerManaAttackPoints*.25)/enemy.EnemyManaDefensePoints;
                                     enemy.CurrentHealthPoints-=voidDamageDealt;
                                     double voidManaCost=95;
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
                                     DamageDealt=voidDamageDealt;
+                                    magicattackchoice =DarkswordsmanMagicChoice;
+                                    Console.WriteLine($" The {enemy.EnemyName} has taken {DamageDealt}");
                                     //return DamageDealt;
+                                    battlesystemchoice="";
+                                    Console.WriteLine($"DEBUG INFO: DarkSwordsmanMagicChoice={DarkswordsmanMagicChoice}");
+                                    //DarkswordsmanMagicChoice="";
                                     break;
                                     default:
                                     ResetAndClear("Select from the 2 above options\n resetting in 5 seconds",battlesystemchoice,5000,PlayerParty);
                                     break;
 
                                 }
+                                DoDamageToPlayer(PlayerParty,enemyNames, enemy);
                             }
                             break;
                             case PlayerClassTypes.KNIGHT:
@@ -656,15 +714,17 @@ namespace DH4
                             {
                                 case"1":
                                 case"double attack":
+                                knightSpcialOption=magicattackchoice;
                                 Console.WriteLine($"{PlayerParty.PlayerName} used double attack ");
                                 double attackDoubleDamageDealt=PlayerParty.AttackPoints/enemy.EnemyDefensePoints;
                                 // if it iterates once change the comparison to 2
                                 for(int doubleAttackNum=0; doubleAttackNum<1; doubleAttackNum++)
                                 {
                                     Console.WriteLine($"{PlayerParty.PlayerName} attacks dealing {attackDoubleDamageDealt.ToString()}points of damage");
-                                    enemy.CurrentHealthPoints-=attackDoubleDamageDealt*2;
+                                    DamageDealt=enemy.CurrentHealthPoints-=attackDoubleDamageDealt*2;
                                 }
                                 // set damage dealt variable.
+                                Console.WriteLine($"KnightspcialOption= {knightSpcialOption}");
                                 break;
                             }
                             
@@ -677,6 +737,7 @@ namespace DH4
                           }
                           
                            }
+                           DoDamageToPlayer(PlayerParty,enemyNames, enemy);
                         }
                     
                     //Console.WriteLine("PLACEHOLDER: No Magic attacks\n");
@@ -707,6 +768,7 @@ namespace DH4
                         } else
                         {
                             Console.WriteLine("The spell was broken, the enemy can now move again.");
+                        
                         }
                     }
                     break;
@@ -770,7 +832,8 @@ namespace DH4
                  Console.WriteLine("With that last statement, the dark swordsman looks at the mage, she nods, as if they are planning something \n Angel:Enough of this It is time for you to meet you maker");
                  Console.WriteLine("The mage snaps her fingers and the villagers disapear\n");
                  Console.WriteLine("The angel looks around in shock, and anger.\n Angel: WHAT HAPPENED!\n Mage: The villagers safety was in jeopardy, we could not allow you to harm innocent bystanders\n Dark swordsman: Now it is time for you to send a message to your master!\n Dark swordsman: As you know, DEAD MEN TELL NO TALES\n");
-
+                    
+                    // this is the angel battle label called in the example of load game
                  // angel enemy object creation
                  enemyNames= EnemyNames.ANGEL;
                    Enemy AngelEnemy= CreateEnemy(enemyNames);
@@ -835,7 +898,8 @@ namespace DH4
                 playercharacter.MostRecentCheckpoint=initBranchingPath;
                 int LiesTold=0;
                 int TruthsTold=0;
-                SerializeCharacter(playercharacter,initBranchingPath);
+                CheckpointName="Character Created";
+                SerializeCharacter(playercharacter,CheckpointName);
                 while(initBranchingPath=="")
                 {
                     System.Console.WriteLine("Tutorial: This is a branching path, your actions affect the story. Do you want to \n1) Lie \n2) Tell the truth");
@@ -865,6 +929,7 @@ namespace DH4
                                         case"1":
                                        System.Console.WriteLine($"{playercharacter.PlayerName}: Don't you think that it is a bit strange that there are no recorded survivors, but you know what happened. The Dark swordsman and mage's account end after the battle.\n Did they make it out of the battle alive?\nAccording to the mages account none of the villagers were present, so how did the fire start?\n");
                                        System.Console.WriteLine("Captain Smith: We have records of thier questioning after the events in question\n They refused to answer so, we had them burned at the stake. As that was the leaders wishes at the time.\n How do you know of this anyway?\n"); 
+                                       CheckpointName="AngelBattleRecollection";
                                        bool didBlameHighPriest;
                                       
                                        string DisscussionChoice="";
@@ -901,12 +966,15 @@ namespace DH4
                                                                                     case "1":
                                                                                         Console.WriteLine("You decide to sneak past the zombies, Lucky for you the zombies are slow moving. ");
                                                                                         Console.WriteLine("Placeholder: you successfully evaded the zombies.");
+                                                                                        SerializeCharacter(playercharacter, CheckpointName);
                                                                                         break;
                                                                                     case "2":
                                                                                         // battlesystem and zombie enemy creation goes here.
                                                                                         enemyNames = EnemyNames.ZOMBIE;
                                                                                         Enemy zombieEnemy = CreateEnemy(enemyNames);
                                                                                         BattleSystem(playercharacter, zombieEnemy, spells, dmMagicSpells, DSMagicSpells, TownPathLie);
+                                                                                        CheckPlayerLevel(playercharacter);
+                                                                                        SerializeCharacter(playercharacter,CheckpointName);
                                                                                         break;
                                                                                     default:
                                                                                         ResetAndClear("Please choose from the 2 above options", TownPathLie, 5000, playercharacter); 
@@ -929,6 +997,7 @@ namespace DH4
                                                                                         case"go to town":
                                                                                         if(TookAltPath==true)
                                                                                         {
+                                                                                            CheckpointName="Mission 1";
                                                                                             Console.WriteLine("You enter the town and you see Captain Smith, and a citizen of the village, and you decide to approach then to get your marching orders.");
                                                                                             Console.WriteLine($"Captain Smith: Where have you been? \n ");
                                                                                             Console.WriteLine("Do you: \n 1) Say you got lost. \n 2) Talk about the zombies on the beach.\n");
@@ -942,17 +1011,19 @@ namespace DH4
                                                                                                     case"1":
                                                                                                     case"say you got lost":
                                                                                                     Console.WriteLine($"{playercharacter.PlayerName}:I got lost on my way to town.Sorry I have taken so long.");
-													                                                //CheckpointName="ZombieBattlePostBeach";
+													                                                CheckpointName="ZombieBattlePostBeach1";
                                                                                                     bLiedAboutBeach=true;
                                                                                                     break;
                                                                                                     case"inform about zombies on the beach":
-													                                                //string CheckpointName="ZombieBattlePostBeach";
+													                                                CheckpointName="ZombieBattlePostBeach2";
                                                                                                     Console.WriteLine($"{playercharacter.PlayerName}:Sorry, I had to sneak past a horde of zombies on the beach");
 												                                                    Console.WriteLine("Captain Smith: Well, I am glad you made it out in one piece. \nYou're objective to go to what we believe is the house of the dark swordsman, and find out what he is planning ");
 												                                                    Console.WriteLine("You start making your way through the  overrun village when suddenly...");
 													                                                enemyNames=EnemyNames.BAT;
 													                                                Enemy BatEnemy=CreateEnemy(enemyNames);
 													                                                BattleSystem(playercharacter,BatEnemy, spells,dmMagicSpells,DSMagicSpells,dolieaboutbeach); 
+                                                                                                    CheckPlayerLevel(playercharacter);
+                                                                                                    SerializeCharacter(playercharacter,CheckpointName);
 													                                                PromptedClearScreen();
                                                                                                     //Console.WriteLine("You defeated the bat, when you hear a cry for help do you \n 1) Investigate \n 2)Ignore it\n");
                                                                                                     string help="";
@@ -970,7 +1041,8 @@ namespace DH4
                                                                                                             enemyNames=EnemyNames.ZOMBIE;
                                                                                                             Enemy zombieEnemyPostBeach=CreateEnemy(enemyNames);
                                                                                                             BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help);
-                                                                                                            //Console.WriteLine($"Zombies Defi")
+                                                                                                            CheckPlayerLevel(playercharacter);
+                                                                                                            SerializeCharacter(playercharacter,CheckpointName);
                                                                                                         }
                                                                                                         break;
                                                                                                         case "ignore":
@@ -979,6 +1051,8 @@ namespace DH4
                                                                                                         string dsHouseDecision="";
                                                                                                         while(dsHouseDecision=="")
                                                                                                         {
+                                                                                                            CheckpointName="Mission 1 Halfway Point";
+                                                                                                            SerializeCharacter(playercharacter,CheckpointName);
                                                                                                             Console.WriteLine("You walk up to the house, its a medium size house. What do you do?\n");
                                                                                                             Console.WriteLine("1) Walk around house \n2) Go inside \n");
                                                                                                             dsHouseDecision=Console.ReadLine();
@@ -1017,12 +1091,14 @@ namespace DH4
                                                                                         }
                                                                                         else if(TookAltPath==false)
                                                                                         {
+                                                                                            CheckpointName="Mission 1";
                                                                                             Console.WriteLine($"You meet Captain smith in the village.\n {playercharacter.PlayerName}:woah, this town is over run with zombies and bats\n Captain smith: You're objective is to go to the house of the darkswordsman and see what is causing this infestation.\n");
 												                                            Console.WriteLine("You start making your way through the  overrun village when suddenly...\n");
 													                                        enemyNames=EnemyNames.BAT;
 													                                        Enemy BatEnemy=CreateEnemy(enemyNames);
 													                                        BattleSystem(playercharacter,BatEnemy,spells,dmMagicSpells,DSMagicSpells,forkingpathchoice); 
-												
+                                                                                            CheckPlayerLevel(playercharacter);
+                                                                                            SerializeCharacter(playercharacter,CheckpointName);
 
                                                                                         }
 											                                            PromptedClearScreen();
@@ -1110,11 +1186,11 @@ namespace DH4
                 case "Quit Game":
                 QuitGame();
                 break;
-                case "load game":
+               /* case "load game":
                 case "3":
                 case "load":
                 LoadGame("DH4.Json");
-                break;
+                break; */
             }
 
            }
