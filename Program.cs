@@ -1107,6 +1107,7 @@ namespace DH4
 													                                        BattleSystem(playercharacter,BatEnemy,spells,dmMagicSpells,DSMagicSpells,forkingpathchoice); 
                                                                                             CheckPlayerLevel(playercharacter);
                                                                                             SerializeCharacter(playercharacter,CheckpointName);
+                                                                                            // add in the story points here to keep the program going
 
                                                                                         }
 											                                            PromptedClearScreen();
