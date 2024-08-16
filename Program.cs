@@ -458,7 +458,8 @@ namespace DH4
                     characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=10;
-                    characterToCreate.PlayerMaxManaPoints=10;
+                    characterToCreate.PlayerMaxManaPoints=20;
+                    characterToCreate.PlayerManaPoints=characterToCreate.PlayerMaxManaPoints;
                 break;
                 case PlayerClassTypes.DARKMAGE:
                     characterToCreate.AttackPoints=30;
@@ -649,7 +650,6 @@ namespace DH4
                                     enemy.bIsPetrified=true;
                                     DarkMageMagicAttackChoice=magicattackchoice;
                                     // if bIsPetrified =true; enemy cannot attack for 4 turns per spell cast;
-                                    //DarkMageMagicAttackChoice="";
                                      //System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
                                     battlesystemchoice="";
                                 break;
@@ -684,7 +684,6 @@ namespace DH4
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
 					                double acidRainPointsRequired=15;
 					                PlayerParty.PlayerManaPoints-=acidRainPointsRequired;
-                                    //DarkswordsmanMagicChoice="";
                                     battlesystemchoice="";
                                     //DamageDealtToPlayer();
                                     Console.WriteLine($"DEBUG INFO: DarkSwordsmanMagicChoice={DarkswordsmanMagicChoice}");
@@ -693,14 +692,14 @@ namespace DH4
                                     case "2":
                                     case"void":
                                     // write void to take a quarter of health but take a high amount of mana points
-                                    double voidDamageDealt= (PlayerParty.PlayerManaAttackPoints*.25)/enemy.EnemyManaDefensePoints;
+                                    double voidDamageDealt= (PlayerParty.PlayerManaAttackPoints/.25)/enemy.EnemyManaDefensePoints;
                                     enemy.CurrentHealthPoints-=voidDamageDealt;
                                     double voidManaCost=95;
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
                                     DamageDealt=voidDamageDealt;
                                     magicattackchoice =DarkswordsmanMagicChoice;
                                     Console.WriteLine($" The {enemy.EnemyName} has taken {DamageDealt}");
-                                    //return DamageDealt;
+                                    
                                     battlesystemchoice="";
                                     //Console.WriteLine($"DEBUG INFO: DarkSwordsmanMagicChoice={DarkswordsmanMagicChoice}");
                                     //DarkswordsmanMagicChoice="";
