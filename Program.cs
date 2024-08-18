@@ -1107,6 +1107,30 @@ namespace DH4
                                                                                             CheckPlayerLevel(playercharacter);
                                                                                             SerializeCharacter(playercharacter,CheckpointName);
                                                                                             // add in the story points here to keep the program going
+                                                                                            System.Console.WriteLine("You hear a cry for help what do you do? \n 1) Help \n 2) ignore it\n");
+                                                                                            string help=Console.ReadLine();
+                                                                                            while(help=="")
+                                                                                            {
+                                                                                                if(help=="")
+                                                                                                {
+                                                                                                    System.Console.WriteLine("You hear a cry for help \n 1) Help \n 2) ignore it\n");
+                                                                                                } 
+                                                                                                else
+                                                                                                {
+                                                                                                    switch(help.ToLower())
+                                                                                                    {
+                                                                                                        case"1":
+                                                                                                        case"help":
+                                                                                                        break;
+                                                                                                        case"2":
+                                                                                                        case"ignore it":
+                                                                                                        case"ignore":
+                                                                                                        break;
+                                                                                                        default:
+                                                                                                        break;
+                                                                                                    }
+                                                                                                }
+                                                                                            }
 
                                                                                         }
 											                                            PromptedClearScreen();
