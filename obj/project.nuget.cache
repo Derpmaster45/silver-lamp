@@ -1,17 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J80ehr2OV642q9lmrRPrr0rlDCDsu0obRlEClhhINfAndnToF9JjGeJIqpzjG7X96gL6eUJehbk2ugoNJ+LZHg==",
+  "dgSpecHash": "30jbwlOduqg=",
   "success": true,
-  "projectFilePath": "/home/jay/Documents/Project/silver-lamp/dh4.csproj",
-  "expectedPackageFiles": [
-    "/home/jay/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.7/microsoft.aspnetcore.app.ref.8.0.7.nupkg.sha512"
-  ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /home/jay/Documents/Project/silver-lamp/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "projectFilePath": "/home/jay/Documents/silver-lamp/dh4.csproj",
+  "expectedPackageFiles": [],
+  "logs": []
 }

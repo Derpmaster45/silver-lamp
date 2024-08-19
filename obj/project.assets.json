@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/jay/Documents/Project/silver-lamp/dh4.csproj",
+      "projectUniqueName": "/home/jay/Documents/silver-lamp/dh4.csproj",
       "projectName": "dh4",
-      "projectPath": "/home/jay/Documents/Project/silver-lamp/dh4.csproj",
+      "projectPath": "/home/jay/Documents/silver-lamp/dh4.csproj",
       "packagesPath": "/home/jay/.nuget/packages/",
-      "outputPath": "/home/jay/Documents/Project/silver-lamp/obj/",
+      "outputPath": "/home/jay/Documents/silver-lamp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/jay/.nuget/NuGet/NuGet.Config"
@@ -38,6 +38,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -54,27 +59,13 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.7, 8.0.7]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.107/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file /home/jay/Documents/Project/silver-lamp/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
