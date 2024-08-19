@@ -1121,10 +1121,37 @@ namespace DH4
                                                                                                     {
                                                                                                         case"1":
                                                                                                         case"help":
+                                                                                                        case "investigate":
+                                                                            
+                                                                                                          Console.WriteLine("You decide to disregard orders for the time being, and investigate where the scream came from.\n You head in the direction the scream came from.\n You find two zombies ");
+                                                                                                        for(int numOfZombies=0; numOfZombies<1; numOfZombies++)
+                                                                                                        {
+                                                                                                            enemyNames=EnemyNames.ZOMBIE;
+                                                                                                            Enemy zombieEnemyPostBeach=CreateEnemy(enemyNames);
+                                                                                                            BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help);
+                                                                                                            CheckPlayerLevel(playercharacter);
+                                                                                                            SerializeCharacter(playercharacter,CheckpointName);
+                                                                                                        }
+                                                                                                         CheckpointName="Mission 1 Halfway Point";
                                                                                                         break;
                                                                                                         case"2":
                                                                                                         case"ignore it":
                                                                                                         case"ignore":
+                                                                                                        CheckpointName="Mission 1 Halfway Point";
+                                                                                                         SerializeCharacter(playercharacter,CheckpointName);
+                                                                                                         System.Console.WriteLine("You decide to ignore it, and go to the house. Do you \n 1) Walk around the house\n Go inside the house\n");
+                                                                                                         string dsHouseDecision=Console.ReadLine();
+                                                                                                         if(dsHouseDecision=="")
+                                                                                                         {
+                                                                                                            System.Console.WriteLine("You decide to ignore it, and go to the house. Do you \n 1) Walk around the house\n Go inside the house\n");
+                                                                                                         }
+                                                                                                         else
+                                                                                                         {
+                                                                                                            switch (dsHouseDecision.ToLower())
+                                                                                                            {
+                                                                                                                
+                                                                                                            }
+                                                                                                         }
                                                                                                         break;
                                                                                                         default:
                                                                                                         break;
