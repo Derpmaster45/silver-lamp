@@ -1149,11 +1149,25 @@ namespace DH4
                                                                                                          {
                                                                                                             switch (dsHouseDecision.ToLower())
                                                                                                             {
-                                                                                                                
+                                                                                                                 case"walk around house": 
+                                                                                                                case"1":
+                                                                                                                    Console.WriteLine("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.\n");
+
+                                                                                                                break;
+                                                                                                                case "2":
+                                                                                                                case "go inside house":
+
+                                                                                                                    //Console.WriteLine("You walk into the house.");
+                                                                                                                Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n");
+                                                                                                                break;
+                                                                                                                default:
+                                                                                                                ResetAndClear("Please select the 2 above listed options. Resetting in 5 seconds",dsHouseDecision,5000,playercharacter);
+                                                                                                                break;
                                                                                                             }
                                                                                                          }
                                                                                                         break;
                                                                                                         default:
+                                                                                                        ResetAndClear("Please select from the above options. Resetting in 5 seconds",help,5000,playercharacter);
                                                                                                         break;
                                                                                                     }
                                                                                                 }
