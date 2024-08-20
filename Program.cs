@@ -378,7 +378,7 @@ namespace DH4
                     enemyToCreate.EnemyHealth=400;
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                     enemyToCreate.EnemyDefensePoints=300;
-                    enemyToCreate.EnemyManaDefensePoints=150;
+                    enemyToCreate.EnemyManaDefensePoints=75;
                     enemy.EnemyAttackPoints=40;
                     enemyToCreate.EnemyManaPoint=200;
                 break;
@@ -477,7 +477,7 @@ namespace DH4
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
-                    characterToCreate.PlayerManaAttackPoints=250;
+                    characterToCreate.PlayerManaAttackPoints=300;
                     characterToCreate.PlayerManaDefensePoints=30;
                     characterToCreate.PlayerMaxManaPoints=characterToCreate.PlayerManaPoints;
 
@@ -679,7 +679,7 @@ namespace DH4
                                     case"acid rain":
                                     magicattackchoice =DarkswordsmanMagicChoice;
 				                    double baseDamage=78;
-                                    double DamageDeal= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints*baseDamage);
+                                    double DamageDeal= (PlayerParty.PlayerManaAttackPoints*baseDamage)/enemy.EnemyManaDefensePoints;
                                     enemy.CurrentHealthPoints-=DamageDeal;
                                     DamageDealt=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
@@ -693,7 +693,7 @@ namespace DH4
                                     case "2":
                                     case"void":
                                     // write void to take a quarter of health but take a high amount of mana points
-                                    double voidDamageDealt= (PlayerParty.PlayerManaAttackPoints*.25)/enemy.EnemyManaDefensePoints;
+                                    double voidDamageDealt= (PlayerParty.PlayerManaAttackPoints*25)/enemy.EnemyManaDefensePoints;
                                     enemy.CurrentHealthPoints-=voidDamageDealt;
                                     double voidManaCost=95;
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
