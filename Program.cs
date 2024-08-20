@@ -893,7 +893,6 @@ namespace DH4
             }
                 
               
-              //playercharacter.PlayerClass=playerclasslist;
                Character playercharacter=CreateCharacter(playerclasslist);
                playercharacter.PlayerName=playerName;
                 
@@ -1033,7 +1032,6 @@ namespace DH4
                                                                                                     CheckPlayerLevel(playercharacter);
                                                                                                     SerializeCharacter(playercharacter,CheckpointName);
 													                                                PromptedClearScreen();
-                                                                                                    //Console.WriteLine("You defeated the bat, when you hear a cry for help do you \n 1) Investigate \n 2)Ignore it\n");
                                                                                                     string help="";
                                                                                                     while(help=="")
                                                                                                     {
@@ -1076,7 +1074,7 @@ namespace DH4
                                                                                                                 case "go inside house":
 
                                                                                                                     //Console.WriteLine("You walk into the house.");
-                                                                                                                Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n  6");
+                                                                                                                Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n ");
                                                                                                                 break;
                                                                                                                 default:
                                                                                                                 ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", dsHouseDecision,5000,playercharacter);
