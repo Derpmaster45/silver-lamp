@@ -479,6 +479,7 @@ namespace DH4
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=250;
                     characterToCreate.PlayerManaDefensePoints=30;
+                    characterToCreate.PlayerMaxManaPoints=characterToCreate.PlayerManaPoints;
 
                 break;
                 case PlayerClassTypes.MAGE:
@@ -692,7 +693,7 @@ namespace DH4
                                     case "2":
                                     case"void":
                                     // write void to take a quarter of health but take a high amount of mana points
-                                    double voidDamageDealt= (PlayerParty.PlayerManaAttackPoints/.25)/enemy.EnemyManaDefensePoints;
+                                    double voidDamageDealt= (PlayerParty.PlayerManaAttackPoints*.25)/enemy.EnemyManaDefensePoints;
                                     enemy.CurrentHealthPoints-=voidDamageDealt;
                                     double voidManaCost=95;
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
