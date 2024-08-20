@@ -378,7 +378,7 @@ namespace DH4
                     enemyToCreate.EnemyHealth=400;
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                     enemyToCreate.EnemyDefensePoints=300;
-                    enemyToCreate.EnemyManaDefensePoints=150;
+                    enemyToCreate.EnemyManaDefensePoints=75;
                     enemy.EnemyAttackPoints=40;
                     enemyToCreate.EnemyManaPoint=200;
                 break;
@@ -458,7 +458,8 @@ namespace DH4
                     characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=10;
-                    characterToCreate.PlayerMaxManaPoints=10;
+                    characterToCreate.PlayerMaxManaPoints=20;
+                    characterToCreate.PlayerManaPoints=characterToCreate.PlayerMaxManaPoints;
                 break;
                 case PlayerClassTypes.DARKMAGE:
                     characterToCreate.AttackPoints=30;
@@ -476,8 +477,9 @@ namespace DH4
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
                     characterToCreate.PlayerExpPoints=0;
-                    characterToCreate.PlayerManaAttackPoints=250;
+                    characterToCreate.PlayerManaAttackPoints=300;
                     characterToCreate.PlayerManaDefensePoints=30;
+                    characterToCreate.PlayerMaxManaPoints=characterToCreate.PlayerManaPoints;
 
                 break;
                 case PlayerClassTypes.MAGE:
@@ -649,7 +651,6 @@ namespace DH4
                                     enemy.bIsPetrified=true;
                                     DarkMageMagicAttackChoice=magicattackchoice;
                                     // if bIsPetrified =true; enemy cannot attack for 4 turns per spell cast;
-                                    //DarkMageMagicAttackChoice="";
                                      //System.Console.WriteLine($"DEBUG INFO:DARKMAGEMAGICATTACKCHOICE= {DarkMageMagicAttackChoice}");
                                     battlesystemchoice="";
                                 break;
@@ -678,13 +679,12 @@ namespace DH4
                                     case"acid rain":
                                     magicattackchoice =DarkswordsmanMagicChoice;
 				                    double baseDamage=78;
-                                    double DamageDeal= enemy.EnemyManaDefensePoints/(PlayerParty.PlayerManaAttackPoints*baseDamage);
+                                    double DamageDeal= (PlayerParty.PlayerManaAttackPoints*baseDamage)/enemy.EnemyManaDefensePoints;
                                     enemy.CurrentHealthPoints-=DamageDeal;
                                     DamageDealt=DamageDeal;
                                     Console.WriteLine($"You deal {DamageDeal.ToString()} points of damage from acid rain");
 					                double acidRainPointsRequired=15;
 					                PlayerParty.PlayerManaPoints-=acidRainPointsRequired;
-                                    //DarkswordsmanMagicChoice="";
                                     battlesystemchoice="";
                                     //DamageDealtToPlayer();
                                     Console.WriteLine($"DEBUG INFO: DarkSwordsmanMagicChoice={DarkswordsmanMagicChoice}");
@@ -693,14 +693,14 @@ namespace DH4
                                     case "2":
                                     case"void":
                                     // write void to take a quarter of health but take a high amount of mana points
-                                    double voidDamageDealt= (PlayerParty.PlayerManaAttackPoints*.25)/enemy.EnemyManaDefensePoints;
+                                    double voidDamageDealt= (PlayerParty.PlayerManaAttackPoints*25)/enemy.EnemyManaDefensePoints;
                                     enemy.CurrentHealthPoints-=voidDamageDealt;
                                     double voidManaCost=95;
                                     PlayerParty.PlayerManaPoints-=voidManaCost;
                                     DamageDealt=voidDamageDealt;
                                     magicattackchoice =DarkswordsmanMagicChoice;
                                     Console.WriteLine($" The {enemy.EnemyName} has taken {DamageDealt}");
-                                    //return DamageDealt;
+                                    
                                     battlesystemchoice="";
                                     //Console.WriteLine($"DEBUG INFO: DarkSwordsmanMagicChoice={DarkswordsmanMagicChoice}");
                                     //DarkswordsmanMagicChoice="";
@@ -1107,6 +1107,72 @@ namespace DH4
 													                                        BattleSystem(playercharacter,BatEnemy,spells,dmMagicSpells,DSMagicSpells,forkingpathchoice); 
                                                                                             CheckPlayerLevel(playercharacter);
                                                                                             SerializeCharacter(playercharacter,CheckpointName);
+                                                                                            // add in the story points here to keep the program going
+                                                                                            System.Console.WriteLine("You hear a cry for help what do you do? \n 1) Help \n 2) ignore it\n");
+                                                                                            string help=Console.ReadLine();
+                                                                                            while(help=="")
+                                                                                            {
+                                                                                                if(help=="")
+                                                                                                {
+                                                                                                    System.Console.WriteLine("You hear a cry for help \n 1) Help \n 2) ignore it\n");
+                                                                                                } 
+                                                                                                else
+                                                                                                {
+                                                                                                    switch(help.ToLower())
+                                                                                                    {
+                                                                                                        case"1":
+                                                                                                        case"help":
+                                                                                                        case "investigate":
+                                                                            
+                                                                                                          Console.WriteLine("You decide to disregard orders for the time being, and investigate where the scream came from.\n You head in the direction the scream came from.\n You find two zombies ");
+                                                                                                        for(int numOfZombies=0; numOfZombies<1; numOfZombies++)
+                                                                                                        {
+                                                                                                            enemyNames=EnemyNames.ZOMBIE;
+                                                                                                            Enemy zombieEnemyPostBeach=CreateEnemy(enemyNames);
+                                                                                                            BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help);
+                                                                                                            CheckPlayerLevel(playercharacter);
+                                                                                                            SerializeCharacter(playercharacter,CheckpointName);
+                                                                                                        }
+                                                                                                         CheckpointName="Mission 1 Halfway Point";
+                                                                                                        break;
+                                                                                                        case"2":
+                                                                                                        case"ignore it":
+                                                                                                        case"ignore":
+                                                                                                        CheckpointName="Mission 1 Halfway Point";
+                                                                                                         SerializeCharacter(playercharacter,CheckpointName);
+                                                                                                         System.Console.WriteLine("You decide to ignore it, and go to the house. Do you \n 1) Walk around the house\n Go inside the house\n");
+                                                                                                         string dsHouseDecision=Console.ReadLine();
+                                                                                                         if(dsHouseDecision=="")
+                                                                                                         {
+                                                                                                            System.Console.WriteLine("You decide to ignore it, and go to the house. Do you \n 1) Walk around the house\n Go inside the house\n");
+                                                                                                         }
+                                                                                                         else
+                                                                                                         {
+                                                                                                            switch (dsHouseDecision.ToLower())
+                                                                                                            {
+                                                                                                                 case"walk around house": 
+                                                                                                                case"1":
+                                                                                                                    Console.WriteLine("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.\n");
+
+                                                                                                                break;
+                                                                                                                case "2":
+                                                                                                                case "go inside house":
+
+                                                                                                                    //Console.WriteLine("You walk into the house.");
+                                                                                                                Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n");
+                                                                                                                break;
+                                                                                                                default:
+                                                                                                                ResetAndClear("Please select the 2 above listed options. Resetting in 5 seconds",dsHouseDecision,5000,playercharacter);
+                                                                                                                break;
+                                                                                                            }
+                                                                                                         }
+                                                                                                        break;
+                                                                                                        default:
+                                                                                                        ResetAndClear("Please select from the above options. Resetting in 5 seconds",help,5000,playercharacter);
+                                                                                                        break;
+                                                                                                    }
+                                                                                                }
+                                                                                            }
 
                                                                                         }
 											                                            PromptedClearScreen();

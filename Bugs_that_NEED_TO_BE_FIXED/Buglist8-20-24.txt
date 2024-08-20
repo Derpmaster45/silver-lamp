@@ -1,0 +1,5 @@
+---------Bugs--------------------------------
+- Darkswordsman Magic attacks are less than 0
+
+---------Fixes--------------------------------
+- 
