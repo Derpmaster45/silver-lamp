@@ -587,7 +587,7 @@ namespace DH4
                                     Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()} mana points remaining");
                                     // call damage dealt function
                                     //MageMagicChoice="";
-                                    // battlesystemchoice="";
+                                     battlesystemchoice="";
                                     System.Console.WriteLine($"DEBUG INFO MAGEMAGICATTACK={MageMagicChoice}");
                                     break;
                                     default:
