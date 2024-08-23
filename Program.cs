@@ -1196,7 +1196,7 @@ namespace DH4
                                                                                                 break;
                                                                                                 case"2":
                                                                                                 case"keep exploring":
-                                                                                                Console.WriteLine("You keep exploring, you find a river, however you dont have anythign to fish with.\n");
+                                                                                                Console.WriteLine("You keep exploring, you find a river, however you dont have anything to fish with.\n");
                                                                                                 dogoback="";
                                                                                                 break;
 
