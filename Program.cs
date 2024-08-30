@@ -1168,7 +1168,8 @@ namespace DH4
                                                                                                                          bool bLibraryCleared=false;
                                                                                                                          while (roomsCleared<3)
                                                                                                                          {
-                                                                                                                            
+                                                                                                                            System.Console.WriteLine("");
+
                                                                                                                          }
                                                                                                                         break;
                                                                                                                         case"2": 
