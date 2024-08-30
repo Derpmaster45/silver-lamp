@@ -1132,6 +1132,63 @@ namespace DH4
                                                                                                             SerializeCharacter(playercharacter,CheckpointName);
                                                                                                         }
                                                                                                          CheckpointName="Mission 1 Halfway Point";
+                                                                                                         string dsHouseDecisionpath1="";
+                                                                                                         while(dsHouseDecisionpath1=="")
+                                                                                                         {
+                                                                                                            System.Console.WriteLine("Do you 1)\nwalk around the outside of the house \n 2) go inside the house\n");
+                                                                                                            dsHouseDecisionpath1=Console.ReadLine();
+                                                                                                            switch (dsHouseDecisionpath1.ToLower())
+                                                                                                            {
+                                                                                                                case "1":
+                                                                                                                case"Walk around outside of the house":
+                                                                                                                case "walk around house":
+                                                                                                                //System.Console.WriteLine("You decide to walk around the house\n");
+                                                                                                                Console.WriteLine("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.\n");
+                                                                                                                dsHouseDecisionpath1="";
+                                                                                                                break;
+                                                                                                                case "2":
+                                                                                                                case "go inside":
+                                                                                                                case"go inside house":
+                                                                                                                 Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n");
+                                                                                                                 string dhinteriorpath="";
+                                                                                                                 while(dhinteriorpath=="")
+                                                                                                                 {
+                                                                                                                    System.Console.WriteLine("Do you \n1) Follow them\n 2) Leave and tell the captain there was nothing here.\n");
+                                                                                                                    dhinteriorpath=Console.ReadLine();
+                                                                                                                    switch(dhinteriorpath.ToLower())
+                                                                                                                    {
+                                                                                                                        case"1":
+                                                                                                                        case "follow them":
+                                                                                                                        case "follow":
+                                            
+                                                                                                                        int roomsCleared=0;
+                                                                                                                        // vars to check to see if the rooms have been cleared and if they have set it so it desplays a dialouge is showed and the player is sent out of the room
+                                                                                                                        bool bRightRoomCleared=false;
+                                                                                                                        bool bLeftRoomCleared=false;
+                                                                                                                         bool bLibraryCleared=false;
+                                                                                                                         while (roomsCleared<3)
+                                                                                                                         {
+                                                                                                                            
+                                                                                                                         }
+                                                                                                                        break;
+                                                                                                                        case"2": 
+                                                                                                                        case "leave":
+                                                                                                                        case"tell the captain":
+                                                                                                                        System.Console.WriteLine("");
+                                                                                                                        break;
+                                                                                                                        default:
+                                                                                                                        ResetAndClear("Please select from the 2 options above. Resetting in 5 Seconds",dhinteriorpath,5000,playercharacter);
+                                                                                                                        break;
+                                                                                                                    }
+                                                                                                                 }
+                                                                                                                 
+
+                                                                                                                break;
+                                                                                                                default:
+                                                                                                                ResetAndClear("Please choose from the 2 options listed resetting in five seconds",dsHouseDecisionpath1,5000,playercharacter);
+                                                                                                                break;
+                                                                                                            }
+                                                                                                         }
                                                                                                         break;
                                                                                                         case"2":
                                                                                                         case"ignore it":
