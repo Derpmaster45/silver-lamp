@@ -498,7 +498,7 @@ namespace DH4
             return characterToCreate;
         }
 
-            void BattleSystem(Character PlayerParty, Enemy enemy, MageSpells SpellList, DarkMageMagic DMSpellList, DarkSwordsmanMagic DSMagicList, string CheckpointName)
+            void BattleSystem(Character PlayerParty, Enemy enemy, MageSpells SpellList, DarkMageMagic DMSpellList, DarkSwordsmanMagic DSMagicList, string CheckpointName, bool BCanLose)
             {
                 // if enemy is petrified increment the turnsSincePetrify at the end of each turn
                bool bIsPetrified=false;
@@ -847,7 +847,7 @@ namespace DH4
                    Enemy AngelEnemy= CreateEnemy(enemyNames);
                 
                  
-                 BattleSystem(DSCharacter,AngelEnemy, spells, dmMagicSpells, DSMagicSpells, CheckpointName);
+                 BattleSystem(DSCharacter,AngelEnemy, spells, dmMagicSpells, DSMagicSpells, CheckpointName,false);
                 System.Console.WriteLine("After a tense fight you beat the angel, however he is keen to let you know its not over.\n Angel: You haven’t won yet it is you who have underestimated the church and our leader. \nThe church is going to have your heads.");
                 System.Console.WriteLine("Mage: We will deal with that when the time comes\n");
                 PromptedClearScreen();
@@ -979,7 +979,7 @@ namespace DH4
                                                                                         // battlesystem and zombie enemy creation goes here.
                                                                                         enemyNames = EnemyNames.ZOMBIE;
                                                                                         Enemy zombieEnemy = CreateEnemy(enemyNames);
-                                                                                        BattleSystem(playercharacter, zombieEnemy, spells, dmMagicSpells, DSMagicSpells, TownPathLie);
+                                                                                        BattleSystem(playercharacter, zombieEnemy, spells, dmMagicSpells, DSMagicSpells, TownPathLie,false);
                                                                                         CheckPlayerLevel(playercharacter);
                                                                                         SerializeCharacter(playercharacter,CheckpointName);
                                                                                         break;
@@ -1028,7 +1028,7 @@ namespace DH4
 												                                                    Console.WriteLine("You start making your way through the  overrun village when suddenly...");
 													                                                enemyNames=EnemyNames.BAT;
 													                                                Enemy BatEnemy=CreateEnemy(enemyNames);
-													                                                BattleSystem(playercharacter,BatEnemy, spells,dmMagicSpells,DSMagicSpells,dolieaboutbeach); 
+													                                                BattleSystem(playercharacter,BatEnemy, spells,dmMagicSpells,DSMagicSpells,dolieaboutbeach,false); 
                                                                                                     CheckPlayerLevel(playercharacter);
                                                                                                     SerializeCharacter(playercharacter,CheckpointName);
 													                                                PromptedClearScreen();
@@ -1046,7 +1046,7 @@ namespace DH4
                                                                                                         {
                                                                                                             enemyNames=EnemyNames.ZOMBIE;
                                                                                                             Enemy zombieEnemyPostBeach=CreateEnemy(enemyNames);
-                                                                                                            BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help);
+                                                                                                            BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help,false);
                                                                                                             CheckPlayerLevel(playercharacter);
                                                                                                             SerializeCharacter(playercharacter,CheckpointName);
                                                                                                         }
@@ -1102,7 +1102,7 @@ namespace DH4
 												                                            Console.WriteLine("You start making your way through the  overrun village when suddenly...\n");
 													                                        enemyNames=EnemyNames.BAT;
 													                                        Enemy BatEnemy=CreateEnemy(enemyNames);
-													                                        BattleSystem(playercharacter,BatEnemy,spells,dmMagicSpells,DSMagicSpells,forkingpathchoice); 
+													                                        BattleSystem(playercharacter,BatEnemy,spells,dmMagicSpells,DSMagicSpells,forkingpathchoice,false); 
                                                                                             CheckPlayerLevel(playercharacter);
                                                                                             SerializeCharacter(playercharacter,CheckpointName);
                                                                                             // add in the story points here to keep the program going
@@ -1127,7 +1127,7 @@ namespace DH4
                                                                                                         {
                                                                                                             enemyNames=EnemyNames.ZOMBIE;
                                                                                                             Enemy zombieEnemyPostBeach=CreateEnemy(enemyNames);
-                                                                                                            BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help);
+                                                                                                            BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help,false);
                                                                                                             CheckPlayerLevel(playercharacter);
                                                                                                             SerializeCharacter(playercharacter,CheckpointName);
                                                                                                         }
@@ -1160,15 +1160,43 @@ namespace DH4
                                                                                                                         case"1":
                                                                                                                         case "follow them":
                                                                                                                         case "follow":
+                                                                                                                        System.Console.WriteLine($"{playercharacter.PlayerName}:Anyone Here?!?!\n ");
                                             
                                                                                                                         int roomsCleared=0;
                                                                                                                         // vars to check to see if the rooms have been cleared and if they have set it so it desplays a dialouge is showed and the player is sent out of the room
                                                                                                                         bool bRightRoomCleared=false;
                                                                                                                         bool bLeftRoomCleared=false;
                                                                                                                          bool bLibraryCleared=false;
+                                                                                                                         CheckpointName="DSBossfight";
                                                                                                                          while (roomsCleared<3)
                                                                                                                          {
-                                                                                                                            System.Console.WriteLine("");
+                                                                                                                            if(bLeftRoomCleared==true&& bRightRoomCleared==true)
+                                                                                                                            {
+                                                                                                                                // library room code goes here DS Bossfight 
+                                                                                                                            }
+                                                                                                                            else
+                                                                                                                            {
+                                                                                                                               string RoomChoice="";
+                                                                                                                               while(RoomChoice=="")
+                                                                                                                               {
+                                                                                                                                 System.Console.WriteLine("What room would you like to check? 1) Left \n 2)Right\n");
+                                                                                                                                 RoomChoice=Console.ReadLine();
+                                                                                                                                 switch(RoomChoice.ToLower())
+                                                                                                                                 {
+                                                                                                                                    case"1":
+                                                                                                                                    case "left": 
+                                                                                                                                    break;
+                                                                                                                                    case"2":
+                                                                                                                                    case"right":
+                                                                                                                                    break;
+                                                                                                                                    default:
+                                                                                                                                    break;
+
+                                                                                                                                 }
+
+                                                                                                                               }
+
+                                                                                                                            }
 
                                                                                                                          }
                                                                                                                         break;
