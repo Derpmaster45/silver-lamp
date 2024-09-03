@@ -1185,9 +1185,21 @@ namespace DH4
                                                                                                                                  {
                                                                                                                                     case"1":
                                                                                                                                     case "left": 
+                                                                                                                                    roomsCleared++;
+                                                                                                                                    bLeftRoomCleared=true;
+                                                                                                                                    if(roomsCleared<2)
+                                                                                                                                    {
+                                                                                                                                        RoomChoice="";
+                                                                                                                                    }
                                                                                                                                     break;
                                                                                                                                     case"2":
                                                                                                                                     case"right":
+                                                                                                                                    roomsCleared++;
+                                                                                                                                    bRightRoomCleared=true;
+                                                                                                                                    if(roomsCleared<2)
+                                                                                                                                    {
+                                                                                                                                        RoomChoice="";
+                                                                                                                                    }
                                                                                                                                     break;
                                                                                                                                     default:
                                                                                                                                     break;
