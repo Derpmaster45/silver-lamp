@@ -4,3 +4,4 @@ Changes to game build
 - Added boolean called bCanLose to battlesystem to keep the player from endlessly playing against the dark swordsman. 
 it still has to be tested, 
 - Fixed code for the bat to have the enemy to create object store various atributes that were assigned to the class of Enemy.
+- Added an enemy of Enum type TBD (needs to be changed before the demo releases). 

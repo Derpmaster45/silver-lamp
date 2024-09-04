@@ -407,7 +407,7 @@ namespace DH4
                 enemyToCreate.EnemyManaPoint=100;
                 enemyToCreate.EnemyDefensePoints=80;
                 break;
-		 case EnemyNames.HORNET:     
+		case EnemyNames.HORNET:     
         enemyToCreate.EnemyName="Hornet"; 
         enemyToCreate.EnemyHealth=110; 
         enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
@@ -417,7 +417,19 @@ namespace DH4
 	    enemyToCreate.EnemyAttackPoints=30;
 		break;
 
-// unknown enemy rtpe (TBD Goes here)
+// unknown enemy type (TBD Goes here)
+    case EnemyNames.TBD:
+    enemyToCreate.EnemyName="To Be Determined";
+    enemyToCreate.EnemyHealth=150;
+    enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+    enemyToCreate.EnemyDefensePoints=35;
+    enemyToCreate.EnemyManaPoint=50;
+    enemyToCreate.EnemyAttackPoints=50;
+    enemyToCreate.EnemyDefensePoints=25;
+    enemyToCreate.EnemyManaAttackPoints=25;
+    enemyToCreate.EnemyManaDefensePoints=12;
+    
+    break;
 
                 default:
                 Console.WriteLine("Err: Unrecognized Enemy Type\n Probably not created yet in the creation method");
