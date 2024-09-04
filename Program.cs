@@ -344,8 +344,9 @@ namespace DH4
                     ZOMBIE,
                     BAT,
                     ANGEL,
-                    VAMPIRE,
+                    VAMPIRE, 
                     DARKSWORDSMAN,
+		    HORNET,
                     NONE
                     */
                 } 
@@ -369,9 +370,9 @@ namespace DH4
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                     enemyToCreate.EnemyDefensePoints=10;
                     enemyToCreate.EnemyManaDefensePoints=5;
-                    enemy.EnemyAttackPoints=20;
-                    enemy.EnemyManaPoint=50;
-                    enemy.EnemyManaAttackPoints=25;
+                    enemyToCreate.EnemyAttackPoints=20;
+                    enemyToCreate.EnemyManaPoint=50;
+                    enemyToCreate.EnemyManaAttackPoints=25;
                 break;
                 case EnemyNames.ANGEL:
                     enemyToCreate.EnemyName="Angel";
@@ -406,9 +407,23 @@ namespace DH4
                 enemyToCreate.EnemyManaPoint=100;
                 enemyToCreate.EnemyDefensePoints=80;
                 break;
+		 case EnemyNames.HORNET:
+                 
+                        enemyToCreate.EnemyName="Hornet"; 
+                        enemyToCreate.EnemyHealth=110; 
+                        enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+			enemyToCreate.EnemyManaPoint=50;
+			enemyToCreate.EnemyManaDefensePoints=15;
+			enemyToCreate.EnemyDefensePoints=25;
+			enemyToCreate.EnemyAttackPoints=30;
+		break;
+
+                
+
                 default:
                 Console.WriteLine("Err: Unrecognized Enemy Type\n Probably not created yet in the creation method");
                 break;
+		
             }
             return enemyToCreate;
            }
@@ -796,6 +811,7 @@ namespace DH4
                 {
                     Console.WriteLine($"the {enemy.EnemyName} is petrified and cannot move");
                 }
+		// add a check to see if player health is 0 and if bCanLoose is ==true;
                
               
             }
@@ -1187,6 +1203,7 @@ namespace DH4
                                                                                                                                     case "left": 
                                                                                                                                     roomsCleared++;
                                                                                                                                     bLeftRoomCleared=true;
+																	Console.WriteLine("You walk into the room on your left.\n");
                                                                                                                                     if(roomsCleared<2)
                                                                                                                                     {
                                                                                                                                         RoomChoice="";
@@ -1196,6 +1213,7 @@ namespace DH4
                                                                                                                                     case"right":
                                                                                                                                     roomsCleared++;
                                                                                                                                     bRightRoomCleared=true;
+																	Console.WriteLine("You walk into the room on your right\n");
                                                                                                                                     if(roomsCleared<2)
                                                                                                                                     {
                                                                                                                                         RoomChoice="";
