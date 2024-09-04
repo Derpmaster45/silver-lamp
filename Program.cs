@@ -407,18 +407,17 @@ namespace DH4
                 enemyToCreate.EnemyManaPoint=100;
                 enemyToCreate.EnemyDefensePoints=80;
                 break;
-		 case EnemyNames.HORNET:
-                 
-            enemyToCreate.EnemyName="Hornet"; 
-            enemyToCreate.EnemyHealth=110; 
-            enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
-			enemyToCreate.EnemyManaPoint=50;
-			enemyToCreate.EnemyManaDefensePoints=15;
-			enemyToCreate.EnemyDefensePoints=25;
-			enemyToCreate.EnemyAttackPoints=30;
+		 case EnemyNames.HORNET:     
+        enemyToCreate.EnemyName="Hornet"; 
+        enemyToCreate.EnemyHealth=110; 
+        enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+	    enemyToCreate.EnemyManaPoint=50;
+	    enemyToCreate.EnemyManaDefensePoints=15;
+	    enemyToCreate.EnemyDefensePoints=25;
+	    enemyToCreate.EnemyAttackPoints=30;
 		break;
 
-                
+// unknown enemy rtpe (TBD Goes here)
 
                 default:
                 Console.WriteLine("Err: Unrecognized Enemy Type\n Probably not created yet in the creation method");
@@ -1204,6 +1203,8 @@ namespace DH4
                                                                                                                                     roomsCleared++;
                                                                                                                                     bLeftRoomCleared=true;
 																	Console.WriteLine("You walk into the room on your left.\n");
+																//BattleSystem
+																
                                                                                                                                     if(roomsCleared<2)
                                                                                                                                     {
                                                                                                                                         RoomChoice="";

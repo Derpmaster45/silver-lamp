@@ -1,0 +1,6 @@
+Changes to game build
+-------------------------------------------------------
+- Added hornet to game for battle. 
+- Added boolean called bCanLose to battlesystem to keep the player from endlessly playing against the dark swordsman. 
+it still has to be tested, 
+- Fixed code for the bat to have the enemy to create object store various atributes that were assigned to the class of Enemy.
