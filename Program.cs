@@ -409,9 +409,9 @@ namespace DH4
                 break;
 		 case EnemyNames.HORNET:
                  
-                        enemyToCreate.EnemyName="Hornet"; 
-                        enemyToCreate.EnemyHealth=110; 
-                        enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+            enemyToCreate.EnemyName="Hornet"; 
+            enemyToCreate.EnemyHealth=110; 
+            enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
 			enemyToCreate.EnemyManaPoint=50;
 			enemyToCreate.EnemyManaDefensePoints=15;
 			enemyToCreate.EnemyDefensePoints=25;
