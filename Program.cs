@@ -1316,7 +1316,71 @@ namespace DH4
                                                                                                                    dhinteriorpath=Console.ReadLine();
                                                                                                                    switch(dhinteriorpath.ToLower()) 
                                                                                                                    {
-                                                                                                                    
+                                                                                                                    case "1":
+                                                                                                                    case "follow them":
+                                                                                                                    case "follow":
+                                                                                                                     System.Console.WriteLine(" You walk through the door and yell Anyone here!?!? \n You get no response..");
+                                                                                                                    System.Console.WriteLine("You are now in a long hallway, with three doors, a door on the left, on the right and one at the end of the hallway.");
+                                                                                                                        int roomsCleared=0;
+                                                                                                                        // bools to see if the rooms are cleared
+                                                                                                                        bool bRightRoomCleared=false;
+                                                                                                                        bool bLeftRoomCleared=false;
+                                                                                                                        bool bLibraryCleared=false;
+
+                                                                                                                        // check to see if the right AND left room are clear
+                                                                                                                        if(bLeftRoomCleared==true && bRightRoomCleared==true)
+                                                                                                                        {
+                                                                                                                            // ds boss fight goes here
+
+                                                                                                                        }
+                                                                                                                        else
+                                                                                                                        {
+                                                                                                                            string RoomChoice="";
+                                                                                                                            while(RoomChoice=="")
+                                                                                                                            {
+                                                                                                                                // prompt user for input 
+                                                                                                                                // then create variable to increment the number of rooms cleared 
+                                                                                                                                System.Console.WriteLine("What door would you like to check 1) Left \n 2) Right");
+
+                                                                                                                                RoomChoice=Console.ReadLine();
+                                                                                                                                 
+                                                                                                                                switch(RoomChoice.ToLower())
+                                                                                                                                {
+                                                                                                                                    case"1":
+                                                                                                                                    case "left":
+                                                                                                                                    System.Console.WriteLine("You enter the room on your left.\n");
+                                                                                                                                    // battlesystem
+                                                                                                                                    bLeftRoomCleared=true;
+                                                                                                                                    roomsCleared++;
+                                                                                                                                    if(roomsCleared<2)
+                                                                                                                                    {
+                                                                                                                                        RoomChoice="";
+                                                                                                                                    }
+                                                                                                                                    break;
+                                                                                                                                    case"2":
+                                                                                                                                    case"right":
+                                                                                                                                    System.Console.WriteLine("You enter the room on your right\n");
+                                                                                                                                    // battlesystem
+                                                                                                                                    bRightRoomCleared=true;
+                                                                                                                                    roomsCleared++;
+                                                                                                                                    if(roomsCleared<2)
+                                                                                                                                    {
+                                                                                                                                        RoomChoice="";
+                                                                                                                                    }
+                                                                                                                                    break;
+                                                                                                                                    default:
+                                                                                                                                    ResetAndClear("Please choose from the 2 above options. Resetting in 5 seconds\n",RoomChoice,5000,playercharacter);
+                                                                                                                                    break;
+
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+
+                                                                                                                    break;
+                                                                                                                    case "2":
+                                                                                                                    case "leave":
+                                                                                                                    case "leave and tell the captain nothing was here":
+                                                                                                                    break;
                                                                                                                    }
                                                                                                                 }
 
