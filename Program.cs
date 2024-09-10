@@ -6,6 +6,7 @@ using DH4.Enums;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text.Json;
+using System.Collections;
 namespace DH4
 {
     class Game
@@ -1075,6 +1076,7 @@ namespace DH4
                                                                                                             Enemy zombieEnemyPostBeach=CreateEnemy(enemyNames);
                                                                                                             BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help,false);
                                                                                                             CheckPlayerLevel(playercharacter);
+                                                                                                            ShowPlayerStats(playercharacter); 
                                                                                                             SerializeCharacter(playercharacter,CheckpointName);
                                                                                                         }
                                                                                                         break;
@@ -1095,13 +1097,30 @@ namespace DH4
                                                                                                                 case"walk around house": 
                                                                                                                 case"1":
                                                                                                                     Console.WriteLine("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.\n");
-
+                                                                                                                    dsHouseDecision="";
                                                                                                                 break;
                                                                                                                 case "2":
                                                                                                                 case "go inside house":
 
                                                                                                                     //Console.WriteLine("You walk into the house.");
                                                                                                                 Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n ");
+                                                                                                                string dhinteriorpathalt="";
+                                                                                                                while(dhinteriorpathalt=="")
+                                                                                                                {
+                                                                                                                    System.Console.WriteLine("Do you 1) Follow them\n 2) Leave and tell the captain that there was nothing here.");
+                                                                                                                    dhinteriorpathalt=Console.ReadLine();
+                                                                                                                    switch(dhinteriorpathalt.ToLower())
+                                                                                                                    {
+                                                                                                                        case"1":
+                                                                                                                        case"follow them":
+                                                                                                                        case "follow":
+                                                                                                                        break;
+                                                                                                                        case "2":
+                                                                                                                        case"Tell the captain nothing was here":
+                                                                                                                        case"leave":
+                                                                                                                        break;
+                                                                                                                    }
+                                                                                                                }
                                                                                                                 break;
                                                                                                                 default:
                                                                                                                 ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", dsHouseDecision,5000,playercharacter);
@@ -1187,7 +1206,8 @@ namespace DH4
                                                                                                                         case"1":
                                                                                                                         case "follow them":
                                                                                                                         case "follow":
-                                                                                                                        System.Console.WriteLine($"{playercharacter.PlayerName}:Anyone Here?!?!\n ");
+                                                                                                                        System.Console.WriteLine(" You walk through the door Anyone here!?!? \n No response.");
+                                                                                                                        System.Console.WriteLine("You are now in a long hallway, with three doors, a door on the left, one on the right and one at the end of the hallway.");
                                             
                                                                                                                         int roomsCleared=0;
                                                                                                                         // vars to check to see if the rooms have been cleared and if they have set it so it desplays a dialouge is showed and the player is sent out of the room
@@ -1214,7 +1234,7 @@ namespace DH4
                                                                                                                                     case "left": 
                                                                                                                                     roomsCleared++;
                                                                                                                                     bLeftRoomCleared=true;
-																	Console.WriteLine("You walk into the room on your left.\n");
+																                                                                	Console.WriteLine("You walk into the room on your left.\n");
 																//BattleSystem
 																
                                                                                                                                     if(roomsCleared<2)
@@ -1224,9 +1244,9 @@ namespace DH4
                                                                                                                                     break;
                                                                                                                                     case"2":
                                                                                                                                     case"right":
-                                                                                                                                    roomsCleared++;
-                                                                                                                                    bRightRoomCleared=true;
-																	Console.WriteLine("You walk into the room on your right\n");
+                                                                                                                                        roomsCleared++;
+                                                                                                                                        bRightRoomCleared=true;
+																	                                                                    Console.WriteLine("You walk into the room on your right\n");
                                                                                                                                     if(roomsCleared<2)
                                                                                                                                     {
                                                                                                                                         RoomChoice="";
@@ -1275,18 +1295,32 @@ namespace DH4
                                                                                                          }
                                                                                                          else
                                                                                                          {
-                                                                                                            switch (dsHouseDecision.ToLower())
+                                                                                                            switch (dsHouseDecision.ToLower()) 
                                                                                                             {
                                                                                                                  case"walk around house": 
                                                                                                                 case"1":
                                                                                                                     Console.WriteLine("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.\n");
-
+                                                                                                                    dsHouseDecision="";
                                                                                                                 break;
                                                                                                                 case "2":
                                                                                                                 case "go inside house":
+                                                                                                                case"go inside":
+
 
                                                                                                                     //Console.WriteLine("You walk into the house.");
-                                                                                                                Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n");
+                                                                                                                Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n  Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n");
+                                                                                                                string dhinteriorpath="";
+                                                                                                                while(dhinteriorpath=="")
+                                                                                                                {
+                                                                                                                    System.Console.WriteLine("Do you 1) Follow them \n 2) Leave and tell the captain there was nothing here.\n");
+                                                                                                                   dhinteriorpath=Console.ReadLine();
+                                                                                                                   switch(dhinteriorpath.ToLower()) 
+                                                                                                                   {
+                                                                                                                    
+                                                                                                                   }
+                                                                                                                }
+
+
                                                                                                                 break;
                                                                                                                 default:
                                                                                                                 ResetAndClear("Please select the 2 above listed options. Resetting in 5 seconds",dsHouseDecision,5000,playercharacter);
