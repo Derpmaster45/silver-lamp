@@ -1,9 +1,0 @@
-Changes to game build
--------------------------------------------------------
-- Added story to path where you deviate from going directly to town.
-- added on to condition when you choose rooms, so that it checks the number of rooms cleared and takes you to the library if all conditions are met.
-
-things to change in current buildS
----------------- 
-- remove conditional statements seeing if roomsCleared is less than 2
-- set the tookalt path dhinterior so that it will run the prompt twice and send to the library on the third loop (if statment) 
