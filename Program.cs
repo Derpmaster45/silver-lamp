@@ -1034,7 +1034,7 @@ namespace DH4
                                                                                         case"go to town":
                                                                                         if(TookAltPath==true)
                                                                                         {
-                                                                                            CheckpointName="Mission 1";
+                                                                                            CheckpointName="Mission 1 AltPathTaken";
                                                                                             Console.WriteLine("You enter the town and you see Captain Smith, and a citizen of the village, and you decide to approach then to get your marching orders.");
                                                                                             Console.WriteLine($"Captain Smith: Where have you been? \n ");
                                                                                             Console.WriteLine("Do you: \n 1) Say you got lost. \n 2) Talk about the zombies on the beach.\n");
@@ -1138,7 +1138,12 @@ namespace DH4
 																					if(bIsLeftRoomCleared==false)
 																					{
 																						// four hornets checking the players status everytime
-																						 
+																						for(int numOfHornetsDefeated=0; numOfHornetsDefeated<4; numOfHornetsDefeated++)
+																						{
+																							enemyNames=EnemyNames.HORNET;
+																							Enemy HornetLRoomBoss=CreateEnemy(enemyNames); 
+																							BattleSystem(playercharacter, HornetLRoomBoss, spells,dmMagicSpells,DSMagicSpells,roomChoice,false);
+																						}																						 
 																						bIsLeftRoomCleared=true;
 																						roomsCleared++;
 																						roomChoice="";
@@ -1156,6 +1161,14 @@ namespace DH4
 																					if(bIsRightRoomCleared==false)
 																					{
 																						// horde of zombies fight goes here
+																						for(int numOfZombiesDefeated=0; numOfZombiesDefeated<4; numOfZombiesDefeated++)
+																						{
+																							enemyNames=EnemyNames.ZOMBIE;
+																							Enemy ZombieHordeRightRoom=CreateEnemy(enemyNames);
+																							BattleSystem(playercharacter,ZombieHordeRightRoom,spells,dmMagicSpells,DSMagicSpells, roomChoice,false );
+																							// show player stats
+
+																						}
 
 																						bIsRightRoomCleared=true;
 																						roomsCleared++;
@@ -1170,9 +1183,16 @@ namespace DH4
 																					break;
 																				case"3":
 																				case"end of hallway":
+																				
+																				// story before battle
 																				if(bIsLeftRoomCleared==true && bIsRightRoomCleared==true && roomsCleared==2)
 																				{
-																					//bossfight code (DarkSwordsman) goes here along with the story 
+																					//bossfight code (DarkSwordsman) goes here along with the story
+																					//enemyNames=EnemyNames.DARKSWORDSMAN;
+																					Enemy DSBOSS1=CreateEnemy(enemyNames);
+																					//BattleSystem(playercharacter, DSBOSS1,spells,dmMagicSpells,DSMagicSpells,roomChoice,true); 
+
+
 																				}																				
 																				break;
 																
@@ -1478,14 +1498,14 @@ namespace DH4
                                                                                         {
                                                                                             
                                                                                             dogoback=Console.ReadLine();
-                                                                                            Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Explore the surrounding area \n 2) go back to the start of the path\n");
+                                                                                            Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Go back to the start of the path\n 2) Explore the surrounding area\n");
                                                                                             switch(dogoback.ToLower())
                                                                                             {
                                                                                                 case"1":
                                                                                                 case"go back to town":
 
                                                                                                 Console.WriteLine("Decide to head back to the start of the path. ");
-                                                                                                forkingpathchoice="1";
+                                                                                                forkingpathchoice="";
                                                                                                 break;
                                                                                                 case"2":
                                                                                                 case"keep exploring":
