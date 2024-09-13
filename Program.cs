@@ -409,26 +409,26 @@ namespace DH4
                 enemyToCreate.EnemyDefensePoints=80;
                 break;
 		case EnemyNames.HORNET:     
-        enemyToCreate.EnemyName="Hornet"; 
-        enemyToCreate.EnemyHealth=110; 
-        enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
-	    enemyToCreate.EnemyManaPoint=50;
-	    enemyToCreate.EnemyManaDefensePoints=15;
-	    enemyToCreate.EnemyDefensePoints=25;
-	    enemyToCreate.EnemyAttackPoints=30;
+        	enemyToCreate.EnemyName="Hornet"; 
+        	enemyToCreate.EnemyHealth=110; 
+        	enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+		enemyToCreate.EnemyManaPoint=50;
+	    	enemyToCreate.EnemyManaDefensePoints=15;
+	    	enemyToCreate.EnemyDefensePoints=25;
+	    	enemyToCreate.EnemyAttackPoints=30;
 		break;
 
-// unknown enemy type (TBD Goes here)
-    case EnemyNames.TBD:
-    enemyToCreate.EnemyName="To Be Determined";
-    enemyToCreate.EnemyHealth=150;
-    enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
-    enemyToCreate.EnemyDefensePoints=35;
-    enemyToCreate.EnemyManaPoint=50;
-    enemyToCreate.EnemyAttackPoints=50;
-    enemyToCreate.EnemyDefensePoints=25;
-    enemyToCreate.EnemyManaAttackPoints=25;
-    enemyToCreate.EnemyManaDefensePoints=12;
+	// unknown enemy type (TBD Goes here)
+    	case EnemyNames.TBD:
+    	enemyToCreate.EnemyName="To Be Determined";
+    	enemyToCreate.EnemyHealth=150;
+    	enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+    	enemyToCreate.EnemyDefensePoints=35;
+    	enemyToCreate.EnemyManaPoint=50;
+    	enemyToCreate.EnemyAttackPoints=50;
+    	enemyToCreate.EnemyDefensePoints=25;
+    	enemyToCreate.EnemyManaAttackPoints=25;
+   	 enemyToCreate.EnemyManaDefensePoints=12;
     
     break;
 
@@ -843,7 +843,9 @@ namespace DH4
                 DSCharacter.MostRecentCheckpoint=CheckpointName;
                 // start the game
                 Console.WriteLine("Chapter 1 Prologue\n");
-                Console.WriteLine("The year is 1015, The people of askela are celebrating the anniversary of the villages founding, when suddenly an angel appears. \n");
+   	
+
+             Console.WriteLine("The year is 1015, The people of askela are celebrating the anniversary of the villages founding, when suddenly an angel appears. \n");
                 Console.WriteLine("Angel: I have been summoned here by the Great spirit to wipe out his enemies.\n Starting with the dark swordsman and the mage that lives in this village.\n ");
                 Console.WriteLine("The crowd of people start muttering in confusion and fear, until someone pipes up with, Who?\n");
                 Console.WriteLine("Angel: If you value your life, you will help me find them. If you dont help me,  I will burn this village down!\n");
@@ -1114,6 +1116,70 @@ namespace DH4
                                                                                                                         case"1":
                                                                                                                         case"follow them":
                                                                                                                         case "follow":
+																Console.WriteLine("You decide to follow the figure. When you get to the door you shout 'Anyone there!?!?!' you get no response.\n");
+																Console.WriteLine("You enter a hallway that has three doors, a door to your left, a door to you right,and a door at the end of the hallway.\n Do you 1) take the door on your left\n  2)take the door on your right ");
+																int roomsCleared=0;
+ 																// bools to check if each room has been cleared 
+																bool bIsRightRoomCleared=false;
+																bool bIsLeftRoomCleared=false;
+																bool bIsLibraryCleared=false;
+																while(roomsCleared<3)
+																{
+																	string roomChoice="";
+																	while(roomChoice=="")
+																	{
+																		Console.WriteLine("Which door would you like to check 1) the door on the left \n2) the door on the right \n 3) door at the end of the hallway.\n");
+																		roomChoice= Console.ReadLine();
+																		 switch(roomChoice.ToLower())  
+																			{
+																				case"1":
+																				case"left":
+																				case"door on the left":
+																					if(bIsLeftRoomCleared==false)
+																					{
+																						// four hornets checking the players status everytime
+																						 
+																						bIsLeftRoomCleared=true;
+																						roomsCleared++;
+																						roomChoice="";
+																						
+																					}
+																					else
+																					{
+																						Console.WriteLine("You have already cleared this room please clear the other rooms");
+																						roomChoice="";
+																					}
+																					break;
+																				case"2":
+																				case"right":
+																				case"door on the right":
+																					if(bIsRightRoomCleared==false)
+																					{
+																						// horde of zombies fight goes here
+
+																						bIsRightRoomCleared=true;
+																						roomsCleared++;
+																						roomChoice="";
+																					}
+																					else
+																					{
+																						Console.WriteLine("You have already cleared this room please clear the other rooms");
+																						roomChoice="";
+																					}
+																					
+																					break;
+																				case"3":
+																				case"end of hallway":
+																				if(bIsLeftRoomCleared==true && bIsRightRoomCleared==true && roomsCleared==2)
+																				{
+																					//bossfight code (DarkSwordsman) goes here along with the story 
+																				}																				
+																				break;
+																
+																			}
+																	}
+																	
+																}
                                                                                                                         break;
                                                                                                                         case "2":
                                                                                                                         case"Tell the captain nothing was here":
