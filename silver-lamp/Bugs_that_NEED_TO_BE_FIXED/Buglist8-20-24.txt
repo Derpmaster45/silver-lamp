@@ -1,0 +1,5 @@
+---------Bugs--------------------------------
+- Darkswordsman Magic attacks are less than 0
+
+---------Fixes--------------------------------
+- Swap order of operations and nerf the angels magic defense

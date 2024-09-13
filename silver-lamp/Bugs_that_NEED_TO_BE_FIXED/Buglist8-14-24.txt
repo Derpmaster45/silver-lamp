@@ -1,0 +1,26 @@
+- issue:
+Bat does not take damage when attacked.
+ Bat has appeared!
+Would you like to 
+1) Attack 
+ 2) Magic/Special  
+ 3) Block
+
+1
+DEBUG: ENEMY HAS  130 of 100
+You take a swing at the enemy
+ dealing -30
+This is being worked on at the moment. 
+The Bat has no special attack points, so it does not attack.
+
+Would you like to 
+1) Attack 
+ 2) Magic/Special  
+ 3) Block
+ for some reason (Bad math ) the bat is actually not taking damage when attacked.
+ - fix
+  - I ended up taking damageDealt and multiplying it by -1, and then subtracting that from the enemies current health points.
+  
+  - issue #2 When you use magic attacks the players turn does not end.
+  - fix Set the magicattackchoice variable to what ever input the player enters. This is caused by the way I originally designed the magic system. I forgot about the magicattackchoice variable entirely until i was scrolling through the code
+  trying to find the cause of the issue. I originally thought it was the battlesystem choice not being reset. So I created debug statements (using debug tools in a console application is hard to do to an extent) printing them to the console to see what was being passed through to the variables.

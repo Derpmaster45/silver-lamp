@@ -1,0 +1,135 @@
+/home/jay/Documents/dh4/obj/Debug/net8.0/dh4.GeneratedMSBuildEditorConfig.editorconfig
+/home/jay/Documents/dh4/obj/Debug/net8.0/dh4.AssemblyInfoInputs.cache
+/home/jay/Documents/dh4/obj/Debug/net8.0/dh4.AssemblyInfo.cs
+/home/jay/Documents/dh4/obj/Debug/net8.0/dh4.csproj.CoreCompileInputs.cache
+/home/jay/Documents/dh4/obj/Debug/net8.0/dh4.sourcelink.json
+/home/jay/Documents/dh4/bin/Debug/net8.0/dh4
+/home/jay/Documents/dh4/bin/Debug/net8.0/dh4.deps.json
+/home/jay/Documents/dh4/bin/Debug/net8.0/dh4.runtimeconfig.json
+/home/jay/Documents/dh4/bin/Debug/net8.0/dh4.dll
+/home/jay/Documents/dh4/bin/Debug/net8.0/dh4.pdb
+/home/jay/Documents/dh4/obj/Debug/net8.0/dh4.dll
+/home/jay/Documents/dh4/obj/Debug/net8.0/refint/dh4.dll
+/home/jay/Documents/dh4/obj/Debug/net8.0/dh4.pdb
+/home/jay/Documents/dh4/obj/Debug/net8.0/dh4.genruntimeconfig.cache
+/home/jay/Documents/dh4/obj/Debug/net8.0/ref/dh4.dll
+/home/jay/Documents/Projects/silver-lamp/bin/Debug/net8.0/dh4
+/home/jay/Documents/Projects/silver-lamp/bin/Debug/net8.0/dh4.deps.json
+/home/jay/Documents/Projects/silver-lamp/bin/Debug/net8.0/dh4.runtimeconfig.json
+/home/jay/Documents/Projects/silver-lamp/bin/Debug/net8.0/dh4.dll
+/home/jay/Documents/Projects/silver-lamp/bin/Debug/net8.0/dh4.pdb
+/home/jay/Documents/Projects/silver-lamp/obj/Debug/net8.0/dh4.GeneratedMSBuildEditorConfig.editorconfig
+/home/jay/Documents/Projects/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfoInputs.cache
+/home/jay/Documents/Projects/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfo.cs
+/home/jay/Documents/Projects/silver-lamp/obj/Debug/net8.0/dh4.csproj.CoreCompileInputs.cache
+/home/jay/Documents/Projects/silver-lamp/obj/Debug/net8.0/dh4.sourcelink.json
+/home/jay/Documents/Projects/silver-lamp/obj/Debug/net8.0/dh4.dll
+/home/jay/Documents/Projects/silver-lamp/obj/Debug/net8.0/refint/dh4.dll
+/home/jay/Documents/Projects/silver-lamp/obj/Debug/net8.0/dh4.pdb
+/home/jay/Documents/Projects/silver-lamp/obj/Debug/net8.0/dh4.genruntimeconfig.cache
+/home/jay/Documents/Projects/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
+/home/jay/Pictures/silver-lamp/bin/Debug/net8.0/dh4
+/home/jay/Pictures/silver-lamp/bin/Debug/net8.0/dh4.deps.json
+/home/jay/Pictures/silver-lamp/bin/Debug/net8.0/dh4.runtimeconfig.json
+/home/jay/Pictures/silver-lamp/bin/Debug/net8.0/dh4.dll
+/home/jay/Pictures/silver-lamp/bin/Debug/net8.0/dh4.pdb
+/home/jay/Pictures/silver-lamp/obj/Debug/net8.0/dh4.GeneratedMSBuildEditorConfig.editorconfig
+/home/jay/Pictures/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfoInputs.cache
+/home/jay/Pictures/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfo.cs
+/home/jay/Pictures/silver-lamp/obj/Debug/net8.0/dh4.csproj.CoreCompileInputs.cache
+/home/jay/Pictures/silver-lamp/obj/Debug/net8.0/dh4.sourcelink.json
+/home/jay/Pictures/silver-lamp/obj/Debug/net8.0/dh4.dll
+/home/jay/Pictures/silver-lamp/obj/Debug/net8.0/refint/dh4.dll
+/home/jay/Pictures/silver-lamp/obj/Debug/net8.0/dh4.pdb
+/home/jay/Pictures/silver-lamp/obj/Debug/net8.0/dh4.genruntimeconfig.cache
+/home/jay/Pictures/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/dh4.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfoInputs.cache
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfo.cs
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/dh4.csproj.CoreCompileInputs.cache
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/dh4.sourcelink.json
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/bin/Debug/net8.0/dh4.exe
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/bin/Debug/net8.0/dh4.deps.json
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/bin/Debug/net8.0/dh4.runtimeconfig.json
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/bin/Debug/net8.0/dh4.dll
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/bin/Debug/net8.0/dh4.pdb
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/dh4.dll
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/refint/dh4.dll
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/dh4.pdb
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/dh4.genruntimeconfig.cache
+C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
+/home/jay/Documents/silver-lamp/obj/Debug/net8.0/dh4.GeneratedMSBuildEditorConfig.editorconfig
+/home/jay/Documents/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfoInputs.cache
+/home/jay/Documents/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfo.cs
+/home/jay/Documents/silver-lamp/obj/Debug/net8.0/dh4.csproj.CoreCompileInputs.cache
+/home/jay/Documents/silver-lamp/obj/Debug/net8.0/dh4.sourcelink.json
+/home/jay/Documents/silver-lamp/bin/Debug/net8.0/dh4
+/home/jay/Documents/silver-lamp/bin/Debug/net8.0/dh4.deps.json
+/home/jay/Documents/silver-lamp/bin/Debug/net8.0/dh4.runtimeconfig.json
+/home/jay/Documents/silver-lamp/bin/Debug/net8.0/dh4.dll
+/home/jay/Documents/silver-lamp/bin/Debug/net8.0/dh4.pdb
+/home/jay/Documents/silver-lamp/obj/Debug/net8.0/dh4.dll
+/home/jay/Documents/silver-lamp/obj/Debug/net8.0/refint/dh4.dll
+/home/jay/Documents/silver-lamp/obj/Debug/net8.0/dh4.pdb
+/home/jay/Documents/silver-lamp/obj/Debug/net8.0/dh4.genruntimeconfig.cache
+/home/jay/Documents/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
+/home/jay/Documents/silverlamp real/silver-lamp/bin/Debug/net8.0/dh4
+/home/jay/Documents/silverlamp real/silver-lamp/bin/Debug/net8.0/dh4.deps.json
+/home/jay/Documents/silverlamp real/silver-lamp/bin/Debug/net8.0/dh4.runtimeconfig.json
+/home/jay/Documents/silverlamp real/silver-lamp/bin/Debug/net8.0/dh4.dll
+/home/jay/Documents/silverlamp real/silver-lamp/bin/Debug/net8.0/dh4.pdb
+/home/jay/Documents/silverlamp real/silver-lamp/obj/Debug/net8.0/dh4.GeneratedMSBuildEditorConfig.editorconfig
+/home/jay/Documents/silverlamp real/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfoInputs.cache
+/home/jay/Documents/silverlamp real/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfo.cs
+/home/jay/Documents/silverlamp real/silver-lamp/obj/Debug/net8.0/dh4.csproj.CoreCompileInputs.cache
+/home/jay/Documents/silverlamp real/silver-lamp/obj/Debug/net8.0/dh4.sourcelink.json
+/home/jay/Documents/silverlamp real/silver-lamp/obj/Debug/net8.0/dh4.dll
+/home/jay/Documents/silverlamp real/silver-lamp/obj/Debug/net8.0/refint/dh4.dll
+/home/jay/Documents/silverlamp real/silver-lamp/obj/Debug/net8.0/dh4.pdb
+/home/jay/Documents/silverlamp real/silver-lamp/obj/Debug/net8.0/dh4.genruntimeconfig.cache
+/home/jay/Documents/silverlamp real/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
+/run/media/jay/Extra/Projects/silver-lamp/bin/Debug/net8.0/dh4
+/run/media/jay/Extra/Projects/silver-lamp/bin/Debug/net8.0/dh4.deps.json
+/run/media/jay/Extra/Projects/silver-lamp/bin/Debug/net8.0/dh4.runtimeconfig.json
+/run/media/jay/Extra/Projects/silver-lamp/bin/Debug/net8.0/dh4.dll
+/run/media/jay/Extra/Projects/silver-lamp/bin/Debug/net8.0/dh4.pdb
+/run/media/jay/Extra/Projects/silver-lamp/obj/Debug/net8.0/dh4.GeneratedMSBuildEditorConfig.editorconfig
+/run/media/jay/Extra/Projects/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfoInputs.cache
+/run/media/jay/Extra/Projects/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfo.cs
+/run/media/jay/Extra/Projects/silver-lamp/obj/Debug/net8.0/dh4.csproj.CoreCompileInputs.cache
+/run/media/jay/Extra/Projects/silver-lamp/obj/Debug/net8.0/dh4.sourcelink.json
+/run/media/jay/Extra/Projects/silver-lamp/obj/Debug/net8.0/dh4.dll
+/run/media/jay/Extra/Projects/silver-lamp/obj/Debug/net8.0/refint/dh4.dll
+/run/media/jay/Extra/Projects/silver-lamp/obj/Debug/net8.0/dh4.pdb
+/run/media/jay/Extra/Projects/silver-lamp/obj/Debug/net8.0/dh4.genruntimeconfig.cache
+/run/media/jay/Extra/Projects/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
+/home/jay/Documents/Project/silver-lamp/bin/Debug/net8.0/dh4
+/home/jay/Documents/Project/silver-lamp/bin/Debug/net8.0/dh4.deps.json
+/home/jay/Documents/Project/silver-lamp/bin/Debug/net8.0/dh4.runtimeconfig.json
+/home/jay/Documents/Project/silver-lamp/bin/Debug/net8.0/dh4.dll
+/home/jay/Documents/Project/silver-lamp/bin/Debug/net8.0/dh4.pdb
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.GeneratedMSBuildEditorConfig.editorconfig
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfoInputs.cache
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfo.cs
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.csproj.CoreCompileInputs.cache
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.sourcelink.json
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.dll
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/refint/dh4.dll
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.pdb
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.genruntimeconfig.cache
+/home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
+/home/jay/silver-lamp/bin/Debug/net8.0/dh4
+/home/jay/silver-lamp/bin/Debug/net8.0/dh4.deps.json
+/home/jay/silver-lamp/bin/Debug/net8.0/dh4.runtimeconfig.json
+/home/jay/silver-lamp/bin/Debug/net8.0/dh4.dll
+/home/jay/silver-lamp/bin/Debug/net8.0/dh4.pdb
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.GeneratedMSBuildEditorConfig.editorconfig
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfoInputs.cache
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfo.cs
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.csproj.CoreCompileInputs.cache
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.sourcelink.json
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.dll
+/home/jay/silver-lamp/obj/Debug/net8.0/refint/dh4.dll
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.pdb
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.genruntimeconfig.cache
+/home/jay/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
