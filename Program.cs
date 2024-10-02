@@ -255,6 +255,7 @@ namespace DH4
                         switch(dsMagicAction)
                         {
                             case 1:
+                            // rename attack 
                             Console.WriteLine("Dark Swordsman used Acid Rain");
                             double baseDamage=78;
                                     double DamageDeal=character.PlayerManaDefensePoints /(enemy.EnemyManaAttackPoints+baseDamage);
@@ -276,7 +277,7 @@ namespace DH4
                             DamageDealtToPlayer=0;
                             break;
                             default:
-                            Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
+                            Console.WriteLine("ERR: Number Generator error");
                             break;
                         }
                         break;
