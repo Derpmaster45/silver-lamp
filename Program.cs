@@ -835,7 +835,7 @@ namespace DH4
            //string MainMenuOption="";
            while(MainMenuOption=="")
            {
-            Console.WriteLine("DH4 New Generation\n 1) New Game\n 2) Quit\n 3) Load Game");
+            Console.WriteLine("DH4 New Generation\n 1) New Game\n 2) Quit\n");
             MainMenuOption=Console.ReadLine();
             // menu switch
             switch(MainMenuOption.ToLower())
@@ -1208,14 +1208,17 @@ namespace DH4
 																								                                                                                    case"2":
 																								                                                                                    case "approach with confidence":
 																								                                                                                        Console.WriteLine("We need to leave this area. It is over run with monsters!\n The figure stands with their back turned to you. Come with me if you want to live. Still no response from the figure. DID YOU HEAR ME YOUR LIFE IS IN DANGER!!!\nIf my  life was truely in danger I woudl be out there fighting until my final breath. The figure responds. ");
+                                                                                                                                                                                        enemyNames=EnemyNames.DARKSWORDSMAN;
+																					                                                                                                    Enemy DSBOSS1=CreateEnemy(enemyNames);
+																					                                                                                                    BattleSystem(playercharacter, DSBOSS1,spells,dmMagicSpells,DSMagicSpells,roomChoice,true); 
 																								                                                                                    break;
 																								                                                                                    default:
-																								                                                                                    break; 
+                                                                                                                                                                                        ResetAndClear("Please select from the 2 above options. Resetting in 5 seconds\n",dsConfrontationPathChoice,5000,playercharacter);
+																								                                                                                    break;
+                                                                                                                                                                                     
 																							                                                                                    }
 																					                                                                                    }
-																					//enemyNames=EnemyNames.DARKSWORDSMAN;
-																					//Enemy DSBOSS1=CreateEnemy(enemyNames);
-																					//BattleSystem(playercharacter, DSBOSS1,spells,dmMagicSpells,DSMagicSpells,roomChoice,true); 
+																					
 
 
 																				}																				
