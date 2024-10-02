@@ -7,6 +7,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Text.Json;
 using System.Collections;
+using System.Security.Cryptography;
 namespace DH4
 {
     class Game
@@ -273,8 +274,12 @@ namespace DH4
                                     DamageDealtToPlayer=voidDamageDealt;
                             break;
                             case 3:
-                            Console.WriteLine("Dark Swordsman used PLACEHOLDER");
-                            DamageDealtToPlayer=0;
+                            Console.WriteLine("Dark Swordsman used Double attack");
+                            for (int i=0;i<2; i++ )
+                            {
+
+                            }
+                            // DamageDealtToPlayer=0;
                             break;
                             default:
                             Console.WriteLine("ERR: Number Generator error");
