@@ -11,10 +11,7 @@ namespace DH4
 {
     class Game
     {
-        public void ShowEndofGameMessage()
-        {
-            Console.WriteLine("Thanks for playing, Hope you enjoyed the game!");
-        }
+       
         public static void SerializeCharacter(Character characterToSave, string checkpoint)
         {
             string checkpointToSave=checkpoint;
@@ -83,6 +80,13 @@ namespace DH4
             DSCharacter.PlayerManaAttackPoints=30;
             DSCharacter.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
             // ds Character Creation end
+             void ShowEndofGameMessage()
+        {
+            Console.WriteLine("Thanks for playing, Hope you enjoyed the game!");
+            System.Console.WriteLine("Closing Game in 5 seconds!");
+            Thread.Sleep(5000);
+            Environment.Exit(0);
+        }
 
 
             Enemy enemy= new Enemy();
@@ -1147,6 +1151,8 @@ namespace DH4
 																							                                                                        enemyNames=EnemyNames.HORNET;
 																							                                                                        Enemy HornetLRoomBoss=CreateEnemy(enemyNames); 
 																							                                                                        BattleSystem(playercharacter, HornetLRoomBoss, spells,dmMagicSpells,DSMagicSpells,roomChoice,false);
+                                                                                                                                                                    CheckPlayerLevel(playercharacter);
+                                                                                                                                                                    ShowPlayerStats(playercharacter);
 																						                                                                        }																						 
 																						                                                                        bIsLeftRoomCleared=true;
 																						                                                                        roomsCleared++;
@@ -1171,8 +1177,8 @@ namespace DH4
 																							                                                                            Enemy ZombieHordeRightRoom=CreateEnemy(enemyNames);
 																							                                                                            BattleSystem(playercharacter,ZombieHordeRightRoom,spells,dmMagicSpells,DSMagicSpells, roomChoice,false );
 																							                                                                            // show player stats
-
-
+                                                                                                                                                                        CheckPlayerLevel(playercharacter);
+                                                                                                                                                                        ShowPlayerStats(playercharacter);
 																					    	                                                                        }
 
 																						                                                                            bIsRightRoomCleared=true;
@@ -1188,6 +1194,7 @@ namespace DH4
 																				                                                                            break;
 																			                                                                            	case"3":
 																				                                                                            case"end of hallway":
+                                                                                                                                                            playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
 																				
 																				                                                                                // story before battle
 																				                                                                                if(bIsLeftRoomCleared==true && bIsRightRoomCleared==true && roomsCleared==2)
@@ -1210,7 +1217,10 @@ namespace DH4
 																								                                                                                        Console.WriteLine("We need to leave this area. It is over run with monsters!\n The figure stands with their back turned to you. Come with me if you want to live. Still no response from the figure. DID YOU HEAR ME YOUR LIFE IS IN DANGER!!!\nIf my  life was truely in danger I woudl be out there fighting until my final breath. The figure responds. ");
                                                                                                                                                                                         enemyNames=EnemyNames.DARKSWORDSMAN;
 																					                                                                                                    Enemy DSBOSS1=CreateEnemy(enemyNames);
-																					                                                                                                    BattleSystem(playercharacter, DSBOSS1,spells,dmMagicSpells,DSMagicSpells,roomChoice,true); 
+																					                                                                                                    BattleSystem(playercharacter, DSBOSS1,spells,dmMagicSpells,DSMagicSpells,roomChoice,true);
+                                                                                                                                                                                        ShowEndofGameMessage(); 
+                                                                                                                                                                                        bIsLibraryCleared=true;
+
 																								                                                                                    break;
 																								                                                                                    default:
                                                                                                                                                                                         ResetAndClear("Please select from the 2 above options. Resetting in 5 seconds\n",dsConfrontationPathChoice,5000,playercharacter);
