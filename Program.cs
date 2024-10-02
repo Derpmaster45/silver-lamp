@@ -11,6 +11,10 @@ namespace DH4
 {
     class Game
     {
+        public void ShowEndofGameMessage()
+        {
+            Console.WriteLine("Thanks for playing, Hope you enjoyed the game!");
+        }
         public static void SerializeCharacter(Character characterToSave, string checkpoint)
         {
             string checkpointToSave=checkpoint;
@@ -1116,71 +1120,72 @@ namespace DH4
                                                                                                                         case"1":
                                                                                                                         case"follow them":
                                                                                                                         case "follow":
-																Console.WriteLine("You decide to follow the figure. When you get to the door you shout 'Anyone there!?!?!' you get no response.\n ");
-																Console.WriteLine("You enter a hallway that has three doors, a door to your left, a door to you right,and a door at the end of the hallway.\n Do you 1) take the door on your left\n  2)take the door on your right ");
-																int roomsCleared=0;
- 																// bools to check if each room has been cleared 
-																bool bIsRightRoomCleared=false;
-																bool bIsLeftRoomCleared=false;
-																bool bIsLibraryCleared=false;
-																while(roomsCleared<3)
-																{
-																	string roomChoice="";
-																	while(roomChoice=="")
-																	{
-																		Console.WriteLine("Which door would you like to check 1) the door on the left \n2) the door on the right \n 3) door at the end of the hallway.\n");
-																		roomChoice= Console.ReadLine();
-																		 switch(roomChoice.ToLower())  
-																			{
-																				case"1":
-																				case"left":
-																				case"door on the left":
-																					if(bIsLeftRoomCleared==false)
-																					{
-																						// four hornets checking the players status everytime
-																						for(int numOfHornetsDefeated=0; numOfHornetsDefeated<4; numOfHornetsDefeated++)
-																						{
-																							enemyNames=EnemyNames.HORNET;
-																							Enemy HornetLRoomBoss=CreateEnemy(enemyNames); 
-																							BattleSystem(playercharacter, HornetLRoomBoss, spells,dmMagicSpells,DSMagicSpells,roomChoice,false);
-																						}																						 
-																						bIsLeftRoomCleared=true;
-																						roomsCleared++;
-																						roomChoice="";
+																                                                            Console.WriteLine("You decide to follow the figure. When you get to the door you shout 'Anyone there!?!?!' you get no response.\n ");
+																                                                            Console.WriteLine("You enter a hallway that has three doors, a door to your left, a door to you right,and a door at the end of the hallway.\n Do you 1) take the door on your left\n  2)take the door on your right ");
+																                                                            int roomsCleared=0;
+ 																                                                            // bools to check if each room has been cleared 
+																                                                            bool bIsRightRoomCleared=false;
+																                                                            bool bIsLeftRoomCleared=false;
+																                                                            bool bIsLibraryCleared=false;
+																                                                                while(roomsCleared<3)
+																                                                                {
+																	                                                                string roomChoice="";
+																	                                                                    while(roomChoice=="")
+																	                                                                        {
+																		                                                                        Console.WriteLine("Which door would you like to check 1) the door on the left \n2) the door on the right \n 3) door at the end of the hallway.\n");
+																		                                                                        roomChoice= Console.ReadLine();
+																		                                                                            switch(roomChoice.ToLower())  
+																			                                                                        {
+																				                                                                        case"1":
+																				                                                                        case"left":
+																				                                                                        case"door on the left":
+																					                                                                        if(bIsLeftRoomCleared==false)
+																					                                                                        {
+																						                                                                        // four hornets checking the players status everytime
+																						                                                                        for(int numOfHornetsDefeated=0; numOfHornetsDefeated<4; numOfHornetsDefeated++)
+																						                                                                        {
+																							                                                                        enemyNames=EnemyNames.HORNET;
+																							                                                                        Enemy HornetLRoomBoss=CreateEnemy(enemyNames); 
+																							                                                                        BattleSystem(playercharacter, HornetLRoomBoss, spells,dmMagicSpells,DSMagicSpells,roomChoice,false);
+																						                                                                        }																						 
+																						                                                                        bIsLeftRoomCleared=true;
+																						                                                                        roomsCleared++;
+																						                                                                        roomChoice="";
 																						
-																					}
-																					else
-																					{
-																						Console.WriteLine("You have already cleared this room please clear the other rooms");
-																						roomChoice="";
-																					}
-																					break;
-																				case"2":
-																				case"right":
-																				case"door on the right":
-																					if(bIsRightRoomCleared==false)
-																					{
-																						// horde of zombies fight goes here
-																						for(int numOfZombiesDefeated=0; numOfZombiesDefeated<4; numOfZombiesDefeated++)
-																						{
-																							enemyNames=EnemyNames.ZOMBIE;
-																							Enemy ZombieHordeRightRoom=CreateEnemy(enemyNames);
-																							BattleSystem(playercharacter,ZombieHordeRightRoom,spells,dmMagicSpells,DSMagicSpells, roomChoice,false );
-																							// show player stats
+																					                                                                        }
+																					                                                                        else
+																					                                                                        {
+																						                                                                        Console.WriteLine("You have already cleared this room please clear the other rooms");
+																						                                                                        roomChoice="";
+																					                                                                        }
+																					                                                                        break;
+																				                                                                            case"2":
+																				                                                                            case"right":
+																				                                                                            case"door on the right":
+																					                                                                            if(bIsRightRoomCleared==false)
+																					                                                                            {
+																						                                                                            // horde of zombies fight goes here
+																						                                                                            for(int numOfZombiesDefeated=0; numOfZombiesDefeated<4; numOfZombiesDefeated++)
+																						                                                                            {
+																							                                                                            enemyNames=EnemyNames.ZOMBIE;
+																							                                                                            Enemy ZombieHordeRightRoom=CreateEnemy(enemyNames);
+																							                                                                            BattleSystem(playercharacter,ZombieHordeRightRoom,spells,dmMagicSpells,DSMagicSpells, roomChoice,false );
+																							                                                                            // show player stats
 
-																						}
 
-																						bIsRightRoomCleared=true;
-																						roomsCleared++;
-																						roomChoice="";
-																					}
-																					else
-																					{
-																						Console.WriteLine("You have already cleared this room please clear the other rooms");
-																						roomChoice="";
-																					}
+																					    	                                                                        }
+
+																						                                                                            bIsRightRoomCleared=true;
+																						                                                                            roomsCleared++;
+																						                                                                            roomChoice="";
+																					                                                                            }
+																					                                                                            else
+																					                                                                            {
+																						                                                                            Console.WriteLine("You have already cleared this room please clear the other rooms");
+																						                                                                            roomChoice="";
+																					                                                                            }
 																					
-																					break;
+																				                                                                            break;
 																				case"3":
 																				case"end of hallway":
 																				
