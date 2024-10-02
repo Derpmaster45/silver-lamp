@@ -118,6 +118,23 @@ C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
 /home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.pdb
 /home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/dh4.genruntimeconfig.cache
 /home/jay/Documents/Project/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
+<<<<<<< HEAD
+/home/jay/silver-lamp/bin/Debug/net8.0/dh4
+/home/jay/silver-lamp/bin/Debug/net8.0/dh4.deps.json
+/home/jay/silver-lamp/bin/Debug/net8.0/dh4.runtimeconfig.json
+/home/jay/silver-lamp/bin/Debug/net8.0/dh4.dll
+/home/jay/silver-lamp/bin/Debug/net8.0/dh4.pdb
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.GeneratedMSBuildEditorConfig.editorconfig
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfoInputs.cache
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.AssemblyInfo.cs
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.csproj.CoreCompileInputs.cache
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.sourcelink.json
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.dll
+/home/jay/silver-lamp/obj/Debug/net8.0/refint/dh4.dll
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.pdb
+/home/jay/silver-lamp/obj/Debug/net8.0/dh4.genruntimeconfig.cache
+/home/jay/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
+=======
 /home/jay/Documents/Projects/Games/silver-lamp/bin/Debug/net8.0/dh4
 /home/jay/Documents/Projects/Games/silver-lamp/bin/Debug/net8.0/dh4.deps.json
 /home/jay/Documents/Projects/Games/silver-lamp/bin/Debug/net8.0/dh4.runtimeconfig.json
@@ -133,3 +150,4 @@ C:/Users/jay/Source/Repos/Derpmaster45/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
 /home/jay/Documents/Projects/Games/silver-lamp/obj/Debug/net8.0/dh4.pdb
 /home/jay/Documents/Projects/Games/silver-lamp/obj/Debug/net8.0/dh4.genruntimeconfig.cache
 /home/jay/Documents/Projects/Games/silver-lamp/obj/Debug/net8.0/ref/dh4.dll
+>>>>>>> 4890c73e8aa27f14ab844292092bbc2504062ee4

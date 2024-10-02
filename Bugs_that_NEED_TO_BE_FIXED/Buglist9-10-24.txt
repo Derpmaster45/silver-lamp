@@ -1,0 +1,5 @@
+Changes to game build
+-------------------------------------------------------
+- Added story to path where you deviate from going directly to town.
+- added on to condition when you choose rooms, so that it checks the number of rooms cleared and takes you to the library if all conditions are met.
+-

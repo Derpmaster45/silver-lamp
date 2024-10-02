@@ -1,0 +1,7 @@
+Bugs in game build
+-------------------------------------------------------
+- When you take the path, instead of going directly to town, you end up crashing the game. What is supposed to happen you are taking the path back to the choice of going to town or the alt route.
+
+Fixes
+-------------------------------------------------------
+-Setting the forkingpathchoice to an empty string instead of 1 or any of the other choices. (that may not work and needs to be tested) 

@@ -6,10 +6,13 @@ using DH4.Enums;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text.Json;
+using System.Collections;
+using System.Security.Cryptography;
 namespace DH4
 {
     class Game
     {
+       
         public static void SerializeCharacter(Character characterToSave, string checkpoint)
         {
             string checkpointToSave=checkpoint;
@@ -78,6 +81,13 @@ namespace DH4
             DSCharacter.PlayerManaAttackPoints=30;
             DSCharacter.PlayerClass=PlayerClassTypes.DARKSWORDSMAN;
             // ds Character Creation end
+             void ShowEndofGameMessage()
+        {
+            Console.WriteLine("Thanks for playing, Hope you enjoyed the game!");
+            System.Console.WriteLine("Closing Game in 5 seconds!");
+            Thread.Sleep(5000);
+            Environment.Exit(0);
+        }
 
 
             Enemy enemy= new Enemy();
@@ -246,6 +256,7 @@ namespace DH4
                         switch(dsMagicAction)
                         {
                             case 1:
+                            // rename attack 
                             Console.WriteLine("Dark Swordsman used Acid Rain");
                             double baseDamage=78;
                                     double DamageDeal=character.PlayerManaDefensePoints /(enemy.EnemyManaAttackPoints+baseDamage);
@@ -263,11 +274,15 @@ namespace DH4
                                     DamageDealtToPlayer=voidDamageDealt;
                             break;
                             case 3:
-                            Console.WriteLine("Dark Swordsman used PLACEHOLDER");
-                            DamageDealtToPlayer=0;
+                            Console.WriteLine("Dark Swordsman used Double attack");
+                            for (int i=0;i<2; i++ )
+                            {
+
+                            }
+                            // DamageDealtToPlayer=0;
                             break;
                             default:
-                            Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
+                            Console.WriteLine("ERR: Number Generator error");
                             break;
                         }
                         break;
@@ -344,8 +359,9 @@ namespace DH4
                     ZOMBIE,
                     BAT,
                     ANGEL,
-                    VAMPIRE,
+                    VAMPIRE, 
                     DARKSWORDSMAN,
+		    HORNET,
                     NONE
                     */
                 } 
@@ -369,9 +385,9 @@ namespace DH4
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                     enemyToCreate.EnemyDefensePoints=10;
                     enemyToCreate.EnemyManaDefensePoints=5;
-                    enemy.EnemyAttackPoints=20;
-                    enemy.EnemyManaPoint=50;
-                    enemy.EnemyManaAttackPoints=25;
+                    enemyToCreate.EnemyAttackPoints=20;
+                    enemyToCreate.EnemyManaPoint=50;
+                    enemyToCreate.EnemyManaAttackPoints=25;
                 break;
                 case EnemyNames.ANGEL:
                     enemyToCreate.EnemyName="Angel";
@@ -406,9 +422,34 @@ namespace DH4
                 enemyToCreate.EnemyManaPoint=100;
                 enemyToCreate.EnemyDefensePoints=80;
                 break;
+		case EnemyNames.HORNET:     
+        	enemyToCreate.EnemyName="Hornet"; 
+        	enemyToCreate.EnemyHealth=110; 
+        	enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+		enemyToCreate.EnemyManaPoint=50;
+	    	enemyToCreate.EnemyManaDefensePoints=15;
+	    	enemyToCreate.EnemyDefensePoints=25;
+	    	enemyToCreate.EnemyAttackPoints=30;
+		break;
+
+	// unknown enemy type (TBD Goes here)
+    	case EnemyNames.TBD:
+    	enemyToCreate.EnemyName="To Be Determined";
+    	enemyToCreate.EnemyHealth=150;
+    	enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+    	enemyToCreate.EnemyDefensePoints=35;
+    	enemyToCreate.EnemyManaPoint=50;
+    	enemyToCreate.EnemyAttackPoints=50;
+    	enemyToCreate.EnemyDefensePoints=25;
+    	enemyToCreate.EnemyManaAttackPoints=25;
+   	 enemyToCreate.EnemyManaDefensePoints=12;
+    
+    break;
+
                 default:
                 Console.WriteLine("Err: Unrecognized Enemy Type\n Probably not created yet in the creation method");
                 break;
+		
             }
             return enemyToCreate;
            }
@@ -498,7 +539,7 @@ namespace DH4
             return characterToCreate;
         }
 
-            void BattleSystem(Character PlayerParty, Enemy enemy, MageSpells SpellList, DarkMageMagic DMSpellList, DarkSwordsmanMagic DSMagicList, string CheckpointName)
+            void BattleSystem(Character PlayerParty, Enemy enemy, MageSpells SpellList, DarkMageMagic DMSpellList, DarkSwordsmanMagic DSMagicList, string CheckpointName, bool BCanLose)
             {
                 // if enemy is petrified increment the turnsSincePetrify at the end of each turn
                bool bIsPetrified=false;
@@ -587,7 +628,7 @@ namespace DH4
                                     Console.WriteLine($"You have {PlayerParty.PlayerManaPoints.ToString()} mana points remaining");
                                     // call damage dealt function
                                     //MageMagicChoice="";
-                                    // battlesystemchoice="";
+                                     battlesystemchoice="";
                                     System.Console.WriteLine($"DEBUG INFO MAGEMAGICATTACK={MageMagicChoice}");
                                     break;
                                     default:
@@ -796,6 +837,7 @@ namespace DH4
                 {
                     Console.WriteLine($"the {enemy.EnemyName} is petrified and cannot move");
                 }
+		// add a check to see if player health is 0 and if bCanLoose is ==true;
                
               
             }
@@ -803,7 +845,7 @@ namespace DH4
            //string MainMenuOption="";
            while(MainMenuOption=="")
            {
-            Console.WriteLine("DH4 New Generation\n 1) New Game\n 2) Quit\n 3) Load Game");
+            Console.WriteLine("DH4 New Generation\n 1) New Game\n 2) Quit\n");
             MainMenuOption=Console.ReadLine();
             // menu switch
             switch(MainMenuOption.ToLower())
@@ -815,7 +857,9 @@ namespace DH4
                 DSCharacter.MostRecentCheckpoint=CheckpointName;
                 // start the game
                 Console.WriteLine("Chapter 1 Prologue\n");
-                Console.WriteLine("The year is 1015, The people of askela are celebrating the anniversary of the villages founding, when suddenly an angel appears. \n");
+   	
+
+             Console.WriteLine("The year is 1015, The people of askela are celebrating the anniversary of the villages founding, when suddenly an angel appears. \n");
                 Console.WriteLine("Angel: I have been summoned here by the Great spirit to wipe out his enemies.\n Starting with the dark swordsman and the mage that lives in this village.\n ");
                 Console.WriteLine("The crowd of people start muttering in confusion and fear, until someone pipes up with, Who?\n");
                 Console.WriteLine("Angel: If you value your life, you will help me find them. If you dont help me,  I will burn this village down!\n");
@@ -847,7 +891,7 @@ namespace DH4
                    Enemy AngelEnemy= CreateEnemy(enemyNames);
                 
                  
-                 BattleSystem(DSCharacter,AngelEnemy, spells, dmMagicSpells, DSMagicSpells, CheckpointName);
+                 BattleSystem(DSCharacter,AngelEnemy, spells, dmMagicSpells, DSMagicSpells, CheckpointName,false);
                 System.Console.WriteLine("After a tense fight you beat the angel, however he is keen to let you know its not over.\n Angel: You haven’t won yet it is you who have underestimated the church and our leader. \nThe church is going to have your heads.");
                 System.Console.WriteLine("Mage: We will deal with that when the time comes\n");
                 PromptedClearScreen();
@@ -893,7 +937,6 @@ namespace DH4
             }
                 
               
-              //playercharacter.PlayerClass=playerclasslist;
                Character playercharacter=CreateCharacter(playerclasslist);
                playercharacter.PlayerName=playerName;
                 
@@ -980,7 +1023,7 @@ namespace DH4
                                                                                         // battlesystem and zombie enemy creation goes here.
                                                                                         enemyNames = EnemyNames.ZOMBIE;
                                                                                         Enemy zombieEnemy = CreateEnemy(enemyNames);
-                                                                                        BattleSystem(playercharacter, zombieEnemy, spells, dmMagicSpells, DSMagicSpells, TownPathLie);
+                                                                                        BattleSystem(playercharacter, zombieEnemy, spells, dmMagicSpells, DSMagicSpells, TownPathLie,false);
                                                                                         CheckPlayerLevel(playercharacter);
                                                                                         SerializeCharacter(playercharacter,CheckpointName);
                                                                                         break;
@@ -1005,7 +1048,7 @@ namespace DH4
                                                                                         case"go to town":
                                                                                         if(TookAltPath==true)
                                                                                         {
-                                                                                            CheckpointName="Mission 1";
+                                                                                            CheckpointName="Mission 1 AltPathTaken";
                                                                                             Console.WriteLine("You enter the town and you see Captain Smith, and a citizen of the village, and you decide to approach then to get your marching orders.");
                                                                                             Console.WriteLine($"Captain Smith: Where have you been? \n ");
                                                                                             Console.WriteLine("Do you: \n 1) Say you got lost. \n 2) Talk about the zombies on the beach.\n");
@@ -1029,11 +1072,10 @@ namespace DH4
 												                                                    Console.WriteLine("You start making your way through the  overrun village when suddenly...");
 													                                                enemyNames=EnemyNames.BAT;
 													                                                Enemy BatEnemy=CreateEnemy(enemyNames);
-													                                                BattleSystem(playercharacter,BatEnemy, spells,dmMagicSpells,DSMagicSpells,dolieaboutbeach); 
+													                                                BattleSystem(playercharacter,BatEnemy, spells,dmMagicSpells,DSMagicSpells,dolieaboutbeach,false); 
                                                                                                     CheckPlayerLevel(playercharacter);
                                                                                                     SerializeCharacter(playercharacter,CheckpointName);
 													                                                PromptedClearScreen();
-                                                                                                    //Console.WriteLine("You defeated the bat, when you hear a cry for help do you \n 1) Investigate \n 2)Ignore it\n");
                                                                                                     string help="";
                                                                                                     while(help=="")
                                                                                                     {
@@ -1048,8 +1090,9 @@ namespace DH4
                                                                                                         {
                                                                                                             enemyNames=EnemyNames.ZOMBIE;
                                                                                                             Enemy zombieEnemyPostBeach=CreateEnemy(enemyNames);
-                                                                                                            BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help);
+                                                                                                            BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help,false);
                                                                                                             CheckPlayerLevel(playercharacter);
+                                                                                                            ShowPlayerStats(playercharacter); 
                                                                                                             SerializeCharacter(playercharacter,CheckpointName);
                                                                                                         }
                                                                                                         break;
@@ -1070,13 +1113,144 @@ namespace DH4
                                                                                                                 case"walk around house": 
                                                                                                                 case"1":
                                                                                                                     Console.WriteLine("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.\n");
-
+                                                                                                                    dsHouseDecision="";
                                                                                                                 break;
                                                                                                                 case "2":
                                                                                                                 case "go inside house":
 
                                                                                                                     //Console.WriteLine("You walk into the house.");
-                                                                                                                Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n  6");
+                                                                                                                Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n ");
+                                                                                                                string dhinteriorpathalt="";
+                                                                                                                while(dhinteriorpathalt=="")
+                                                                                                                {
+                                                                                                                    System.Console.WriteLine("Do you 1) Follow them\n 2) Leave and tell the captain that there was nothing here.");
+                                                                                                                    dhinteriorpathalt=Console.ReadLine();
+                                                                                                                    switch(dhinteriorpathalt.ToLower())
+                                                                                                                    {
+                                                                                                                        case"1":
+                                                                                                                        case"follow them":
+                                                                                                                        case "follow":
+																                                                            Console.WriteLine("You decide to follow the figure. When you get to the door you shout 'Anyone there!?!?!' you get no response.\n ");
+																                                                            Console.WriteLine("You enter a hallway that has three doors, a door to your left, a door to you right,and a door at the end of the hallway.\n Do you 1) take the door on your left\n  2)take the door on your right ");
+																                                                            int roomsCleared=0;
+ 																                                                            // bools to check if each room has been cleared 
+																                                                            bool bIsRightRoomCleared=false;
+																                                                            bool bIsLeftRoomCleared=false;
+																                                                            bool bIsLibraryCleared=false;
+																                                                                while(roomsCleared<3)
+																                                                                {
+																	                                                                string roomChoice="";
+																	                                                                    while(roomChoice=="")
+																	                                                                        {
+																		                                                                        Console.WriteLine("Which door would you like to check 1) the door on the left \n2) the door on the right \n 3) door at the end of the hallway.\n");
+																		                                                                        roomChoice= Console.ReadLine();
+																		                                                                            switch(roomChoice.ToLower())  
+																			                                                                        {
+																				                                                                        case"1":
+																				                                                                        case"left":
+																				                                                                        case"door on the left":
+																					                                                                        if(bIsLeftRoomCleared==false)
+																					                                                                        {
+																						                                                                        // four hornets checking the players status everytime
+																						                                                                        for(int numOfHornetsDefeated=0; numOfHornetsDefeated<4; numOfHornetsDefeated++)
+																						                                                                        {
+																							                                                                        enemyNames=EnemyNames.HORNET;
+																							                                                                        Enemy HornetLRoomBoss=CreateEnemy(enemyNames); 
+																							                                                                        BattleSystem(playercharacter, HornetLRoomBoss, spells,dmMagicSpells,DSMagicSpells,roomChoice,false);
+                                                                                                                                                                    CheckPlayerLevel(playercharacter);
+                                                                                                                                                                    ShowPlayerStats(playercharacter);
+																						                                                                        }																						 
+																						                                                                        bIsLeftRoomCleared=true;
+																						                                                                        roomsCleared++;
+																						                                                                        roomChoice="";
+																						
+																					                                                                        }
+																					                                                                        else
+																					                                                                        {
+																						                                                                        Console.WriteLine("You have already cleared this room please clear the other rooms");
+																						                                                                        roomChoice="";
+																					                                                                        }
+																					                                                                        break;
+																				                                                                            case"2":
+																				                                                                            case"right":
+																				                                                                            case"door on the right":
+																					                                                                            if(bIsRightRoomCleared==false)
+																					                                                                            {
+																						                                                                            // horde of zombies fight goes here
+																						                                                                            for(int numOfZombiesDefeated=0; numOfZombiesDefeated<4; numOfZombiesDefeated++)
+																						                                                                            {
+																							                                                                            enemyNames=EnemyNames.ZOMBIE;
+																							                                                                            Enemy ZombieHordeRightRoom=CreateEnemy(enemyNames);
+																							                                                                            BattleSystem(playercharacter,ZombieHordeRightRoom,spells,dmMagicSpells,DSMagicSpells, roomChoice,false );
+																							                                                                            // show player stats
+                                                                                                                                                                        CheckPlayerLevel(playercharacter);
+                                                                                                                                                                        ShowPlayerStats(playercharacter);
+																					    	                                                                        }
+
+																						                                                                            bIsRightRoomCleared=true;
+																						                                                                            roomsCleared++;
+																						                                                                            roomChoice="";
+																					                                                                            }
+																					                                                                            else
+																					                                                                            {
+																						                                                                            Console.WriteLine("You have already cleared this room please clear the other rooms");
+																						                                                                            roomChoice="";
+																					                                                                            }
+																					
+																				                                                                            break;
+																			                                                                            	case"3":
+																				                                                                            case"end of hallway":
+                                                                                                                                                            playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
+																				
+																				                                                                                // story before battle
+																				                                                                                if(bIsLeftRoomCleared==true && bIsRightRoomCleared==true && roomsCleared==2)
+																				                                                                                {
+																					                                                                                //bossfight code (DarkSwordsman) goes here along with the story
+																					                                                                                Console.WriteLine("You walk through the door to the library, it is dimly lit, and you see an a figure...");
+																					                                                                                //Console.WriteLine("I have finally caught up to you!");
+																					                                                                                string dsConfrontationPathChoice="";
+																					                                                                                    while(dsConfrontationPathChoice=="")
+																					                                                                                    {
+																						                                                                                    Console.WriteLine("Something feels off. You can't quite put your finger on, but the presence in this room feels different. How do you proceed \n1) Approach with caution \n Approach with confidence.\n");
+																							                                                                                dsConfrontationPathChoice=Console.ReadLine();
+																							                                                                                    switch(dsConfrontationPathChoice.ToLower())
+																							                                                                                    {
+																								                                                                                    case"1":
+																								                                                                                    case"approach with caution":
+																								                                                                                    break;
+																								                                                                                    case"2":
+																								                                                                                    case "approach with confidence":
+																								                                                                                        Console.WriteLine("We need to leave this area. It is over run with monsters!\n The figure stands with their back turned to you. Come with me if you want to live. Still no response from the figure. DID YOU HEAR ME YOUR LIFE IS IN DANGER!!!\nIf my  life was truely in danger I woudl be out there fighting until my final breath. The figure responds. ");
+                                                                                                                                                                                        enemyNames=EnemyNames.DARKSWORDSMAN;
+																					                                                                                                    Enemy DSBOSS1=CreateEnemy(enemyNames);
+																					                                                                                                    BattleSystem(playercharacter, DSBOSS1,spells,dmMagicSpells,DSMagicSpells,roomChoice,true);
+                                                                                                                                                                                        ShowEndofGameMessage(); 
+                                                                                                                                                                                        bIsLibraryCleared=true;
+
+																								                                                                                    break;
+																								                                                                                    default:
+                                                                                                                                                                                        ResetAndClear("Please select from the 2 above options. Resetting in 5 seconds\n",dsConfrontationPathChoice,5000,playercharacter);
+																								                                                                                    break;
+                                                                                                                                                                                     
+																							                                                                                    }
+																					                                                                                    }
+																					
+
+
+																				}																				
+																				break;
+																
+																			}
+																	}
+																	
+																}
+                                                                                                                        break;
+                                                                                                                        case "2":
+                                                                                                                        case"Tell the captain nothing was here":
+                                                                                                                        case"leave":
+                                                                                                                        break;
+                                                                                                                    }
+                                                                                                                }
                                                                                                                 break;
                                                                                                                 default:
                                                                                                                 ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", dsHouseDecision,5000,playercharacter);
@@ -1104,7 +1278,7 @@ namespace DH4
 												                                            Console.WriteLine("You start making your way through the  overrun village when suddenly...\n");
 													                                        enemyNames=EnemyNames.BAT;
 													                                        Enemy BatEnemy=CreateEnemy(enemyNames);
-													                                        BattleSystem(playercharacter,BatEnemy,spells,dmMagicSpells,DSMagicSpells,forkingpathchoice); 
+													                                        BattleSystem(playercharacter,BatEnemy,spells,dmMagicSpells,DSMagicSpells,forkingpathchoice,false); 
                                                                                             CheckPlayerLevel(playercharacter);
                                                                                             SerializeCharacter(playercharacter,CheckpointName);
                                                                                             // add in the story points here to keep the program going
@@ -1129,11 +1303,114 @@ namespace DH4
                                                                                                         {
                                                                                                             enemyNames=EnemyNames.ZOMBIE;
                                                                                                             Enemy zombieEnemyPostBeach=CreateEnemy(enemyNames);
-                                                                                                            BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help);
+                                                                                                            BattleSystem(playercharacter,zombieEnemyPostBeach,spells,dmMagicSpells,DSMagicSpells,help,false);
                                                                                                             CheckPlayerLevel(playercharacter);
                                                                                                             SerializeCharacter(playercharacter,CheckpointName);
                                                                                                         }
                                                                                                          CheckpointName="Mission 1 Halfway Point";
+                                                                                                         string dsHouseDecisionpath1="";
+                                                                                                         while(dsHouseDecisionpath1=="")
+                                                                                                         {
+                                                                                                            System.Console.WriteLine("Do you 1)\nwalk around the outside of the house \n 2) go inside the house\n");
+                                                                                                            dsHouseDecisionpath1=Console.ReadLine();
+                                                                                                            switch (dsHouseDecisionpath1.ToLower())
+                                                                                                            {
+                                                                                                                case "1":
+                                                                                                                case"Walk around outside of the house":
+                                                                                                                case "walk around house":
+                                                                                                                //System.Console.WriteLine("You decide to walk around the house\n");
+                                                                                                                Console.WriteLine("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.\n");
+                                                                                                                dsHouseDecisionpath1="";
+                                                                                                                break;
+                                                                                                                case "2":
+                                                                                                                case "go inside":
+                                                                                                                case"go inside house":
+                                                                                                                 Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n");
+                                                                                                                 string dhinteriorpath="";
+                                                                                                                 while(dhinteriorpath=="")
+                                                                                                                 {
+                                                                                                                    System.Console.WriteLine("Do you \n1) Follow them\n 2) Leave and tell the captain there was nothing here.\n");
+                                                                                                                    dhinteriorpath=Console.ReadLine();
+                                                                                                                    switch(dhinteriorpath.ToLower())
+                                                                                                                    {
+                                                                                                                        case"1":
+                                                                                                                        case "follow them":
+                                                                                                                        case "follow":
+                                                                                                                        System.Console.WriteLine(" You walk through the door Anyone here!?!? \n No response.");
+                                                                                                                        System.Console.WriteLine("You are now in a long hallway, with three doors, a door on the left, one on the right and one at the end of the hallway.");
+                                            
+                                                                                                                        int roomsCleared=0;
+                                                                                                                        // vars to check to see if the rooms have been cleared and if they have set it so it desplays a dialouge is showed and the player is sent out of the room
+                                                                                                                        bool bRightRoomCleared=false;
+                                                                                                                        bool bLeftRoomCleared=false;
+                                                                                                                         bool bLibraryCleared=false;
+                                                                                                                         CheckpointName="DSBossfight";
+                                                                                                                         while (roomsCleared<3)
+                                                                                                                         {
+                                                                                                                            if(bLeftRoomCleared==true&& bRightRoomCleared==true)
+                                                                                                                            {
+                                                                                                                                // library room code goes here DS Bossfight 
+                                                                                                                            }
+                                                                                                                            else
+                                                                                                                            {
+                                                                                                                               string RoomChoice="";
+                                                                                                                               while(RoomChoice=="")
+                                                                                                                               {
+                                                                                                                                 System.Console.WriteLine("What room would you like to check? 1) Left \n 2)Right\n");
+                                                                                                                                 RoomChoice=Console.ReadLine();
+                                                                                                                                 switch(RoomChoice.ToLower())
+                                                                                                                                 {
+                                                                                                                                    case"1":
+                                                                                                                                    case "left": 
+                                                                                                                                    roomsCleared++;
+                                                                                                                                    bLeftRoomCleared=true;
+																                                                                	Console.WriteLine("You walk into the room on your left.\n");
+																//BattleSystem
+																
+                                                                                                                                    if(roomsCleared<2)
+                                                                                                                                    {
+                                                                                                                                        RoomChoice="";
+                                                                                                                                    }
+                                                                                                                                    break;
+                                                                                                                                    case"2":
+                                                                                                                                    case"right":
+                                                                                                                                        roomsCleared++;
+                                                                                                                                        bRightRoomCleared=true;
+																	                                                                    Console.WriteLine("You walk into the room on your right\n");
+                                                                                                                                    if(roomsCleared<2)
+                                                                                                                                    {
+                                                                                                                                        RoomChoice="";
+                                                                                                                                    }
+                                                                                                                                    break;
+                                                                                                                                    default:
+                                                                                                                                    break;
+
+                                                                                                                                 }
+
+                                                                                                                               }
+
+                                                                                                                            }
+
+                                                                                                                         }
+                                                                                                                        break;
+                                                                                                                        case"2": 
+                                                                                                                        case "leave":
+                                                                                                                        case"tell the captain":
+                                                                                                                        System.Console.WriteLine("");
+                                                                                                                        break;
+                                                                                                                        default:
+                                                                                                                        ResetAndClear("Please select from the 2 options above. Resetting in 5 Seconds",dhinteriorpath,5000,playercharacter);
+                                                                                                                        break;
+                                                                                                                    }
+                                                                                                                 }
+                                                                                                                 
+
+                                                                                                                break;
+                                                                                                                default:
+                                                                                                                ResetAndClear("Please choose from the 2 options listed resetting in five seconds",dsHouseDecisionpath1,5000,playercharacter);
+                                                                                                                break;
+                                                                                                            }
+                                                                                                         }
                                                                                                         break;
                                                                                                         case"2":
                                                                                                         case"ignore it":
@@ -1148,18 +1425,96 @@ namespace DH4
                                                                                                          }
                                                                                                          else
                                                                                                          {
-                                                                                                            switch (dsHouseDecision.ToLower())
+                                                                                                            switch (dsHouseDecision.ToLower()) 
                                                                                                             {
                                                                                                                  case"walk around house": 
                                                                                                                 case"1":
                                                                                                                     Console.WriteLine("You walk aound the house, and on the left side of the house you find a garden full of fruits and vegetables.\n Though the house is not in disrepair, the lawn is overgrown, with green grass and daffodills.\n At the back of the house there is a swamp, you can hear the birds and cicadas. You decide to head back to the front of the building to go and explore the house itself.\n");
-
+                                                                                                                    dsHouseDecision="";
                                                                                                                 break;
                                                                                                                 case "2":
                                                                                                                 case "go inside house":
+                                                                                                                case"go inside":
+
 
                                                                                                                     //Console.WriteLine("You walk into the house.");
-                                                                                                                Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n {playercharacter.PlayerName}: Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n");
+                                                                                                                Console.WriteLine($"You go inside the house, walking into the kitchen, before you can look around and examine the house you see someone walking to a door. You call out to them\n  Hello! My name is {playercharacter.PlayerName}\n Before you can finish your sentence they are gone.\n");
+                                                                                                                string dhinteriorpath="";
+                                                                                                                while(dhinteriorpath=="")
+                                                                                                                {
+                                                                                                                    System.Console.WriteLine("Do you 1) Follow them \n 2) Leave and tell the captain there was nothing here.\n");
+                                                                                                                   dhinteriorpath=Console.ReadLine();
+                                                                                                                   switch(dhinteriorpath.ToLower()) 
+                                                                                                                   {
+                                                                                                                    case "1":
+                                                                                                                    case "follow them":
+                                                                                                                    case "follow":
+                                                                                                                     System.Console.WriteLine(" You walk through the door and yell Anyone here!?!? \n You get no response..");
+                                                                                                                    System.Console.WriteLine("You are now in a long hallway, with three doors, a door on the left, on the right and one at the end of the hallway.");
+                                                                                                                        int roomsCleared=0;
+                                                                                                                        // bools to see if the rooms are cleared
+                                                                                                                        bool bRightRoomCleared=false;
+                                                                                                                        bool bLeftRoomCleared=false;
+                                                                                                                        bool bLibraryCleared=false;
+
+                                                                                                                        // check to see if the right AND left room are clear
+                                                                                                                        if(bLeftRoomCleared==true && bRightRoomCleared==true)
+                                                                                                                        {
+                                                                                                                            // ds boss fight goes here
+
+                                                                                                                        }
+                                                                                                                        else
+                                                                                                                        {
+                                                                                                                            string RoomChoice="";
+                                                                                                                            while(RoomChoice=="")
+                                                                                                                            {
+                                                                                                                                // prompt user for input 
+                                                                                                                                // then create variable to increment the number of rooms cleared 
+                                                                                                                                System.Console.WriteLine("What door would you like to check 1) Left \n 2) Right");
+
+                                                                                                                                RoomChoice=Console.ReadLine();
+                                                                                                                                 
+                                                                                                                                switch(RoomChoice.ToLower())
+                                                                                                                                {
+                                                                                                                                    case"1":
+                                                                                                                                    case "left":
+                                                                                                                                    System.Console.WriteLine("You enter the room on your left.\n");
+                                                                                                                                    // battlesystem
+                                                                                                                                    bLeftRoomCleared=true;
+                                                                                                                                    roomsCleared++;
+                                                                                                                                    if(roomsCleared<2)
+                                                                                                                                    {
+                                                                                                                                        RoomChoice="";
+                                                                                                                                    }
+                                                                                                                                    break;
+                                                                                                                                    case"2":
+                                                                                                                                    case"right":
+                                                                                                                                    System.Console.WriteLine("You enter the room on your right\n");
+                                                                                                                                    // battlesystem
+                                                                                                                                    bRightRoomCleared=true;
+                                                                                                                                    roomsCleared++;
+                                                                                                                                    if(roomsCleared<2)
+                                                                                                                                    {
+                                                                                                                                        RoomChoice="";
+                                                                                                                                    }
+                                                                                                                                    break;
+                                                                                                                                    default:
+                                                                                                                                    ResetAndClear("Please choose from the 2 above options. Resetting in 5 seconds\n",RoomChoice,5000,playercharacter);
+                                                                                                                                    break;
+
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+
+                                                                                                                    break;
+                                                                                                                    case "2":
+                                                                                                                    case "leave":
+                                                                                                                    case "leave and tell the captain nothing was here":
+                                                                                                                    break;
+                                                                                                                   }
+                                                                                                                }
+
+
                                                                                                                 break;
                                                                                                                 default:
                                                                                                                 ResetAndClear("Please select the 2 above listed options. Resetting in 5 seconds",dsHouseDecision,5000,playercharacter);
@@ -1187,18 +1542,18 @@ namespace DH4
                                                                                         {
                                                                                             
                                                                                             dogoback=Console.ReadLine();
-                                                                                            Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Explore the surrounding area \n 2) go back to the start of the path\n");
+                                                                                            Console.WriteLine("You take the other path, it leads to a dead end.\n Do you \n 1) Go back to the start of the path\n 2) Explore the surrounding area\n");
                                                                                             switch(dogoback.ToLower())
                                                                                             {
                                                                                                 case"1":
                                                                                                 case"go back to town":
 
                                                                                                 Console.WriteLine("Decide to head back to the start of the path. ");
-                                                                                                forkingpathchoice="1";
+                                                                                                forkingpathchoice="";
                                                                                                 break;
                                                                                                 case"2":
                                                                                                 case"keep exploring":
-                                                                                                Console.WriteLine("You keep exploring, you find a river, however you dont have anythign to fish with.\n");
+                                                                                                Console.WriteLine("You keep exploring, you find a river, however you dont have anything to fish with.\n");
                                                                                                 dogoback="";
                                                                                                 break;
 
