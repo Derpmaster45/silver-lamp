@@ -1186,34 +1186,33 @@ namespace DH4
 																					                                                                            }
 																					
 																				                                                                            break;
-																				case"3":
-																				case"end of hallway":
+																			                                                                            	case"3":
+																				                                                                            case"end of hallway":
 																				
-																				// story before battle
-																				if(bIsLeftRoomCleared==true && bIsRightRoomCleared==true && roomsCleared==2)
-																				{
-																					//bossfight code (DarkSwordsman) goes here along with the story
-																					Console.WriteLine("You walk through the door to the library, it is dimly lit, and you see an a figure...");
-																					
-																					//Console.WriteLine("I have finally caught up to you!");
-																					string dsConfrontationPathChoice="";
-																					while(dsConfrontationPathChoice=="")
-																					{
-																						Console.WriteLine("Something feels off. You can't quite put your finger on, but the presence in this room feels different. How do you proceed \n1) Approach with caution \n Approach with confidence.\n");
-																							dsConfrontationPathChoice=Console.ReadLine();
-																							switch(dsConfrontationPathChoice.ToLower())
-																							{
-																								case"1":
-																								case"approach with caution":
-																								break;
-																								case"2":
-																								case "approach with confidence":
-																								Console.WriteLine("We need to leave this area. It is over run with monsters!\n The figure stands with their back turned to you. Come with me if you want to live. Still no response from the figure. DID YOU HEAR ME YOUR LIFE IS IN DANGER!!!\nIf my  life was truely in danger I woudl be out there fighting until my final breath. The figure responds. ");
-																								break;
-																								default:
-																								break;
-																							}
-																					}
+																				                                                                                // story before battle
+																				                                                                                if(bIsLeftRoomCleared==true && bIsRightRoomCleared==true && roomsCleared==2)
+																				                                                                                {
+																					                                                                                //bossfight code (DarkSwordsman) goes here along with the story
+																					                                                                                Console.WriteLine("You walk through the door to the library, it is dimly lit, and you see an a figure...");
+																					                                                                                //Console.WriteLine("I have finally caught up to you!");
+																					                                                                                string dsConfrontationPathChoice="";
+																					                                                                                    while(dsConfrontationPathChoice=="")
+																					                                                                                    {
+																						                                                                                    Console.WriteLine("Something feels off. You can't quite put your finger on, but the presence in this room feels different. How do you proceed \n1) Approach with caution \n Approach with confidence.\n");
+																							                                                                                dsConfrontationPathChoice=Console.ReadLine();
+																							                                                                                    switch(dsConfrontationPathChoice.ToLower())
+																							                                                                                    {
+																								                                                                                    case"1":
+																								                                                                                    case"approach with caution":
+																								                                                                                    break;
+																								                                                                                    case"2":
+																								                                                                                    case "approach with confidence":
+																								                                                                                        Console.WriteLine("We need to leave this area. It is over run with monsters!\n The figure stands with their back turned to you. Come with me if you want to live. Still no response from the figure. DID YOU HEAR ME YOUR LIFE IS IN DANGER!!!\nIf my  life was truely in danger I woudl be out there fighting until my final breath. The figure responds. ");
+																								                                                                                    break;
+																								                                                                                    default:
+																								                                                                                    break; 
+																							                                                                                    }
+																					                                                                                    }
 																					//enemyNames=EnemyNames.DARKSWORDSMAN;
 																					//Enemy DSBOSS1=CreateEnemy(enemyNames);
 																					//BattleSystem(playercharacter, DSBOSS1,spells,dmMagicSpells,DSMagicSpells,roomChoice,true); 
