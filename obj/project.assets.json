@@ -13,11 +13,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "/home/jay/Documents/projects/silver-lamp/dh4.csproj",
       "projectName": "dh4",
       "projectPath": "/home/jay/Documents/projects/silver-lamp/dh4.csproj",
       "packagesPath": "/home/jay/.nuget/packages/",
       "outputPath": "/home/jay/Documents/projects/silver-lamp/obj/",
+=======
+      "projectUniqueName": "/home/jay/Documents/Projects/Games/silver-lamp/dh4.csproj",
+      "projectName": "dh4",
+      "projectPath": "/home/jay/Documents/Projects/Games/silver-lamp/dh4.csproj",
+      "packagesPath": "/home/jay/.nuget/packages/",
+      "outputPath": "/home/jay/Documents/Projects/Games/silver-lamp/obj/",
+>>>>>>> 4890c73e8aa27f14ab844292092bbc2504062ee4
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/jay/.nuget/NuGet/NuGet.Config"
@@ -38,11 +46,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -64,7 +67,11 @@
             "privateAssets": "all"
           }
         },
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.108/PortableRuntimeIdentifierGraph.json"
+>>>>>>> 4890c73e8aa27f14ab844292092bbc2504062ee4
       }
     }
   }
