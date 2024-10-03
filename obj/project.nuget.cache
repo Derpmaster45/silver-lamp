@@ -1,10 +1,8 @@
 {
   "version": 2,
-
-  "dgSpecHash": "W1J/uegEs2k=",
+  "dgSpecHash": "pBZUlYkNbK0e2OBvnCnOc7Bg1IPySDE0wH1zzrdYC71gWHD0ql9dOE/QshZMKKOouUlMhcz2bAf/Z9/dzPzc3Q==",
   "success": true,
-  "projectFilePath": "/home/jay/Documents/projects/silver-lamp/dh4.csproj",
-
+  "projectFilePath": "/home/jay/Documents/Projects/silver-lamp/dh4.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
