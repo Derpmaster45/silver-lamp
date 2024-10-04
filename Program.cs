@@ -8,6 +8,7 @@ using System.Runtime.Serialization;
 using System.Text.Json;
 using System.Collections;
 using System.Security.Cryptography;
+using System.Runtime.ConstrainedExecution;
 namespace DH4
 {
     class Game
@@ -165,6 +166,11 @@ namespace DH4
                 Console.WriteLine($"Player Magic Defense points: {player.PlayerManaDefensePoints}\n");
 
 
+            }
+            void RoomAlreadyCleared(bool bRoomIsCleared, string checkpointString)
+            {
+                System.Console.WriteLine("This room has already been cleared");
+                checkpointString="";
             }
            double DoDamageToPlayer(Character character, EnemyNames namelist, Enemy enemy)
            {
@@ -1419,7 +1425,7 @@ namespace DH4
                                                                                                          string dhHousePath="";
                                                                                                          while(dhHousePath=="")
                                                                                                          {
-                                                                                                            System.Console.WriteLine("You ignore the cry for help and head to your objective.\n When you arrive at your destination  you see a ghostly figure, as you aproach the house the figure goes inide the house. Do you follow the figure or explore the property\n");
+                                                                                                            System.Console.WriteLine("You ignore the cry for help and head to your objective.\n When you arrive at your destination  you see a ghostly figure, as you approach the house the figure goes inide the house. Do you follow the figure or explore the property\n");
                                                                                                             dhHousePath=Console.ReadLine();
                                                                                                             switch(dhHousePath.ToLower())
                                                                                                             {
@@ -1434,6 +1440,48 @@ namespace DH4
                                                                                                                     switch (dhHouseChoice.ToLower())
                                                                                                                     {
                                                                                                                         case"1":
+                                                                                                                            string roomChoice="";
+                                                                                                                            int roomsCleared=0;
+                                                                                                                            while(roomChoice=="" || roomsCleared<3)
+                                                                                                                            {
+                                                                                                                                 System.Console.WriteLine("You decide to investigate, You enter the hallway, and you see a door at the very end, you also notice a door on your left and right. Which room would you like to investigate? \n 1) Left \n 2) Right \n 3) end of the hallway\n");
+                                                                                                                                 roomChoice=Console.ReadLine();
+                                                                                                                                 bool bIsLeftRoomCleared=false;
+                                                                                                                                 bool  bIsRightRoomCleared=false;
+                                                                                                                                 bool bIsLibraryCleared=false;
+                                                                                                                                 switch(roomChoice.ToLower())
+                                                                                                                                 {
+                                                                                                                                    case"1":
+                                                                                                                                    System.Console.WriteLine("You walk throught the door on your left, and you see 3 zombies");
+                                                                                                                                    enemyNames=EnemyNames.ZOMBIE;
+                                                                                                                                    for(int numOfZombiesDefeated=0; numOfZombiesDefeated<3; numOfZombiesDefeated++)
+                                                                                                                                    {
+                                                                                                                                        Enemy ZombieHorde=CreateEnemy(enemyNames);
+                                                                                                                                        BattleSystem(playercharacter, ZombieHorde, spells, dmMagicSpells, DSMagicSpells, roomChoice,false);
+                                                                                                                                        CheckPlayerLevel(playercharacter);
+                                                                                                                                        ShowPlayerStats(playercharacter);
+                                                                                                                                        PromptedClearScreen();
+                                                                                                                                    }
+                                                                                                                                    bIsLeftRoomCleared=true;
+                                                                                                                                    roomsCleared++;
+                                                                                                                                    if(bIsLeftRoomCleared==true)
+                                                                                                                                    {
+                                                                                                                                        // show message stating the the room was already cleared.
+                                                                                                                                            RoomAlreadyCleared(bIsLeftRoomCleared, roomChoice);
+                                                                                                                                    }
+                                                                                                                                    break;
+                                                                                                                                    case"2":
+                                                                                                                                    // honet battle goes here
+                                                                                                                                        System.Console.WriteLine();
+                                                                                                                                        if(bIsRightRoomCleared==true)
+                                                                                                                                        {
+                                                                                                                                            RoomAlreadyCleared(bIsRightRoomCleared, roomChoice);
+                                                                                                                                        }      
+                                                                                                                                    break; 
+                                                                                                                                    case "3":
+                                                                                                                                    break;
+                                                                                                                                 }
+                                                                                                                            }
                                                                                                                         break;
                                                                                                                         case "2":
                                                                                                                         break;
