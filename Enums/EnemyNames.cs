@@ -8,8 +8,8 @@ namespace DH4.Enums
         ANGEL,
         VAMPIRE,
         DARKSWORDSMAN,
-	HORNET,
-	TBD,
+	    HORNET,
+	    Kitsune,
         NONE
 
     }

@@ -439,8 +439,8 @@ namespace DH4
 		break;
 
 	// unknown enemy type (TBD Goes here)
-    	case EnemyNames.TBD:
-    	enemyToCreate.EnemyName="To Be Determined";
+    	case EnemyNames.Kitsune:
+    	enemyToCreate.EnemyName="Kitsune";
     	enemyToCreate.EnemyHealth=150;
     	enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
     	enemyToCreate.EnemyDefensePoints=35;
@@ -574,7 +574,7 @@ namespace DH4
                     {
                         enemy.CurrentHealthPoints-=DamageDealt;
                     }
-                    System.Console.WriteLine($"DEBUG: ENEMY HAS  {enemy.CurrentHealthPoints.ToString()} of {enemy.EnemyHealth.ToString()}");
+                   // System.Console.WriteLine($"DEBUG: ENEMY HAS  {enemy.CurrentHealthPoints.ToString()} of {enemy.EnemyHealth.ToString()}");
                     System.Console.WriteLine($"You take a swing at the enemy\n dealing {DamageDealt.ToString()}");
                     
                     break;
@@ -620,7 +620,7 @@ namespace DH4
                                     }
                                     DamageDealt=0;
                                     //MageMagicChoice="";
-                                    System.Console.WriteLine($"DEBUG INFO MAGEMAGICATTACK={MageMagicChoice}");
+                                   // System.Console.WriteLine($"DEBUG INFO MAGEMAGICATTACK={MageMagicChoice}");
                                     //battlesystemchoice="";
                                     break;
                                     case "2":
