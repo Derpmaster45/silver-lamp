@@ -1344,60 +1344,71 @@ namespace DH4
                                                                                                                         case "follow":
                                                                                                                         System.Console.WriteLine(" You walk through the door Anyone here!?!? \n No response.");
                                                                                                                         System.Console.WriteLine("You are now in a long hallway, with three doors, a door on the left, one on the right and one at the end of the hallway.");
-                                            
+                                                                                                                        string roomChoice="";
+                                                                                                                        bool bIsLeftRoomCleared=false;
+                                                                                                                        bool bIsRightRoomCleared=false;
+                                                                                                                        bool bIsLibraryCleared=false;
                                                                                                                         int roomsCleared=0;
-                                                                                                                        // vars to check to see if the rooms have been cleared and if they have set it so it desplays a dialouge is showed and the player is sent out of the room
-                                                                                                                        bool bRightRoomCleared=false;
-                                                                                                                        bool bLeftRoomCleared=false;
-                                                                                                                         bool bLibraryCleared=false;
-                                                                                                                         CheckpointName="DSBossfight";
-                                                                                                                         while (roomsCleared<3)
-                                                                                                                         {
-                                                                                                                            if(bLeftRoomCleared==true&& bRightRoomCleared==true)
+                                                                                                                        while(roomChoice==""|| roomsCleared<3)
+                                                                                                                        {
+                                                                                                                            System.Console.WriteLine("Which room would you like to invesigate 1) The room on the left\n 2) the room on the right \n 3) the room at the end of the hallway?\n");
+                                                                                                                            roomChoice=Console.ReadLine();
+                                                                                                                            switch(roomChoice.ToLower())
                                                                                                                             {
-                                                                                                                                // library room code goes here DS Bossfight 
-                                                                                                                            }
-                                                                                                                            else
-                                                                                                                            {
-                                                                                                                               string RoomChoice="";
-                                                                                                                               while(RoomChoice=="")
-                                                                                                                               {
-                                                                                                                                 System.Console.WriteLine("What room would you like to check? 1) Left \n 2)Right\n");
-                                                                                                                                 RoomChoice=Console.ReadLine();
-                                                                                                                                 switch(RoomChoice.ToLower())
-                                                                                                                                 {
-                                                                                                                                    case"1":
-                                                                                                                                    case "left": 
-                                                                                                                                    roomsCleared++;
-                                                                                                                                    bLeftRoomCleared=true;
-																                                                                	Console.WriteLine("You walk into the room on your left.\n");
-																//BattleSystem
-																
-                                                                                                                                    if(roomsCleared<2)
+                                                                                                                                case "1":
+                                                                                                                                case"left":
+                                                                                                                                    // check to see if left room has already been cleared.
+                                                                                                                                    if(bIsLeftRoomCleared==true)
                                                                                                                                     {
-                                                                                                                                        RoomChoice="";
-                                                                                                                                    }
-                                                                                                                                    break;
-                                                                                                                                    case"2":
-                                                                                                                                    case"right":
-                                                                                                                                        roomsCleared++;
-                                                                                                                                        bRightRoomCleared=true;
-																	                                                                    Console.WriteLine("You walk into the room on your right\n");
-                                                                                                                                    if(roomsCleared<2)
+                                                                                                                                     RoomAlreadyCleared(bIsLeftRoomCleared,roomChoice);
+                                                                                                                                    } 
+                                                                                                                                    else
                                                                                                                                     {
-                                                                                                                                        RoomChoice="";
+                                                                                                                                    // horde of hornets 
+                                                                                                                                    for (int numOfHornetsDefeated=0; numOfHornetsDefeated<4; numOfHornetsDefeated++)
+                                                                                                                                    {
+                                                                                                                                        enemyNames=EnemyNames.HORNET;
+                                                                                                                                        Enemy HornetHorde= CreateEnemy(enemyNames);
+                                                                                                                                        BattleSystem(playercharacter,HornetHorde,spells,dmMagicSpells,DSMagicSpells,roomChoice,false);
+                                                                                                                                        playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
+                                                                                                                                        CheckPlayerLevel(playercharacter);
+                                                                                                                                         ShowPlayerStats(playercharacter);
                                                                                                                                     }
-                                                                                                                                    break;
-                                                                                                                                    default:
-                                                                                                                                    break;
+                                                                                                                                    bIsLeftRoomCleared=true;
+                                                                                                                                    }
+                                                                                                                                break;
+                                                                                                                                case"right":
+                                                                                                                                case"2":
+                                                                                                                                    if(bIsRightRoomCleared==true)
+                                                                                                                                    {
+                                                                                                                                        RoomAlreadyCleared(bIsRightRoomCleared,roomChoice);
+                                                                                                                                    }
+                                                                                                                                    else
+                                                                                                                                    {
+                                                                                                                                        // horde of zombies
+                                                                                                                                        for(int numOfZombiesDefeated=0; numOfZombiesDefeated<6; numOfZombiesDefeated++)
+                                                                                                                                        {
+                                                                                                                                            enemyNames=EnemyNames.ZOMBIE;
+                                                                                                                                            Enemy ZombieHorde2= CreateEnemy(enemyNames);
+                                                                                                                                           BattleSystem(playercharacter,ZombieHorde2,spells,dmMagicSpells,DSMagicSpells,roomChoice,false);
+                                                                                                                                           playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
+                                                                                                                                           CheckPlayerLevel(playercharacter);
+                                                                                                                                            ShowPlayerStats(playercharacter);
 
-                                                                                                                                 }
+                                                                                                                                        }
+                                                                                                                                        bIsRightRoomCleared=true;
+                                                                                                                                    }
+                                                                                                                                break;
+                                                                                                                                case"3":
+                                                                                                                                case "end of hallway":
 
-                                                                                                                               }
+                                                                                                                                break;
+                                                                                                                                default:
+                                                                                                                                ResetAndClear("Please select from the 3 options. Resetting in 5 seconds\n",roomChoice,5000,playercharacter);
+                                                                                                                                break;
 
                                                                                                                             }
-
-                                                                                                                         }
+                                                                                                                        }
                                                                                                                         break;
                                                                                                                         case"2": 
                                                                                                                         case "leave":
