@@ -1375,6 +1375,7 @@ namespace DH4
                                                                                                                                          ShowPlayerStats(playercharacter);
                                                                                                                                     }
                                                                                                                                     bIsLeftRoomCleared=true;
+                                                                                                                                    roomsCleared++;
                                                                                                                                     }
                                                                                                                                 break;
                                                                                                                                 case"right":
@@ -1397,11 +1398,39 @@ namespace DH4
 
                                                                                                                                         }
                                                                                                                                         bIsRightRoomCleared=true;
+                                                                                                                                        roomsCleared++;
                                                                                                                                     }
                                                                                                                                 break;
                                                                                                                                 case"3":
                                                                                                                                 case "end of hallway":
+                                                                                                                                playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
+                                                                                                                                // story before boss battle
+                                                                                                                                if(bIsLeftRoomCleared==true&& bIsRightRoomCleared==true && roomsCleared==2)
+                                                                                                                                {
+                                                                                                                                    if(LiesTold==2)
+                                                                                                                                    {
+                                                                                                                                        // add in lines to story to hint 
+                                                                                                                                    }
+                                                                                                                                    else
+                                                                                                                                    {
+                                                                                                                                        string DSLibraryChoice="";
+                                                                                                                                        while (DSLibraryChoice=="")
+                                                                                                                                        {                                                                                                                                                                                                                                                                                   
+                                                                                                                                            System.Console.WriteLine($"You walk through the door, it leads to a dimly lit library, You feel a hostile presence,\n Hello, my name is {playercharacter.PlayerName}, you shout. You get no response. \n Do you \n 1) Explore the library \n 2) Ask again to see if anyone responds");
+                                                                                                                                            DSLibraryChoice=Console.ReadLine();
+                                                                                                                                            switch(DSLibraryChoice.ToLower())
+                                                                                                                                            {
+                                                                                                                                                case "1":
+                                                                                                                                                case "explore":
+                                                                                                                                                case "explore the library":
+                                                                                                                                                System.Console.WriteLine($"You explore the library going down each row of books, some look familar to you. As you pull out one of the books, a voice yells WHO GOES THERE?\n {playercharacter.PlayerName} you respond sheepishly.  ");
+                                                                                                                                                break;
+                                                                                                                                            }
+                                                                                                                                        }
 
+                                                                                                                                    }
+
+                                                                                                                                }
                                                                                                                                 break;
                                                                                                                                 default:
                                                                                                                                 ResetAndClear("Please select from the 3 options. Resetting in 5 seconds\n",roomChoice,5000,playercharacter);
