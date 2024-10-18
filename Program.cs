@@ -9,6 +9,7 @@ using System.Text.Json;
 using System.Collections;
 using System.Security.Cryptography;
 using System.Runtime.ConstrainedExecution;
+using System.ComponentModel.Design;
 namespace DH4
 {
     class Game
@@ -461,9 +462,11 @@ namespace DH4
            }
             void QuitGame()
             {
-                Console.WriteLine("Quitting the game in 5 seconds\n");
-                Thread.Sleep(5000);
-                Console.WriteLine("Goodbye!\n");
+                Console.WriteLine("Quitting the game\n");
+                
+                Console.WriteLine("Goodbye!");
+                Thread.Sleep(1000);
+                Environment.Exit(0);
             }
             void PromptedClearScreen()
             {
@@ -1438,12 +1441,17 @@ namespace DH4
                                                                                                                                                                 switch(DSdialogChoice.ToLower()){
                                                                                                                                                                     case "1":
                                                                                                                                                                     case"lie":
+                                                                                                                                                                    // think on this
                                                                                                                                                                         break;
                                                                                                                                                                     case"2":
                                                                                                                                                                     case"tell the truth":
+                                                                                                                                                                        System.Console.WriteLine(" What are you talking about? I was sent here to investigate the cause of the uprising.\n we have reason to believe that you are the cause of this uprising.\n");
+                                                                                                                                                                        System.Console.WriteLine("");
+
+
                                                                                                                                                                         break;
                                                                                                                                                                     default:
-                                                                                                                                                                       //esetAndClear()
+                                                                                                                                                                     //  ResetAndClear("Please Select from the 2 options above\n Resetting in 5 seconds",5000, DSLibraryChoice, playercharacter)
                                                                                                                                                                         break;
                                                                                                                                                                 }
                                                                                                                                                             }
