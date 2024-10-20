@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dxLYHczEgcTd7yLxzxhCNWR48WpWVzIaCUA4TFlhAkWy9lKLOFHDqIUo0lVHzA8ZAIEoq3wq0YR39jGJ/9zjLg==",
+  "dgSpecHash": "h8uOMPRwY3Q=",
   "success": true,
-  "projectFilePath": "/home/jay/Documents/Projects/Games/silver-lamp/dh4.csproj",
-  "expectedPackageFiles": [
-    "/home/jay/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.8/microsoft.aspnetcore.app.ref.8.0.8.nupkg.sha512"
-  ],
+  "projectFilePath": "/home/jay/Documents/Projects/Dotnet/silver-lamp/dh4.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }

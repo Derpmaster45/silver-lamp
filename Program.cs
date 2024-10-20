@@ -1603,6 +1603,7 @@ namespace DH4
                                                                                                                                     break; 
                                                                                                                                     case "3":
                                                                                                                                     case "end of hallway":
+                                                                                                                                    
                                                                                                                                     break;
                                                                                                                                  }
                                                                                                                             }
