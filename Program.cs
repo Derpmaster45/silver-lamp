@@ -1523,7 +1523,16 @@ namespace DH4
                                                                                                                                  switch(roomChoice.ToLower())
                                                                                                                                  {
                                                                                                                                     case"1":
-                                                                                                                                    System.Console.WriteLine("You walk throught the door on your left, and you see 3 zombies");
+                                                                                                                                    case"left":
+                                                                                                                                    
+                                                                                                                                    if(bIsLeftRoomCleared==true)
+                                                                                                                                    {
+                                                                                                                                        // show message stating the the room was already cleared.
+                                                                                                                                            RoomAlreadyCleared(bIsLeftRoomCleared, roomChoice);
+                                                                                                                                    }
+                                                                                                                                    else
+                                                                                                                                    {
+                                                                                                                                        System.Console.WriteLine("You walk throught the door on your left, and you see 3 zombies");
                                                                                                                                     enemyNames=EnemyNames.ZOMBIE;
                                                                                                                                     for(int numOfZombiesDefeated=0; numOfZombiesDefeated<3; numOfZombiesDefeated++)
                                                                                                                                     {
@@ -1532,22 +1541,48 @@ namespace DH4
                                                                                                                                         CheckPlayerLevel(playercharacter);
                                                                                                                                         ShowPlayerStats(playercharacter);
                                                                                                                                         PromptedClearScreen();
+                                                                                                                                        playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
                                                                                                                                     }
+                                                                                                                                    System.Console.WriteLine("You cleared the room of the hornets,but no one was in the room. You head back out into the hallway");
                                                                                                                                     bIsLeftRoomCleared=true;
                                                                                                                                     roomsCleared++;
-                                                                                                                                    if(bIsLeftRoomCleared==true)
-                                                                                                                                    {
-                                                                                                                                        // show message stating the the room was already cleared.
-                                                                                                                                            RoomAlreadyCleared(bIsLeftRoomCleared, roomChoice);
+                                                                                                                                    roomChoice="";
                                                                                                                                     }
                                                                                                                                     break;
                                                                                                                                     case"2":
+                                                                                                                                    case"right":
                                                                                                                                     // honet battle goes here
-                                                                                                                                        System.Console.WriteLine();
+                                                                                                                                        System.Console.WriteLine("You walk into the room on your right.");
                                                                                                                                         if(bIsRightRoomCleared==true)
                                                                                                                                         {
                                                                                                                                             RoomAlreadyCleared(bIsRightRoomCleared, roomChoice);
                                                                                                                                         }      
+                                                                                                                                        else
+                                                                                                                                        {
+                                                                                                                                            System.Console.WriteLine("There are Zombies, hornets and vampires in this room.");
+                                                                                                                                            for (int numOfZombiesDefeated=0 ;numOfZombiesDefeated<2;numOfZombiesDefeated++)
+                                                                                                                                            {
+                                                                                                                                                enemyNames=EnemyNames.ZOMBIE;
+                                                                                                                                                Enemy secondZombieHorde=CreateEnemy(enemyNames);
+                                                                                                                                                BattleSystem(playercharacter, secondZombieHorde, spells,dmMagicSpells,DSMagicSpells,roomChoice,false);
+                                                                                                                                                CheckPlayerLevel(playercharacter);
+                                                                                                                                                ShowPlayerStats(playercharacter);
+                                                                                                                                                PromptedClearScreen();
+                                                                                                                                                playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
+                                                                                                                                                playercharacter.PlayerManaPoints=playercharacter.PlayerMaxManaPoints;
+                                                                                                                                            }
+                                                                                                                                            for (int numOfHornetsDefeated=0; numOfHornetsDefeated<2;numOfHornetsDefeated++)
+                                                                                                                                            {
+                                                                                                                                                enemyNames=EnemyNames.HORNET;
+                                                                                                                                                Enemy swarmOfHornets=CreateEnemy(enemyNames);
+                                                                                                                                                BattleSystem(playercharacter, swarmOfHornets, spells,dmMagicSpells,DSMagicSpells,roomChoice,false);
+                                                                                                                                                CheckPlayerLevel(playercharacter);
+                                                                                                                                                ShowPlayerStats(playercharacter);
+                                                                                                                                                playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
+                                                                                                                                                playercharacter.PlayerManaPoints=playercharacter.PlayerMaxManaPoints;
+
+                                                                                                                                            }
+                                                                                                                                        }
                                                                                                                                     break; 
                                                                                                                                     case "3":
                                                                                                                                     break;
