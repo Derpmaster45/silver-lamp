@@ -1226,6 +1226,13 @@ namespace DH4
 																							                                                                                    {
 																								                                                                                    case"1":
 																								                                                                                    case"approach with caution":
+                                                                                                                                                                                    System.Console.WriteLine("You approach the figure with caution sneaking up behind the figure. Excuse me. Starteled the figure turns and jumps back, revealing himself to be the dark swordsman. What do you want?!?\n");
+                                                                                                                                                                                    System.Console.WriteLine("i Have come to invesigate why the Askela is overrun with monsters. \n My superiors were correct in assuming you would be here. The look of fear fades to a look of anger. \nSo you think I am the one who caused this?\n Sensing anger in his voice, you attempt to deescalate the situation.\n No no. I am not saying you did it, but I am wondering if you know what caused the problem.\n ");
+                                                                                                                                                                                    PromptedClearScreen();
+                                                                                                                                                                                    System.Console.WriteLine("I do not, the dark swordsman replies. I have been wondering the same thing myself. I just got back into town late last night.\n");
+                                                                                                                                                                                    System.Console.WriteLine("You didnt notice anything last night? you ask.\n I noticed a horde of zombies, but I dealt with them. In terms of sturctual damage\nthere was damage to the defensive wall surrounding the town, but that was it.");
+                                                                                                                                                                                    System.Console.WriteLine("I shall take this to the captain and see how the unit shall move forward with helping the town.");
+
 																								                                                                                    break;
 																								                                                                                    case"2":
 																								                                                                                    case "approach with confidence":
@@ -1603,7 +1610,15 @@ namespace DH4
                                                                                                                                     break; 
                                                                                                                                     case "3":
                                                                                                                                     case "end of hallway":
-                                                                                                                                    
+                                                                                                                                    if (bIsLeftRoomCleared==true && bIsLeftRoomCleared==true && roomsCleared==2)
+                                                                                                                                    {
+                                                                                                                                        // story and boss fight goes here.
+                                                                                                                                    }
+                                                                                                                                    else
+                                                                                                                                    {
+                                                                                                                                        System.Console.WriteLine("You should check the other rooms first");
+                                                                                                                                        roomChoice="";
+                                                                                                                                    }
                                                                                                                                     break;
                                                                                                                                  }
                                                                                                                             }
