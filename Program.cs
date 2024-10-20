@@ -1578,13 +1578,31 @@ namespace DH4
                                                                                                                                                 BattleSystem(playercharacter, swarmOfHornets, spells,dmMagicSpells,DSMagicSpells,roomChoice,false);
                                                                                                                                                 CheckPlayerLevel(playercharacter);
                                                                                                                                                 ShowPlayerStats(playercharacter);
+                                                                                                                                                PromptedClearScreen();
                                                                                                                                                 playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
                                                                                                                                                 playercharacter.PlayerManaPoints=playercharacter.PlayerMaxManaPoints;
 
                                                                                                                                             }
+                                                                                                                                            for (int numOfVampsDefeated=0;numOfVampsDefeated<2; numOfVampsDefeated++)
+                                                                                                                                            {
+                                                                                                                                                enemyNames=EnemyNames.VAMPIRE;
+                                                                                                                                                Enemy VampireTrainingRoomEnemy=CreateEnemy(enemyNames);
+                                                                                                                                                BattleSystem(playercharacter, VampireTrainingRoomEnemy, spells,dmMagicSpells,DSMagicSpells,roomChoice,false);
+                                                                                                                                                CheckPlayerLevel(playercharacter);
+                                                                                                                                                ShowPlayerStats(playercharacter);
+                                                                                                                                                playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
+                                                                                                                                                playercharacter.PlayerManaPoints=playercharacter.PlayerMaxManaPoints;
+
+                                                                                                                                            }
+                                                                                                                                            //display a message to the user saying the room has been cleared setting the bool for the room being cleared to true. then set the room choice to a empty string.
+                                                                                                                                            System.Console.WriteLine("The room has been cleared of the zombies, hornets and vampires. ");
+                                                                                                                                            bIsRightRoomCleared=true;
+                                                                                                                                            roomsCleared++; 
+                                                                                                                                            roomChoice="";
                                                                                                                                         }
                                                                                                                                     break; 
                                                                                                                                     case "3":
+                                                                                                                                    case "end of hallway":
                                                                                                                                     break;
                                                                                                                                  }
                                                                                                                             }
