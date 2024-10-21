@@ -1497,7 +1497,7 @@ namespace DH4
 
                                                                                                                                                                         break;
                                                                                                                                                                     default:
-                                                                                                                                                                     //  ResetAndClear("Please Select from the 2 options above\n Resetting in 5 seconds",5000, DSLibraryChoice, playercharacter)
+                                                                                                                                                                         ResetAndClear("Please Select from the 2 options above\n Resetting in 5 seconds", DSLibraryChoice,5000, playercharacter);
                                                                                                                                                                         break;
                                                                                                                                                                 }
                                                                                                                                                             }
@@ -1519,7 +1519,7 @@ namespace DH4
                                                                                                                         case"2": 
                                                                                                                         case "leave":
                                                                                                                         case"tell the captain":
-                                                                                                                        System.Console.WriteLine("");
+
                                                                                                                         break;
                                                                                                                         default:
                                                                                                                         ResetAndClear("Please select from the 2 options above. Resetting in 5 Seconds",dhinteriorpath,5000,playercharacter);
@@ -1663,6 +1663,9 @@ namespace DH4
                                                                                                                             }
                                                                                                                         break;
                                                                                                                         case "2":
+                                                                                                                        case "tell the captain":
+                                                                                                                             System.Console.WriteLine("You turn around and head back to town, meeting with captain smith, telling him nothing was at the house.");
+                                                                                                                             ShowEndofGameMessage();
                                                                                                                         break;
                                                                                                                         default:
                                                                                                                         ResetAndClear("Please select from the 2 options. \nResetting in 5 seconds",dhHouseChoice,5000,playercharacter);
