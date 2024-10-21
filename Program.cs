@@ -1236,7 +1236,22 @@ namespace DH4
                                                                                                                                                                                     if(LiesTold==2)
                                                                                                                                                                                     {
                                                                                                                                                                                         System.Console.WriteLine("What does he know. you think to yourself. ");
-                                                                                                                                                                                        System.Console.WriteLine("");
+                                                                                                                                                                                        System.Console.WriteLine("Dont get lost in thought now, he says with a smile. ");
+                                                                                                                                                                                        enemyNames= EnemyNames.DARKSWORDSMAN;
+                                                                                                                                                                                        Enemy DSBossBattle=CreateEnemy(enemyNames);
+                                                                                                                                                                                        BattleSystem(playercharacter, DSBossBattle,spells,dmMagicSpells,DSMagicSpells,dsConfrontationPathChoice,true);
+                                                                                                                                                                                        CheckPlayerLevel(playercharacter);
+                                                                                                                                                                                        ShowPlayerStats(playercharacter);
+                                                                                                                                                                                        ShowEndofGameMessage();
+                                                                                                                                                                                    }
+                                                                                                                                                                                    else
+                                                                                                                                                                                    {
+                                                                                                                                                                                        enemyNames= EnemyNames.DARKSWORDSMAN;
+                                                                                                                                                                                        Enemy DSBossBattle=CreateEnemy(enemyNames);
+                                                                                                                                                                                        BattleSystem(playercharacter, DSBossBattle,spells,dmMagicSpells,DSMagicSpells,dsConfrontationPathChoice,true);
+                                                                                                                                                                                        CheckPlayerLevel(playercharacter);
+                                                                                                                                                                                        ShowPlayerStats(playercharacter);
+                                                                                                                                                                                        ShowEndofGameMessage();
                                                                                                                                                                                     }
                                                                                                                                                                                     
 
@@ -1271,12 +1286,14 @@ namespace DH4
                                                                                                                         case "2":
                                                                                                                         case"Tell the captain nothing was here":
                                                                                                                         case"leave":
+                                                                                                                             System.Console.WriteLine("You turn around and head back to town, meeting with captain smith, telling him nothing was at the house.");
+                                                                                                                             ShowEndofGameMessage();
                                                                                                                         break;
                                                                                                                     }
                                                                                                                 }
                                                                                                                 break;
                                                                                                                 default:
-                                                                                                                ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", dsHouseDecision,5000,playercharacter);
+                                                                                                                    ResetAndClear("Please select from the 2 above options!\n Reseting to current checkpoint in 5 seconds", dsHouseDecision,5000,playercharacter);
                                                                                                                 break;
                                                                                                             }
 
@@ -1455,12 +1472,27 @@ namespace DH4
                                                                                                                                                                 switch(DSdialogChoice.ToLower()){
                                                                                                                                                                     case "1":
                                                                                                                                                                     case"lie":
+                                                                                                                                                                     enemyNames=EnemyNames.DARKSWORDSMAN;
+                                                                                                                                                                                    Enemy dsBoss=CreateEnemy(enemyNames);
+                                                                                                                                                                                    BattleSystem(playercharacter,dsBoss,spells,dmMagicSpells,DSMagicSpells,DSdialogChoice,true);
+                                                                                                                                                                                    ShowEndofGameMessage();
                                                                                                                                                                     // think on this
+                                                                                                                                                                    LiesTold++;
                                                                                                                                                                         break;
                                                                                                                                                                     case"2":
                                                                                                                                                                     case"tell the truth":
                                                                                                                                                                         System.Console.WriteLine(" What are you talking about? I was sent here to investigate the cause of the uprising.\n we have reason to believe that you are the cause of this uprising.\n");
-                                                                                                                                                                        System.Console.WriteLine("");
+                                                                                                                                                                        System.Console.WriteLine("I see.What is your purpose here, the swordsman asked quizzically  ");
+                                                                                                                                                                        System.Console.WriteLine("i Have come to invesigate why the Askela is overrun with monsters. \n My superiors were correct in assuming you would be here. The look of fear fades to a look of anger. \nSo you think I am the one who caused this?\n Sensing anger in his voice, you attempt to deescalate the situation.\n No no. I am not saying you did it, but I am wondering if you know what caused the problem.\n ");
+                                                                                                                                                                                    System.Console.WriteLine("I do not, the dark swordsman replies. I have been wondering the same thing myself. I just got back into town late last night.\n");
+                                                                                                                                                                                    System.Console.WriteLine("You didnt notice anything last night? you ask.\n I noticed a horde of zombies, but I dealt with them. In terms of sturctual damage\nthere was damage to the defensive wall surrounding the town, but that was it.");
+                                                                                                                                                                                    System.Console.WriteLine("I shall take this to the captain and see how the unit shall move forward with helping the town.");
+                                                                                                                                                                                    PromptedClearScreen();
+                                                                                                                                                                                    System.Console.WriteLine("You start to head towards the door, until all the light in the room turns to darkness.\n Never turn your back on an enemy. Considering that you work to maintain the Great spirits mission, you know I am an enemy, but from what I could gather so are you.");
+                                                                                                                                                                                    enemyNames=EnemyNames.DARKSWORDSMAN;
+                                                                                                                                                                                    Enemy dsBossBattle=CreateEnemy(enemyNames);
+                                                                                                                                                                                    BattleSystem(playercharacter,dsBossBattle,spells,dmMagicSpells,DSMagicSpells,DSdialogChoice,true);
+                                                                                                                                                                                    ShowEndofGameMessage();
 
 
                                                                                                                                                                         break;
