@@ -1652,6 +1652,28 @@ namespace DH4
                                                                                                                                     if (bIsLeftRoomCleared==true && bIsLeftRoomCleared==true && roomsCleared==2)
                                                                                                                                     {
                                                                                                                                         // story and boss fight goes here.
+                                                                                                                                        System.Console.WriteLine("You walk through the door into a library,you see outlines of bookshelfs and lanterns in each corner of the room.");
+                                                                                                                                        System.Console.WriteLine("Anyone here? you shout. The room is silent, you hear a door open, who goes there?") ;
+                                                                                                                                        System.Console.WriteLine($"{playercharacter.PlayerName}, and may I ask who you are?");
+                                                                                                                                        System.Console.WriteLine("You see someone approaching you, who I am is not important. Why are you here?");
+                                                                                                                                        string dhConversationChoice="";
+                                                                                                                                        while(dhConversationChoice=="")
+                                                                                                                                        {
+                                                                                                                                            System.Console.WriteLine("What do you do: \n1) tell the truth \n 2) lie");
+                                                                                                                                            dhConversationChoice=Console.ReadLine();
+                                                                                                                                            switch(dhConversationChoice.ToLower())
+                                                                                                                                            {
+                                                                                                                                                case "1":
+                                                                                                                                                case "tell the truth":
+                                                                                                                                                break;
+                                                                                                                                                case"2":
+                                                                                                                                                case "lie":
+                                                                                                                                                break;
+                                                                                                                                                default:
+                                                                                                                                                break;
+                                                                                                                                            }
+                                                                                                                                        }
+
                                                                                                                                     }
                                                                                                                                     else
                                                                                                                                     {
