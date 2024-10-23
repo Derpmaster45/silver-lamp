@@ -1665,6 +1665,7 @@ namespace DH4
                                                                                                                                             {
                                                                                                                                                 case "1":
                                                                                                                                                 case "tell the truth":
+                                                                                                                                                System.Console.WriteLine("I have come to investigate why askela is overrun with monsters, coming across a horde of zombies at the beach where we landed. ");
                                                                                                                                                 break;
                                                                                                                                                 case"2":
                                                                                                                                                 case "lie":
