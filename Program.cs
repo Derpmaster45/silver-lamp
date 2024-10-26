@@ -1652,7 +1652,7 @@ namespace DH4
                                                                                                                                     if (bIsLeftRoomCleared==true && bIsLeftRoomCleared==true && roomsCleared==2)
                                                                                                                                     {
                                                                                                                                         // story and boss fight goes here.
-                                                                                                                                        System.Console.WriteLine("You walk through the door into a library,you see outlines of bookshelfs and lanterns in each corner of the room.");
+                                                                                                                                        System.Console.WriteLine("You walk through the door into a library,you see outlines of bookshelves and lanterns in each corner of the room.");
                                                                                                                                         System.Console.WriteLine("Anyone here? you shout. The room is silent, you hear a door open, who goes there?") ;
                                                                                                                                         System.Console.WriteLine($"{playercharacter.PlayerName}, and may I ask who you are?");
                                                                                                                                         System.Console.WriteLine("You see someone approaching you, who I am is not important. Why are you here?");
@@ -1665,11 +1665,12 @@ namespace DH4
                                                                                                                                             {
                                                                                                                                                 case "1":
                                                                                                                                                 case "tell the truth":
-                                                                                                                                                System.Console.WriteLine("I have come to investigate why askela is overrun with monsters, coming across a horde of zombies at the beach where we landed. ");
+                                                                                                                                                System.Console.WriteLine("I have come to investigate why askela is overrun with monsters, coming across a horde of zombies at the beach where we landed. Would you know anything about why \n ");
                                                                                                                                                 break;
                                                                                                                                                 case"2":
                                                                                                                                                 case "lie":
                                                                                                                                                 break;
+
                                                                                                                                                 default:
                                                                                                                                                 break;
                                                                                                                                             }
