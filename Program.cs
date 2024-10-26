@@ -1045,6 +1045,7 @@ namespace DH4
                                                                             }
                                                                             playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
                                                                                 PromptedClearScreen();
+                                                                                ShowEndofGameMessage();
                                                                                 string forkingpathchoice=""; 
                                                                                 while(forkingpathchoice=="")
                                                                                 {
