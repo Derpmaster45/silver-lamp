@@ -212,10 +212,18 @@ namespace DH4
                                 enemy.EnemyManaPoint-=15;
                                 break;
                                 case 2:
-                                Console.WriteLine($"{enemy.EnemyName} used PLACEHOLDER\n");
+                                Console.WriteLine($"{enemy.EnemyName} dodged\n");
+                                DamageDealtToPlayer=0;
                                 break;
                                 case 3:
-                                Console.WriteLine($"{enemy.EnemyName} used a different PLACEHOLDER\n");
+                                Console.WriteLine($"{enemy.EnemyName} used double attack\n");
+                                    for(int i=0;i<2; i++)
+                                    {
+                                        double attackDamage= character.CurrentHealthPoints-=enemy.EnemyAttackPoints/character.PlayerDefensePoints;
+                                        System.Console.WriteLine($"Attack {i+1} dealt");
+                                        DamageDealtToPlayer=attackDamage;
+                                    }
+
                                 break;
                                 default:
                                 Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
@@ -238,15 +246,15 @@ namespace DH4
                                 {
                                     case 1:
                                     Console.WriteLine("Angel used Ball of Light\n");
-                                     DamageDealtToPlayer=0;
+                                     DamageDealtToPlayer=20;
                                     break;
                                     case 2:
-                                    Console.WriteLine("Angel used PLACEHOLDER 2\n");
+                                    Console.WriteLine("Angel  dodged\n");
                                       DamageDealtToPlayer=0;
                                     break;
                                     case 3:
-                                    Console.WriteLine("Angel used PLACEHOLDER 3\n");
-                                      DamageDealtToPlayer=0;
+                                    Console.WriteLine("Angel Attacked\n");
+                                      DamageDealtToPlayer=10;
                                     break;
                                     default:
                                     Console.WriteLine("ERR: Selected Attack is not real. (Number Generator error)");
@@ -264,7 +272,7 @@ namespace DH4
                         {
                             case 1:
                             // rename attack 
-                            Console.WriteLine("Dark Swordsman used Acid Rain");
+                            Console.WriteLine("Dark Swordsman used acid Rain");
                             double baseDamage=78;
                                     double DamageDeal=character.PlayerManaDefensePoints /(enemy.EnemyManaAttackPoints+baseDamage);
                                    DamageDealtToPlayer= character.CurrentHealthPoints-=DamageDeal;
@@ -343,13 +351,13 @@ namespace DH4
                                 //DamageDealt=biteDamageDealt;
                             break;
                             case 2:
-                            Console.WriteLine("Zombie used PLACEHOLDER 1"); 
-                            DamageDealtToPlayer=0;
+                            Console.WriteLine("Zombie used tackle!"); 
+                            DamageDealtToPlayer=15;
 
                             break;
                             case 3:
-                            Console.WriteLine("Zombie used PLACEHOLDER 2");
-                            DamageDealtToPlayer=0;
+                            Console.WriteLine("Zombie used punch ");
+                            DamageDealtToPlayer=10;
                             break;
                             default:
                             Console.WriteLine("ERR: Selected Attack does not exsist (Number Generator error)");
