@@ -862,7 +862,7 @@ namespace DH4
            //string MainMenuOption="";
            while(MainMenuOption=="")
            {
-            Console.WriteLine("DH4 New Generation\n 1) New Game\n 2) Quit\n");
+            Console.WriteLine("Demon Hunters 5 \n 1) New Game\n 2) Quit\n");
             MainMenuOption=Console.ReadLine();
             // menu switch
             switch(MainMenuOption.ToLower())
