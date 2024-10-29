@@ -1035,6 +1035,36 @@ namespace DH4
                                                                                         Console.WriteLine("You decide to sneak past the zombies, Lucky for you the zombies are slow moving. ");
                                                                                         Console.WriteLine("Placeholder: you successfully evaded the zombies.");
                                                                                         SerializeCharacter(playercharacter, CheckpointName);
+                                                                                        playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
+                                                                                        PromptedClearScreen();
+                                                                                        string forkingpathchoicesneak="";
+                                                                                        while(forkingpathchoicesneak=="")
+                                                                                        {
+                                                                                            Console.WriteLine("You head past the zombies, you come to a fork in the path. \n Do you head to town, or see where the other path takes you.\n");
+                                                                                            forkingpathchoicesneak=Console.ReadLine();
+                                                                                            bool TookAltPath=false;
+                                                                                            switch (forkingpathchoicesneak.ToLower())
+                                                                                            {
+                                                                                                case "1": 
+                                                                                                case"go to town":
+                                                                                                if (TookAltPath==true)
+                                                                                                {
+                                                                                                        CheckpointName="Mission1 AltPathTaken";
+                                                                                                        System.Console.WriteLine("You enter the town and see Captain Smith. and citizen of the village, and you decide to approach and get your marching orders.\n");
+                                                                                                        Console.WriteLine(" Where have you been? Smith asks\n Do you \n 1) Say you got lost \n 2) Inform about the zombies on the beach\n");
+                                                                                                }
+                                                                                                else
+                                                                                                {
+
+                                                                                                }
+                                                                                                break;
+                                                                                                case "2":
+                                                                                                case "see where the other path goes":
+                                                                                                    TookAltPath=true;
+                                                                                                break;
+                                                                                            }
+                                                                                        }
+
                                                                                         break;
                                                                                     case "2":
                                                                                         // battlesystem and zombie enemy creation goes here.
@@ -1053,7 +1083,8 @@ namespace DH4
                                                                             }
                                                                             playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
                                                                                 PromptedClearScreen();
-                                                                                ShowEndofGameMessage();
+                                                                                //program stops execution here.
+                                                                                //ShowEndofGameMessage();
                                                                                 string forkingpathchoice=""; 
                                                                                 while(forkingpathchoice=="")
                                                                                 {
