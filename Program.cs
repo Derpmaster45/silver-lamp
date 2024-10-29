@@ -1052,6 +1052,7 @@ namespace DH4
                                                                                                         CheckpointName="Mission1 AltPathTaken";
                                                                                                         System.Console.WriteLine("You enter the town and see Captain Smith. and citizen of the village, and you decide to approach and get your marching orders.\n");
                                                                                                         Console.WriteLine(" Where have you been? Smith asks\n Do you \n 1) Say you got lost \n 2) Inform about the zombies on the beach\n");
+                                                                                                        
                                                                                                 }
                                                                                                 else
                                                                                                 {
