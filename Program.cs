@@ -9,6 +9,7 @@ namespace DH4
         {
             /*Todo:
             Change color for player attacks and enemy attacks
+            let player know what enemy has been encountered.
             have a boolen for petrification
             set parameters for the above state
             test changes 
@@ -49,6 +50,20 @@ namespace DH4
             Thread.Sleep(3000);
             System.Console.WriteLine("GoodBye");
             Environment.Exit(0);
+        } 
+        void PromptedClearScreen()
+        {
+            Console.WriteLine("Press any key to continue \n");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        void ClearAndReset(Character playercharacter)
+        {
+            if(playercharacter.CurrentHealthPoints<=0)
+            {
+                System.Console.WriteLine("Resetting the battle in three seconds\n ");
+                playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
+            }
         }
     }
 }
