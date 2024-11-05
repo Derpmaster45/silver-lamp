@@ -63,6 +63,12 @@ namespace DH4
             {
                 System.Console.WriteLine("Resetting the battle in three seconds\n ");
                 playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
+                PromptedClearScreen();
+
+            }
+            else
+            {
+
             }
         }
     }
