@@ -68,7 +68,7 @@ namespace DH4
             }
             else
             {
-
+                System.Console.WriteLine("Please choose from the above options\n resetting to the most recent checkpoint");
             }
         }
     }
