@@ -48,7 +48,7 @@ namespace DH4
         {
             System.Console.WriteLine("Quitting game in 3 seconds\n");
             Thread.Sleep(3000);
-            System.Console.WriteLine("GoodBye");
+            System.Console.WriteLine("Goodbye\n");
             Environment.Exit(0);
         } 
         void PromptedClearScreen()
