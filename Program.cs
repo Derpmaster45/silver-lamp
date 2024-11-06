@@ -5,6 +5,11 @@ namespace DH4
 {
     class Game
     {
+        public Character CharacterToCreate()
+        {
+            Character characterToCreate=new Character();
+            return characterToCreate;
+        }
         public void BattleSystem(Enemy enemy, Character playercharacter)
         {
             /*Todo:
@@ -14,7 +19,7 @@ namespace DH4
             set parameters for the above state
             test changes 
             */
-            while(playercharacter.CurrentHealthPoints==0|| enemy.CurrentHealthPoints==0)
+            while(playercharacter.CurrentHealthPoints>0|| enemy.CurrentHealthPoints>0)
             {
                 
             }
