@@ -41,6 +41,7 @@ namespace DH4
                     // new game option
                     case "1":
                     case "new game":
+                    System.Console.WriteLine("new game started");
                     break;
                     // quit game option
                     case "2":
