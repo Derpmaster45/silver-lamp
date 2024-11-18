@@ -21,6 +21,8 @@ namespace DH4
             */
             while(playercharacter.CurrentHealthPoints>0|| enemy.CurrentHealthPoints>0)
             {
+
+                System.Console.WriteLine($"{enemy.EnemyName} has appeared! \n What would you like to do: \n 1) Attack\n2) Magic/Special\n3)Defend\n");
                 
             }
         }
