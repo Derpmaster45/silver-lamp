@@ -21,9 +21,32 @@ namespace DH4
             */
             while(playercharacter.CurrentHealthPoints>0|| enemy.CurrentHealthPoints>0)
             {
+               string initTurnChoice="";
+               while(initTurnChoice=="")
+               {
+                    System.Console.WriteLine($"{enemy.EnemyName} has appeared! \n What would you like to do: \n 1) Attack\n2) Magic/Special\n3)Defend\n");
+                    Console.ReadLine();
+                    switch(initTurnChoice.ToLower())
+                    {
+                        //standard attack
+                        case"1":
+                        case"attack":
+                        break;
+                        //magic or special attack (class dependent)
+                        case"2":
+                        case"magic":
+                        break;
+                        case "3":
+                        case"defend":
+                        break;
+                        default:
+                        ClearAndReset(playercharacter);
+                        initTurnChoice="";
+                        break;
 
-                System.Console.WriteLine($"{enemy.EnemyName} has appeared! \n What would you like to do: \n 1) Attack\n2) Magic/Special\n3)Defend\n");
-                
+                    }
+               }
+
             }
         }
         
@@ -41,7 +64,10 @@ namespace DH4
                     // new game option
                     case "1":
                     case "new game":
-                    System.Console.WriteLine("new game started");
+                    System.Console.WriteLine("new game started\n");
+                    EnemyNames enemyNames=new EnemyNames();
+                    // create the player character and angel enemy object.
+                    
                     break;
                     // quit game option
                     case "2":
