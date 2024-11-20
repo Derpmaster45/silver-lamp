@@ -7,7 +7,7 @@ namespace DH4.Enums
         BAT,
         ANGEL,
         VAMPIRE,
-        DARKSWORDSMAN,
+        CURSEDSWORDSMAN,
 	    HORNET,
 	    KITSUNE,
         NONE
