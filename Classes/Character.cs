@@ -20,7 +20,7 @@ namespace DH4.Classes
         public double PlayerManaAttackPoints{get; set;}
         public double PlayerManaDefensePoints{get;set;}
         public string MostRecentCheckpoint{get;set;}
-        public Color PlayerColor {get;set;}
+        public ConsoleColor PlayerColor {get;set;}
 
     }
 }

@@ -7,9 +7,56 @@ namespace DH4
     class Game
     {
         
-        public Character CharacterToCreate()
+        public Character CharacterToCreate(PlayerClassTypes playerClass)
         {
             Character characterToCreate=new Character();
+            //prompt for player name before function
+            characterToCreate.PlayerLevel=1;
+            characterToCreate.PlayerClass=playerClass;
+            // sets stats based on class
+            switch(characterToCreate.PlayerClass)
+            {
+                case PlayerClassTypes.KNIGHT:
+                    characterToCreate.AttackPoints=30;
+                    characterToCreate.PlayerHealth=300;
+                    characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
+                    characterToCreate.PlayerExpPoints=0;
+                    characterToCreate.PlayerManaAttackPoints=20;
+                    characterToCreate.PlayerMaxManaPoints=20;
+                    characterToCreate.PlayerManaPoints=characterToCreate.PlayerMaxManaPoints;
+                break;
+                case PlayerClassTypes.DARKMAGE:
+                    characterToCreate.AttackPoints=10;
+                    characterToCreate.PlayerHealth=300;
+                    characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
+                    characterToCreate.PlayerExpPoints=0;
+                    characterToCreate.PlayerManaAttackPoints=60;
+                    characterToCreate.PlayerManaDefensePoints=40;
+                    characterToCreate.PlayerManaPoints=600;
+                    characterToCreate.PlayerMaxManaPoints=characterToCreate.PlayerManaPoints; 
+                break;
+                case PlayerClassTypes.DARKSWORDSMAN:
+                    characterToCreate.AttackPoints=50;
+                    characterToCreate.PlayerHealth=300;
+                    characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
+                    characterToCreate.PlayerExpPoints=0;
+                    characterToCreate.PlayerManaAttackPoints=300;
+                    characterToCreate.PlayerManaDefensePoints=30;
+                    characterToCreate.PlayerManaPoints=250;
+                    characterToCreate.PlayerMaxManaPoints=characterToCreate.PlayerManaPoints;
+                break;
+                case PlayerClassTypes.MAGE:
+                    characterToCreate.AttackPoints=10;
+                    characterToCreate.PlayerHealth=300;
+                    characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
+                    characterToCreate.PlayerExpPoints=0;
+                    characterToCreate.PlayerManaAttackPoints=60;
+                    characterToCreate.PlayerManaDefensePoints=40;
+                    characterToCreate.PlayerManaPoints=600;
+                    characterToCreate.PlayerMaxManaPoints=characterToCreate.PlayerManaPoints; 
+                break;
+
+            }
             return characterToCreate;
         }
         public static void ChangeTextColor(ConsoleColor textColor)
