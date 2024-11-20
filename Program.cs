@@ -19,9 +19,14 @@ namespace DH4
             set parameters for the above state
             test changes 
             */
-            while(playercharacter.CurrentHealthPoints>0|| enemy.CurrentHealthPoints>0)
+            while(playercharacter.CurrentHealthPoints>0&& enemy.CurrentHealthPoints>0)
             {
                string initTurnChoice="";
+               // stats and damage values
+               double DamageDealt=0;
+               bool bIsPetrified=false;
+               double SpellCost=0;
+               bool bIsDefending=false;
                while(initTurnChoice=="")
                {
                     System.Console.WriteLine($"{enemy.EnemyName} has appeared! \n What would you like to do: \n 1) Attack\n2) Magic/Special\n3)Defend\n");
@@ -31,13 +36,29 @@ namespace DH4
                         //standard attack
                         case"1":
                         case"attack":
+                            DamageDealt=playercharacter.AttackPoints-enemy.EnemyDefensePoints;
+                            enemy.CurrentHealthPoints-=DamageDealt;
+                            if(DamageDealt<0)
+                            {
+                                DamageDealt*=-1;
+                                enemy.CurrentHealthPoints-=DamageDealt;
+                            }
                         break;
                         //magic or special attack (class dependent)
                         case"2":
                         case"magic":
+                            // check to see if player has enough mana points to use magic
+                            if(playercharacter.PlayerManaPoints<=0)
+                            {
+                                Console.ForegroundColor=ConsoleColor.Red;
+                                System.Console.WriteLine("You do not have enough mana points\n");
+                                initTurnChoice="";
+                                Console.ForegroundColor=ConsoleColor.Gray;
+                            }
                         break;
                         case "3":
                         case"defend":
+                         bIsDefending=true;
                         break;
                         default:
                         ClearAndReset(playercharacter);
@@ -67,7 +88,7 @@ namespace DH4
                     System.Console.WriteLine("new game started\n");
                     EnemyNames enemyNames=new EnemyNames();
                     // create the player character and angel enemy object.
-                    
+
                     break;
                     // quit game option
                     case "2":
@@ -95,14 +116,18 @@ namespace DH4
         {
             if(playercharacter.CurrentHealthPoints<=0)
             {
+                Console.ForegroundColor=ConsoleColor.Yellow;
                 System.Console.WriteLine("Resetting the battle in three seconds\n ");
                 playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
+                Console.ForegroundColor=ConsoleColor.Gray;
                 PromptedClearScreen();
 
             }
             else
             {
+                Console.ForegroundColor=ConsoleColor.Red;
                 System.Console.WriteLine("Please choose from the above options\n resetting to the most recent checkpoint");
+                Console.ForegroundColor=ConsoleColor.Gray;
             }
         }
     }
