@@ -2,7 +2,7 @@ namespace DH4.Enums
 {
     public enum PlayerClassTypes {
         MAGE,
-        DARKSWORDSMAN,
+        CURSEDSWORDSMAN,
         KNIGHT,
         DARKMAGE,
 

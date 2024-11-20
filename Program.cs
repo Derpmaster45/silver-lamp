@@ -35,7 +35,7 @@ namespace DH4
                     characterToCreate.PlayerManaPoints=600;
                     characterToCreate.PlayerMaxManaPoints=characterToCreate.PlayerManaPoints; 
                 break;
-                case PlayerClassTypes.DARKSWORDSMAN:
+                case PlayerClassTypes.CURSEDSWORDSMAN:
                     characterToCreate.AttackPoints=50;
                     characterToCreate.PlayerHealth=300;
                     characterToCreate.CurrentHealthPoints=characterToCreate.PlayerHealth;
@@ -58,6 +58,80 @@ namespace DH4
 
             }
             return characterToCreate;
+        }
+        public Enemy CreateEnemy (EnemyNames enemyType)
+        {
+            Enemy enemyToCreate=new Enemy();
+            enemyToCreate.enemyType=enemyType;
+            switch(enemyToCreate.enemyType)
+            {
+                case EnemyNames.BAT:
+                    enemyToCreate.EnemyName="Bat";
+                    enemyToCreate.EnemyHealth=100;
+                    enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                    enemyToCreate.EnemyDefensePoints=10;
+                    enemyToCreate.EnemyManaDefensePoints=5;
+                    enemyToCreate.EnemyAttackPoints=20;
+                    enemyToCreate.EnemyManaPoint=50;
+                    enemyToCreate.EnemyManaAttackPoints=25;
+                break;
+                case EnemyNames.ANGEL:
+                    enemyToCreate.EnemyName="Angel";
+                    enemyToCreate.EnemyHealth=400;
+                    enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                    enemyToCreate.EnemyDefensePoints=300;
+                    enemyToCreate.EnemyManaDefensePoints=75;
+                    enemyToCreate.EnemyAttackPoints=40;
+                    enemyToCreate.EnemyManaPoint=200;
+                break;
+                case EnemyNames.CURSEDSWORDSMAN:
+                    enemyToCreate.EnemyName="Cursed Swordsman";
+                    enemyToCreate.EnemyHealth=600;
+                    enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                    enemyToCreate.EnemyAttackPoints=50;
+                    enemyToCreate.EnemyManaPoint=100;
+                    enemyToCreate.EnemyDefensePoints=50;
+                break;
+                case EnemyNames.HORNET:
+                    enemyToCreate.EnemyName="Hornet"; 
+        	        enemyToCreate.EnemyHealth=110; 
+        	        enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+		            enemyToCreate.EnemyManaPoint=50;
+	    	        enemyToCreate.EnemyManaDefensePoints=15;
+	    	        enemyToCreate.EnemyDefensePoints=25;
+	    	        enemyToCreate.EnemyAttackPoints=30;
+                break;
+                case EnemyNames.ZOMBIE:
+                    enemyToCreate.EnemyName="Zombie";
+                    enemyToCreate.EnemyHealth=150;
+                    enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                    enemyToCreate.EnemyManaDefensePoints=35;
+                    enemyToCreate.EnemyManaPoint=50;
+                    enemyToCreate.EnemyDefensePoints=70;
+                break;
+                case EnemyNames.KITSUNE:
+                    enemyToCreate.EnemyName="Kitsune";
+    	            enemyToCreate.EnemyHealth=150;
+    	            enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+    	            enemyToCreate.EnemyDefensePoints=35;
+    	            enemyToCreate.EnemyManaPoint=50;
+    	            enemyToCreate.EnemyAttackPoints=50;
+    	            enemyToCreate.EnemyDefensePoints=25;
+    	            enemyToCreate.EnemyManaAttackPoints=25;
+   	                enemyToCreate.EnemyManaDefensePoints=12;
+                break;
+                case EnemyNames.VAMPIRE:
+                    enemyToCreate.EnemyName="Vampire";
+                    enemyToCreate.EnemyHealth=650;
+                    enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
+                    enemyToCreate.EnemyManaDefensePoints=70;
+                    enemyToCreate.EnemyManaPoint=100;
+                    enemyToCreate.EnemyDefensePoints=80;
+                break;
+                default:
+                break;
+            }
+            return enemyToCreate;
         }
         public static void ChangeTextColor(ConsoleColor textColor)
         {

@@ -5,7 +5,7 @@ public class GarbCollection : IDisposable
 {
     private bool _disposedObject;
     // create safe handle instance 
-    private SafeHandle? _safeHandle=new SafeFileHandle(IntPtr.Zero,true);
+    private SafeHandle _safeHandle=new SafeFileHandle(IntPtr.Zero,true);
     public void Dispose()
     {
         Dispose(true);
