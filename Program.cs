@@ -87,6 +87,7 @@ namespace DH4
                     case "new game":
                     System.Console.WriteLine("new game started\n");
                     EnemyNames enemyNames=new EnemyNames();
+
                     // create the player character and angel enemy object.
 
                     break;
@@ -94,6 +95,12 @@ namespace DH4
                     case "2":
                     case "quit":
                         QuitGame();
+                    break;
+                    default:
+                    Console.ForegroundColor=ConsoleColor.Yellow;
+                    System.Console.WriteLine("Please choose from the above 2 options\n1)new game \n2) quit\n ");
+                    Console.ForegroundColor=ConsoleColor.Gray;
+                    TitleScreenOption="";
                     break;
                 }
             }
