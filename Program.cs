@@ -1,14 +1,20 @@
 ﻿using DH4.Classes;
 using DH4.Enums;
 using System;
+using System.Security.Cryptography.X509Certificates;
 namespace DH4
 {
     class Game
     {
+        
         public Character CharacterToCreate()
         {
             Character characterToCreate=new Character();
             return characterToCreate;
+        }
+        public static void ChangeTextColor(ConsoleColor textColor)
+        {
+            Console.ForegroundColor=textColor;
         }
         public void BattleSystem(Enemy enemy, Character playercharacter)
         {
@@ -108,8 +114,10 @@ namespace DH4
         }
         public static void QuitGame()
         {
+            Console.ForegroundColor=ConsoleColor.Yellow;
             System.Console.WriteLine("Quitting game in 3 seconds\n");
             Thread.Sleep(3000);
+            Console.ForegroundColor=ConsoleColor.Gray;
             System.Console.WriteLine("Goodbye\n");
             Environment.Exit(0);
         } 
