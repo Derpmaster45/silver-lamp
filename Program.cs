@@ -148,6 +148,8 @@ namespace DH4
             */
             while(playercharacter.CurrentHealthPoints>0&& enemy.CurrentHealthPoints>0)
             {
+                ChangeTextColor(ConsoleColor.Gray);
+                System.Console.WriteLine($"{enemy.EnemyName} has appeared\n");
                string initTurnChoice="";
                // stats and damage values
                double DamageDealt=0;
@@ -156,7 +158,7 @@ namespace DH4
                bool bIsDefending=false;
                while(initTurnChoice=="")
                {
-                    System.Console.WriteLine($"{enemy.EnemyName} has appeared! \n What would you like to do: \n 1) Attack\n2) Magic/Special\n3)Defend\n");
+                    System.Console.WriteLine($"What would you like to do: \n 1) Attack\n2) Magic/Special\n3)Defend\n");
                     Console.ReadLine();
                     switch(initTurnChoice.ToLower())
                     {
@@ -182,10 +184,69 @@ namespace DH4
                                 initTurnChoice="";
                                 Console.ForegroundColor=ConsoleColor.Gray;
                             }
+                            else
+                            {
+                                string magicmenuchoice="";
+                                while(magicmenuchoice=="")
+                                {
+                                    switch(playercharacter.PlayerClass)
+                                    {
+                                        case PlayerClassTypes.MAGE:
+                                            System.Console.WriteLine("Which magic attack would you like to use?\n1) Heal\n2)Fire\n");
+                                            magicmenuchoice=Console.ReadLine();
+                                            // switch based on the users input 
+                                            switch(magicmenuchoice.ToLower())
+                                            {
+                                                case"1":
+                                                case"heal":
+                                                    SpellCost=25;
+                                                    playercharacter.PlayerManaPoints-=SpellCost;
+                                                    System.Console.WriteLine($"{playercharacter.PlayerName} casts heal");
+                                                    // take player health and mulitply it by .20
+                                                    playercharacter.CurrentHealthPoints*=.20;
+                                                    // if the player health is greater than the max health set health to max health value
+                                                    if(playercharacter.CurrentHealthPoints>playercharacter.PlayerHealth)
+                                                    {
+                                                        playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
+                                                    }
+                                                    ChangeTextColor(ConsoleColor.White);
+                                                    System.Console.WriteLine($"DEBUG current health points {playercharacter.CurrentHealthPoints} Player max health points {playercharacter.PlayerHealth}");
+                                                    ChangeTextColor(ConsoleColor.Gray);
+                                                    initTurnChoice="";
+                                                break;
+                                                case "2":
+                                                case"fire":
+                                                    System.Console.WriteLine($"{playercharacter.PlayerName} casts fire!\n");
+                                                    SpellCost=25;
+                                                    playercharacter.PlayerManaPoints-=SpellCost;
+                                                    double firebasedamage=30;
+                                                    DamageDealt=(playercharacter.PlayerManaAttackPoints+firebasedamage)/enemy.EnemyManaDefensePoints;
+                                                    enemy.CurrentHealthPoints-=DamageDealt;
+                                                    initTurnChoice="";
+
+                                                break;
+                                                default:
+                                                 ChangeTextColor(ConsoleColor.Red);
+                                                    System.Console.WriteLine("ERR: Unknown Attack!/n Please try again.");
+                                                    ClearAndReset(playercharacter);
+                                                    ChangeTextColor(ConsoleColor.Gray);
+                                                    magicmenuchoice="";
+                                                break;
+                                            }
+                                        break;
+                                        case PlayerClassTypes.CURSEDSWORDSMAN:
+                                        break;
+                                        case PlayerClassTypes.DARKMAGE:
+                                        break;
+                                        case PlayerClassTypes.KNIGHT:
+                                        break;
+                                    }
+                                }
+                            }
                         break;
                         case "3":
                         case"defend":
-                         bIsDefending=true;
+                            bIsDefending=true;
                         break;
                         default:
                         ClearAndReset(playercharacter);
