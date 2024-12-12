@@ -226,7 +226,7 @@ namespace DH4
 
                                                 break;
                                                 default:
-                                                 ChangeTextColor(ConsoleColor.Red);
+                                                    ChangeTextColor(ConsoleColor.Red);
                                                     System.Console.WriteLine("ERR: Unknown Attack!/n Please try again.");
                                                     ClearAndReset(playercharacter);
                                                     ChangeTextColor(ConsoleColor.Gray);
@@ -235,8 +235,42 @@ namespace DH4
                                             }
                                         break;
                                         case PlayerClassTypes.CURSEDSWORDSMAN:
+                                            System.Console.WriteLine("What magic attack would you like to use?\n1) void\n2) TBD\n");
+                                            magicmenuchoice=Console.ReadLine();
+                                            switch(magicmenuchoice.ToLower())
+                                            {
+                                                case"1":
+                                                case"void":
+                                                  System.Console.WriteLine($"{playercharacter.PlayerName} used VOID");
+                                                    int VoidBaseDamage=10;
+                                                    DamageDealt=VoidBaseDamage*(playercharacter.PlayerManaAttackPoints /enemy.EnemyManaDefensePoints);
+                                                break;
+                                                case"2":
+                                                    // setup a new attack for the cursed swordsman 
+                                                    // set damage params for the function to return so that we can have the enemy attack the player and deal damage.
+                                                break;
+                                                default:
+                                                        ChangeTextColor(ConsoleColor.Red);
+                                                        System.Console.WriteLine("ERR: Unknown Attack!/n Please try again.");
+                                                        ClearAndReset(playercharacter);
+                                                        ChangeTextColor(ConsoleColor.Gray);
+                                                        magicmenuchoice="";
+                                                break;
+                                            }
+
                                         break;
                                         case PlayerClassTypes.DARKMAGE:
+                                            System.Console.WriteLine("What magic attack would you like to use \n1) Drain Life /n2)Lightning \n3) Petrification\n");
+                                            magicmenuchoice=Console.ReadLine();
+                                            switch(magicmenuchoice.ToLower())
+                                            {
+                                                case "1":
+                                                break;
+                                                case "2":
+                                                break;
+                                                case"3":
+                                                break;
+                                            }
                                         break;
                                         case PlayerClassTypes.KNIGHT:
                                         break;

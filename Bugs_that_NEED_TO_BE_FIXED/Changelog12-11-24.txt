@@ -1,0 +1,4 @@
+Changes
+-------------------------------------------------------
+Continued working on the battlesystem. Have yet to test the overall functionality of the battlesystem.
+Completed the magic system for cursed swordsman and dark mage. (Player) I have yet to start reworking the ai battlesystem. 
