@@ -1,11 +1,13 @@
 using Microsoft.Win32.SafeHandles;
 using System;
 using System.Runtime.InteropServices;
+namespace DH4
+{
 public class GarbCollection : IDisposable
 {
     private bool _disposedObject;
     // create safe handle instance 
-    private SafeHandle? _safeHandle=new SafeFileHandle(IntPtr.Zero,true);
+    private SafeHandle _safeHandle=new SafeFileHandle(IntPtr.Zero,true);
     public void Dispose()
     {
         Dispose(true);
@@ -24,4 +26,5 @@ public class GarbCollection : IDisposable
             _disposedObject=true;
         }
     }
+}
 }

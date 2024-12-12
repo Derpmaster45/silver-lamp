@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.Dynamic;
 using DH4.Enums;
 namespace DH4.Classes
@@ -19,6 +20,7 @@ namespace DH4.Classes
         public double PlayerManaAttackPoints{get; set;}
         public double PlayerManaDefensePoints{get;set;}
         public string MostRecentCheckpoint{get;set;}
+        public ConsoleColor PlayerColor {get;set;}
 
     }
 }

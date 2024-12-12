@@ -16,5 +16,7 @@ namespace DH4.Classes
         public int ExpValue {get;set;}
         public bool bIsPetrified{get;set;}
         public double EnemyManaDefensePoints{get;set;}
+        // this property is used for characters that have dialoge (Cursed Swordsman, angel)
+        public ConsoleColor EnemyTextColor{get;set;}
     }
 }
