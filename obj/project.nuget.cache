@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "WXt6vj5LTMY=",
+  "dgSpecHash": "7TTgAGq2b50=",
   "success": true,
-  "projectFilePath": "/home/jay/Documents/projects/silver-lamp/dh4.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/jay/Documents/silver-lamp/dh4.csproj",
+  "expectedPackageFiles": [
+    "/home/jay/.nuget/packages/microsoft.netcore.app.ref/8.0.11/microsoft.netcore.app.ref.8.0.11.nupkg.sha512",
+    "/home/jay/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.11/microsoft.aspnetcore.app.ref.8.0.11.nupkg.sha512",
+    "/home/jay/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.11/microsoft.netcore.app.host.linux-x64.8.0.11.nupkg.sha512"
+  ],
   "logs": []
 }
