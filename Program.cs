@@ -235,6 +235,14 @@ namespace DH4
                                             }
                                         break;
                                         case PlayerClassTypes.CURSEDSWORDSMAN:
+                                            if(playercharacter.PlayerManaPoints<0)
+                                            {
+
+                                            }
+                                            else
+                                            {
+
+                                            
                                             System.Console.WriteLine("What magic attack would you like to use?\n1) void\n2) TBD\n");
                                             magicmenuchoice=Console.ReadLine();
                                             switch(magicmenuchoice.ToLower())
@@ -256,6 +264,8 @@ namespace DH4
                                                         ChangeTextColor(ConsoleColor.Gray);
                                                         magicmenuchoice="";
                                                 break;
+                                            
+                                            }
                                             }
 
                                         break;
