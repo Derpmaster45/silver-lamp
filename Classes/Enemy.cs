@@ -8,7 +8,7 @@ namespace DH4.Classes
         public double EnemyAttackPoints{get;set;}
         public double EnemyDefensePoints{get; set;}
         public double EnemyHealth{get;set;}
-        public double EnemyManaPoint{get;set;}
+        public double EnemyCurrentManaPoints{get;set;}
         public double EnemyMaxManaPoints{get; set;}
         public double EnemyManaAttackPoints{get;set;}
         public double CurrentHealthPoints{get;set;}
