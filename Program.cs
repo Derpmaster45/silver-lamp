@@ -72,7 +72,7 @@ namespace DH4
                     enemyToCreate.EnemyDefensePoints=10;
                     enemyToCreate.EnemyManaDefensePoints=5;
                     enemyToCreate.EnemyAttackPoints=20;
-                    enemyToCreate.EnemyManaPoint=50;
+                    enemyToCreate.EnemyCurrentManaPoints=50;
                     enemyToCreate.EnemyManaAttackPoints=25;
                 break;
                 case EnemyNames.ANGEL:
@@ -82,21 +82,21 @@ namespace DH4
                     enemyToCreate.EnemyDefensePoints=300;
                     enemyToCreate.EnemyManaDefensePoints=75;
                     enemyToCreate.EnemyAttackPoints=40;
-                    enemyToCreate.EnemyManaPoint=200;
+                    enemyToCreate.EnemyCurrentManaPoints=200;
                 break;
                 case EnemyNames.CURSEDSWORDSMAN:
                     enemyToCreate.EnemyName="Cursed Swordsman";
                     enemyToCreate.EnemyHealth=600;
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                     enemyToCreate.EnemyAttackPoints=50;
-                    enemyToCreate.EnemyManaPoint=100;
+                    enemyToCreate.EnemyCurrentManaPoints=100;
                     enemyToCreate.EnemyDefensePoints=50;
                 break;
                 case EnemyNames.HORNET:
                     enemyToCreate.EnemyName="Hornet"; 
         	        enemyToCreate.EnemyHealth=110; 
         	        enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
-		            enemyToCreate.EnemyManaPoint=50;
+		            enemyToCreate.EnemyCurrentManaPoints=50;
 	    	        enemyToCreate.EnemyManaDefensePoints=15;
 	    	        enemyToCreate.EnemyDefensePoints=25;
 	    	        enemyToCreate.EnemyAttackPoints=30;
@@ -106,7 +106,7 @@ namespace DH4
                     enemyToCreate.EnemyHealth=150;
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                     enemyToCreate.EnemyManaDefensePoints=35;
-                    enemyToCreate.EnemyManaPoint=50;
+                    enemyToCreate.EnemyCurrentManaPoints=50;
                     enemyToCreate.EnemyDefensePoints=70;
                 break;
                 case EnemyNames.KITSUNE:
@@ -114,7 +114,7 @@ namespace DH4
     	            enemyToCreate.EnemyHealth=150;
     	            enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
     	            enemyToCreate.EnemyDefensePoints=35;
-    	            enemyToCreate.EnemyManaPoint=50;
+    	            enemyToCreate.EnemyCurrentManaPoints=50;
     	            enemyToCreate.EnemyAttackPoints=50;
     	            enemyToCreate.EnemyDefensePoints=25;
     	            enemyToCreate.EnemyManaAttackPoints=25;
@@ -125,7 +125,7 @@ namespace DH4
                     enemyToCreate.EnemyHealth=650;
                     enemyToCreate.CurrentHealthPoints=enemyToCreate.EnemyHealth;
                     enemyToCreate.EnemyManaDefensePoints=70;
-                    enemyToCreate.EnemyManaPoint=100;
+                    enemyToCreate.EnemyCurrentManaPoints=100;
                     enemyToCreate.EnemyDefensePoints=80;
                 break;
                 default:
@@ -153,9 +153,9 @@ namespace DH4
                string initTurnChoice="";
                // stats and damage values
                double DamageDealt=0;
-               bool bIsPetrified=false;
+               bool bIsPetrified;
                double SpellCost=0;
-               bool bIsDefending=false;
+               bool bIsDefending;
                while(initTurnChoice=="")
                {
                     System.Console.WriteLine($"What would you like to do: \n 1) Attack\n2) Magic/Special\n3)Defend\n");
@@ -179,7 +179,7 @@ namespace DH4
                             // check to see if player has enough mana points to use magic
                             if(playercharacter.CurrentPlayerManaPoints<=0)
                             {
-                                Console.ForegroundColor=ConsoleColor.Red;
+                                Console.ForegroundColor=ConsoleColor.Yellow;
                                 System.Console.WriteLine("You do not have enough mana points\n");
                                 initTurnChoice="";
                                 Console.ForegroundColor=ConsoleColor.Gray;
@@ -200,6 +200,11 @@ namespace DH4
                                                 case"1":
                                                 case"heal":
                                                     SpellCost=25;
+                                                    if(playercharacter.CurrentPlayerManaPoints<SpellCost)
+                                                    {
+                                                        System.Console.WriteLine("You do not have enough mana points, please select another option.\n");
+                                                        magicmenuchoice="";
+                                                    }
                                                     playercharacter.CurrentPlayerManaPoints-=SpellCost;
                                                     System.Console.WriteLine($"{playercharacter.PlayerName} casts heal");
                                                     // take player health and mulitply it by .20
@@ -242,13 +247,32 @@ namespace DH4
                                             {
                                                 case"1":
                                                 case"void":
-                                                  System.Console.WriteLine($"{playercharacter.PlayerName} used VOID");
-                                                    int VoidBaseDamage=10;
-                                                    DamageDealt=VoidBaseDamage*(playercharacter.PlayerManaAttackPoints /enemy.EnemyManaDefensePoints);
+                                                    if(playercharacter.CurrentPlayerManaPoints<SpellCost)
+                                                    {
+                                                        ChangeTextColor(ConsoleColor.Yellow);
+                                                        System.Console.WriteLine("You do not have enough mana points, please select another option.\n");
+                                                        ChangeTextColor(ConsoleColor.Gray);
+                                                        magicmenuchoice="";
+                                                    }
+                                                    else if(playercharacter.CurrentPlayerManaPoints<=0)
+                                                    {
+                                                        System.Console.WriteLine("You have no mana points. Please choose a different action\n");
+                                                    }
+                                                    else
+                                                    {
+                                                        System.Console.WriteLine($"{playercharacter.PlayerName} used VOID");
+                                                        int VoidBaseDamage=10;
+                                                        DamageDealt=VoidBaseDamage*(playercharacter.PlayerManaAttackPoints /enemy.EnemyManaDefensePoints);
+                                                    }
+                                                  
                                                 break;
                                                 case"2":
                                                     // setup a new attack for the cursed swordsman 
                                                     // set damage params for the function to return so that we can have the enemy attack the player and deal damage.
+                                                    if(playercharacter.CurrentPlayerManaPoints<SpellCost)
+                                                    {
+                                                        System.Console.WriteLine("You have no mana points, please select another option\n");
+                                                    }
                                                 break;
                                                 default:
                                                         ChangeTextColor(ConsoleColor.Red);
