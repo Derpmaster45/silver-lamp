@@ -5,5 +5,6 @@ public enum TextColorOptions
     PLAYER,
     NPC,
     ERROR, 
-    ENEMY
+    ENEMY,
+    GAMEMESSAGE
 }

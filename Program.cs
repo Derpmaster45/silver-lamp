@@ -133,9 +133,33 @@ namespace DH4
             }
             return enemyToCreate;
         }
-        public static void ChangeTextColor(ConsoleColor textColor)
+        public static void ChangeTextColor(TextColorOptions textColor)
         {
-            Console.ForegroundColor=textColor;
+            switch(textColor)
+            {
+                case TextColorOptions.DEFAULT:
+                    Console.ForegroundColor=ConsoleColor.Gray;
+                break;
+                case TextColorOptions.DEBUG:
+                    Console.ForegroundColor=ConsoleColor.White;
+                break;
+                case TextColorOptions.GAMEMESSAGE:
+                    Console.ForegroundColor=ConsoleColor.Yellow;
+                break;
+                case TextColorOptions.ERROR:
+                    Console.ForegroundColor=ConsoleColor.Red;
+                break;
+                case TextColorOptions.ENEMY:
+                    Console.ForegroundColor=ConsoleColor.Green;
+                break;
+                case TextColorOptions.NPC:
+                    Console.ForegroundColor=ConsoleColor.Magenta;
+                break;
+                case TextColorOptions.PLAYER:
+                    Console.ForegroundColor=ConsoleColor.Blue;
+                break;
+
+            }
         }
         public void BattleSystem(Enemy enemy, Character playercharacter)
         {
@@ -148,7 +172,7 @@ namespace DH4
             */
             while(playercharacter.CurrentHealthPoints>0&& enemy.CurrentHealthPoints>0)
             {
-                ChangeTextColor(ConsoleColor.Gray);
+                //ChangeTextColor(ConsoleColor.Gray);
                 System.Console.WriteLine($"{enemy.EnemyName} has appeared\n");
                string initTurnChoice="";
                // stats and damage values
@@ -214,9 +238,9 @@ namespace DH4
                                                     {
                                                         playercharacter.CurrentHealthPoints=playercharacter.PlayerHealth;
                                                     }
-                                                    ChangeTextColor(ConsoleColor.White);
+                                                   // ChangeTextColor(ConsoleColor.White);
                                                     System.Console.WriteLine($"DEBUG current health points {playercharacter.CurrentHealthPoints} Player max health points {playercharacter.PlayerHealth}");
-                                                    ChangeTextColor(ConsoleColor.Gray);
+                                                  //  ChangeTextColor(ConsoleColor.Gray);
                                                     initTurnChoice="";
                                                 break;
                                                 case "2":
@@ -231,10 +255,10 @@ namespace DH4
 
                                                 break;
                                                 default:
-                                                    ChangeTextColor(ConsoleColor.Red);
+                                                    //ChangeTextColor(ConsoleColor.Red);
                                                     System.Console.WriteLine("ERR: Unknown Attack!/n Please try again.");
                                                     ClearAndReset(playercharacter);
-                                                    ChangeTextColor(ConsoleColor.Gray);
+                                                    //ChangeTextColor(ConsoleColor.Gray);
                                                     magicmenuchoice="";
                                                 break;
                                             }
@@ -249,14 +273,18 @@ namespace DH4
                                                 case"void":
                                                     if(playercharacter.CurrentPlayerManaPoints<SpellCost)
                                                     {
-                                                        ChangeTextColor(ConsoleColor.Yellow);
+                                                       // ChangeTextColor(ConsoleColor.Yellow);
                                                         System.Console.WriteLine("You do not have enough mana points, please select another option.\n");
-                                                        ChangeTextColor(ConsoleColor.Gray);
+                                                        //ChangeTextColor(ConsoleColor.Gray);
                                                         magicmenuchoice="";
                                                     }
                                                     else if(playercharacter.CurrentPlayerManaPoints<=0)
                                                     {
+                                                        //ChangeTextColor(ConsoleColor.Yellow);
+
                                                         System.Console.WriteLine("You have no mana points. Please choose a different action\n");
+                                                        //ChangeTextColor(ConsoleColor.Gray);
+
                                                     }
                                                     else
                                                     {
@@ -275,10 +303,10 @@ namespace DH4
                                                     }
                                                 break;
                                                 default:
-                                                        ChangeTextColor(ConsoleColor.Red);
+                                                      //  ChangeTextColor(ConsoleColor.Red);
                                                         System.Console.WriteLine("ERR: Unknown Attack!/n Please try again.");
                                                         ClearAndReset(playercharacter);
-                                                        ChangeTextColor(ConsoleColor.Gray);
+                                                      //  ChangeTextColor(ConsoleColor.Gray);
                                                         magicmenuchoice="";
                                                 break;
                                             
@@ -307,9 +335,9 @@ namespace DH4
                                                 case "2":
                                                 if(playercharacter.CurrentPlayerManaPoints<SpellCost)
                                                 {
-                                                    ChangeTextColor(ConsoleColor.Yellow);
+                                                   // ChangeTextColor(ConsoleColor.Yellow);
                                                     System.Console.WriteLine("You dont have enough mana points, please select another option\n");
-                                                    ChangeTextColor(ConsoleColor.Gray);
+                                                   // ChangeTextColor(ConsoleColor.Gray);
                                                     magicmenuchoice="";
                                                     initTurnChoice="";
 
@@ -328,9 +356,9 @@ namespace DH4
                                                 }
                                                 else if(playercharacter.CurrentPlayerManaPoints==0)
                                                 {
-                                                    ChangeTextColor(ConsoleColor.Yellow);
+                                                   // ChangeTextColor(ConsoleColor.Yellow);
                                                     System.Console.WriteLine("You have no mana points");
-                                                    ChangeTextColor(ConsoleColor.Gray);
+                                                    //ChangeTextColor(ConsoleColor.Gray);
                                                 }
                                                 else{}
                                                 break;
@@ -373,6 +401,10 @@ namespace DH4
                     case "new game":
                     System.Console.WriteLine("new game started\n");
                     EnemyNames enemyNames=new EnemyNames();
+                    TextColorOptions textColorOptions=new TextColorOptions();
+                    textColorOptions=TextColorOptions.PLAYER;
+                    ChangeTextColor(textColorOptions);
+                    System.Console.WriteLine("hello,world");
 
                     // create the player character and angel enemy object.
 
