@@ -6,7 +6,8 @@ namespace DH4
 {
     class Game
     {
-        
+        TextColorOptions textColorOptions=new TextColorOptions();
+
         public Character CharacterToCreate(PlayerClassTypes playerClass)
         {
             Character characterToCreate=new Character();
@@ -57,6 +58,7 @@ namespace DH4
                 break;
 
             }
+            textColorOptions=TextColorOptions.PLAYER;
             return characterToCreate;
         }
         public Enemy CreateEnemy (EnemyNames enemyType)
@@ -203,7 +205,7 @@ namespace DH4
                             // check to see if player has enough mana points to use magic
                             if(playercharacter.CurrentPlayerManaPoints<=0)
                             {
-                                Console.ForegroundColor=ConsoleColor.Yellow;
+                                
                                 System.Console.WriteLine("You do not have enough mana points\n");
                                 initTurnChoice="";
                                 Console.ForegroundColor=ConsoleColor.Gray;
@@ -401,7 +403,6 @@ namespace DH4
                     case "new game":
                     System.Console.WriteLine("new game started\n");
                     EnemyNames enemyNames=new EnemyNames();
-                    TextColorOptions textColorOptions=new TextColorOptions();
 
                     // create the player character and angel enemy object.
 
