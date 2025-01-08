@@ -402,9 +402,6 @@ namespace DH4
                     System.Console.WriteLine("new game started\n");
                     EnemyNames enemyNames=new EnemyNames();
                     TextColorOptions textColorOptions=new TextColorOptions();
-                    textColorOptions=TextColorOptions.PLAYER;
-                    ChangeTextColor(textColorOptions);
-                    System.Console.WriteLine("hello,world");
 
                     // create the player character and angel enemy object.
 
