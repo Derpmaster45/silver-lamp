@@ -23,7 +23,7 @@ namespace DH4
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=20;
                     characterToCreate.PlayerMaxManaPoints=20;
-                    characterToCreate.PlayerManaPoints=characterToCreate.PlayerMaxManaPoints;
+                    characterToCreate.CurrentPlayerManaPoints=characterToCreate.PlayerMaxManaPoints;
                 break;
                 case PlayerClassTypes.DARKMAGE:
                     characterToCreate.AttackPoints=10;
@@ -32,8 +32,8 @@ namespace DH4
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=60;
                     characterToCreate.PlayerManaDefensePoints=40;
-                    characterToCreate.PlayerManaPoints=600;
-                    characterToCreate.PlayerMaxManaPoints=characterToCreate.PlayerManaPoints; 
+                    characterToCreate.CurrentPlayerManaPoints=600;
+                    characterToCreate.PlayerMaxManaPoints=characterToCreate.CurrentPlayerManaPoints; 
                 break;
                 case PlayerClassTypes.CURSEDSWORDSMAN:
                     characterToCreate.AttackPoints=50;
@@ -42,8 +42,8 @@ namespace DH4
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=300;
                     characterToCreate.PlayerManaDefensePoints=30;
-                    characterToCreate.PlayerManaPoints=250;
-                    characterToCreate.PlayerMaxManaPoints=characterToCreate.PlayerManaPoints;
+                    characterToCreate.CurrentPlayerManaPoints=250;
+                    characterToCreate.PlayerMaxManaPoints=characterToCreate.CurrentPlayerManaPoints;
                 break;
                 case PlayerClassTypes.MAGE:
                     characterToCreate.AttackPoints=10;
@@ -52,8 +52,8 @@ namespace DH4
                     characterToCreate.PlayerExpPoints=0;
                     characterToCreate.PlayerManaAttackPoints=60;
                     characterToCreate.PlayerManaDefensePoints=40;
-                    characterToCreate.PlayerManaPoints=600;
-                    characterToCreate.PlayerMaxManaPoints=characterToCreate.PlayerManaPoints; 
+                    characterToCreate.CurrentPlayerManaPoints=600;
+                    characterToCreate.PlayerMaxManaPoints=characterToCreate.CurrentPlayerManaPoints; 
                 break;
 
             }
@@ -177,7 +177,7 @@ namespace DH4
                         case"2":
                         case"magic":
                             // check to see if player has enough mana points to use magic
-                            if(playercharacter.PlayerManaPoints<=0)
+                            if(playercharacter.CurrentPlayerManaPoints<=0)
                             {
                                 Console.ForegroundColor=ConsoleColor.Red;
                                 System.Console.WriteLine("You do not have enough mana points\n");
@@ -200,7 +200,7 @@ namespace DH4
                                                 case"1":
                                                 case"heal":
                                                     SpellCost=25;
-                                                    playercharacter.PlayerManaPoints-=SpellCost;
+                                                    playercharacter.CurrentPlayerManaPoints-=SpellCost;
                                                     System.Console.WriteLine($"{playercharacter.PlayerName} casts heal");
                                                     // take player health and mulitply it by .20
                                                     playercharacter.CurrentHealthPoints*=.20;
@@ -218,7 +218,7 @@ namespace DH4
                                                 case"fire":
                                                     System.Console.WriteLine($"{playercharacter.PlayerName} casts fire!\n");
                                                     SpellCost=25;
-                                                    playercharacter.PlayerManaPoints-=SpellCost;
+                                                    playercharacter.CurrentPlayerManaPoints-=SpellCost;
                                                     double firebasedamage=30;
                                                     DamageDealt=(playercharacter.PlayerManaAttackPoints+firebasedamage)/enemy.EnemyManaDefensePoints;
                                                     enemy.CurrentHealthPoints-=DamageDealt;
@@ -235,14 +235,7 @@ namespace DH4
                                             }
                                         break;
                                         case PlayerClassTypes.CURSEDSWORDSMAN:
-                                            if(playercharacter.PlayerManaPoints<0)
-                                            {
 
-                                            }
-                                            else
-                                            {
-
-                                            
                                             System.Console.WriteLine("What magic attack would you like to use?\n1) void\n2) TBD\n");
                                             magicmenuchoice=Console.ReadLine();
                                             switch(magicmenuchoice.ToLower())
@@ -266,7 +259,7 @@ namespace DH4
                                                 break;
                                             
                                             }
-                                            }
+                                            
 
                                         break;
                                         case PlayerClassTypes.DARKMAGE:
@@ -275,10 +268,47 @@ namespace DH4
                                             switch(magicmenuchoice.ToLower())
                                             {
                                                 case "1":
+                                                if(playercharacter.CurrentPlayerManaPoints<SpellCost)
+                                                {
+                                                    System.Console.WriteLine("You dont have enough mana points,please select another option\n");
+                                                    magicmenuchoice="";
+                                                }
+                                                else if(playercharacter.CurrentPlayerManaPoints==0)
+                                                {
+                                                    System.Console.WriteLine("You have no mana points, please select a different attack\n");
+                                                    magicmenuchoice="";
+                                                    initTurnChoice="";
+                                                }
                                                 break;
                                                 case "2":
+                                                if(playercharacter.CurrentPlayerManaPoints<SpellCost)
+                                                {
+                                                    ChangeTextColor(ConsoleColor.Yellow);
+                                                    System.Console.WriteLine("You dont have enough mana points, please select another option\n");
+                                                    ChangeTextColor(ConsoleColor.Gray);
+                                                    magicmenuchoice="";
+                                                    initTurnChoice="";
+
+                                                }
+                                                else if(playercharacter.CurrentPlayerManaPoints<=0)
+                                                {
+                                                    System.Console.WriteLine("You have no mana points please select another option\n");
+                                                    magicmenuchoice="";
+                                                    initTurnChoice="";
+                                                }
                                                 break;
                                                 case"3":
+                                                if(playercharacter.CurrentPlayerManaPoints<SpellCost)
+                                                {
+                                                    System.Console.WriteLine("You dont have enough mana points, please select another option");
+                                                }
+                                                else if(playercharacter.CurrentPlayerManaPoints==0)
+                                                {
+                                                    ChangeTextColor(ConsoleColor.Yellow);
+                                                    System.Console.WriteLine("You have no mana points");
+                                                    ChangeTextColor(ConsoleColor.Gray);
+                                                }
+                                                else{}
                                                 break;
                                             }
                                         break;
