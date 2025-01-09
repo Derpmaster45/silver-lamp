@@ -301,7 +301,16 @@ namespace DH4
                                                     // set damage params for the function to return so that we can have the enemy attack the player and deal damage.
                                                     if(playercharacter.CurrentPlayerManaPoints<SpellCost)
                                                     {
+                                                        textColorOptions=TextColorOptions.GAMEMESSAGE;
+                                                        ChangeTextColor(textColorOptions);
                                                         System.Console.WriteLine("You have no mana points, please select another option\n");
+                                                        textColorOptions=TextColorOptions.DEFAULT;
+                                                        ChangeTextColor(textColorOptions);
+
+                                                    }
+                                                    else
+                                                    {
+
                                                     }
                                                 break;
                                                 default:
@@ -352,7 +361,7 @@ namespace DH4
                                                 }
                                                 break;
                                                 case"3":
-                                                if(playercharacter.CurrentPlayerManaPoints<SpellCost)
+                                                 if(playercharacter.CurrentPlayerManaPoints<SpellCost)
                                                 {
                                                     System.Console.WriteLine("You dont have enough mana points, please select another option");
                                                 }
@@ -367,6 +376,24 @@ namespace DH4
                                             }
                                         break;
                                         case PlayerClassTypes.KNIGHT:
+                                        System.Console.WriteLine("What special attack would you like to use? \n 1) Double attack\n2)tbd\n");
+                                        magicmenuchoice=Console.ReadLine();
+                                        switch(magicmenuchoice.ToLower())
+                                        {
+                                            case"1":
+                                            case"double attack":
+                                            for(int attacknum=0; attacknum<2; attacknum++)
+                                            {
+                                                   DamageDealt=playercharacter.AttackPoints-enemy.EnemyDefensePoints;
+                                                    enemy.CurrentHealthPoints-=DamageDealt;
+                                                    if(DamageDealt<0)
+                                                        {
+                                                            DamageDealt*=-1;
+                                                            enemy.CurrentHealthPoints-=DamageDealt;
+                                                        }
+                                            }
+                                            break;
+                                        }
                                         break;
                                     }
                                 }
@@ -375,6 +402,7 @@ namespace DH4
                         case "3":
                         case"defend":
                             bIsDefending=true;
+                            //attack player.
                         break;
                         default:
                         ClearAndReset(playercharacter);
