@@ -8,7 +8,7 @@ namespace DH4
     {
         TextColorOptions textColorOptions=new TextColorOptions();
 
-        public Character CharacterToCreate(PlayerClassTypes playerClass)
+        public static Character CharacterToCreate(PlayerClassTypes playerClass)
         {
             Character characterToCreate=new Character();
             //prompt for player name before function
@@ -58,10 +58,10 @@ namespace DH4
                 break;
 
             }
-            textColorOptions=TextColorOptions.PLAYER;
+            //textColorOptions=TextColorOptions.PLAYER;
             return characterToCreate;
         }
-        public Enemy CreateEnemy (EnemyNames enemyType)
+        public static Enemy CreateEnemy (EnemyNames enemyType)
         {
             Enemy enemyToCreate=new Enemy();
             enemyToCreate.enemyType=enemyType;
@@ -171,7 +171,38 @@ namespace DH4
             have a boolen for petrification
             set parameters for the above state
             test changes 
-            */
+            */ 
+            double DoDamageToPlayer(EnemyNames enemyType, Character playercharacter,Enemy enemy)
+            {
+                double damageDealtToPlayer=0;
+                Random aiInput=new Random();
+                int action=aiInput.Next(1,3);
+                switch(action)
+                {
+                    case 1:
+                        damageDealtToPlayer=playercharacter.PlayerDefensePoints-enemy.EnemyAttackPoints;
+                        System.Console.WriteLine($"{enemy.EnemyName} attacked {playercharacter.PlayerName} dealing {damageDealtToPlayer} points of damage");
+                        playercharacter.CurrentHealthPoints-=damageDealtToPlayer;
+                    break;
+                    case 2:
+                        // this is a place holder message that needs to be removed later.
+                        System.Console.WriteLine("Still working on enemy Magic system");
+                        Random magicInput=new Random();
+                        // Magic action has a max vaule of four to give the ai a chance to return to pevious menu 
+                        int magicAction=magicInput.Next(1,4);
+                        switch(enemy.enemyType)
+                        {
+                            // 6 cases needed CursedSwordsman Bat, zombie Vampire Hornet, kitsune, none
+                        }
+
+                    break;
+                    case 3: 
+                    break;
+                    default: 
+                    break;
+                }
+                return damageDealtToPlayer;  
+            }
             while(playercharacter.CurrentHealthPoints>0&& enemy.CurrentHealthPoints>0)
             {
                 //ChangeTextColor(ConsoleColor.Gray);
@@ -431,9 +462,14 @@ namespace DH4
                     case "new game":
                     System.Console.WriteLine("new game started\n");
                     EnemyNames enemyNames=new EnemyNames();
-
+                    PlayerClassTypes playerClass=PlayerClassTypes.CURSEDSWORDSMAN;
+                    
+                    Character DSCharacter=CharacterToCreate(playerClass);
+                    DSCharacter.PlayerName="Cursed Swordsman";
                     // create the player character and angel enemy object.
-
+                    enemyNames=EnemyNames.ANGEL;
+                    CreateEnemy(enemyNames);
+                    
                     break;
                     // quit game option
                     case "2":
