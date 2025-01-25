@@ -179,23 +179,38 @@ namespace DH4
                 int action=aiInput.Next(1,3);
                 switch(action)
                 {
+                    // standard attack
                     case 1:
                         damageDealtToPlayer=playercharacter.PlayerDefensePoints-enemy.EnemyAttackPoints;
                         System.Console.WriteLine($"{enemy.EnemyName} attacked {playercharacter.PlayerName} dealing {damageDealtToPlayer} points of damage");
                         playercharacter.CurrentHealthPoints-=damageDealtToPlayer;
                     break;
+                    // magic attack
                     case 2:
                         // this is a place holder message that needs to be removed later.
                         System.Console.WriteLine("Still working on enemy Magic system");
                         Random magicInput=new Random();
                         // Magic action has a max vaule of four to give the ai a chance to return to pevious menu 
-                        int magicAction=magicInput.Next(1,4);
+                        int magicAction=magicInput.Next(1,3);
                         switch(enemy.enemyType)
                         {
                             // 6 cases needed CursedSwordsman Bat, zombie Vampire Hornet, kitsune, none
+                            case EnemyNames.CURSEDSWORDSMAN:
+                            break;
+                            case EnemyNames.ANGEL:
+                            break;
+                            case EnemyNames.HORNET:
+                            break;
+                            case EnemyNames.ZOMBIE:
+                            break;
+                            case EnemyNames.VAMPIRE:
+                            break;
+                            case EnemyNames.KITSUNE:
+                            break;
                         }
 
                     break;
+                    // defend
                     case 3: 
                     break;
                     default: 
@@ -304,6 +319,7 @@ namespace DH4
                                             {
                                                 case"1":
                                                 case"void":
+                                                    SpellCost=25;
                                                     if(playercharacter.CurrentPlayerManaPoints<SpellCost)
                                                     {
                                                        // ChangeTextColor(ConsoleColor.Yellow);
