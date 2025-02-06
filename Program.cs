@@ -199,7 +199,7 @@ namespace DH4
                             switch(magicAction)
                             {
                                 case 1:
-                                damageDealtToPlayer=
+                               // damageDealtToPlayer=
                                 break;
                                 case 2:
                                 break;
