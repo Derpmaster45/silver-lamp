@@ -194,18 +194,53 @@ namespace DH4
                         int magicAction=magicInput.Next(1,3);
                         switch(enemy.enemyType)
                         {
-                            // 6 cases needed CursedSwordsman Bat, zombie Vampire Hornet, kitsune, none
+                            // switch that filters the magic attacks for the ai based on the enemytype 
                             case EnemyNames.CURSEDSWORDSMAN:
+                            switch(magicAction)
+                            {
+                                case 1:
+                                damageDealtToPlayer=
+                                break;
+                                case 2:
+                                break;
+                                case 3:
+                                break;
+                            }
                             break;
                             case EnemyNames.ANGEL:
+                            switch(magicAction)
+                            {
+                                case 1:
+                                break;
+                                case 2:
+                                break;
+                                case 3:
+                                break;
+                            }
                             break;
                             case EnemyNames.HORNET:
+                            switch(magicAction)
+                            {
+
+                            }
                             break;
                             case EnemyNames.ZOMBIE:
+                            switch (magicAction)
+                            {
+
+                            }
                             break;
-                            case EnemyNames.VAMPIRE:
+                            case EnemyNames.VAMPIRE: 
+                            switch(magicAction)
+                            {
+
+                            }
                             break;
                             case EnemyNames.KITSUNE:
+                            switch(magicAction)
+                            {
+
+                            }
                             break;
                         }
 
