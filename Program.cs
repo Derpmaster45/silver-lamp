@@ -199,11 +199,16 @@ namespace DH4
                             switch(magicAction)
                             {
                                 case 1:
-                               // damageDealtToPlayer=
+                                // add on to this statement
+                                damageDealtToPlayer=playercharacter.CurrentHealthPoints- enemy.EnemyManaAttackPoints/playercharacter.PlayerDefensePoints;
                                 break;
                                 case 2:
+                                // may need to rework this attack 
+                                damageDealtToPlayer=playercharacter.CurrentHealthPoints/enemy.EnemyManaAttackPoints*.5;
                                 break;
                                 case 3:
+                                System.Console.WriteLine($"{enemy.EnemyName} has chosen to bypass their turn.");
+                                damageDealtToPlayer=0;
                                 break;
                             }
                             break;
@@ -211,8 +216,26 @@ namespace DH4
                             switch(magicAction)
                             {
                                 case 1:
+                                if(enemy.EnemyCurrentManaPoints<25)
+                                {
+                                    System.Console.WriteLine("The turn has been bypassed");
+                                    damageDealtToPlayer=0;
+                                }
+                                else
+                                {
+                                    System.Console.WriteLine($"{enemy.EnemyName} used heal");
+                                    enemy.CurrentHealthPoints*=.25;
+                                }
                                 break;
                                 case 2:
+                                if(enemy.EnemyCurrentManaPoints<50)
+                                {
+                                    System.Console.WriteLine("Turn has been bypassed!");
+                                }
+                                else
+                                {
+                                    playercharacter.CurrentHealthPoints-=enemy.EnemyManaAttackPoints*4/playercharacter.PlayerManaDefensePoints;
+                                }
                                 break;
                                 case 3:
                                 break;
@@ -529,7 +552,7 @@ namespace DH4
                     break;
                     default:
                     Console.ForegroundColor=ConsoleColor.Yellow;
-                    System.Console.WriteLine("Please choose from the above 2 options\n1)new game \n2) quit\n ");
+                    System.Console.WriteLine("Please choose from the above 2 options\n1)New game \n2) Quit\n ");
                     Console.ForegroundColor=ConsoleColor.Gray;
                     TitleScreenOption="";
                     break;
