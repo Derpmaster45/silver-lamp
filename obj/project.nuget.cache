@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2c5b1+wdvMY=",
+  "dgSpecHash": "P8PQ11VXP24=",
   "success": true,
-  "projectFilePath": "/home/jay/Documents/CSharp/silver-lamp/dh4.csproj",
-  "expectedPackageFiles": [
-    "/home/jay/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.12/microsoft.aspnetcore.app.ref.8.0.12.nupkg.sha512",
-    "/home/jay/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.12/microsoft.netcore.app.host.linux-x64.8.0.12.nupkg.sha512"
-  ],
+  "projectFilePath": "/home/jay/Documents/Projects/silver-lamp/dh4.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
