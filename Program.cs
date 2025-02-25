@@ -1,4 +1,4 @@
-﻿using DH4.Classes;
+using DH4.Classes;
 using DH4.Enums;
 using System;
 using System.Security.Cryptography.X509Certificates;
@@ -177,6 +177,10 @@ namespace DH4
                 double damageDealtToPlayer=0;
                 Random aiInput=new Random();
                 int action=aiInput.Next(1,3);
+                if(playercharacter.bIsBitten==true)
+                {
+                    playercharacter.CurrentHealthPoints-=5;
+                }
                 switch(action)
                 {
                     // standard attack
@@ -250,12 +254,24 @@ namespace DH4
                             case EnemyNames.ZOMBIE:
                             switch (magicAction)
                             {
+                                case 1:
+                                    playercharacter.bIsBitten=true;
+                                    break;
+                                case 2:
+                                    break;
 
                             }
                             break;
                             case EnemyNames.VAMPIRE: 
                             switch(magicAction)
                             {
+                                case 1:
+                                     playercharacter.bIsBitten=true;
+                                    break;
+                                case 2:
+                                    break;
+                                case 3:
+                                    break;
 
                             }
                             break;
