@@ -172,11 +172,17 @@ namespace DH4
             set parameters for the above state
             test changes 
             */ 
+            int turnsSincePetrification=0;
             double DoDamageToPlayer(EnemyNames enemyType, Character playercharacter,Enemy enemy)
             {
                 double damageDealtToPlayer=0;
                 Random aiInput=new Random();
                 int action=aiInput.Next(1,3);
+                if(enemy.bIsPetrified==true)
+                {
+                    Console.WriteLine($"{enemy.EnemyName} cannot move to attack");
+                    DamageDealtToPlayer=0;
+                }
                 if(playercharacter.bIsBitten==true)
                 {
                     playercharacter.CurrentHealthPoints-=5;
@@ -229,6 +235,7 @@ namespace DH4
                                 {
                                     System.Console.WriteLine($"{enemy.EnemyName} used heal");
                                     enemy.CurrentHealthPoints*=.25;
+                                    damageDealtToPlayer=0;
                                 }
                                 break;
                                 case 2:
@@ -256,6 +263,8 @@ namespace DH4
                             {
                                 case 1:
                                     playercharacter.bIsBitten=true;
+                                    damageDealtToPlayer=playercharacter.CurrentHealthPoints-=enemy.EnemyManaAttackpoints/playercharacter.PlayerManaDefensePoints;
+                                    Console.WriteLine($"{enemy.EnemyName} has dealt {damageDealtToPlayer} points of damage");
                                     break;
                                 case 2:
                                     break;
@@ -267,6 +276,8 @@ namespace DH4
                             {
                                 case 1:
                                      playercharacter.bIsBitten=true;
+                                     damageDealtToPlayer=playercharacter.CurrentHealthPoints-=enemy.EnemyManaAttackpoints/playercharacter.PlayerManaDefensePoints;
+                                    Console.WriteLine($"{enemy.EnemyName} has dealt {damageDealtToPlayer} points of damage");
                                     break;
                                 case 2:
                                     break;
@@ -294,6 +305,14 @@ namespace DH4
             }
             while(playercharacter.CurrentHealthPoints>0&& enemy.CurrentHealthPoints>0)
             {
+                if(enemy.bIsPetrified==true && turnsSincePetrification==3)
+                {
+                    enemy.bIsPetrified=false;
+                }
+                else if(turnsSincePetrification<3)
+                {
+                    turnsSincePetrification++;
+                }
                 //ChangeTextColor(ConsoleColor.Gray);
                 System.Console.WriteLine($"{enemy.EnemyName} has appeared\n");
                string initTurnChoice="";
@@ -304,6 +323,7 @@ namespace DH4
                bool bIsDefending;
                while(initTurnChoice=="")
                {
+                   // see if and how many turns it has been since the enemy has been turned to stone.
                     System.Console.WriteLine($"What would you like to do: \n 1) Attack\n2) Magic/Special\n3)Defend\n");
                     Console.ReadLine();
                     switch(initTurnChoice.ToLower())
@@ -351,10 +371,14 @@ namespace DH4
                                                         System.Console.WriteLine("You do not have enough mana points, please select another option.\n");
                                                         magicmenuchoice="";
                                                     }
+                                                    else
+                                                    {
                                                     playercharacter.CurrentPlayerManaPoints-=SpellCost;
                                                     System.Console.WriteLine($"{playercharacter.PlayerName} casts heal");
                                                     // take player health and mulitply it by .20
                                                     playercharacter.CurrentHealthPoints*=.20;
+                                                    playercharacter.bIsBitten=false;
+                                                    }
                                                     // if the player health is greater than the max health set health to max health value
                                                     if(playercharacter.CurrentHealthPoints>playercharacter.PlayerHealth)
                                                     {
@@ -418,6 +442,7 @@ namespace DH4
                                                   
                                                 break;
                                                 case"2":
+                                                case"tbd":
                                                     // setup a new attack for the cursed swordsman 
                                                     // set damage params for the function to return so that we can have the enemy attack the player and deal damage.
                                                     if(playercharacter.CurrentPlayerManaPoints<SpellCost)
@@ -452,6 +477,7 @@ namespace DH4
                                             switch(magicmenuchoice.ToLower())
                                             {
                                                 case "1":
+                                                case"drain life":
                                                 if(playercharacter.CurrentPlayerManaPoints<SpellCost)
                                                 {
                                                     System.Console.WriteLine("You dont have enough mana points,please select another option\n");
@@ -465,6 +491,7 @@ namespace DH4
                                                 }
                                                 break;
                                                 case "2":
+                                                case "lightning":
                                                 if(playercharacter.CurrentPlayerManaPoints<SpellCost)
                                                 {
                                                    // ChangeTextColor(ConsoleColor.Yellow);
@@ -482,6 +509,7 @@ namespace DH4
                                                 }
                                                 break;
                                                 case"3":
+                                                case"petrification":
                                                  if(playercharacter.CurrentPlayerManaPoints<SpellCost)
                                                 {
                                                     System.Console.WriteLine("You dont have enough mana points, please select another option");
@@ -492,7 +520,11 @@ namespace DH4
                                                     System.Console.WriteLine("You have no mana points");
                                                     //ChangeTextColor(ConsoleColor.Gray);
                                                 }
-                                                else{}
+                                                else
+                                                {
+                                                    bIsPetrified=true;
+
+                                                }
                                                 break;
                                             }
                                         break;
@@ -503,15 +535,23 @@ namespace DH4
                                         {
                                             case"1":
                                             case"double attack":
-                                            for(int attacknum=0; attacknum<2; attacknum++)
+                                            SpellCost=25;
+                                            if(playercharacter.PlayerManaPoints<SpellCost)
                                             {
-                                                   DamageDealt=playercharacter.AttackPoints-enemy.EnemyDefensePoints;
-                                                    enemy.CurrentHealthPoints-=DamageDealt;
-                                                    if(DamageDealt<0)
-                                                        {
-                                                            DamageDealt*=-1;
-                                                            enemy.CurrentHealthPoints-=DamageDealt;
-                                                        }
+                                                textColorOptions=TextColorOptions.GAMEMESSAGE;
+                                                ChangeTextColor(textColorOptions);
+                                                 Console.WriteLine("You don't have enough mana points");
+                                                textColorOptions=TextColorOptions.DEFAULT;
+                                                ChangeTextColor(textColorOptions);
+
+                                            }
+                                            else
+                                            {
+                                                for (int numOfAttacks=0; numOfAttacks<2; numOfAttacks++)
+                                                {
+                                                      DamageDealt=playercharacter.AttackPoints-enemy.EnemyDefensePoints;
+                                                     enemy.CurrentHealthPoints-=DamageDealt;
+                                                }
                                             }
                                             break;
                                         }
@@ -523,7 +563,7 @@ namespace DH4
                         case "3":
                         case"defend":
                             bIsDefending=true;
-                            //attack player.
+                           DoDamageToPlayer();
                         break;
                         default:
                         ClearAndReset(playercharacter);
@@ -532,6 +572,7 @@ namespace DH4
 
                     }
                }
+                DoDamageToPlayer();
 
             }
         }
