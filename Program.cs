@@ -7,6 +7,7 @@ namespace DH4
     class Game
     {
         TextColorOptions textColorOptions=new TextColorOptions();
+      //  EnemyNames enemyNames=new EnemyNames();
 
         public static Character CharacterToCreate(PlayerClassTypes playerClass)
         {
@@ -181,7 +182,7 @@ namespace DH4
                 if(enemy.bIsPetrified==true)
                 {
                     Console.WriteLine($"{enemy.EnemyName} cannot move to attack");
-                    DamageDealtToPlayer=0;
+                    damageDealtToPlayer=0;
                 }
                 if(playercharacter.bIsBitten==true)
                 {
@@ -263,7 +264,7 @@ namespace DH4
                             {
                                 case 1:
                                     playercharacter.bIsBitten=true;
-                                    damageDealtToPlayer=playercharacter.CurrentHealthPoints-=enemy.EnemyManaAttackpoints/playercharacter.PlayerManaDefensePoints;
+                                    damageDealtToPlayer=playercharacter.CurrentHealthPoints-=enemy.EnemyManaAttackPoints/playercharacter.PlayerManaDefensePoints;
                                     Console.WriteLine($"{enemy.EnemyName} has dealt {damageDealtToPlayer} points of damage");
                                     break;
                                 case 2:
@@ -276,7 +277,7 @@ namespace DH4
                             {
                                 case 1:
                                      playercharacter.bIsBitten=true;
-                                     damageDealtToPlayer=playercharacter.CurrentHealthPoints-=enemy.EnemyManaAttackpoints/playercharacter.PlayerManaDefensePoints;
+                                     damageDealtToPlayer=playercharacter.CurrentHealthPoints-=enemy.EnemyManaAttackPoints/playercharacter.PlayerManaDefensePoints;
                                     Console.WriteLine($"{enemy.EnemyName} has dealt {damageDealtToPlayer} points of damage");
                                     break;
                                 case 2:
@@ -297,6 +298,7 @@ namespace DH4
                     break;
                     // defend
                     case 3: 
+                        damageDealtToPlayer=0;
                     break;
                     default: 
                     break;
@@ -536,7 +538,7 @@ namespace DH4
                                             case"1":
                                             case"double attack":
                                             SpellCost=25;
-                                            if(playercharacter.PlayerManaPoints<SpellCost)
+                                            if(playercharacter.CurrentPlayerManaPoints<SpellCost)
                                             {
                                                 textColorOptions=TextColorOptions.GAMEMESSAGE;
                                                 ChangeTextColor(textColorOptions);
@@ -563,7 +565,7 @@ namespace DH4
                         case "3":
                         case"defend":
                             bIsDefending=true;
-                           DoDamageToPlayer();
+                           DoDamageToPlayer(enemy.enemyType,playercharacter,enemy);
                         break;
                         default:
                         ClearAndReset(playercharacter);
@@ -572,7 +574,7 @@ namespace DH4
 
                     }
                }
-                DoDamageToPlayer();
+                DoDamageToPlayer(enemy.enemyType,playercharacter,enemy);
 
             }
         }
