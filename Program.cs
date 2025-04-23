@@ -602,6 +602,10 @@ namespace DH4
                     // create the player character and angel enemy object.
                     enemyNames=EnemyNames.ANGEL;
                     CreateEnemy(enemyNames);
+                    ChangeTextColor(TextColorOptions.GAMEMESSAGE);
+                    System.Console.WriteLine("Chapter 1: Prolouge\n");
+                    System.Console.WriteLine("The people of askela are celebrating the aniversary of the cities founding,however the peace the villagers once knew will come to an end.\n With a flash of lightning and a clap of thunder");
+                    ChangeTextColor(TextColorOptions.DEFAULT);
                     
                     break;
                     // quit game option
