@@ -8,6 +8,12 @@ namespace DH4
     {
         TextColorOptions textColorOptions=new TextColorOptions();
       //  EnemyNames enemyNames=new EnemyNames();
+      public static void PromptedClearScreen()
+        {
+            Console.WriteLine("Press any key to continue \n");
+            Console.ReadKey();
+            Console.Clear();
+        }
 
         public static Character CharacterToCreate(PlayerClassTypes playerClass)
         {
@@ -604,8 +610,10 @@ namespace DH4
                     CreateEnemy(enemyNames);
                     ChangeTextColor(TextColorOptions.GAMEMESSAGE);
                     System.Console.WriteLine("Chapter 1: Prolouge\n");
-                    System.Console.WriteLine("The people of askela are celebrating the aniversary of the cities founding,however the peace the villagers once knew will come to an end.\n With a flash of lightning and a clap of thunder");
-                    ChangeTextColor(TextColorOptions.DEFAULT);
+                    System.Console.WriteLine("The people of askela are celebrating the aniversary of the cities founding,however the peace the villagers once knew will come to an end.\n With a flash of lightning and a clap of thunder,  tall man with fair skin, red hair and eyes as gold as the sun appeared before the villagers. ");
+                    ChangeTextColor(TextColorOptions.ENEMY);
+                    PromptedClearScreen();
+                    
                     
                     break;
                     // quit game option
@@ -632,12 +640,8 @@ namespace DH4
             System.Console.WriteLine("Goodbye\n");
             Environment.Exit(0);
         } 
-        void PromptedClearScreen()
-        {
-            Console.WriteLine("Press any key to continue \n");
-            Console.ReadKey();
-            Console.Clear();
-        }
+        
+        
         void ClearAndReset(Character playercharacter)
         {
             if(playercharacter.CurrentHealthPoints<=0)
